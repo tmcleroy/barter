@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/FoxhoundNULL/barter",
   "dependencies": {
-    "express": "~4.12.4"
+    "express": "~4.12.4",
+    "sqlite3": "~3.0.8",
+    "sequelize": "~3.1.1",
+    "sequelize-cli": "~1.7.0"
   }
 }
