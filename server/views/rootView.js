@@ -1,5 +1,5 @@
 var handler = function (req, res) {
-  res.send('HELLO THERE');
+  res.render('main');
 };
 
 module.exports = handler;
