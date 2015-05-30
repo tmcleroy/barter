@@ -21,6 +21,18 @@
     "sqlite3": "~3.0.8",
     "sequelize": "~3.1.1",
     "sequelize-cli": "~1.7.0",
-    "ejs": "~2.3.1"
+    "ejs": "~2.3.1",
+    "vinyl-source-stream": "~1.1.0",
+    "node-underscorify": "0.0.14",
+    "gulp-sourcemaps": "~1.5.2",
+    "backbone": "~1.2.0",
+    "vinyl-buffer": "~1.0.0",
+    "gulp-util": "~3.0.5",
+    "jquery": "~2.1.4",
+    "lodash": "~3.9.3",
+    "gulp": "~3.8.11",
+    "gulp-uglify": "~1.2.0",
+    "browserify": "~10.2.3",
+    "gulp-sass": "~2.0.1"
   }
 }
