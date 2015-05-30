@@ -11,6 +11,6 @@ $(function () { // document ready
   };
 
   var mainView = new MainView({
-    el: $('<div class="gameViewContainer" />').appendTo('#appContainer')
+    el: $('<div class="mainViewContainer" />').appendTo('#appContainer')
   });
 });
