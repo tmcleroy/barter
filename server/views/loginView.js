@@ -1,5 +1,5 @@
 var handler = function (req, res) {
-  res.send('this is the login view');
+  res.render('login');
 };
 
 module.exports = handler;
