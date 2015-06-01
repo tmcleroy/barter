@@ -1,3 +1,4 @@
+var utils = require('../utils');
 var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
@@ -19,7 +20,13 @@ module.exports = function (passport) {
          // if there are any errors, return the error before anything else
          if (user) {
            console.log('user found');
-           return done(null, user);
+           if (utils.auth.passwordAndHashMatch(password, user.get('password'))) {
+             console.log('valid password, logged in!');
+             return done(null, user);
+           } else {
+             console.log('invalide password');
+             return done(null, false);
+           }
          }
          if (!user) { // no user found
            console.log('no user found');

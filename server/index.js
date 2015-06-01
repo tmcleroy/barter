@@ -21,13 +21,11 @@ app.use(passport.session());
 app.set('view engine', 'ejs'); // use ejs templates
 app.set('views', './server/views/templates/'); // set view template folder
 
-
 require('./config/passport')(passport); // pass passport for configuration
 require('./routes')(app, passport); // initialize routes
 
-
-
-models.sequelize.sync().then(function () {
+//                             set to true to overwrite db
+models.sequelize.sync({ force: false }).then(function () {
   app.listen(app.get('port'), function() {
     console.log('barter server listening on port ' + app.get('port'));
   });

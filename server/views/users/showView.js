@@ -1,7 +1,7 @@
-var models = require('../../models');
+var User = require('../../models').User;
 
 var handler = function (req, res) {
-  models.User.findById(req.params.id)
+  User.findById(req.params.id)
     .then(function (user) {
       res.send(user);
     });

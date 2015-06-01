@@ -15,7 +15,7 @@ var requireAuth = require('./middleware/requireAuth');
 
 module.exports = function (app, passport) {
 
-  // app.all('/api/*', requireAuth);
+  app.all('/api/*',                 requireAuth);
 
   app.get('/',                      requireAuth, rootView);
   app.get('/login',                              loginView);
@@ -25,6 +25,6 @@ module.exports = function (app, passport) {
   // Users
   app.get('/api/users',                          usersIndexView);
   app.get('/api/users/:id',                      usersShowView);
-  app.post('/api/users/:username/:password',               usersCreateView);
+  app.post('/api/users/:username/:password',     usersCreateView);
 
 };
