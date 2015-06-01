@@ -7,20 +7,24 @@ var usersCreateView = require('./views/users/createView');
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
+var logoutHandler = require('./handlers/logoutHandler');
+
+// middleware
+var requireAuth = require('./middleware/requireAuth');
+
 
 module.exports = function (app, passport) {
 
-  app.get('/',            rootView);
-  app.get('/login',       loginView);
-  app.post('/login',      passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/3'
-  }));
+  // app.all('/api/*', requireAuth);
 
+  app.get('/',                      requireAuth, rootView);
+  app.get('/login',                              loginView);
+  app.post('/login',                             loginHandler);
+  app.get('/logout',                             logoutHandler);
 
   // Users
-  app.get('/users',             usersIndexView);
-  app.get('/users/:id',         usersShowView);
-  app.post('/users/:username',  usersCreateView);
+  app.get('/api/users',                          usersIndexView);
+  app.get('/api/users/:id',                      usersShowView);
+  app.post('/api/users/:username/:password',               usersCreateView);
 
 };

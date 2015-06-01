@@ -2,6 +2,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var Sequelize = require('sequelize'); // database ORM
 var passport = require('passport'); // authentication
 
@@ -11,8 +12,11 @@ var models = require('./models');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public')); // public dir
+app.use(cookieParser());
 app.use(bodyParser());
+app.use(session({ secret: 'bartersecret' }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('view engine', 'ejs'); // use ejs templates
 app.set('views', './server/views/templates/'); // set view template folder
