@@ -11,11 +11,12 @@ var logoutHandler = require('./handlers/logoutHandler');
 
 // middleware
 var requireAuth = require('./middleware/requireAuth');
+var requireApiPermission = require('./middleware/requireApiPermission');
 
 
 module.exports = function (app, passport) {
 
-  app.all('/api/*',                 requireAuth);
+  app.all('/api/*',                 requireAuth, requireApiPermission);
 
   app.get('/',                      requireAuth, rootView);
   app.get('/login',                              loginView);

@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Permission.belongsTo(models.User);
+        Permission.belongsToMany(models.User, {through: 'UserPermission'});
       }
     }
   });

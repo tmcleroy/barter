@@ -1,10 +1,13 @@
-var User = require('../../models').User;
+var models = require('../../models');
 
 var handler = function (req, res) {
-  User.findById(req.params.id)
-    .then(function (user) {
-      res.send(user);
-    });
+  models.User.find({
+    where: { id: req.params.id},
+    include: [ models.Permission ],
+    limit: 1
+  }).then(function (user) {
+    res.send(user);
+  });
 };
 
 module.exports = handler;

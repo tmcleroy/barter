@@ -7,7 +7,7 @@ var handler = function (req, res) {
       if (!user) { // user doesn't exist, attempt to create it
         User.create({
           username: req.params.username,
-          password: utils.auth.getPasswordHash(req.params.password)
+          password: req.params.password // password hashing is handled in the model setter
         }).then(function (user) {
           res.status(200);
           res.send(user);
