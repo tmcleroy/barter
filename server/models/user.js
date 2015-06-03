@@ -26,6 +26,12 @@ module.exports = function(sequelize, DataTypes) {
           var access = names.indexOf('admin') > -1 || names.indexOf('api') > -1;
           cb(!!access);
         });
+      },
+      getClientJson: function() {
+        return {
+          username: this.get('username'),
+          email: this.get('email')
+        };
       }
     }
   });

@@ -1,5 +1,5 @@
-var MainView = Backbone.View.extend({
-  template: require('../../templates/main.ejs'),
+var MainAppView = Backbone.View.extend({
+  template: require('../../templates/mainApp.ejs'),
 
   events: {
   },
@@ -14,4 +14,4 @@ var MainView = Backbone.View.extend({
 
 });
 
-module.exports = MainView;
+module.exports = MainAppView;

@@ -3,7 +3,7 @@ window._ = require('lodash');
 window.Backbone = require('backbone');
 Backbone.$ = $;
 // views and models
-var MainView = require('./scripts/views/mainView');
+var MainAppView = require('./scripts/views/mainAppView');
 var HeaderView = require('./scripts/views/headerView');
 var FooterView = require('./scripts/views/footerView');
 
@@ -16,8 +16,8 @@ $(function () { // document ready
     el: $('<div class="headerViewContainer" />').appendTo('#headerContainer')
   });
 
-  new MainView({
-    el: $('<div class="mainViewContainer" />').appendTo('#appContainer')
+  new MainAppView({
+    el: $('<div class="mainAppViewContainer" />').appendTo('#appContainer')
   });
 
   new FooterView({

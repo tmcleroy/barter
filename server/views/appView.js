@@ -1,5 +1,5 @@
 var handler = function (req, res) {
-  res.render('main'); ; // located at ./templates/main.ejs
+  res.render('app'); // located at ./templates/app.ejs
 };
 
 module.exports = handler;
