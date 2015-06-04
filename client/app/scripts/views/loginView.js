@@ -24,7 +24,8 @@ var LoginView = Backbone.View.extend({
       username: username,
       password: password
     }).done(function (data) {
-      App.navigate('home', true);
+      Backbone.trigger('loggedIn', data);
+      App.Router.navigate('home', true);
     }).fail(function (xhr, status, error) {
       console.log(status + ' ' + error);
     });

@@ -1,5 +1,12 @@
 <html>
 <head>
+  <script type="text/javascript">
+    window.App = { // global object
+      Env: {
+        user: <%- user %>,
+      }
+    };
+  </script>
   <script type="text/javascript" charset="utf-8" src="/dist/scripts/app-marketing.js"></script>
   <link rel="stylesheet" type="text/css" href="dist/styles/app.css"/>
 </head>

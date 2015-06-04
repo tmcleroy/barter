@@ -69,7 +69,7 @@ gulp.task('javascript', function () {
   var b = browserify('./client/app/app-main.js', {
     debug: true // for sourcemaps
   });
-  
+
   a.transform(tplTransform);
   b.transform(tplTransform);
 
@@ -95,8 +95,13 @@ gulp.task('javascript', function () {
 });
 
 gulp.task('sass', function () { // styles shared by marketing and main site
-  gulp.src('./client/app/styles/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+  gulp.src('./client/app/styles/app.scss')
+    .pipe(sass({
+      style: 'compressed',
+      loadPath: [
+        './node_modules/bootstrap-sass/assets/stylesheets'
+      ]
+    }).on('error', sass.logError))
       .pipe(gulp.dest('./server/public/dist/styles'));
 });
 

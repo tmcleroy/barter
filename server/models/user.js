@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
           cb(!!access);
         });
       },
-      getClientJson: function() {
+      toClientJson: function() {
         return {
           username: this.get('username'),
           email: this.get('email')

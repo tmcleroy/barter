@@ -7,7 +7,7 @@ var Router = require('./router-marketing');
 
 $(function () { // document ready
 
-  window.App = new Router();
+  App.Router = new Router();
   Backbone.history.start();
 
 });

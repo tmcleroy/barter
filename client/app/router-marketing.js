@@ -6,9 +6,7 @@
   var MainMarketingView = require('./scripts/views/mainMarketingView');
   var LoginView = require('./scripts/views/loginView');
 
-
-
-  var MarketingRouter = Backbone.Router.extend({
+  var MarketingRouter = Backbone.Router.extend(_.defaults({
     lastView: null,
     currentView: null,
     view: null,
@@ -16,8 +14,8 @@
     routes: {
       '(/)'                         : 'home',
       'home(/)'                     : 'home',
-      'login(/)'                    : 'login',
-      'logout(/)'                   : 'logout'
+
+      'login(/)'                    : 'login'
     },
 
     initialize: function () {
@@ -28,6 +26,12 @@
       new FooterView({
         el: $('<div class="footerViewContainer" />').appendTo('#footerContainer')
       });
+
+      if (App.Env.user) {
+        Backbone.trigger('loggedIn', App.Env.user);
+      }
+
+      this.listenTo(Backbone, 'loggedIn', this.loggedIn);
     },
 
     // returns boolean whether to continue rendering the new view
@@ -65,14 +69,22 @@
         });
         this.postRoute(viewName);
       }
+    }
+
+  }, { // global helpers
+
+    loggedIn: function (user) {
+      App.Env.user = user;
     },
 
-    // logout: function () {
-    //   var viewName = 'logout';
-    //
-    //   if (this.currentView !== viewName) {
-    //   }
-    // }
-  });
+    logout: function (redirRoute) {
+      return $.post('/logout').done(function (data) {
+        Backbone.trigger('loggedOut');
+        if (redirRoute) { App.Router.navigate(redirRoute, true); }
+      }).fail(function (xhr, status, error) {
+        console.log(status + ' ' + error);
+      });
+    }
+  }));
 
   module.exports = MarketingRouter;

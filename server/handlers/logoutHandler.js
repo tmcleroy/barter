@@ -1,6 +1,7 @@
 var handler = function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.status(200);
+    res.send('logged out');
 };
 
 module.exports = handler;

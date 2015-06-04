@@ -17,22 +17,22 @@ var requireApiPermission = require('./middleware/requireApiPermission');
 
 module.exports = function (app, passport) {
 
-  app.all('/api/*',                 requireAuth, requireApiPermission);
-  app.all('/app/*',                 requireAuth);
+  app.all('/api/*', requireAuth, requireApiPermission);
+  app.all('/app/*', requireAuth);
 
-  app.get('/',                                   rootView);
-  // app.get('/login',                              loginView);
+  app.get('/', rootView);
+  // app.get('/login',  loginView);
 
   app.post('/login', passport.authenticate('local'), loginHandler);
-  app.get('/logout',                             logoutHandler);
+  app.post('/logout', logoutHandler);
 
-  app.get('/app',                                appView);
+  app.get('/app', appView);
 
   // API
 
   // Users
-  app.get('/api/users',                          usersIndexView);
-  app.get('/api/users/:id',                      usersShowView);
-  app.post('/api/users/:username/:password',     usersCreateView);
+  app.get('/api/users', usersIndexView);
+  app.get('/api/users/:id', usersShowView);
+  app.post('/api/users/:username/:password', usersCreateView);
 
 };
