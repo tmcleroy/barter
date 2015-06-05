@@ -3,10 +3,11 @@
 
   var HeaderView = require('./scripts/views/headerView');
   var FooterView = require('./scripts/views/footerView');
-  var MainMarketingView = require('./scripts/views/mainMarketingView');
+  var HomeView = require('./scripts/views/homeView');
+  var AppView = require('./scripts/views/appView');
   var LoginView = require('./scripts/views/loginView');
 
-  var MarketingRouter = Backbone.Router.extend(_.defaults({
+  var Router = Backbone.Router.extend(_.defaults({
     lastView: null,
     currentView: null,
     view: null,
@@ -15,7 +16,8 @@
       '(/)'                         : 'home',
       'home(/)'                     : 'home',
 
-      'login(/)'                    : 'login'
+      'login(/)'                    : 'login',
+      'app(/)'                      : 'app'
     },
 
     initialize: function () {
@@ -53,8 +55,8 @@
       var viewName = 'home';
 
       if (this.preRoute(viewName)) {
-        this.view = new MainMarketingView({
-          el: $('<div class="mainMarketingViewContainer" />').appendTo('#appContainer')
+        this.view = new HomeView({
+          el: $('<div class="homeViewContainer" />').appendTo('#appContainer')
         });
         this.postRoute(viewName);
       }
@@ -69,7 +71,18 @@
         });
         this.postRoute(viewName);
       }
-    }
+    },
+
+    app: function () {
+      var viewName = 'app';
+
+      if (this.preRoute(viewName)) {
+        this.view = new AppView({
+          el: $('<div class="appViewContainer" />').appendTo('#appContainer')
+        });
+        this.postRoute(viewName);
+      }
+    },
 
   }, { // global helpers
 
@@ -87,4 +100,4 @@
     }
   }));
 
-  module.exports = MarketingRouter;
+  module.exports = Router;

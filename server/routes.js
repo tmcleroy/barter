@@ -1,7 +1,5 @@
 // views
 var rootView = require('./views/rootView');
-var appView = require('./views/appView');
-var loginView = require('./views/loginView');
 var usersIndexView = require('./views/users/indexView');
 var usersShowView = require('./views/users/showView');
 var usersCreateView = require('./views/users/createView');
@@ -18,15 +16,11 @@ var requireApiPermission = require('./middleware/requireApiPermission');
 module.exports = function (app, passport) {
 
   app.all('/api/*', requireAuth, requireApiPermission);
-  app.all('/app/*', requireAuth);
+  app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
 
-  app.get('/', rootView);
-  // app.get('/login',  loginView);
 
   app.post('/login', passport.authenticate('local'), loginHandler);
   app.post('/logout', logoutHandler);
-
-  app.get('/app', appView);
 
   // API
 
@@ -34,5 +28,9 @@ module.exports = function (app, passport) {
   app.get('/api/users', usersIndexView);
   app.get('/api/users/:id', usersShowView);
   app.post('/api/users/:username/:password', usersCreateView);
+
+  // catch everything except the explicitly defined routes above
+  // this must be the last route in the file
+  app.get('*', rootView);
 
 };

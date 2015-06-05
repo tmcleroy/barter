@@ -3,11 +3,15 @@ window._ = require('lodash');
 window.Backbone = require('backbone');
 Backbone.$ = $;
 
-var Router = require('./router-marketing');
+var Router = require('./router');
 
 $(function () { // document ready
 
   App.Router = new Router();
-  Backbone.history.start();
+  Backbone.history.start({
+    pushState: true,
+    root: '/'
+  });
+  App.Router.navigate(location.pathname, { trigger: true });
 
 });
