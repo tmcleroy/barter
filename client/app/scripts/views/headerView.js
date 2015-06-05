@@ -1,4 +1,5 @@
 var utils = require('../utils');
+var ProfileView = require('./profileView.js');
 
 var HeaderView = Backbone.View.extend({
   template: require('../../templates/header.ejs'),
@@ -29,12 +30,17 @@ var HeaderView = Backbone.View.extend({
   },
 
   loggedIn: function (user) {
+    this.profileView = new ProfileView({
+      el: $('<div>').appendTo(this.$('.profileContainer')),
+      size: 'small'
+    });
     this.$('[data-action="login"]')
       .attr('data-action', 'logout')
       .text('Log out');
   },
 
   loggedOut: function () {
+    this.profileView.remove();
     this.$('[data-action="logout"]')
       .attr('data-action', 'login')
       .text('Log in');

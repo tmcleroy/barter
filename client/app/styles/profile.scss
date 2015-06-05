@@ -1,0 +1,11 @@
+.profile {
+  &.small {
+    .avatar {
+      display: none;
+    }
+  }
+
+  .username {
+    font-size: 16px;
+  }
+}

@@ -1,5 +1,5 @@
 var DashboardView = require('./dashboardView.js');
-var ProfileView = require('./profileView.js');
+var ManageProfileView = require('./manageProfileView.js');
 var AccountView = require('./accountView.js');
 
 var MainContentView = Backbone.View.extend({
@@ -11,7 +11,7 @@ var MainContentView = Backbone.View.extend({
       opts: {}
     },
     profile: {
-      view: ProfileView,
+      view: ManageProfileView,
       opts: {}
     },
     account: {
