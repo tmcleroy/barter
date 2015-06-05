@@ -2,7 +2,7 @@ var LoginView = Backbone.View.extend({
   template: require('../../templates/login.ejs'),
 
   events: {
-    'click input[type="submit"]': 'submit'
+    'click button[type="submit"]': 'submit'
   },
 
   initialize: function (params) {
@@ -25,7 +25,7 @@ var LoginView = Backbone.View.extend({
       password: password
     }).done(function (data) {
       Backbone.trigger('loggedIn', data);
-      App.Router.navigate('home', true);
+      App.Router.navigate('app', true);
     }).fail(function (xhr, status, error) {
       console.log(status + ' ' + error);
     });

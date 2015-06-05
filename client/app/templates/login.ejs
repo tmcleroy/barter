@@ -1,13 +1,15 @@
-<form action="/login" method="post" class="loginForm">
-  <div>
-    <label>Username:</label>
-    <input type="text" name="username"/>
+<div class="row">
+  <div class="col-sm-3">
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
   </div>
-  <div>
-    <label>Password:</label>
-    <input type="password" name="password"/>
-  </div>
-  <div>
-    <input type="submit" value="Log In"/>
-  </div>
-</form>
+</div>
