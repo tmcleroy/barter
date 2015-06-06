@@ -7,6 +7,10 @@ var ProfileView = Backbone.View.extend({
   },
 
   initialize: function (params) {
+    if (!App.Env.user) {
+      this.remove();
+      return;
+    }
     this.size = params.size;
 
     this.render();

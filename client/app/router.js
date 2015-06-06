@@ -29,11 +29,11 @@
         el: $('<div class="footerViewContainer" />').appendTo('#footerContainer')
       });
 
+      this.listenTo(Backbone, 'loggedIn', this.loggedIn);
+
       if (App.Env.user) {
         Backbone.trigger('loggedIn', App.Env.user);
       }
-
-      this.listenTo(Backbone, 'loggedIn', this.loggedIn);
     },
 
     // returns boolean whether to continue rendering the new view
@@ -49,6 +49,7 @@
 
     postRoute: function (viewName) {
       this.lastView = this.currentView;
+      Backbone.trigger('routeChanged', viewName);
     },
 
     home: function () {

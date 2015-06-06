@@ -12,6 +12,6 @@ $(function () { // document ready
     pushState: true,
     root: '/'
   });
-  App.Router.navigate(location.pathname, { trigger: true });
+  App.Router.navigate(location.pathname, true);
 
 });

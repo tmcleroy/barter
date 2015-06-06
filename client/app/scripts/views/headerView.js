@@ -14,6 +14,7 @@ var HeaderView = Backbone.View.extend({
 
     this.listenTo(Backbone, 'loggedIn', this.loggedIn);
     this.listenTo(Backbone, 'loggedOut', this.loggedOut);
+    this.listenTo(Backbone, 'routeChanged', this.routeChanged);
   },
 
   render: function () {
@@ -30,8 +31,8 @@ var HeaderView = Backbone.View.extend({
   },
 
   loggedIn: function (user) {
-    this.profileView = new ProfileView({
-      el: $('<div>').appendTo(this.$('.profileContainer')),
+    new ProfileView({
+      el: this.$('.profileContainer'),
       size: 'small'
     });
     this.$('[data-action="login"]')
@@ -40,10 +41,19 @@ var HeaderView = Backbone.View.extend({
   },
 
   loggedOut: function () {
-    this.profileView.remove();
+    this.$('.profileContainer').empty();
     this.$('[data-action="logout"]')
       .attr('data-action', 'login')
       .text('Log in');
+  },
+
+  routeChanged: function (route) {
+    if (this.$('[data-route="' + route + '"]')) {
+      this.$('[data-route]')
+        .removeClass('active');
+      this.$('[data-route="' + route + '"]')
+        .addClass('active');
+    }
   }
 
 });
