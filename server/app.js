@@ -25,9 +25,9 @@ require('./config/passport')(passport); // pass passport for configuration
 require('./routes')(app, passport); // initialize routes
 
 //                             set to true to overwrite db
-models.sequelize.sync({ force: false }).then(function () {
+models.sequelize.sync({ force: true }).then(function () {
 
-  // require('./scripts/addUsers.js')();
+  require('./scripts/addUsers.js')();
 
   app.listen(app.get('port'), function() {
     console.log('barter server listening on port ' + app.get('port'));
