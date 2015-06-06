@@ -70,8 +70,6 @@ module.exports = function () {
   }));
 
   Sequelize.Promise.all(promises).then(function () {
-    console.log('permissions created');
-
     models.User.bulkCreate([
       {
         username: 'tommy',
@@ -98,7 +96,10 @@ module.exports = function () {
          });
          users[0].addPermission(adminPermission).then(function () { });
          users[0].addPermission(apiPermission).then(function () { });
-         users[1].addPermission(adminPermission).then(function () { });
+         users[1].addPermission(apiPermission).then(function () { });
+         // tommy has user and admin
+         // jessica has user and api
+         // laika has user
 
          // everyone knows javascript
          _.each(users, function (user) {

@@ -20,6 +20,13 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
+      hasAdminAccess: function(cb) {
+        this.getPermissions().then(function (permissions) {
+          var names = permissions.map(function(p) { return p.get('name'); });
+          var access = names.indexOf('admin') > -1;
+          cb(!!access);
+        });
+      },
       hasApiAccess: function(cb) {
         this.getPermissions().then(function (permissions) {
           var names = permissions.map(function(p) { return p.get('name'); });
@@ -29,6 +36,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       toClientJson: function() {
         return {
+          id: this.get('id'),
           username: this.get('username'),
           email: this.get('email')
         };

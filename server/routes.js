@@ -1,8 +1,9 @@
 // views
 var rootView = require('./views/rootView');
-var usersIndexView = require('./views/users/indexView');
-var usersShowView = require('./views/users/showView');
-var usersCreateView = require('./views/users/createView');
+var userIndexView = require('./views/user/indexView');
+var userShowView = require('./views/user/showView');
+var userSkillIndexView = require('./views/user/skill/indexView');
+
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
@@ -10,7 +11,9 @@ var logoutHandler = require('./handlers/logoutHandler');
 
 // middleware
 var requireAuth = require('./middleware/requireAuth');
+var requireAdminPermission = require('./middleware/requireAdminPermission');
 var requireApiPermission = require('./middleware/requireApiPermission');
+var requireIdMatch = require('./middleware/requireIdMatch');
 
 
 module.exports = function (app, passport) {
@@ -23,11 +26,10 @@ module.exports = function (app, passport) {
   app.post('/logout', logoutHandler);
 
   // API
-
   // Users
-  app.get('/api/users', usersIndexView);
-  app.get('/api/users/:id', usersShowView);
-  app.post('/api/users/:username/:password', usersCreateView);
+  app.get('/api/users', requireAdminPermission, userIndexView);
+  app.get('/api/users/:id', requireIdMatch, userShowView);
+  app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
