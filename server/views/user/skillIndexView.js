@@ -5,7 +5,7 @@ var handler = function (req, res) {
     where: { id: req.params.id },
     include: [models.Skill]
   }).then(function (user) {
-    res.send(user.Skills);
+    res.json(200, user.Skills);
   });
 };
 

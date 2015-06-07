@@ -1,12 +1,12 @@
 var models = require('../../models');
 
 var handler = function (req, res) {
-  models.User.find({
+  models.User.findOne({
     where: { id: req.params.id},
-    include: [ models.Skill, models.Permission ],
-    limit: 1
+    attributes: ['id', 'username', 'email'],
+    include: [ models.Skill, models.Permission ]
   }).then(function (user) {
-    res.send(user);
+    res.json(200, user.toClientJSON());
   });
 };
 
