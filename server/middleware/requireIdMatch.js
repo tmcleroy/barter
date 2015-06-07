@@ -4,7 +4,7 @@ var middle = function requireAuth(req, res, next) {
       return next();
     } else {
       res.status(401);
-      res.send('you do not have the proper permissions to view this user');
+      res.send('you do not have the proper permissions to view or alter this user');
     }
   });
 };

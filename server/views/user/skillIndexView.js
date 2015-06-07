@@ -1,4 +1,4 @@
-var models = require('../../../models');
+var models = require('../../models');
 
 var handler = function (req, res) {
   models.User.find({

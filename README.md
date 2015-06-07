@@ -4,11 +4,11 @@
 `npm install`
 
 #### Bundle assets
-(and watch for asset changes)
+(also rebundles on asset changes)
 
 `gulp watch`
 
 #### Run server
-`node server/app.js`
+`node server/server.js`
 
 go to http://localhost:5000

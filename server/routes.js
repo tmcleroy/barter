@@ -4,7 +4,8 @@ var passport = require('passport');
 var rootView = require('./views/rootView');
 var userIndexView = require('./views/user/indexView');
 var userShowView = require('./views/user/showView');
-var userSkillIndexView = require('./views/user/skill/indexView');
+var userSkillIndexView = require('./views/user/skillIndexView');
+var userSkillAddView = require('./views/user/skillAddView');
 
 
 // handlers
@@ -20,7 +21,7 @@ var requireIdMatch = require('./middleware/requireIdMatch');
 
 module.exports = function (app) {
 
-  app.all('/api/*', requireAuth, requireApiPermission);
+  app.all('/api/*', requireAuth/*, requireApiPermission*/);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
 
 
@@ -32,9 +33,11 @@ module.exports = function (app) {
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
   app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
+  app.post('/api/users/:id/skills', requireIdMatch, userSkillAddView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
+  // serve rootView for all routes so the single page app can do its thang
   app.get('*', rootView);
 
 };
