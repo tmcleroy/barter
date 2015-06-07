@@ -1,3 +1,5 @@
+var passport = require('passport');
+
 // views
 var rootView = require('./views/rootView');
 var userIndexView = require('./views/user/indexView');
@@ -16,7 +18,7 @@ var requireApiPermission = require('./middleware/requireApiPermission');
 var requireIdMatch = require('./middleware/requireIdMatch');
 
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
 
   app.all('/api/*', requireAuth, requireApiPermission);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);

@@ -1,10 +1,11 @@
 var utils = require('../utils');
 var LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
 
 // load up the user model
 var models = require('../models');
 
-module.exports = function (passport) {
+module.exports = function (req, res, next) {
     passport.serializeUser(function(user, done) {
       done(null, user.get('id'));
     });
@@ -24,7 +25,7 @@ module.exports = function (passport) {
              console.log('valid password, logged in!');
              return done(null, user);
            } else {
-             console.log('invalide password');
+             console.log('invalid password');
              return done(null, false);
            }
          }

@@ -30,10 +30,6 @@
       });
 
       this.listenTo(Backbone, 'loggedIn', this.loggedIn);
-
-      if (App.Env.user) {
-        Backbone.trigger('loggedIn', App.Env.user);
-      }
     },
 
     // returns boolean whether to continue rendering the new view
@@ -88,7 +84,6 @@
   }, { // global helpers
 
     loggedIn: function (user) {
-      App.Env.user = user;
     },
 
     logout: function (redirRoute) {

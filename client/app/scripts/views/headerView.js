@@ -19,6 +19,14 @@ var HeaderView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
+    this.renderProfile();
+  },
+
+  renderProfile: function () {
+    new ProfileView({
+      el: $('<div>').appendTo(this.$('.profileContainer')),
+      size: 'small'
+    });
   },
 
   loginClicked: function (evt) {
@@ -31,10 +39,7 @@ var HeaderView = Backbone.View.extend({
   },
 
   loggedIn: function (user) {
-    new ProfileView({
-      el: this.$('.profileContainer'),
-      size: 'small'
-    });
+    this.renderProfile();
     this.$('[data-action="login"]')
       .attr('data-action', 'logout')
       .text('Log out');

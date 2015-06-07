@@ -22,7 +22,7 @@ app.set('view engine', 'ejs'); // use ejs templates
 app.set('views', './server/views/templates/'); // set view template folder
 
 require('./config/passport')(passport); // pass passport for configuration
-require('./routes')(app, passport); // initialize routes
+require('./routes')(app); // initialize routes
 
 //                             set to true to overwrite db
 models.sequelize.sync({ force: false }).then(function () {

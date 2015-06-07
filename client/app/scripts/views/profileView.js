@@ -1,7 +1,7 @@
 var ProfileView = Backbone.View.extend({
   template: require('../../templates/profile.ejs'),
 
-  user: App.Env.user,
+  user: null,
 
   events: {
   },
@@ -10,6 +10,8 @@ var ProfileView = Backbone.View.extend({
     if (!App.Env.user) {
       this.remove();
       return;
+    } else {
+      this.user = App.Env.user;
     }
     this.size = params.size;
 
