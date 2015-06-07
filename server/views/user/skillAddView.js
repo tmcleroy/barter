@@ -1,5 +1,4 @@
 var models = require('../../models');
-var utils = require('../../utils');
 
 var handler = function (req, res) {
   models.User.findOne({ where: { id: req.params.id } })
