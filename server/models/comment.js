@@ -9,9 +9,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // a comment belongs to a single request
-        Comment.hasOne(models.Request);
+        Comment.belongsTo(models.Request);
         // a comment belongs to a single user
-        Comment.hasOne(models.User);
+        Comment.belongsTo(models.User);
       }
     },
     instanceMethods: {

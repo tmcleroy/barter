@@ -3,11 +3,44 @@ var models = require('../models');
 var _ = require('lodash');
 
 var promises = [];
+
+var tommyUser, jessicaUser, laikaUser;
 var userPermission, apiPermission, adminPermission;
-var javascript, ruby, java, cpp, css;
+var javascriptSkill, rubySkill, javaSkill, cppSkill, cssSkill;
+var algorithmTag, queryTag, regexTag, fxnTag;
 
 module.exports = function () {
 
+  // All the instances that can exist in a vacuum will be created
+  // and added to the promises array
+
+  // Users
+  promises.push(models.User
+  .create({
+    username: 'tommy',
+    password: 'tpass',
+    email: 'tmcleroy@gmail.com'
+  }).then(function (model) {
+     tommyUser = model;
+  }));
+
+  promises.push(models.User
+  .create({
+    username: 'jessica',
+    password: 'jpass',
+    email: 'raf.rkl@gmail.com'
+  }).then(function (model) {
+     jessicaUser = model;
+  }));
+
+  promises.push(models.User
+  .create({
+    username: 'laika',
+    password: 'lpass',
+    email: 'laika@gmail.com'
+  }).then(function (model) {
+     laikaUser = model;
+  }));
 
   // Permissions
   promises.push(models.Permission
@@ -38,84 +71,103 @@ module.exports = function () {
   .create({
     name: 'javascript'
   }).then(function (model) {
-    javascript = model;
+    javascriptSkill = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'ruby'
   }).then(function (model) {
-    ruby = model;
+    rubySkill = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'java'
   }).then(function (model) {
-    java = model;
+    javaSkill = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'c++'
   }).then(function (model) {
-    cpp = model;
+    cppSkill = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'css'
   }).then(function (model) {
-    css = model;
+    cssSkill = model;
   }));
 
+  // Tags
+  promises.push(models.Tag
+  .create({
+    name: 'algorithm'
+  }).then(function (model) {
+    algorithmTag = model;
+  }));
+
+  promises.push(models.Tag
+  .create({
+    name: 'database query'
+  }).then(function (model) {
+    queryTag = model;
+  }));
+
+  promises.push(models.Tag
+  .create({
+    name: 'regex'
+  }).then(function (model) {
+    regexTag = model;
+  }));
+
+  promises.push(models.Tag
+  .create({
+    name: 'function'
+  }).then(function (model) {
+    functionTag = model;
+  }));
+
+
   Sequelize.Promise.all(promises).then(function () {
-    models.User.bulkCreate([
-      {
-        username: 'tommy',
-        password: 'tpass',
-        email: 'tmcleroy@gmail.com'
-      },
-      {
-        username: 'jessica',
-        password: 'jpass',
-        email: 'raf.rkl@gmail.com'
-      },
-      {
-        username: 'laika',
-        password: 'lpass',
-        email: 'laika@gmail.com'
-      }
-    ]).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
-       models.User.findAll().then(function(users) {
-         console.log('users created');
+     models.User.findAll().then(function(users) {
+       console.log('users created');
 
-         // everyone is a user
-         _.each(users, function (user) {
-           user.addPermission(userPermission).then(function () { });
-         });
-         users[0].addPermission(adminPermission).then(function () { });
-         users[0].addPermission(apiPermission).then(function () { });
-         users[1].addPermission(apiPermission).then(function () { });
-         // tommy has user and admin
-         // jessica has user and api
-         // laika has user
+       // everyone has the user permission
+       _.each(users, function (user) {
+         user.addPermission(userPermission).then(function () { });
+       });
+       // everyone has the javascript skill
+       _.each(users, function (user) {
+         user.addSkill(javascriptSkill).then(function () { });
+       });
+     });
 
-         // everyone knows javascript
-         _.each(users, function (user) {
-           user.addSkill(javascript).then(function () { });
-         });
-         users[0].addSkill(css).then(function () { });
-         users[0].addSkill(cpp).then(function () { });
-         users[0].addSkill(ruby).then(function () { });
-         users[0].addSkill(java).then(function () { });
-         users[1].addSkill(cpp).then(function () { });
-         users[1].addSkill(css).then(function () { });
-         users[2].addSkill(css).then(function () { });
+     tommyUser.addPermission(adminPermission).then(function () { });
+     tommyUser.addPermission(apiPermission).then(function () { });
+     jessicaUser.addPermission(apiPermission).then(function () { });
+     // tommyUser has user and admin
+     // jessicaUser has user and api
+     // laikaUser has user
 
 
-      });
-    });
+     tommyUser.addSkill(cssSkill).then(function () { });
+     tommyUser.addSkill(cppSkill).then(function () { });
+     tommyUser.addSkill(rubySkill).then(function () { });
+     jessicaUser.addSkill(cppSkill).then(function () { });
+     jessicaUser.addSkill(cssSkill).then(function () { });
+     laikaUser.addSkill(cssSkill).then(function () { });
+
+     // users now have permissions and skills
+     models.Request.create({
+       title: 'Regex to validate email',
+       body: 'I need a regex that validates an email address.'
+     }).then(function (request) {
+       request.addTag(regexTag).then(function () { });
+     });
 
   });
 
