@@ -2,9 +2,9 @@ var models = require('../../models');
 
 var handler = function (req, res) {
   models.Request.findAll({
-    include: [models.Tag, models.Comment]
+    include: [models.User, models.Tag, models.Comment]
   }).then(function (requests) {
-    res.json(200, requests);
+    res.status(200).json(requests);
   });
 };
 
