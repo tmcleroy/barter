@@ -4,10 +4,10 @@ var _ = require('lodash');
 
 var promises = [];
 
-var tommyUser, jessicaUser, laikaUser;
-var userPermission, apiPermission, adminPermission;
-var javascriptSkill, rubySkill, javaSkill, cppSkill, cssSkill;
-var algorithmTag, queryTag, regexTag, fxnTag;
+var users = {};
+var permissions = {};
+var skills = {};
+var tags = {};
 
 var fxn = function () {
 
@@ -21,7 +21,7 @@ var fxn = function () {
     password: 'tpass',
     email: 'tmcleroy@gmail.com'
   }).then(function (model) {
-     tommyUser = model;
+     users.tommy = model;
   }));
 
   promises.push(models.User
@@ -30,7 +30,7 @@ var fxn = function () {
     password: 'jpass',
     email: 'raf.rkl@gmail.com'
   }).then(function (model) {
-     jessicaUser = model;
+     users.jessica = model;
   }));
 
   promises.push(models.User
@@ -39,7 +39,7 @@ var fxn = function () {
     password: 'lpass',
     email: 'laika@gmail.com'
   }).then(function (model) {
-     laikaUser = model;
+     users.laika = model;
   }));
 
   // Permissions
@@ -47,23 +47,21 @@ var fxn = function () {
   .create({
     name: 'user'
   }).then(function (permission) {
-    userPermission = permission;
+    permissions.user = permission;
   }));
 
   promises.push(models.Permission
   .create({
     name: 'api'
   }).then(function (permission) {
-    // console.log(permission);
-    apiPermission = permission;
+    permissions.api = permission;
   }));
 
   promises.push(models.Permission
   .create({
     name: 'admin'
   }).then(function (permission) {
-    // console.log(permission);
-    adminPermission = permission;
+    permissions.admin = permission;
   }));
 
   // Skills
@@ -71,35 +69,35 @@ var fxn = function () {
   .create({
     name: 'javascript'
   }).then(function (model) {
-    javascriptSkill = model;
+    skills.js = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'ruby'
   }).then(function (model) {
-    rubySkill = model;
+    skills.ruby = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'java'
   }).then(function (model) {
-    javaSkill = model;
+    skills.java = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'c++'
   }).then(function (model) {
-    cppSkill = model;
+    skills.cpp = model;
   }));
 
   promises.push(models.Skill
   .create({
     name: 'css'
   }).then(function (model) {
-    cssSkill = model;
+    skills.css = model;
   }));
 
   // Tags
@@ -107,28 +105,28 @@ var fxn = function () {
   .create({
     name: 'algorithm'
   }).then(function (model) {
-    algorithmTag = model;
+    tags.algorithm = model;
   }));
 
   promises.push(models.Tag
   .create({
     name: 'database query'
   }).then(function (model) {
-    queryTag = model;
+    tags.query = model;
   }));
 
   promises.push(models.Tag
   .create({
     name: 'regex'
   }).then(function (model) {
-    regexTag = model;
+    tags.regex = model;
   }));
 
   promises.push(models.Tag
   .create({
     name: 'function'
   }).then(function (model) {
-    functionTag = model;
+    tags.fxn = model;
   }));
 
 
@@ -138,28 +136,28 @@ var fxn = function () {
 
        // everyone has the user permission
        _.each(users, function (user) {
-         user.addPermission(userPermission).then(function () { });
+         user.addPermission(permissions.user).then(function () { });
        });
        // everyone has the javascript skill
        _.each(users, function (user) {
-         user.addSkill(javascriptSkill).then(function () { });
+         user.addSkill(skills.js).then(function () { });
        });
      });
 
-     tommyUser.addPermission(adminPermission).then(function () { });
-     tommyUser.addPermission(apiPermission).then(function () { });
-     jessicaUser.addPermission(apiPermission).then(function () { });
-     // tommyUser has user and admin
-     // jessicaUser has user and api
-     // laikaUser has user
+     users.tommy.addPermission(permissions.admin).then(function () { });
+     users.tommy.addPermission(permissions.api).then(function () { });
+     users.jessica.addPermission(permissions.api).then(function () { });
+     // users.tommy has user and admin
+     // users.jessica has user and api
+     // users.laika has user
 
 
-     tommyUser.addSkill(cssSkill).then(function () { });
-     tommyUser.addSkill(cppSkill).then(function () { });
-     tommyUser.addSkill(rubySkill).then(function () { });
-     jessicaUser.addSkill(cppSkill).then(function () { });
-     jessicaUser.addSkill(cssSkill).then(function () { });
-     laikaUser.addSkill(cssSkill).then(function () { });
+     users.tommy.addSkill(skills.css).then(function () { });
+     users.tommy.addSkill(skills.cpp).then(function () { });
+     users.tommy.addSkill(skills.ruby).then(function () { });
+     users.jessica.addSkill(skills.cpp).then(function () { });
+     users.jessica.addSkill(skills.css).then(function () { });
+     users.laika.addSkill(skills.css).then(function () { });
 
      // users now have permissions and skills
 
@@ -171,19 +169,19 @@ var fxn = function () {
        var commentPromises = [];
        var comments = [];
        // add tags to the request
-       request.setTags([regexTag]).then(function () { });
+       request.setTags([tags.regex]).then(function () { });
        // create the comments to be added to the request
        commentPromises.push(models.Comment.create({
          body: 'Yo i\'ll do that shit'
        }).then(function (comment) {
          comments.push(comment);
-         tommyUser.addComment(comment); // give the comment a user
+         users.tommy.addComment(comment); // give the comment a user
        }));
        commentPromises.push(models.Comment.create({
          body: 'What language?'
        }).then(function (comment) {
          comments.push(comment);
-         jessicaUser.addComment(comment); // give the comment a user
+         users.jessica.addComment(comment); // give the comment a user
        }));
        Sequelize.Promise.all(commentPromises).then(function () {
          request.setComments(comments);
@@ -197,19 +195,19 @@ var fxn = function () {
        var commentPromises = [];
        var comments = [];
        // add tags to the request
-       request.setTags([functionTag, algorithmTag]).then(function () { });
+       request.setTags([tags.fxn, tags.algorithm]).then(function () { });
        // create the comments to be added to the request
        commentPromises.push(models.Comment.create({
          body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
        }).then(function (comment) {
          comments.push(comment);
-         tommyUser.addComment(comment); // give the comment a user
+         users.tommy.addComment(comment); // give the comment a user
        }));
        commentPromises.push(models.Comment.create({
          body: 'We aim to conservatively invest our capability by iteratively relaying our world-class next-generation team players.'
        }).then(function (comment) {
          comments.push(comment);
-         laikaUser.addComment(comment); // give the comment a user
+         users.laika.addComment(comment); // give the comment a user
        }));
        Sequelize.Promise.all(commentPromises).then(function () {
          request.setComments(comments);
