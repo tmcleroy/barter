@@ -9,7 +9,7 @@ var userPermission, apiPermission, adminPermission;
 var javascriptSkill, rubySkill, javaSkill, cppSkill, cssSkill;
 var algorithmTag, queryTag, regexTag, fxnTag;
 
-module.exports = function () {
+var fxn = function () {
 
   // All the instances that can exist in a vacuum will be created
   // and added to the promises array
@@ -162,13 +162,63 @@ module.exports = function () {
      laikaUser.addSkill(cssSkill).then(function () { });
 
      // users now have permissions and skills
+
+     // create some requests
      models.Request.create({
        title: 'Regex to validate email',
        body: 'I need a regex that validates an email address.'
      }).then(function (request) {
-       request.addTag(regexTag).then(function () { });
+       var commentPromises = [];
+       var comments = [];
+       // add tags to the request
+       request.setTags([regexTag]).then(function () { });
+       // create the comments to be added to the request
+       commentPromises.push(models.Comment.create({
+         body: 'Yo i\'ll do that shit'
+       }).then(function (comment) {
+         comments.push(comment);
+         tommyUser.addComment(comment); // give the comment a user
+       }));
+       commentPromises.push(models.Comment.create({
+         body: 'What language?'
+       }).then(function (comment) {
+         comments.push(comment);
+         jessicaUser.addComment(comment); // give the comment a user
+       }));
+       Sequelize.Promise.all(commentPromises).then(function () {
+         request.setComments(comments);
+       });
      });
 
-  });
+     models.Request.create({
+       title: 'Sort by deeply nested property',
+       body: 'I would like a javascript function that sorts an array of objects by a given property. The property may be deeply nested.'
+     }).then(function (request) {
+       var commentPromises = [];
+       var comments = [];
+       // add tags to the request
+       request.setTags([functionTag, algorithmTag]).then(function () { });
+       // create the comments to be added to the request
+       commentPromises.push(models.Comment.create({
+         body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
+       }).then(function (comment) {
+         comments.push(comment);
+         tommyUser.addComment(comment); // give the comment a user
+       }));
+       commentPromises.push(models.Comment.create({
+         body: 'We aim to conservatively invest our capability by iteratively relaying our world-class next-generation team players.'
+       }).then(function (comment) {
+         comments.push(comment);
+         laikaUser.addComment(comment); // give the comment a user
+       }));
+       Sequelize.Promise.all(commentPromises).then(function () {
+         request.setComments(comments);
+       });
+     });
+
+
+   });
 
 };
+
+module.exports = fxn;
