@@ -5,51 +5,37 @@ var HeaderView = Backbone.View.extend({
   template: require('../../templates/header.ejs'),
 
   events: {
-    'click [data-action="login"]': 'loginClicked',
-    'click [data-action="logout"]': 'logoutClicked'
+    'click [data-logged-in]': 'logInOutClicked'
   },
 
   initialize: function (params) {
     this.render();
 
-    this.listenTo(Backbone, 'loggedIn', this.loggedIn);
-    this.listenTo(Backbone, 'loggedOut', this.loggedOut);
+    this.listenTo(Backbone, 'loggedIn loggedOut', this.render);
     this.listenTo(Backbone, 'routeChanged', this.routeChanged);
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({ loggedIn: !!App.Env.user }));
     this.renderProfile();
   },
 
   renderProfile: function () {
+    this.$('.profileContainer').empty();
     new ProfileView({
       el: $('<div>').appendTo(this.$('.profileContainer')),
       size: 'small'
     });
   },
 
-  loginClicked: function (evt) {
+  logInOutClicked: function (evt) {
     evt.preventDefault();
-    App.Router.navigate('login', true);
-  },
-
-  logoutClicked: function (evt) {
-    App.Router.logout('home');
-  },
-
-  loggedIn: function (user) {
-    this.renderProfile();
-    this.$('[data-action="login"]')
-      .attr('data-action', 'logout')
-      .text('Log out');
-  },
-
-  loggedOut: function () {
-    this.$('.profileContainer').empty();
-    this.$('[data-action="logout"]')
-      .attr('data-action', 'login')
-      .text('Log in');
+    var loggedIn = !!App.Env.user;
+    if (loggedIn) {
+      App.Router.logout('home');
+    } else {
+      App.Router.navigate('login', true);
+    }
   },
 
   routeChanged: function (route) {
@@ -60,7 +46,6 @@ var HeaderView = Backbone.View.extend({
         .addClass('active');
     }
   }
-
 });
 
 module.exports = HeaderView;

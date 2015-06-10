@@ -117,6 +117,7 @@
 
     logout: function (redirRoute) {
       return $.post('/logout').done(function (data) {
+        App.Env.user = null;
         Backbone.trigger('loggedOut');
         if (redirRoute) { App.Router.navigate(redirRoute, true); }
       }).fail(function (xhr, status, error) {

@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
          // if there are any errors, return the error before anything else
          if (user) {
            console.log('user found');
-           if (utils.auth.passwordAndHashMatch(password, user.get('password'))) {
+           if (utils.auth.passwordAndHashMatch(password, user.dataValues.password)) {
              console.log('valid password, logged in!');
              return done(null, user);
            } else {

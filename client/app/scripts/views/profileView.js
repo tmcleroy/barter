@@ -1,5 +1,5 @@
 var ProfileView = Backbone.View.extend({
-  template: require('../../templates/profile.ejs'),
+  template: require('../../templates/profile/profile.ejs'),
 
   user: null,
 
@@ -21,7 +21,7 @@ var ProfileView = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template({
       size: this.size,
-      username: this.user.username
+      user: this.user
     }));
   }
 

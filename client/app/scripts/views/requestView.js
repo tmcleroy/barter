@@ -11,11 +11,12 @@ var RequestView = Backbone.View.extend({
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-    this.listenTo(this.model, 'change sync', this.render);
+    this.listenTo(this.model, 'change', this.render);
     this.model.fetch();
   },
 
   render: function () {
+    console.log(this.model.toJSON());
     this.$el.html(this.template( this.model.toJSON() ));
   }
 

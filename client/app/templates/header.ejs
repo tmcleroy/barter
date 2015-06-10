@@ -9,7 +9,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-text"><div class="profileContainer"></div></li>
       <li>
-        <button type="button" class="btn btn-default navbar-btn loginBtn" data-action="login">Log in</button>
+        <button type="button" class="btn btn-default navbar-btn logInOutBtn" data-logged-in="<%= loggedIn %>">Log <%= loggedIn ? 'out' : 'in' %></button>
       </li>
     </ul>
 

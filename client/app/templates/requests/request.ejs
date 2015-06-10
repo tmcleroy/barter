@@ -1,6 +1,16 @@
 <div class="panel panel-default request">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= title %></h3>
+    <div class="row">
+      <div class="col-sm-9">
+        <h3 class="panel-title"><%= title %></h3>
+      </div>
+      <div class="col-sm-3">
+        <%= require('../profile/profile.ejs')({
+          size: 'small',
+          user: User
+        }) %>
+      </div>
+    </div>
   </div>
   <div class="panel-body">
     <%= body %>
