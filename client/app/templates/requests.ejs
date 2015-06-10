@@ -1,0 +1,8 @@
+<div class="requestView">
+  <p>requests</p>
+  <div class="requestList">
+    <% _.each(requests, function (req) { %>
+      <%= require('./requestsRequest.ejs')(req) %>
+    <% }); %>
+  </div>
+</div>

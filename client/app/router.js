@@ -6,6 +6,8 @@
   var HomeView = require('./scripts/views/homeView');
   var AppView = require('./scripts/views/appView');
   var LoginView = require('./scripts/views/loginView');
+  var RequestsView = require('./scripts/views/requestsView');
+  var RequestView = require('./scripts/views/requestView');
 
   var Router = Backbone.Router.extend(_.defaults({
     lastView: null,
@@ -17,7 +19,10 @@
       'home(/)'                     : 'home',
 
       'login(/)'                    : 'login',
-      'app(/)'                      : 'app'
+      'app(/)'                      : 'app',
+
+      'app/requests(/)'             : 'requests',
+      'app/requests/(:id)'          : 'request'
     },
 
     initialize: function () {
@@ -80,6 +85,30 @@
         this.postRoute(viewName);
       }
     },
+
+    requests: function () {
+      var viewName = 'requests';
+
+      if (this.preRoute(viewName)) {
+        this.view = new RequestsView({
+          el: $('<div class="requestsViewContainer" />').appendTo('#appContainer')
+        });
+        this.postRoute(viewName);
+      }
+    },
+
+    request: function (id) {
+      var viewName = 'request';
+
+      if (this.preRoute(viewName)) {
+        this.view = new RequestView({
+          el: $('<div class="requestViewContainer" />').appendTo('#appContainer'),
+          id: id
+        });
+        this.postRoute(viewName);
+      }
+    }
+
 
   }, { // global helpers
 

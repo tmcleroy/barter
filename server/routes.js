@@ -32,15 +32,15 @@ module.exports = function (app) {
   app.post('/logout', logoutHandler);
 
   // API
-  // Users
+  // User
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
   app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
   app.post('/api/users/:id/skills', requireIdMatch, userSkillAddView);
   app.delete('/api/users/:id/skills', requireIdMatch, userSkillDeleteView);
 
-  // requests
-  app.get('/api/requests', requireAdminPermission, requestIndexView);
+  // Request
+  app.get('/api/requests', /*requireAdminPermission,*/ requestIndexView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
