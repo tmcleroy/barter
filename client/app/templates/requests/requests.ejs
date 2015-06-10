@@ -2,7 +2,7 @@
   <p>requests</p>
   <div class="requestList">
     <% _.each(requests, function (req) { %>
-      <%= require('./requestsRequest.ejs')(req) %>
+      <%= require('./requestListItem.ejs')(req) %>
     <% }); %>
   </div>
 </div>

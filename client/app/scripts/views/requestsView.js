@@ -1,7 +1,7 @@
 var RequestsCollection = require('../collections/requestsCollection');
 
 var RequestsView = Backbone.View.extend({
-  template: require('../../templates/requests.ejs'),
+  template: require('../../templates/requests/requests.ejs'),
 
   collection: null,
 

@@ -9,6 +9,7 @@ var userSkillAddView = require('./views/user/skillAddView');
 var userSkillDeleteView = require('./views/user/skillDeleteView');
 
 var requestIndexView = require('./views/request/indexView');
+var requestShowView = require('./views/request/showView');
 
 
 // handlers
@@ -40,7 +41,8 @@ module.exports = function (app) {
   app.delete('/api/users/:id/skills', requireIdMatch, userSkillDeleteView);
 
   // Request
-  app.get('/api/requests', /*requireAdminPermission,*/ requestIndexView);
+  app.get('/api/requests', requestIndexView);
+  app.get('/api/requests/:id', requestShowView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file

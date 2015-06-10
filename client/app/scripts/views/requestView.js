@@ -1,7 +1,7 @@
 var Request = require('../models/requestModel');
 
 var RequestView = Backbone.View.extend({
-  template: require('../../templates/request.ejs'),
+  template: require('../../templates/requests/request.ejs'),
 
   model: null,
 
