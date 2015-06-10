@@ -32,6 +32,8 @@ module.exports = function(sequelize, DataTypes) {
         User.belongsToMany(models.Permission, { through: 'UserPermission' });
         // a user can have many comments, a comment can belong to a single user
         User.hasMany(models.Comment);
+        // a user can have many proposals, a proposal can belong to a single user
+        User.hasMany(models.Proposal);
       }
     },
     instanceMethods: {

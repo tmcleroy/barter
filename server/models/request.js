@@ -15,6 +15,8 @@ module.exports = function(sequelize, DataTypes) {
         Request.belongsToMany(models.Tag, { through: 'RequestTag' });
         // a request can have many comments, a comment can belong to one request
         Request.hasMany(models.Comment);
+        // a request can have many proposals, a proposal can belong to one request
+        Request.hasMany(models.Proposal);
       }
     },
     instanceMethods: {

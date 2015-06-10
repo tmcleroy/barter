@@ -55,13 +55,12 @@ var fxn = function () {
        body: 'I need a regex that validates an email address.'
      }).then(function (request) {
        request.setUser(myModels.user.jessica);
+       request.setTags([myModels.tag.regex]).then(function () { });
        var commentPromises = [];
        var comments = [];
-       // add tags to the request
-       request.setTags([myModels.tag.regex]).then(function () { });
        // create the comments to be added to the request
        commentPromises.push(models.Comment.create({
-         body: 'Yo i\'ll do that shit'
+         body: 'What\'s your favorite planet?'
        }).then(function (comment) {
          comments.push(comment);
          myModels.user.tommy.addComment(comment); // give the comment a user
@@ -75,6 +74,26 @@ var fxn = function () {
        Sequelize.Promise.all(commentPromises).then(function () {
          request.setComments(comments);
        });
+
+       var proposalPromises = [];
+       var proposals = [];
+       // create the proposals to be added to the request
+       proposalPromises.push(models.Proposal.create({
+         body: 'I\'ll do it, please pick me, i\'m a cool guy'
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.tommy.addProposal(proposal); // give the proposal a user
+       }));
+       proposalPromises.push(models.Proposal.create({
+         body: 'I know everything about this, I\'m your guy.'
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.jessica.addProposal(proposal); // give the proposal a user
+       }));
+       Sequelize.Promise.all(proposalPromises).then(function () {
+         request.setProposals(proposals);
+       });
+
      });
 
      models.Request.create({
@@ -82,10 +101,9 @@ var fxn = function () {
        body: 'I would like a javascript function that sorts an array of objects by a given property. The property may be deeply nested.'
      }).then(function (request) {
        request.setUser(myModels.user.tommy);
+       request.setTags([myModels.tag.fxn, myModels.tag.algorithm]).then(function () { });
        var commentPromises = [];
        var comments = [];
-       // add tags to the request
-       request.setTags([myModels.tag.fxn, myModels.tag.algorithm]).then(function () { });
        // create the comments to be added to the request
        commentPromises.push(models.Comment.create({
          body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
