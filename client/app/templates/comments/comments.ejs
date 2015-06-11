@@ -1,0 +1,7 @@
+<div class="commentsView">
+  <div class="comments">
+    <% _.each(comments, function (comment) { %>
+      <%= require('./comment.ejs')(comment) %>
+    <% }); %>
+  </div>
+</div>
