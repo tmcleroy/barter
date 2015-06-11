@@ -12,12 +12,15 @@ var RequestView = Backbone.View.extend({
     this.model = new Request({ id: params.id });
 
     this.listenTo(this.model, 'change', this.render);
-    this.model.fetch();
+    this.model.fetch().done(function (model) {
+      console.log(model);
+    });
   },
 
   render: function () {
-    console.log(this.model.toJSON());
-    this.$el.html(this.template( this.model.toJSON() ));
+    this.$el.html(this.template({
+      model: this.model
+    }));
   }
 
 });

@@ -1,3 +1,5 @@
+var User = require('../models/userModel.js');
+
 var LoginView = Backbone.View.extend({
   template: require('../../templates/login.ejs'),
 
@@ -24,7 +26,7 @@ var LoginView = Backbone.View.extend({
       username: username,
       password: password
     }).done(function (user) {
-      App.Env.user = user;
+      App.user = new User(user);
       Backbone.trigger('loggedIn', user);
       App.Router.navigate('app', true);
     }).fail(function (xhr, status, error) {

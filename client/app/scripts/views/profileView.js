@@ -1,17 +1,13 @@
 var ProfileView = Backbone.View.extend({
   template: require('../../templates/profile/profile.ejs'),
 
-  user: null,
-
   events: {
   },
 
   initialize: function (params) {
-    if (!App.Env.user) {
+    if (!App.user) {
       this.remove();
       return;
-    } else {
-      this.user = App.Env.user;
     }
     this.size = params.size;
 
@@ -21,7 +17,7 @@ var ProfileView = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template({
       size: this.size,
-      user: this.user
+      user: App.user.toJSON()
     }));
   }
 

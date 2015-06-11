@@ -8,6 +8,7 @@
   var LoginView = require('./scripts/views/loginView');
   var RequestsView = require('./scripts/views/requestsView');
   var RequestView = require('./scripts/views/requestView');
+  var User = require('./scripts/models/userModel');
 
   var Router = Backbone.Router.extend(_.defaults({
     lastView: null,
@@ -26,6 +27,8 @@
     },
 
     initialize: function () {
+      App.user = App.serverVars.user ? new User(App.serverVars.user) : null;
+
       new HeaderView({
         el: $('<div class="headerViewContainer" />').appendTo('#headerContainer')
       });
@@ -117,7 +120,7 @@
 
     logout: function (redirRoute) {
       return $.post('/logout').done(function (data) {
-        App.Env.user = null;
+        App.user = null;
         Backbone.trigger('loggedOut');
         if (redirRoute) { App.Router.navigate(redirRoute, true); }
       }).fail(function (xhr, status, error) {

@@ -16,7 +16,7 @@ var HeaderView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ loggedIn: !!App.Env.user }));
+    this.$el.html(this.template({ loggedIn: !!App.user }));
     this.renderProfile();
   },
 
@@ -30,7 +30,7 @@ var HeaderView = Backbone.View.extend({
 
   logInOutClicked: function (evt) {
     evt.preventDefault();
-    var loggedIn = !!App.Env.user;
+    var loggedIn = !!App.user;
     if (loggedIn) {
       App.Router.logout('home');
     } else {
