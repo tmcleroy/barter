@@ -1,11 +1,11 @@
-var User = require('../../models').User;
+var models = require('../../models');
 var utils = require('../../utils');
 
 var handler = function (req, res) {
-  User.findOne({ where: { username: req.params.username } })
+  models.User.findOne({ where: { username: req.params.username } })
     .then(function (user) {
       if (!user) { // user doesn't exist, attempt to create it
-        User.create({
+        models.User.create({
           username: req.params.username,
           password: req.params.password // password hashing is handled in the model setter
         }).then(function (user) {

@@ -8,6 +8,7 @@
   var LoginView = require('./scripts/views/loginView');
   var RequestsView = require('./scripts/views/requestsView');
   var RequestView = require('./scripts/views/requestView');
+  var CreateRequestView = require('./scripts/views/createRequestView');
   var User = require('./scripts/models/userModel');
 
   var Router = Backbone.Router.extend(_.defaults({
@@ -23,7 +24,8 @@
       'app(/)'                      : 'app',
 
       'app/requests(/)'             : 'requests',
-      'app/requests/(:id)'          : 'request'
+      'app/requests/:id(/)'         : 'request',
+      'app/request/new(/)'          : 'createRequest'
     },
 
     initialize: function () {
@@ -107,6 +109,17 @@
         this.view = new RequestView({
           el: $('<div class="requestViewContainer" />').appendTo('#appContainer'),
           id: id
+        });
+        this.postRoute(viewName);
+      }
+    },
+
+    createRequest: function () {
+      var viewName = 'createRequest';
+
+      if (this.preRoute(viewName)) {
+        this.view = new CreateRequestView({
+          el: $('<div class="createRequestViewContainer" />').appendTo('#appContainer')
         });
         this.postRoute(viewName);
       }

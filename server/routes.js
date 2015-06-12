@@ -10,6 +10,7 @@ var userSkillDeleteView = require('./views/user/skillDeleteView');
 
 var requestIndexView = require('./views/request/indexView');
 var requestShowView = require('./views/request/showView');
+var requestCreateView = require('./views/request/createView');
 
 
 // handlers
@@ -43,6 +44,7 @@ module.exports = function (app) {
   // Request
   app.get('/api/requests', requestIndexView);
   app.get('/api/requests/:id', requestShowView);
+  app.post('/api/requests', requestCreateView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file

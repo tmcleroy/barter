@@ -5,6 +5,8 @@ var User = require('./userModel');
 var RequestModel = Backbone.Model.extend({
   collection: Requests,
 
+  urlRoot: '/api/requests/',
+
   // nested model and collection defs
   modelAndCollectionDefs: {
     'User': User,
@@ -21,9 +23,9 @@ var RequestModel = Backbone.Model.extend({
     return response;
   },
 
-  url: function () {
-    return '/api/requests/' + this.id;
-  }
+  // url: function () {
+  //   return '/api/requests/' + this.id;
+  // }
 });
 
 module.exports = RequestModel;
