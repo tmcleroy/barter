@@ -8,7 +8,6 @@ var CommentsView = Backbone.View.extend({
   },
 
   initialize: function (params) {
-    console.log(params);
     this.collection = params.collection;
 
     this.render();
@@ -17,8 +16,7 @@ var CommentsView = Backbone.View.extend({
   },
 
   render: function () {
-    console.log('render comments');
-    console.log(this.collection);
+    console.log(this.collection.toJSON());
     this.$el.html(this.template({
       comments: this.collection.toJSON()
     }));

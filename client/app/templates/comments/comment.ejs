@@ -1,1 +1,14 @@
-<p><%= body %></p>
+<div class="panel panel-default">
+  <div class="panel-body comment-header">
+    <span class="time"><%= createdAt %></span>
+    <div class="profileContainer pull-right">
+      <%= require('../profile/profile.ejs')({
+        size: 'small',
+        user: User
+      }) %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%= body %>
+  </div>
+</div>
