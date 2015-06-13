@@ -14,6 +14,8 @@ var requestCreateView = require('./views/request/createView');
 
 var commentCreateView = require('./views/comment/createView');
 
+var proposalCreateView = require('./views/proposal/createView');
+
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
@@ -50,6 +52,9 @@ module.exports = function (app) {
 
   // Comment
   app.post('/api/comments', commentCreateView);
+
+  // Proposal
+  app.post('/api/proposals', proposalCreateView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file

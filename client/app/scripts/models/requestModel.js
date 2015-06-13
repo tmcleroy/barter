@@ -1,5 +1,6 @@
 var Requests = require('../collections/requestsCollection');
 var Comments = require('../collections/commentsCollection');
+var Proposals = require('../collections/proposalsCollection');
 var User = require('./userModel');
 
 var RequestModel = Backbone.Model.extend({
@@ -10,7 +11,8 @@ var RequestModel = Backbone.Model.extend({
   // nested model and collection defs
   modelAndCollectionDefs: {
     'User': User,
-    'Comments': Comments
+    'Comments': Comments,
+    'Proposals': Proposals
   },
 
   parse: function (response){

@@ -18,5 +18,12 @@
 </div>
 <div class="commentsContainer">
 </div>
-<div class="createCommentContainer">
+<div>
+  <%= model.get('Proposals').length %> Proposals
 </div>
+<div class="pull-right">
+  <button class="btn btn-default" data-action="addComment">Add Comment</button>
+  <button class="btn btn-default" data-action="makeProposal">Make Proposal</button>
+</div>
+<div class="createCommentContainer hidden"></div>
+<div class="createProposalContainer hidden"></div>

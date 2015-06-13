@@ -1,7 +1,7 @@
-var Comment = require('../models/commentModel');
+var Proposal = require('../models/proposalModel');
 
-var CreateCommentView = Backbone.View.extend({
-  template: require('../../templates/comment/createComment.ejs'),
+var CreateProposalView = Backbone.View.extend({
+  template: require('../../templates/comment/createProposal.ejs'),
 
   model: null,
 
@@ -13,7 +13,7 @@ var CreateCommentView = Backbone.View.extend({
     this.request = params.request;
     this.render();
 
-    this.model = new Comment();
+    this.model = new Proposal();
   },
 
   render: function () {
@@ -31,4 +31,4 @@ var CreateCommentView = Backbone.View.extend({
 
 });
 
-module.exports = CreateCommentView;
+module.exports = CreateProposalView;
