@@ -25,7 +25,7 @@ require('./config/passport')(passport); // pass passport for configuration
 require('./routes')(app); // initialize routes
 
 //                             set to true to overwrite db
-models.sequelize.sync({ force: true }).then(function () {
+models.sequelize.sync({ force: false }).then(function () {
 
   require('./scripts/addTestData.js')();
 

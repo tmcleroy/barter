@@ -1,8 +1,9 @@
 var Request = require('../models/requestModel');
 var CommentsView = require('../views/commentsView');
+var CreateCommentView = require('../views/createCommentView');
 
 var RequestView = Backbone.View.extend({
-  template: require('../../templates/requests/request.ejs'),
+  template: require('../../templates/request/request.ejs'),
 
   model: null,
 
@@ -17,6 +18,10 @@ var RequestView = Backbone.View.extend({
       new CommentsView({
         collection: this.model.get('Comments'),
         el: this.$('.commentsContainer')
+      });
+      new CreateCommentView({
+        el: this.$('.createCommentContainer'),
+        request: this.model
       });
     }, this));
   },

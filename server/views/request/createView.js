@@ -1,7 +1,6 @@
 var models = require('../../models');
 
 var handler = function (req, res) {
-  console.log(req);
   models.Request.create({
     title: req.body.title,
     body: req.body.body

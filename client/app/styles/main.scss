@@ -1,8 +1,12 @@
-html {
-  #appContainer {
-    &.container-fluid {
-      max-width: 1200px;
-      padding: 10px;
-    }
+#appContainer {
+  &.container-fluid {
+    max-width: 1200px;
+    padding: 10px;
   }
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
 }

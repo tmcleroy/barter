@@ -1,7 +1,7 @@
-var Request = require('../models/requestModel');
+var Comment = require('../models/commentModel');
 
-var CreateRequestView = Backbone.View.extend({
-  template: require('../../templates/request/createRequest.ejs'),
+var CreateCommentView = Backbone.View.extend({
+  template: require('../../templates/comment/createComment.ejs'),
 
   model: null,
 
@@ -10,25 +10,26 @@ var CreateRequestView = Backbone.View.extend({
   },
 
   initialize: function (params) {
+    this.request = params.request;
     this.render();
 
-    this.model = new Request();
+    this.model = new Comment();
   },
 
   render: function () {
+    console.log('render');
     this.$el.html(this.template());
   },
 
   submitClicked: function (evt) {
-    var title = this.$('[data-attr="title"]').val();
     var body = this.$('[data-attr="body"]').val();
     this.model.set({
-      title: title,
-      body: body
+      body: body,
+      requestId: this.request.get('id')
     });
     this.model.save();
   }
 
 });
 
-module.exports = CreateRequestView;
+module.exports = CreateCommentView;

@@ -1,6 +1,6 @@
 
 var CommentsView = Backbone.View.extend({
-  template: require('../../templates/comments/comments.ejs'),
+  template: require('../../templates/comment/comments.ejs'),
 
   collection: null,
 
