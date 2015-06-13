@@ -1,5 +1,6 @@
-var browserify = require('browserify');
 var gulp = require('gulp');
+var browserify = require('browserify');
+var babelify = require("babelify");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
@@ -12,28 +13,14 @@ var webpack = require('gulp-webpack');
 
 gulp.task('javascript', function () {
 
-  // return gulp.src('./client/app/app.js')
-  //       .pipe(webpack({
-  //         watch: true,
-  //         module: {
-  //           loaders: [
-  //             { test: /\.ejs$/, loader: 'ejs' },
-  //           ],
-  //         },
-  //       }
-  //       ))
-  //       .pipe(gulp.dest('./server/public/dist/scripts/'));
-  //
-
   var tplTransform = underscorify.transform({
     extensions: ['ejs', 'html']
   });
 
-  var a = browserify('./client/app/app.js', {
-    debug: true // for sourcemaps
-  });
-  a.transform(tplTransform);
-  return a.bundle()
+  return browserify('./client/app/app.js', { debug: true /* for sourcemaps */ })
+    .transform(babelify)
+    .transform(tplTransform)
+    .bundle()
     .pipe(source('./app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))

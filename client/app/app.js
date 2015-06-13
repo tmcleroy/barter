@@ -15,7 +15,7 @@ $(function () { // document ready
   App.Router.navigate(location.pathname, true);
 
   // global click handler that allows backbone to handle routing slash-based urls
-  $(document).on('click', 'a[href^="/"]', function (evt) {
+  $(document).on('click', 'a[href^="/"]', (evt) => {
 
     var href = $(evt.currentTarget).attr('href');
     var passThrough = href.match(/^logout$/); // let the server handle logout routing
