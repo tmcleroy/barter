@@ -24,7 +24,7 @@ $(function () { // document ready
     if (!passThrough && !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
       evt.preventDefault();
       // remove leading slashes and hash bangs (backward compatablility)
-      var url = href.replace(/^\//,'').replace('\#\!\/','');
+      var url = href.replace(/^\//, '').replace('\#\!\/', '');
       // let backbone handle routing
       App.Router.navigate(url, { trigger: true });
       return false;

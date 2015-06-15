@@ -42,6 +42,8 @@
     "bcrypt": "~0.8.3",
     "bootstrap-sass": "~3.3.4",
     "ssacl-attribute-roles": "0.0.5",
-    "babelify": "~6.1.2"
+    "babelify": "~6.1.2",
+    "eslint": "~0.22.1",
+    "babel-eslint": "~3.1.15"
   }
 }
