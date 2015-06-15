@@ -10,6 +10,9 @@
       <li class="navbar-text"><div class="profileContainer"></div></li>
       <li>
         <button type="button" class="btn btn-default navbar-btn logInOutBtn" data-logged-in="<%= loggedIn %>">Log <%= loggedIn ? 'out' : 'in' %></button>
+        <% if (!loggedIn) { %>
+          <button type="button" class="btn btn-default navbar-btn registerBtn" data-action="register">Register</button>
+        <% } %>
       </li>
     </ul>
 

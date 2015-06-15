@@ -3,7 +3,7 @@
 var utils = require('../utils');
 var ssaclAttributeRoles = require('ssacl-attribute-roles');
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {});
   ssaclAttributeRoles(sequelize);
   ssaclAttributeRoles(User);
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     username: DataTypes.STRING,
     password: {
       type: DataTypes.STRING,
-      set: function(val) {
+      set: function (val) {
         this.setDataValue('password', utils.auth.getPasswordHash(val));
       },
       // so we don't expose even the hashed password.
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // a user can have many skills, a skill can belong to many users
         User.belongsToMany(models.Skill, { through: 'UserSkill' });
         // a user can have many permissions, a permission can belong to many users
@@ -37,21 +37,21 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     instanceMethods: {
-      hasAdminAccess: function(cb) {
+      hasAdminAccess: function (cb) {
         this.getPermissions().then(function (permissions) {
-          var names = permissions.map(function(p) { return p.get('name'); });
+          var names = permissions.map(function (p) { return p.get('name'); });
           var access = names.indexOf('admin') > -1;
           cb(!!access);
         });
       },
-      hasApiAccess: function(cb) {
+      hasApiAccess: function (cb) {
         this.getPermissions().then(function (permissions) {
-          var names = permissions.map(function(p) { return p.get('name'); });
+          var names = permissions.map(function (p) { return p.get('name'); });
           var access = names.indexOf('admin') > -1 || names.indexOf('api') > -1;
           cb(!!access);
         });
       },
-      toClientJSON: function() {
+      toClientJSON: function () {
         return {
           id: this.get('id'),
           username: this.get('username'),

@@ -1,11 +1,11 @@
-var utils = require('../utils');
 var ProfileView = require('./profileView.js');
 
 var HeaderView = Backbone.View.extend({
   template: require('../../templates/header.ejs'),
 
   events: {
-    'click [data-logged-in]': 'logInOutClicked'
+    'click [data-logged-in]': 'logInOutClicked',
+    'click [data-action="register"]': 'registerClicked'
   },
 
   initialize: function (params) {
@@ -32,10 +32,14 @@ var HeaderView = Backbone.View.extend({
     evt.preventDefault();
     var loggedIn = !!App.user;
     if (loggedIn) {
-      App.Router.logout('home');
+      App.API.logout('home');
     } else {
       App.Router.navigate('login', true);
     }
+  },
+
+  registerClicked: function (evt) {
+    App.Router.navigate('register', true);
   },
 
   routeChanged: function (route) {

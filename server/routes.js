@@ -20,6 +20,7 @@ var proposalCreateView = require('./views/proposal/createView');
 // handlers
 var loginHandler = require('./handlers/loginHandler');
 var logoutHandler = require('./handlers/logoutHandler');
+var registerHandler = require('./handlers/registerHandler');
 
 // middleware
 var requireAuth = require('./middleware/requireAuth');
@@ -35,6 +36,7 @@ module.exports = function (app) {
 
 
   app.post('/login', passport.authenticate('local'), loginHandler);
+  app.post('/register', registerHandler);
   app.post('/logout', logoutHandler);
 
   // API

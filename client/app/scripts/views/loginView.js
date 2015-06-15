@@ -19,19 +19,18 @@ var LoginView = Backbone.View.extend({
     evt.preventDefault();
 
     var $form = $(evt.target).closest('form');
-    var username = $form.find( 'input[name="username"]' ).val();
-    var password = $form.find( 'input[name="password"]' ).val();
+    var username = $form.find('input[name="username"]').val();
+    var password = $form.find('input[name="password"]').val();
 
-    $.post('/login', {
-      username: username,
-      password: password
-    }).done(function (user) {
-      App.user = new User(user);
-      Backbone.trigger('loggedIn', user);
-      App.Router.navigate('app', true);
-    }).fail(function (xhr, status, error) {
-      console.log(status + ' ' + error);
-    });
+    var req = App.API.login(username, password);
+    console.log(req);
+    req
+      .done((user) => {
+        App.Router.navigate('app', true);
+      })
+      .fail((xhr, status, error) => {
+        console.log(status + ' ' + error);
+      });
   }
 
 });

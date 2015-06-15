@@ -3,7 +3,6 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var Sequelize = require('sequelize'); // database ORM
 var passport = require('passport'); // authentication
 
 // app level requires

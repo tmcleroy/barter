@@ -3,7 +3,8 @@ window._ = require('lodash');
 window.Backbone = require('backbone');
 Backbone.$ = $;
 
-var Router = require('./router');
+var Router = require('./scripts/router');
+var Api = require('./scripts/api');
 
 $(function () { // document ready
 
@@ -13,6 +14,8 @@ $(function () { // document ready
     root: '/'
   });
   App.Router.navigate(location.pathname, true);
+
+  App.API = Api;
 
   // global click handler that allows backbone to handle routing slash-based urls
   $(document).on('click', 'a[href^="/"]', (evt) => {
@@ -26,7 +29,7 @@ $(function () { // document ready
       // remove leading slashes and hash bangs (backward compatablility)
       var url = href.replace(/^\//, '').replace('\#\!\/', '');
       // let backbone handle routing
-      App.Router.navigate(url, { trigger: true });
+      App.Router.navigate(url, true);
       return false;
     }
   });
