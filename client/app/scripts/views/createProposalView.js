@@ -22,8 +22,11 @@ var CreateProposalView = Backbone.View.extend({
 
   submitClicked: function (evt) {
     var body = this.$('[data-attr="body"]').val();
+    var offer = this.$('[data-attr="offer"]').val();
+
     this.model.set({
       body: body,
+      offer: offer,
       requestId: this.request.get('id')
     });
     this.model.save().done((proposal) => {

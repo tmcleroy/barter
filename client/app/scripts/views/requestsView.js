@@ -18,7 +18,7 @@ var RequestsView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({
-      requests: this.collection.toJSON()
+      requests: this.collection
     }));
   }
 

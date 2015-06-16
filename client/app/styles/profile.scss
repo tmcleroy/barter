@@ -1,4 +1,5 @@
 .profile {
+  display: inline-block;
   &.small {
     .avatar {
       display: none;
@@ -9,6 +10,6 @@
     font-size: 14px;
   }
   .rep {
-    color: #61B661;
+    color: $green;
   }
 }

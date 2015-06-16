@@ -1,8 +1,17 @@
 <div class="panel panel-default request">
   <div class="panel-heading">
-    <h3 class="panel-title"><a href="/app/requests/<%= id %>"><%= title %></a></h3>
+    <div class="row">
+      <div class="col-sm-9">
+        <h3 class="panel-title"><a href="/app/requests/<%= request.id %>"><%= request.get('title') %></a></h3>
+      </div>
+      <div class="col-sm-3">
+        <div class="offerContainer pull-right">
+          Offering <span class="offer"><%= request.get('offer') %></span> points
+        </div>
+      </div>
+    </div>
   </div>
   <div class="panel-body">
-    <%= body %>
+    <%= request.get('body') %>
   </div>
 </div>

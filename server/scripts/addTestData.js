@@ -20,8 +20,6 @@ var fxn = function () {
   _.each(defs, function (modelDef) {
     var model = modelDef.model;
     var modelName = modelDef.name;
-    console.log(myModels);
-    console.log(modelName);
     _.each(modelDef.instances, function (def) {
       promises.push(model.create(def.attrs)
         .then(function (model) {
@@ -52,7 +50,8 @@ var fxn = function () {
      // create some requests
      models.Request.create({
        title: 'Regex to validate email',
-       body: 'I need a regex that validates an email address.'
+       body: 'I need a regex that validates an email address.',
+       offer: 189
      }).then(function (request) {
        request.setUser(myModels.user.jessica);
        request.setTags([myModels.tag.regex]).then(function () { });
@@ -79,13 +78,15 @@ var fxn = function () {
        var proposals = [];
        // create the proposals to be added to the request
        proposalPromises.push(models.Proposal.create({
-         body: 'I\'ll do it, please pick me, i\'m a cool guy'
+         body: 'I\'ll do it, but i need more points.',
+         offer: 250
        }).then(function (proposal) {
          proposals.push(proposal);
          myModels.user.jim.addProposal(proposal);
        }));
        proposalPromises.push(models.Proposal.create({
-         body: 'I know everything about this, I\'m your guy.'
+         body: 'I know everything about this, And I\'ll do it for next to nothing.',
+         offer: 100
        }).then(function (proposal) {
          proposals.push(proposal);
          myModels.user.tommy.addProposal(proposal);
@@ -98,7 +99,8 @@ var fxn = function () {
 
      models.Request.create({
        title: 'Sort by deeply nested property',
-       body: 'I would like a javascript function that sorts an array of objects by a given property. The property may be deeply nested.'
+       body: 'I would like a javascript function that sorts an array of objects by a given property. The property may be deeply nested.',
+       offer: 489
      }).then(function (request) {
        request.setUser(myModels.user.tommy);
        request.setTags([myModels.tag.fxn, myModels.tag.algorithm]).then(function () { });

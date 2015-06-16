@@ -4,7 +4,8 @@ var utils = require('../utils');
 
 module.exports = function(sequelize, DataTypes) {
   var Proposal = sequelize.define('Proposal', {
-    body: DataTypes.TEXT
+    body: DataTypes.TEXT,
+    offer: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
