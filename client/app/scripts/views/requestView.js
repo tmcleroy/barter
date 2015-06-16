@@ -1,12 +1,12 @@
 var Request = require('../models/requestModel');
 var CommentsView = require('../views/commentsView');
+var ProposalsView = require('../views/proposalsView');
 var CreateCommentView = require('../views/createCommentView');
 var CreateProposalView = require('../views/createProposalView');
 
 var RequestView = Backbone.View.extend({
   template: require('../../templates/request/request.ejs'),
 
-  model: null,
   views: {},
 
   events: {
@@ -17,20 +17,18 @@ var RequestView = Backbone.View.extend({
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-
     this.listenTo(this.model, 'sync change add', this.render);
-    this.model.fetch().done(() => {
-      // should create a proposals view that rerenders itself
-      // like we have for the commentsview
-      this.listenTo(this.model.get('Proposals'), 'sync change add', this.render);
-    });
+    this.model.fetch();
   },
 
   render: function () {
-    console.log('render');
     this.$el.html(this.template({
-      model: this.model
+      request: this.model
     }));
+    new ProposalsView({
+      collection: this.model.get('Proposals'),
+      el: this.$('.proposalsContainer')
+    });
     new CommentsView({
       collection: this.model.get('Comments'),
       el: this.$('.commentsContainer')

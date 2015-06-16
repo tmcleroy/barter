@@ -1,6 +1,6 @@
 
-var CommentsView = Backbone.View.extend({
-  template: require('../../templates/comment/comments.ejs'),
+var ProposalsView = Backbone.View.extend({
+  template: require('../../templates/proposal/proposals.ejs'),
 
   events: {
   },
@@ -13,10 +13,10 @@ var CommentsView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({
-      comments: this.collection.toJSON()
+      proposals: this.collection
     }));
   }
 
 });
 
-module.exports = CommentsView;
+module.exports = ProposalsView;
