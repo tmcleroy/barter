@@ -22,7 +22,8 @@ module.exports = function (sequelize, DataTypes) {
       // https://github.com/mickhansen/ssacl-attribute-roles
       roles: false
     },
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    rep: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function (models) {
@@ -55,7 +56,8 @@ module.exports = function (sequelize, DataTypes) {
         return {
           id: this.get('id'),
           username: this.get('username'),
-          email: this.get('email')
+          email: this.get('email'),
+          rep: this.get('rep')
         };
       }
     }

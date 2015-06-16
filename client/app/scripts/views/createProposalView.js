@@ -26,7 +26,9 @@ var CreateProposalView = Backbone.View.extend({
       body: body,
       requestId: this.request.get('id')
     });
-    this.model.save();
+    this.model.save().done((proposal) => {
+      this.collection.add(proposal);
+    });
   }
 
 });

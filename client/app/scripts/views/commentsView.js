@@ -8,11 +8,9 @@ var CommentsView = Backbone.View.extend({
   },
 
   initialize: function (params) {
-    this.collection = params.collection;
-
     this.render();
 
-    this.listenTo(this.collection, 'change sync', this.render);
+    this.listenTo(this.collection, 'sync change add', this.render);
   },
 
   render: function () {

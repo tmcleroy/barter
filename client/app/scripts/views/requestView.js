@@ -17,18 +17,20 @@ var RequestView = Backbone.View.extend({
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-    this.model.fetch().done(_.bind(this.requestLoaded, this));
+
+    this.listenTo(this.model, 'sync change add', this.render);
+    this.model.fetch().done(() => {
+      // should create a proposals view that rerenders itself
+      // like we have for the commentsview
+      this.listenTo(this.model.get('Proposals'), 'sync change add', this.render);
+    });
   },
 
   render: function () {
+    console.log('render');
     this.$el.html(this.template({
       model: this.model
     }));
-  },
-
-  requestLoaded: function () {
-    this.render();
-    this.listenTo(this.model, 'change', this.render);
     new CommentsView({
       collection: this.model.get('Comments'),
       el: this.$('.commentsContainer')
@@ -36,26 +38,24 @@ var RequestView = Backbone.View.extend({
   },
 
   toggleAddComment: function (evt) {
-    var $target = $(evt.target);
-
     this.$('.createCommentContainer').toggleClass('hidden');
 
     if (!this.views.createCommentView) {
       this.views.createCommentView = new CreateCommentView({
         el: this.$('.createCommentContainer'),
+        collection: this.model.get('Comments'),
         request: this.model
       });
     }
   },
 
   toggleMakeProposal: function (evt) {
-    var $target = $(evt.target);
-
     this.$('.createProposalContainer').toggleClass('hidden');
 
     if (!this.views.createProposalView) {
       this.views.createProposalView = new CreateProposalView({
         el: this.$('.createProposalContainer'),
+        collection: this.model.get('Proposals'),
         request: this.model
       });
     }

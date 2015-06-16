@@ -63,13 +63,13 @@ var fxn = function () {
          body: 'What\'s your favorite planet?'
        }).then(function (comment) {
          comments.push(comment);
-         myModels.user.tommy.addComment(comment); // give the comment a user
+         myModels.user.tommy.addComment(comment);
        }));
        commentPromises.push(models.Comment.create({
          body: 'What language?'
        }).then(function (comment) {
          comments.push(comment);
-         myModels.user.jessica.addComment(comment); // give the comment a user
+         myModels.user.jessica.addComment(comment);
        }));
        Sequelize.Promise.all(commentPromises).then(function () {
          request.setComments(comments);
@@ -82,13 +82,13 @@ var fxn = function () {
          body: 'I\'ll do it, please pick me, i\'m a cool guy'
        }).then(function (proposal) {
          proposals.push(proposal);
-         myModels.user.tommy.addProposal(proposal); // give the proposal a user
+         myModels.user.jim.addProposal(proposal);
        }));
        proposalPromises.push(models.Proposal.create({
          body: 'I know everything about this, I\'m your guy.'
        }).then(function (proposal) {
          proposals.push(proposal);
-         myModels.user.jessica.addProposal(proposal); // give the proposal a user
+         myModels.user.tommy.addProposal(proposal);
        }));
        Sequelize.Promise.all(proposalPromises).then(function () {
          request.setProposals(proposals);
@@ -109,13 +109,13 @@ var fxn = function () {
          body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
        }).then(function (comment) {
          comments.push(comment);
-         myModels.user.tommy.addComment(comment); // give the comment a user
+         myModels.user.jessica.addComment(comment);
        }));
        commentPromises.push(models.Comment.create({
          body: 'We aim to conservatively invest our capability by iteratively relaying our world-class next-generation team players.'
        }).then(function (comment) {
          comments.push(comment);
-         myModels.user.laika.addComment(comment); // give the comment a user
+         myModels.user.laika.addComment(comment);
        }));
        Sequelize.Promise.all(commentPromises).then(function () {
          request.setComments(comments);

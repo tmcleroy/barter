@@ -9,6 +9,6 @@
 `gulp watch`
 
 #### Run server
-`node server/server.js`
+`node --harmony server/server.js`
 
 go to http://localhost:5000

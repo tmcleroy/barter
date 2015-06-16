@@ -5,10 +5,12 @@
         <h3 class="panel-title"><%= model.get('title') %></h3>
       </div>
       <div class="col-sm-3">
-        <%= require('../profile/profile.ejs')({
-          size: 'small',
-          user: model.get('User').toJSON()
-        }) %>
+        <div class="profileContainer pull-right">
+          <%= require('../profile/profile.ejs')({
+            size: 'small',
+            user: model.get('User').toJSON()
+          }) %>
+        </div>
       </div>
     </div>
   </div>

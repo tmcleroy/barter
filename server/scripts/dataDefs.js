@@ -10,7 +10,8 @@ module.exports = [
         attrs: {
           username: 'tommy',
           password: 'tpass',
-          email: 'tmcleroy@gmail.com'
+          email: 'tmcleroy@gmail.com',
+          rep: 10000
         }
       },
       {
@@ -18,7 +19,8 @@ module.exports = [
         attrs: {
           username: 'jessica',
           password: 'jpass',
-          email: 'raf.rkl@gmail.com'
+          email: 'raf.rkl@gmail.com',
+          rep: 9001
         }
       },
       {
@@ -26,7 +28,26 @@ module.exports = [
         attrs: {
           username: 'laika',
           password: 'lpass',
-          email: 'laika@gmail.com'
+          email: 'laika@gmanfjfil.com',
+          rep: 12
+        }
+      },
+      {
+        name: 'bob',
+        attrs: {
+          username: 'bob',
+          password: 'bpass',
+          email: 'bob@gmfjsdjail.com',
+          rep: 653
+        }
+      },
+      {
+        name: 'jim',
+        attrs: {
+          username: 'jim',
+          password: 'jpass',
+          email: 'jim@gmjfifjail.com',
+          rep: 139
         }
       }
     ]
