@@ -2,14 +2,19 @@
 
 var utils = require('../utils');
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Request = sequelize.define('Request', {
     title: DataTypes.STRING,
     body: DataTypes.TEXT,
-    offer: DataTypes.INTEGER
+    offer: {
+      type: DataTypes.INTEGER,
+      set: function (val) {
+        this.setDataValue('offer', parseInt(val, 10));
+      }
+    }
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // request has one user
         Request.hasOne(models.User);
         // a request can have many tags, a tag can belong to many requests

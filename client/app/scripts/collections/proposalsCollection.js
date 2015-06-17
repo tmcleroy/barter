@@ -7,9 +7,9 @@ var ProposalsCollection = Backbone.Collection.extend({
 
   getAvgOffer: function () {
     var sum = this.reduce((memo, value) => {
-      return memo + value.get('offer');
+      return memo + (value.get('offer') || 0);
     }, 0);
-    return sum / this.length;
+    return Math.round(sum / this.length);
   }
 });
 
