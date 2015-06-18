@@ -1,8 +1,10 @@
 var Backbone = require('backbone');
 var _ = require('lodash');
 
+var AppSkeleton = require('../templates/app.ejs');
 var HeaderView = require('./views/headerView');
 var FooterView = require('./views/footerView');
+var SideBarView = require('./views/sideBarView.js');
 var HomeView = require('./views/homeView');
 var AppView = require('./views/appView');
 var LoginView = require('./views/loginView');
@@ -32,6 +34,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
   initialize: function () {
     App.user = App.serverVars.user ? new User(App.serverVars.user) : null;
+    $('#appContainer').html(AppSkeleton());
 
     new HeaderView({
       el: $('<div class="headerViewContainer" />').appendTo('#headerContainer')
@@ -41,6 +44,10 @@ var Router = Backbone.Router.extend(_.defaults({
       el: $('<div class="footerViewContainer" />').appendTo('#footerContainer')
     });
 
+    new SideBarView({
+      el: $('<div class="sidebarViewContainer" />').appendTo('#sidebarContainer')
+    });
+
     this.listenTo(Backbone, 'loggedIn', this.loggedIn);
   },
 
@@ -48,7 +55,7 @@ var Router = Backbone.Router.extend(_.defaults({
   preRoute: function (viewName) {
     this.currentView = viewName;
     if (this.lastView !== this.currentView) {
-      $('#appContainer').empty();
+      $('#contentContainer').empty();
       return true;
     } else {
       return false;
@@ -65,7 +72,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new HomeView({
-        el: $('<div class="homeViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="homeViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
@@ -76,7 +83,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new LoginView({
-        el: $('<div class="loginViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="loginViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
@@ -87,7 +94,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new RegisterView({
-        el: $('<div class="registerViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="registerViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
@@ -98,7 +105,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new AppView({
-        el: $('<div class="appViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="appViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
@@ -109,7 +116,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new RequestsView({
-        el: $('<div class="requestsViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="requestsViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
@@ -120,7 +127,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new RequestView({
-        el: $('<div class="requestViewContainer" />').appendTo('#appContainer'),
+        el: $('<div class="requestViewContainer" />').appendTo('#contentContainer'),
         id: id
       });
       this.postRoute(viewName);
@@ -132,7 +139,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new CreateRequestView({
-        el: $('<div class="createRequestViewContainer" />').appendTo('#appContainer')
+        el: $('<div class="createRequestViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
