@@ -20,6 +20,7 @@ var CreateRequestView = Backbone.View.extend({
   },
 
   submitClicked: function (evt) {
+    evt.preventDefault();
     var title = this.$('[data-attr="title"]').val();
     var body = this.$('[data-attr="body"]').val();
     var offer = this.$('[data-attr="offer"]').val();
