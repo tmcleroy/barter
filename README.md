@@ -1,5 +1,12 @@
 #Barter
 
+### Set up database
+have a postgresql database running at `localhost:5432`
+
+with username `postgres` and trust (no password) authentication
+
+the database should have a database named `barter`
+
 #### Install dependencies
 `npm install`
 
