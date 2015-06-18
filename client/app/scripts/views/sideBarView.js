@@ -1,15 +1,19 @@
 var SideBarView = Backbone.View.extend({
   template: require('../../templates/sidebar.ejs'),
 
-  events: {
-  },
-
   initialize: function (params) {
     this.render();
+    this.listenTo(Backbone, 'routeChanged', this.routeChanged);
   },
 
   render: function () {
     this.$el.html(this.template());
+  },
+
+  routeChanged: function (route) {
+    console.log(route);
+    this.$('[data-route]').removeClass('active');
+    this.$('[data-route="' + route + '"]').addClass('active');
   }
 
 });

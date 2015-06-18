@@ -27,9 +27,9 @@ var Router = Backbone.Router.extend(_.defaults({
     'register(/)'                 : 'register',
     'app(/)'                      : 'app',
 
-    'app/requests(/)'             : 'requests',
-    'app/requests/:id(/)'         : 'request',
-    'app/request/new(/)'          : 'createRequest'
+    'app/requests/browse(/)'      : 'requestsBrowse',
+    'app/requests/show/:id(/)'    : 'requestsShow',
+    'app/requests/create(/)'      : 'requestsCreate'
   },
 
   initialize: function () {
@@ -111,35 +111,35 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requests: function () {
-    var viewName = 'requests';
+  requestsBrowse: function () {
+    var viewName = 'requestsBrowse';
 
     if (this.preRoute(viewName)) {
       this.view = new RequestsView({
-        el: $('<div class="requestsViewContainer" />').appendTo('#contentContainer')
+        el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }
   },
 
-  request: function (id) {
-    var viewName = 'request';
+  requestsShow: function (id) {
+    var viewName = 'requestsShow';
 
     if (this.preRoute(viewName)) {
       this.view = new RequestView({
-        el: $('<div class="requestViewContainer" />').appendTo('#contentContainer'),
+        el: $('<div class="requestsShowViewContainer" />').appendTo('#contentContainer'),
         id: id
       });
       this.postRoute(viewName);
     }
   },
 
-  createRequest: function () {
-    var viewName = 'createRequest';
+  requestsCreate: function () {
+    var viewName = 'requestsCreate';
 
     if (this.preRoute(viewName)) {
       this.view = new CreateRequestView({
-        el: $('<div class="createRequestViewContainer" />').appendTo('#contentContainer')
+        el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }

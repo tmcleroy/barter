@@ -12,7 +12,6 @@ var HeaderView = Backbone.View.extend({
     this.render();
 
     this.listenTo(Backbone, 'loggedIn loggedOut', this.render);
-    this.listenTo(Backbone, 'routeChanged', this.routeChanged);
   },
 
   render: function () {
@@ -40,15 +39,6 @@ var HeaderView = Backbone.View.extend({
 
   registerClicked: function (evt) {
     App.Router.navigate('register', true);
-  },
-
-  routeChanged: function (route) {
-    if (this.$('[data-route="' + route + '"]')) {
-      this.$('[data-route]')
-        .removeClass('active');
-      this.$('[data-route="' + route + '"]')
-        .addClass('active');
-    }
   }
 });
 
