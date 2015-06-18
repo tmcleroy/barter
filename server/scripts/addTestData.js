@@ -29,7 +29,7 @@ var fxn = function () {
   });
 
   Sequelize.Promise.all(promises).then(function () {
-     _.each(myModels.user, function(user) {
+     _.each(myModels.user, function (user) {
        user.addPermission(myModels.permission.user).then(function () { });
        user.addSkill(myModels.skill.js).then(function () { });
      });

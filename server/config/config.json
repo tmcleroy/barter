@@ -1,7 +1,10 @@
 {
   "development": {
-    "dialect": "sqlite",
-    "storage": "./db.development.sqlite"
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "username": "postgres",
+    "database": "barter"
   },
   "test": {
     "username": "root",

@@ -1,5 +1,6 @@
 var Request = require('../models/requestModel');
 var CommentsView = require('../views/commentsView');
+var TagsView = require('../views/tagsView');
 var ProposalsView = require('../views/proposalsView');
 var CreateCommentView = require('../views/createCommentView');
 var CreateProposalView = require('../views/createProposalView');
@@ -22,9 +23,14 @@ var RequestView = Backbone.View.extend({
   },
 
   render: function () {
+    console.log(this.model);
     this.$el.html(this.template({
       request: this.model
     }));
+    new TagsView ({
+      collection: this.model.get('Tags'),
+      el: this.$('.tagsContainer')
+    });
     new ProposalsView({
       collection: this.model.get('Proposals'),
       el: this.$('.proposalsContainer')

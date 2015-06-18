@@ -23,10 +23,12 @@ var CreateRequestView = Backbone.View.extend({
     var title = this.$('[data-attr="title"]').val();
     var body = this.$('[data-attr="body"]').val();
     var offer = this.$('[data-attr="offer"]').val();
+    var tags = this.$('[data-attr="tags"]').val();
     this.model.set({
       title: title,
       body: body,
-      offer: offer
+      offer: offer,
+      tags: tags.split(',')
     });
     this.model.save();
   }
