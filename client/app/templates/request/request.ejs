@@ -1,27 +1,40 @@
-<div class="panel panel-default request">
-  <div class="panel-heading header">
-    <div class="row">
-      <div class="col-sm-9">
-        <h3 class="panel-title"><%= request.get('title') %></h3>
-        <div class="profileContainer">
-          <%= require('../profile/profile.ejs')({
-            size: 'small',
-            user: request.get('User').toJSON()
-          }) %>
+<div class="request">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="title"><%= request.get('title') %></h3>
+    </div>
+  </div>
+  <div class="row">
+
+      <div class="col-sm-4">
+        <div class="panel panel-default metaPanel">
+          <div class="panel-body">
+            <div class="profileContainer">
+              <%= require('../profile/profile.ejs')({
+                size: 'small',
+                user: request.get('User').toJSON()
+              }) %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-sm-3 headerRight">
+
+      <div class="col-sm-6 col-sm-offset-2 offerProposalsContainer">
         <div class="offerContainer">
           Offering <span class="offer"><%= request.get('offer') %></span> points
         </div>
         <div class="proposalsContainer"></div>
       </div>
+
+  </div>
+
+  <div class="panel panel-default bodyPanel">
+    <div class="panel-body">
+      <%= request.get('body') %>
     </div>
   </div>
-  <div class="panel-body">
-    <%= request.get('body') %>
-  </div>
 </div>
+
 <div class="tagsContainer"></div>
 <div class="commentsContainer"></div>
 
