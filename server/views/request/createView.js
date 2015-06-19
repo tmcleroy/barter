@@ -10,6 +10,8 @@ var handler = function (req, res) {
   }).then(function (request) {
     request.setUser(req.user).then(function () {
       createTags(function (tags) {
+        console.log('tags ---------------------------------------');
+        console.log(tags);
         request.setTags(tags).then(function () {
           res.status(200).send(request);
         });
@@ -19,16 +21,17 @@ var handler = function (req, res) {
 
   function createTags (cb) {
     var promises = [];
-    var tags = [];
+    var tags = {};
     _.each(req.body.tags, function (tag) {
+      tags[tag] = null;
       var promise = models.Tag.findOrCreate({ where: { name: tag }})
-        .then(function (tags) {
-          tags.push(tags[0]);
+        .then(function (resultTags, created) {
+          tags[tag] = resultTags[0];
         });
       promises.push(promise);
     });
     Sequelize.Promise.all(promises).then(function () {
-      cb(tags);
+      cb(_.values(tags));
     });
   }
 };

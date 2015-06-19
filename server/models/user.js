@@ -27,6 +27,9 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function (models) {
+        // a user can have many requests
+        // User.belongsToMany(models.Request, { through: 'UserRequest' });
+        User.hasMany(models.Request);
         // a user can have many skills, a skill can belong to many users
         User.belongsToMany(models.Skill, { through: 'UserSkill' });
         // a user can have many permissions, a permission can belong to many users

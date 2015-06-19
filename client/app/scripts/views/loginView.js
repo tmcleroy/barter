@@ -22,11 +22,9 @@ var LoginView = Backbone.View.extend({
     var username = $form.find('input[name="username"]').val();
     var password = $form.find('input[name="password"]').val();
 
-    var req = App.API.login(username, password);
-    console.log(req);
-    req
+    App.API.login(username, password)
       .done((user) => {
-        App.Router.navigate('app', true);
+        App.Router.navigate('app/requests/browse', true);
       })
       .fail((xhr, status, error) => {
         console.log(status + ' ' + error);

@@ -51,26 +51,26 @@ var fxn = function () {
      models.Request.create({
        title: 'Regex to validate email',
        body: 'I need a regex that validates an email address.',
-       offer: 189
+       offer: 350
      }).then(function (request) {
-       request.setUser(myModels.user.jessica);
-       request.setTags([myModels.tag.regex]).then(function () { });
-       var commentPromises = [];
+       var promises = [];
        var comments = [];
+       promises.push(request.setUser(myModels.user.jessica));
+       promises.push(request.setTags([myModels.tag.regex]));
        // create the comments to be added to the request
-       commentPromises.push(models.Comment.create({
+       promises.push(models.Comment.create({
          body: 'What\'s your favorite planet?'
        }).then(function (comment) {
          comments.push(comment);
          myModels.user.tommy.addComment(comment);
        }));
-       commentPromises.push(models.Comment.create({
+       promises.push(models.Comment.create({
          body: 'What language?'
        }).then(function (comment) {
          comments.push(comment);
          myModels.user.jessica.addComment(comment);
        }));
-       Sequelize.Promise.all(commentPromises).then(function () {
+       Sequelize.Promise.all(promises).then(function () {
          request.setComments(comments);
        });
 
@@ -100,29 +100,86 @@ var fxn = function () {
      models.Request.create({
        title: 'Sort by deeply nested property',
        body: 'I would like a javascript function that sorts an array of objects by a given property. The property may be deeply nested.',
-       offer: 489
+       offer: 3050
      }).then(function (request) {
-       request.setUser(myModels.user.tommy);
-       request.setTags([myModels.tag.fxn, myModels.tag.algorithm]).then(function () { });
-       var commentPromises = [];
+       var promises = [];
        var comments = [];
+       promises.push(request.setUser(myModels.user.tommy));
+       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
        // create the comments to be added to the request
-       commentPromises.push(models.Comment.create({
+       promises.push(models.Comment.create({
          body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
        }).then(function (comment) {
          comments.push(comment);
          myModels.user.jessica.addComment(comment);
        }));
-       commentPromises.push(models.Comment.create({
+       promises.push(models.Comment.create({
          body: 'We aim to conservatively invest our capability by iteratively relaying our world-class next-generation team players.'
        }).then(function (comment) {
          comments.push(comment);
          myModels.user.laika.addComment(comment);
        }));
-       Sequelize.Promise.all(commentPromises).then(function () {
+       Sequelize.Promise.all(promises).then(function () {
          request.setComments(comments);
        });
      });
+
+
+     models.Request.create({
+       title: 'In the future, will you be able to conservatively offshore?',
+       body: 'capabilities in your business? Next-generation synergies are becoming value-added platform experts. In the market focus space, industry is dynamically aligning its wholesale emerging markets.',
+       offer: 3500
+     }).then(function (request) {
+       var promises = [];
+       var comments = [];
+       promises.push(request.setUser(myModels.user.tommy));
+       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
+       // create the comments to be added to the request
+       promises.push(models.Comment.create({
+         body: 'Our business grows step-changes to proactively and ethically monetize our company-wide core competency.'
+       }).then(function (comment) {
+         comments.push(comment);
+         myModels.user.laika.addComment(comment);
+       }));
+       promises.push(models.Comment.create({
+         body: 'So we can hit the ground running, we will be globally reusing every alignment in our space. Iteratively touching base about transforming clouds will make us leaders in the best-in-class team player industry. We use our knowledge transfer diversities to strategically manage our vertical expectations.'
+       }).then(function (comment) {
+         comments.push(comment);
+         myModels.user.jessica.addComment(comment);
+       }));
+       Sequelize.Promise.all(promises).then(function () {
+         request.setComments(comments);
+       });
+     });
+
+
+     models.Request.create({
+       title: 'Change the way you do business - adopt senior brands.',
+       body: 'Our alignment development lifecycle enables innovative, knowledge transfer team players. It\'s critical that we give 110% when strategically impacting step-changes. In the core asset space, industry is reliably aligning its wholesale stakeholders. Going forward, our world-class stack will deliver value to brands. In the future, will you be able to proactively facilitate architectures in your business? Key players will take ownership of their core competencies by virtually offshoring best-in-class low hanging fruit. Competitive capabilities are becoming seamless bandwidth experts. It\'s critical that we give 110% when ethically relaying innovations.',
+       offer: 1500
+     }).then(function (request) {
+       var promises = [];
+       var comments = [];
+       promises.push(request.setUser(myModels.user.tommy));
+       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
+       // create the comments to be added to the request
+       promises.push(models.Comment.create({
+         body: 'Going forward, our proactive deliverable will deliver value to standard setters. Globally touching base about synergising executive searches will make us leaders in the senior capability industry. Change the way you do business - adopt holistic agile workflows.'
+       }).then(function (comment) {
+         comments.push(comment);
+         myModels.user.laika.addComment(comment);
+       }));
+       promises.push(models.Comment.create({
+         body: 'It\'s critical that we give 110% when conservatively revolutionizing enterprises.'
+       }).then(function (comment) {
+         comments.push(comment);
+         myModels.user.jessica.addComment(comment);
+       }));
+       Sequelize.Promise.all(promises).then(function () {
+         request.setComments(comments);
+       });
+     });
+
 
 
    });

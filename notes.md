@@ -1,3 +1,7 @@
+# bugs
+- tags on requests should be displayed in the order they were added by the creator of the request
+
+
 # Requests
 - title
 - body - outline (think about rules, or required fields)

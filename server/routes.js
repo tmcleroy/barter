@@ -5,10 +5,9 @@ var rootView = require('./views/rootView');
 var userIndexView = require('./views/user/indexView');
 var userShowView = require('./views/user/showView');
 var userSkillIndexView = require('./views/user/skillIndexView');
-var userSkillAddView = require('./views/user/skillAddView');
-var userSkillDeleteView = require('./views/user/skillDeleteView');
 
 var requestIndexView = require('./views/request/indexView');
+var requestMineView = require('./views/request/mineView');
 var requestShowView = require('./views/request/showView');
 var requestCreateView = require('./views/request/createView');
 
@@ -44,11 +43,10 @@ module.exports = function (app) {
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
   app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
-  app.post('/api/users/:id/skills', requireIdMatch, userSkillAddView);
-  app.delete('/api/users/:id/skills', requireIdMatch, userSkillDeleteView);
-
+  
   // Request
   app.get('/api/requests', requestIndexView);
+  app.get('/api/requests/mine', requestMineView);
   app.get('/api/requests/:id', requestShowView);
   app.post('/api/requests', requestCreateView);
 

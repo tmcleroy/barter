@@ -27,7 +27,7 @@ var RequestView = Backbone.View.extend({
     this.$el.html(this.template({
       request: this.model
     }));
-    new TagsView ({
+    new TagsView({
       collection: this.model.get('Tags'),
       el: this.$('.tagsContainer')
     });

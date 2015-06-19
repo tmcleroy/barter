@@ -2,12 +2,12 @@
 
 var utils = require('../utils');
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Tag = sequelize.define('Tag', {
     name: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // a tag can belong to many requests
         Tag.belongsToMany(models.Request, { through: 'TagRequest' });
       }

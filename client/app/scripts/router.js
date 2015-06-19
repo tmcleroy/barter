@@ -29,7 +29,8 @@ var Router = Backbone.Router.extend(_.defaults({
 
     'app/requests/browse(/)'      : 'requestsBrowse',
     'app/requests/show/:id(/)'    : 'requestsShow',
-    'app/requests/create(/)'      : 'requestsCreate'
+    'app/requests/create(/)'      : 'requestsCreate',
+    'app/requests/mine(/)'        : 'requestsMine'
   },
 
   initialize: function () {
@@ -140,6 +141,18 @@ var Router = Backbone.Router.extend(_.defaults({
     if (this.preRoute(viewName)) {
       this.view = new CreateRequestView({
         el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer')
+      });
+      this.postRoute(viewName);
+    }
+  },
+
+  requestsMine: function () {
+    var viewName = 'requestsMine';
+
+    if (this.preRoute(viewName)) {
+      this.view = new RequestsView({
+        el: $('<div class="requestsMineViewContainer" />').appendTo('#contentContainer'),
+        collectionOverrides: { url: '/api/requests/mine' }
       });
       this.postRoute(viewName);
     }

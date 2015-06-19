@@ -3,13 +3,11 @@ var RequestsCollection = require('../collections/requestsCollection');
 var RequestsView = Backbone.View.extend({
   template: require('../../templates/request/requests.ejs'),
 
-  collection: null,
-
-  events: {
-  },
-
   initialize: function (params) {
     this.collection = new RequestsCollection();
+    _.each(params.collectionOverrides, (val, key) => {
+      this.collection[key] = val;
+    });
 
     this.listenTo(this.collection, 'change sync', this.render);
 
@@ -17,6 +15,7 @@ var RequestsView = Backbone.View.extend({
   },
 
   render: function () {
+    console.log(this.collection);
     this.$el.html(this.template({
       requests: this.collection
     }));
