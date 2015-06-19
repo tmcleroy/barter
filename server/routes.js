@@ -15,11 +15,11 @@ var commentCreateView = require('./views/comment/createView');
 
 var proposalCreateView = require('./views/proposal/createView');
 
-
 // handlers
 var loginHandler = require('./handlers/loginHandler');
 var logoutHandler = require('./handlers/logoutHandler');
 var registerHandler = require('./handlers/registerHandler');
+var avatarUploadHandler = require('./handlers/avatarUploadHandler');
 
 // middleware
 var requireAuth = require('./middleware/requireAuth');
@@ -37,13 +37,14 @@ module.exports = function (app) {
   app.post('/login', passport.authenticate('local'), loginHandler);
   app.post('/register', registerHandler);
   app.post('/logout', logoutHandler);
+  app.post('/avatar', avatarUploadHandler);
 
   // API
   // User
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
   app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
-  
+
   // Request
   app.get('/api/requests', requestIndexView);
   app.get('/api/requests/mine', requestMineView);
