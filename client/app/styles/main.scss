@@ -14,3 +14,30 @@ textarea {
 button + button {
   margin-left: 10px;
 }
+
+.arrowUp {
+	position: relative;
+
+  &:after, &:before {
+  	bottom: 100%;
+  	left: 50%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+  }
+  &:after {
+  	border-color: rgba(255, 255, 255, 0);
+  	border-bottom-color: #fff;
+  	border-width: 10px;
+  	margin-left: -10px;
+  }
+  &:before {
+  	border-color: rgba(204, 204, 204, 0);
+  	border-bottom-color: #ccc;
+  	border-width: 11px;
+  	margin-left: -11px;
+  }
+}

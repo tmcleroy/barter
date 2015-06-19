@@ -1,13 +1,12 @@
 .profile {
   display: inline-block;
-  &.small {
-    .avatar {
-      display: none;
-    }
+  .avatar {
+    height: 40px;
+    border-radius: 50%;
+    margin: -15px 5px -10px 5px;
   }
-
   .username {
-    font-size: 14px;
+    font-size: 16px;
   }
   .rep {
     color: $green;

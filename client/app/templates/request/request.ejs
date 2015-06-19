@@ -5,30 +5,22 @@
     </div>
   </div>
   <div class="row">
-
-      <div class="col-sm-4">
-        <div class="panel panel-default metaPanel">
-          <div class="panel-body">
-            <div class="profileContainer">
-              <%= require('../profile/profile.ejs')({
-                size: 'small',
-                user: request.get('User').toJSON()
-              }) %>
-            </div>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="profileContainer">
+        <%= require('../profile/profile.ejs')({
+          size: 'small',
+          user: request.get('User').toJSON()
+        }) %>
       </div>
-
-      <div class="col-sm-6 col-sm-offset-2 offerProposalsContainer">
-        <div class="offerContainer">
-          Offering <span class="offer"><%= request.get('offer') %></span> points
-        </div>
-        <div class="proposalsContainer"></div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-2 offerProposalsContainer">
+      <div class="offerContainer">
+        Offering <span class="offer"><%= request.get('offer') %></span> points
       </div>
-
+      <div class="proposalsContainer"></div>
+    </div>
   </div>
-
-  <div class="panel panel-default bodyPanel">
+  <div class="panel panel-default bodyPanel arrowUp">
     <div class="panel-body">
       <%= request.get('body') %>
     </div>
