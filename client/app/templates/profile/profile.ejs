@@ -1,5 +1,7 @@
-<div class="profile <%= obj.size %>">
+<div class="profile">
   <img src="/avatar.png" class="avatar"></img>
-  <span class="username"><%= user.username %></span>
-  <span class="rep"><%= user.rep %></span>
+  <div class="usernameRepContainer">
+    <div class="username"><%= user.username %></div>
+    <div class="rep"><%= user.rep %></div>
+  </div>
 </div>

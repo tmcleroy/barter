@@ -11,7 +11,7 @@ module.exports = [
           username: 'tommy',
           password: 'tpass',
           email: 'tmcleroy@gmail.com',
-          rep: 10000
+          rep: 12036
         }
       },
       {
@@ -29,7 +29,7 @@ module.exports = [
           username: 'laika',
           password: 'lpass',
           email: 'laika@gmanfjfil.com',
-          rep: 12
+          rep: 135
         }
       },
       {
