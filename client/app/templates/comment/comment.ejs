@@ -1,14 +1,22 @@
-<div class="panel panel-default">
-  <div class="panel-body comment-header">
-    <span class="profileContainer">
-      <%= require('../profile/profile.ejs')({
-        size: 'small',
-        user: User
-      }) %>
-    </span>
-    <span class="time pull-right"><%= createdAt %></span>
+<div class="comment">
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="profileContainer">
+        <%= require('../profile/profile.ejs')({
+          size: 'small',
+          user: User
+        }) %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-2">
+    </div>
   </div>
-  <div class="panel-body">
-    <%= body %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= body %>
+    </div>
   </div>
+
 </div>

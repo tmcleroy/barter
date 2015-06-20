@@ -133,7 +133,7 @@ var fxn = function () {
        var promises = [];
        var comments = [];
        promises.push(request.setUser(myModels.user.tommy));
-       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
+       promises.push(request.setTags([myModels.tag.three, myModels.tag.fxn, myModels.tag.algorithm, myModels.tag.two]));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'Our business grows step-changes to proactively and ethically monetize our company-wide core competency.'
@@ -161,7 +161,7 @@ var fxn = function () {
        var promises = [];
        var comments = [];
        promises.push(request.setUser(myModels.user.tommy));
-       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
+       promises.push(request.setTags([myModels.tag.two, myModels.tag.fxn, myModels.tag.one, myModels.tag.algorithm]));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'Going forward, our proactive deliverable will deliver value to standard setters. Globally touching base about synergising executive searches will make us leaders in the senior capability industry. Change the way you do business - adopt holistic agile workflows.'

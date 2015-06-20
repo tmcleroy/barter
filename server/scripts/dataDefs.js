@@ -139,6 +139,24 @@ module.exports = [
         attrs: {
           name: 'function'
         }
+      },
+      {
+        name: 'one',
+        attrs: {
+          name: 'one'
+        }
+      },
+      {
+        name: 'two',
+        attrs: {
+          name: 'two'
+        }
+      },
+      {
+        name: 'three',
+        attrs: {
+          name: 'three'
+        }
       }
     ]
   }
