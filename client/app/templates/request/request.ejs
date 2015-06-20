@@ -1,4 +1,4 @@
-<div class="request">
+<div class="request module">
   <div class="row">
     <div class="col-sm-12">
       <h3 class="title"><%= request.get('title') %></h3>
@@ -20,15 +20,15 @@
       <div class="proposalsContainer"></div>
     </div>
   </div>
-  <div class="panel panel-default bodyPanel arrowUp">
+  <div class="panel panel-default arrowUp">
     <div class="panel-body">
       <%= request.get('body') %>
     </div>
   </div>
 </div>
 
-<div class="tagsContainer"></div>
-<div class="commentsContainer"></div>
+<div class="tagsContainer module"></div>
+<div class="commentsContainer module"></div>
 
 <div class="pull-right">
   <button class="btn btn-default" data-action="addComment">Add Comment</button>

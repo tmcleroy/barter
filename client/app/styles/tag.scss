@@ -1,6 +1,9 @@
 .tag {
+  display: inline-block;
+  margin-bottom: 4px;
   padding: 4px 9px;
   border-radius: 3px;
   border: 1px solid #ccc;
   background: #efefef;
+  cursor: default;
 }
