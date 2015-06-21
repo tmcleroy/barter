@@ -2,6 +2,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer'); // for file uploads
 var session = require('express-session');
 var passport = require('passport'); // authentication
 
@@ -16,6 +17,7 @@ app.use(bodyParser());
 app.use(session({ secret: 'bartersecret' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(multer({ dest: './uploads/' }));
 
 app.set('view engine', 'ejs'); // use ejs templates
 app.set('views', './server/views/templates/'); // set view template folder

@@ -2,7 +2,7 @@ var SettingsView = Backbone.View.extend({
   template: require('../../templates/settings.ejs'),
 
   events: {
-    'click button[type="submit"]': 'submit'
+    'submit form.avatarForm': 'submit'
   },
 
   initialize: function (params) {
@@ -14,26 +14,25 @@ var SettingsView = Backbone.View.extend({
   },
 
   submit: function (evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
+    //
+    // var form = $(evt.target).closest('form').ajaxSubmit();
+    // var req = form.data('jqxhr');
+    // req.done((data) => {
+    //   console.log('done');
+    //   console.log(data);
+    // });
 
-    var $form = $(evt.target).closest('form');
-    var username = $form.find( 'input[name="username"]' ).val();
-    var password = $form.find( 'input[name="password"]' ).val();
-    var email = $form.find( 'input[name="email"]' ).val();
-
-    App.API.register(username, password, email)
-      .done((user) => {
-        App.API.login(username, password)
-          .done(() => {
-            App.Router.navigate('app', true);
-          })
-          .fail((xhr, status, error) => {
-            console.log(status + ' ' + error);
-          });
-      })
-      .fail((xhr, status, error) => {
-        console.log(status + ' ' + error);
-      });
+    // $.ajax({
+    //   url: '/avatar',
+    //   method: 'POST',
+    //   data: $form.serialize()
+    // }).done((data) => {
+    //   console.log('done');
+    //   console.log(data);
+    // }).fail((xhr, status, error) => {
+    //   console.log('fail');
+    // });
   }
 
 });
