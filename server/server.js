@@ -17,7 +17,7 @@ app.use(bodyParser());
 app.use(session({ secret: 'bartersecret' }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(multer({ dest: './server/uploads/' }));
+app.use(multer({ dest: './server/uploads/' })); // temp foler for file uploads
 
 app.set('view engine', 'ejs'); // use ejs templates
 app.set('views', './server/views/templates/'); // set view template folder

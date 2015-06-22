@@ -3,6 +3,8 @@
 var utils = require('../utils/utils');
 var ssaclAttributeRoles = require('ssacl-attribute-roles');
 
+var AVATAR_DIR = 'https://s3-us-west-2.amazonaws.com/barter.app/public/avatars/';
+
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {});
   ssaclAttributeRoles(sequelize);
@@ -23,7 +25,17 @@ module.exports = function (sequelize, DataTypes) {
       roles: false
     },
     email: DataTypes.STRING,
-    rep: DataTypes.INTEGER
+    rep: DataTypes.INTEGER,
+    avatar: {
+      type: DataTypes.STRING,
+      defaultValue: AVATAR_DIR + 'avatar-default.png',
+      set: function () { // don't allow direct setting of this, it should always be based on the id
+        var id = this.get('id') || 'default';
+        console.log('setting avatar -------------------------------------');
+        console.log(AVATAR_DIR + 'avatar-' + id + '.png');
+        this.setDataValue('avatar', AVATAR_DIR + 'avatar-' + id + '.png');
+      }
+    }
   }, {
     classMethods: {
       associate: function (models) {
@@ -56,11 +68,12 @@ module.exports = function (sequelize, DataTypes) {
         });
       },
       toClientJSON: function () {
-        return {
+        return { // be careful, this gets written into index.html.ejs
           id: this.get('id'),
           username: this.get('username'),
           email: this.get('email'),
-          rep: this.get('rep')
+          rep: this.get('rep'),
+          avatar: this.get('avatar')
         };
       }
     }

@@ -20,7 +20,8 @@ module.exports = [
           username: 'jessica',
           password: 'jpass',
           email: 'raf.rkl@gmail.com',
-          rep: 9001
+          rep: 9001,
+          avatar: 'https://s3-us-west-2.amazonaws.com/barter.app/public/avatars/avatar-2.png'
         }
       },
       {

@@ -37,7 +37,7 @@ module.exports = function (app) {
   app.post('/login', passport.authenticate('local'), loginHandler);
   app.post('/register', registerHandler);
   app.post('/logout', logoutHandler);
-  app.post('/avatar', avatarUploadHandler);
+  app.post('/avatar', requireAuth, avatarUploadHandler);
 
   // API
   // User

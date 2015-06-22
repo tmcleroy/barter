@@ -1,19 +1,27 @@
 var lwip = require('lwip');
 var utils = require('../utils/utils.js')
+var fs = require('fs');
 
 var handler = function (req, res) {
-  console.log('files? =======================================================');
-  console.log(req.files);
-  var fname = 'new.png';
+  var fname = 'avatar-' + (req.user.id || 'null') + '.png';
   lwip.open(req.files.file.path, function (err, image) {
-    image.resize(100, 100, function (err, image) {
-      image.writeFile(fname, function (err) {
-        if (!err) {
-          console.log('success writing file');
-          utils.s3.uploadAvatar(fname, 'blah.png');
-        }
-      });
-    });
+    if (!err) {
+      image.batch()
+        .resize(100, 100)
+        .toBuffer('png', function (err, buffer) {
+          if (!err) {
+            utils.S3.uploadAvatar(buffer, fname, function () {
+              fs.unlink(req.files.file.path, function (err) {
+                if (!err) {
+                  console.log(req.files.file.path + ' file removed');
+                  req.user.set('avatar', null);
+                  req.user.save();
+                }
+              });
+            });
+          }
+        });
+    }
   });
   res.send('file uploaded');
 };

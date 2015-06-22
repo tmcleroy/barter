@@ -1,6 +1,11 @@
 var bcrypt = require('bcrypt');
 var AWS = require('aws-sdk');
-var fs = require('fs');
+
+var S3_CONFIG = {
+  profile: 'barter',
+  region: 'us-west-2',
+  bucket: 'barter.app'
+};
 
 function passwordAndHashMatch (password, hash) {
   return bcrypt.compareSync(password, hash);
@@ -20,27 +25,21 @@ var utils = {
     passwordAndHashMatch: passwordAndHashMatch
   },
 
-  s3: {
-    uploadAvatar: function (path, fname) {
-      // Read in the file, convert it to base64, store to S3
-      fs.readFile(path, function (err, data) {
-        console.log('DATA -------------------------------');
-        console.log(data);
-        if (err) { throw err; }
+  S3: {
+    uploadAvatar: function (buffer, fname, cb) {
+      AWS.config.credentials = new AWS.SharedIniFileCredentials({ profile: S3_CONFIG.profile });
+      AWS.config.region = S3_CONFIG.region;
 
-        var credentials = new AWS.SharedIniFileCredentials({profile: 'barter'});
-        AWS.config.credentials = credentials;
-
-        var s3 = new AWS.S3();
-        s3.putObject({
-          Bucket: 'barter.app',
-          Key: fname,
-          Body: data
-        }, function (resp) {
-          console.log(resp);
-          console.log('Successfully uploaded package.');
-        });
-
+      var s3 = new AWS.S3();
+      s3.putObject({
+        Bucket: S3_CONFIG.bucket,
+        Key: 'public/avatars/' + fname,
+        Body: buffer
+      }, function (err) {
+        if (!err) {
+          console.log('S3 upload successful');
+          cb();
+        }
       });
     }
   }
