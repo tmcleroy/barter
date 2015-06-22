@@ -1,6 +1,6 @@
 'use strict';
 
-var utils = require('../utils');
+var utils = require('../utils/utils');
 var ssaclAttributeRoles = require('ssacl-attribute-roles');
 
 module.exports = function (sequelize, DataTypes) {

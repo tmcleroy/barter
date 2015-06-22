@@ -1,4 +1,4 @@
-var utils = require('../utils');
+var utils = require('../utils/utils');
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 
