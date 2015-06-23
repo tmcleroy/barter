@@ -1,10 +1,14 @@
 var TagsView = Backbone.View.extend({
   template: require('../../templates/tag/tags.ejs'),
 
+  events: {
+    'click .remove': 'removeClicked'
+  },
+
   initialize: function (params) {
     this.editable = params.editable;
 
-    this.listenTo(this.collection, 'sync change add', this.render);
+    this.listenTo(this.collection, 'sync change add remove', this.render);
     this.render();
   },
 
@@ -13,6 +17,11 @@ var TagsView = Backbone.View.extend({
       tags: this.collection,
       classes: this.editable ? 'editable' : ''
     }));
+  },
+
+  removeClicked: function (evt) {
+    var name = $(evt.target).closest('.tag').attr('data-name');
+    this.collection.remove(this.collection.where({ name: name }));
   }
 
 });
