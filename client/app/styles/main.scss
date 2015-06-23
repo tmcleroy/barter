@@ -45,3 +45,12 @@ button + button {
   	margin-left: -9px;
   }
 }
+
+.noneMessage {
+  padding: 5px 0;
+}
+div, span {
+  + .noneMessage {
+    display: none;
+  }
+}

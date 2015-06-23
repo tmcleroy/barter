@@ -1,9 +1,12 @@
 <div class="tagsView <%= classes %>">
   <h4>Tags</h4>
-  <% tags.each(function (tag) { %>
-    <span class="tag" data-name="<%= tag.get('name') %>">
-      <%= tag.get('name') %>
-      <span class="remove glyphicon glyphicon-remove" aria-hidden"true"></span>
-    </span>
-  <% }); %>
+  <div class="tags">
+    <% tags.each(function (tag) { %>
+      <span class="tag" data-name="<%= tag.get('name') %>">
+        <%= tag.get('name') %>
+        <span class="remove glyphicon glyphicon-remove" aria-hidden"true"></span>
+      </span>
+    <% }); %>
+    <div class="noneMessage">No tags.</div>
+  </div>
 </div>

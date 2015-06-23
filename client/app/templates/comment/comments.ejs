@@ -4,5 +4,6 @@
     <% _.each(comments, function (comment) { %>
       <%= require('./comment.ejs')(comment) %>
     <% }); %>
+    <div class="noneMessage">No comments yet.</div>
   </div>
 </div>

@@ -31,8 +31,6 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: AVATAR_DIR + 'avatar-default.png',
       set: function () { // don't allow direct setting of this, it should always be based on the id
         var id = this.get('id') || 'default';
-        console.log('setting avatar -------------------------------------');
-        console.log(AVATAR_DIR + 'avatar-' + id + '.png');
         this.setDataValue('avatar', AVATAR_DIR + 'avatar-' + id + '.png');
       }
     }
