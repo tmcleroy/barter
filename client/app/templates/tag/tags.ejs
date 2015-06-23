@@ -1,6 +1,6 @@
-<div class="tagsView">
+<div class="tagsView <%= classes %>">
   <h4>Tags</h4>
   <% tags.each(function (tag) { %>
-    <span class="tag"><%= tag.get('name') %></span>
+    <span class="tag"><%= tag.get('name') %><span class="remove glyphicon glyphicon-remove" aria-hidden"true"></span></span>
   <% }); %>
 </div>

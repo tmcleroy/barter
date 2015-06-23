@@ -6,4 +6,15 @@
   border: 1px solid #ccc;
   background: #efefef;
   cursor: default;
+
+  .remove {
+    display: none;
+    .editable & {
+      display: inline;
+      font-size: 11px;
+      margin: 0 -5px 0 8px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
 }

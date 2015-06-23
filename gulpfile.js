@@ -8,8 +8,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
 var underscorify = require('node-underscorify');
 var sass = require('gulp-sass');
-var _ = require('lodash');
-var webpack = require('gulp-webpack');
 
 gulp.task('javascript', function () {
 
@@ -32,6 +30,9 @@ gulp.task('javascript', function () {
 });
 
 gulp.task('sass', function () {
+  gulp.src('./node_modules/bootstrap-sass/assets/fonts/bootstrap/**/*') // bootstrap fonts
+    .pipe(gulp.dest('./server/public/dist/fonts/bootstrap'));
+
   gulp.src('./client/app/styles/app.scss') // app styles
     .pipe(sass({
       style: 'compressed',
