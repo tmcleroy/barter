@@ -6,7 +6,6 @@ var HeaderView = require('./views/headerView');
 var FooterView = require('./views/footerView');
 var SideBarView = require('./views/sideBarView.js');
 var HomeView = require('./views/homeView');
-var AppView = require('./views/appView');
 var LoginView = require('./views/loginView');
 var RegisterView = require('./views/registerView');
 var SettingsView = require('./views/settingsView');
@@ -27,7 +26,6 @@ var Router = Backbone.Router.extend(_.defaults({
     'login(/)'                    : 'login',
     'register(/)'                 : 'register',
     'app/settings(/)'             : 'settings',
-    'app(/)'                      : 'app',
 
     'app/requests/browse(/)'      : 'requestsBrowse',
     'app/requests/show/:id(/)'    : 'requestsShow',
@@ -109,17 +107,6 @@ var Router = Backbone.Router.extend(_.defaults({
     if (this.preRoute(viewName)) {
       this.view = new SettingsView({
         el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer')
-      });
-      this.postRoute(viewName);
-    }
-  },
-
-  app: function () {
-    var viewName = 'app';
-
-    if (this.preRoute(viewName)) {
-      this.view = new AppView({
-        el: $('<div class="appViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }

@@ -3,8 +3,6 @@ var Comment = require('../models/commentModel');
 var CreateCommentView = Backbone.View.extend({
   template: require('../../templates/comment/createComment.ejs'),
 
-  model: null,
-
   events: {
     'click [data-action="submit"]': 'submitClicked'
   },

@@ -6,8 +6,6 @@ var TagsView = require('../views/tagsView');
 var CreateRequestView = Backbone.View.extend({
   template: require('../../templates/request/createRequest.ejs'),
 
-  model: null,
-
   events: {
     'click [data-action="submit"]': 'submitClicked',
     'keydown input[data-attr="tags"]': 'tagsKeydown'

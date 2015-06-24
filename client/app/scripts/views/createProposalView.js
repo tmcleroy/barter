@@ -3,8 +3,6 @@ var Proposal = require('../models/proposalModel');
 var CreateProposalView = Backbone.View.extend({
   template: require('../../templates/comment/createProposal.ejs'),
 
-  model: null,
-
   events: {
     'click [data-action="submit"]': 'submitClicked'
   },
