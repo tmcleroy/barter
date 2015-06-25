@@ -22,10 +22,20 @@
   }
 }
 
+.createProposalAndCommentView {
+  .panel {
+    display: none;
+    padding: 10px;
+    border-top: none;
+  }
+  .nav.active + .panel {
+    display: block;
+  }
+}
+
 .commentsContainer {
   margin-top: 15px;
 }
-
 
 // creating a request
 .createRequestView {

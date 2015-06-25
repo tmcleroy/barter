@@ -57,7 +57,8 @@ var CreateProposalAndCommentView = Backbone.View.extend({
   toggleTabs: function ($activeTab) {
     this.$('li[role="presentation"]').removeClass('active');
     this.$('.actionContainer').addClass('hidden');
-    $activeTab.addClass('active');
+    // add active class to parent so the container panel becomes visible
+    $activeTab.addClass('active').parent().addClass('active');
   }
 
 });
