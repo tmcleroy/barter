@@ -27,7 +27,6 @@ var CreateCommentView = Backbone.View.extend({
     this.model.save().done((comment) => {
       this.collection.add(comment);
     });
-
   }
 
 });

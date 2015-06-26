@@ -7,12 +7,12 @@ var CreateProposalAndCommentView = require('../views/createProposalAndCommentVie
 var RequestView = Backbone.View.extend({
   template: require('../../templates/request/request.ejs'),
 
-  views: {},
+  views: [],
 
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-    this.listenTo(this.model, 'sync change add', this.render);
+    this.listenTo(this.model, 'change', this.render);
     this.model.fetch();
   },
 
@@ -20,22 +20,30 @@ var RequestView = Backbone.View.extend({
     this.$el.html(this.template({
       request: this.model
     }));
-    new ProposalsView({
-      collection: this.model.get('Proposals'),
-      el: this.$('.proposalsContainer')
-    });
-    new TagsView({
-      collection: this.model.get('Tags'),
-      el: this.$('.tagsContainer')
-    });
-    new CommentsView({
-      collection: this.model.get('Comments'),
-      el: this.$('.commentsContainer')
-    });
-    new CreateProposalAndCommentView({
-      el: this.$('.createProposalAndCommentContainer'),
-      model: this.model
-    });
+    this.views = [
+      new ProposalsView({
+        collection: this.model.get('Proposals'),
+        el: this.$('.proposalsContainer')
+      }),
+      new TagsView({
+        collection: this.model.get('Tags'),
+        el: this.$('.tagsContainer')
+      }),
+      new CommentsView({
+        collection: this.model.get('Comments'),
+        el: this.$('.commentsContainer')
+      }),
+      new CreateProposalAndCommentView({
+        el: this.$('.createProposalAndCommentContainer'),
+        model: this.model
+      })
+    ];
+  },
+
+  remove: function () {
+    _.invoke(this.views, 'remove');
+
+    Backbone.View.prototype.remove.apply(this, arguments);
   }
 });
 

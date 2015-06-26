@@ -54,6 +54,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
   // returns boolean whether to continue rendering the new view
   preRoute: function (viewName) {
+    if (this.view) { this.view.remove(); }
     this.currentView = viewName;
     if (this.lastView !== this.currentView) {
       $('#contentContainer').empty();

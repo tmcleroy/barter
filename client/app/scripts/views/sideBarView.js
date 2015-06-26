@@ -11,7 +11,6 @@ var SideBarView = Backbone.View.extend({
   },
 
   routeChanged: function (route) {
-    console.log(route);
     this.$('[data-route]').removeClass('active');
     this.$('[data-route="' + route + '"]').addClass('active');
   }

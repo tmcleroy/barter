@@ -13,6 +13,7 @@ var CreateProposalAndCommentView = Backbone.View.extend({
   },
 
   initialize: function (params) {
+    this.views = {};
     this.render();
     _.defer(() => { this.$('[data-action="addComment"]').click(); });
   },
@@ -60,6 +61,11 @@ var CreateProposalAndCommentView = Backbone.View.extend({
     this.$('.actionContainer').addClass('hidden');
     // add active class to parent so the container panel becomes visible
     $activeTab.addClass('active').parent().addClass('active');
+  },
+
+  remove: function () {
+    _.invoke(this.views, 'remove');
+    Backbone.View.prototype.remove.apply(this, arguments);
   }
 
 });
