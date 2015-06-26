@@ -14,6 +14,7 @@ var CreateProposalAndCommentView = Backbone.View.extend({
 
   initialize: function (params) {
     this.render();
+    _.defer(() => { this.$('[data-action="addComment"]').click(); });
   },
 
   render: function () {
