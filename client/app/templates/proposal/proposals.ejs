@@ -1,3 +1,9 @@
 <div class="proposalsView">
-  <%= proposals.length %> proposals <%= proposals.length ? 'averaging <span class="offer">' + proposals.getAvgOffer() + '</span> ę' : '' %>
+  <h4>Proposals</h4>
+  <div class="proposals">
+    <% _.each(proposals, function (proposal) { %>
+      <%= require('./proposal.ejs')(proposal) %>
+    <% }); %>
+    <div class="noneMessage">No proposals yet.</div>
+  </div>
 </div>

@@ -8,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
       set: function (val) {
         this.setDataValue('offer', parseInt(val, 10));
       }
+    },
+    state: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
   }, {
     classMethods: {

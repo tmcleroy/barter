@@ -54,3 +54,13 @@ div, span {
     display: none;
   }
 }
+
+
+.comment, .proposal {
+  .head {
+    margin-bottom: -10px;
+  }
+  .headRight {
+    height: 40px;
+  }
+}

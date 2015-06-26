@@ -1,4 +1,5 @@
 var Request = require('../models/requestModel');
+var ProposalsSummaryView = require('../views/proposalsSummaryView');
 var ProposalsView = require('../views/proposalsView');
 var CommentsView = require('../views/commentsView');
 var TagsView = require('../views/tagsView');
@@ -8,12 +9,17 @@ var RequestView = Backbone.View.extend({
   template: require('../../templates/request/request.ejs'),
 
   views: [],
+  mine: false,
 
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-    this.listenTo(this.model, 'change', this.render);
-    this.model.fetch();
+
+    this.model.fetch().done((Request) => {
+      this.mine = App.user.get('id') === Request.UserId;
+      this.render();
+      // this.listenTo(this.model, 'change', this.render);
+    });
   },
 
   render: function () {
@@ -21,9 +27,9 @@ var RequestView = Backbone.View.extend({
       request: this.model
     }));
     this.views = [
-      new ProposalsView({
+      new ProposalsSummaryView({
         collection: this.model.get('Proposals'),
-        el: this.$('.proposalsContainer')
+        el: this.$('.proposalsSummaryContainer')
       }),
       new TagsView({
         collection: this.model.get('Tags'),
@@ -38,6 +44,13 @@ var RequestView = Backbone.View.extend({
         model: this.model
       })
     ];
+
+    if (this.mine) {
+      this.views.push(new ProposalsView({
+        collection: this.model.get('Proposals'),
+        el: this.$('.proposalsContainer')
+      }));
+    }
   },
 
   remove: function () {

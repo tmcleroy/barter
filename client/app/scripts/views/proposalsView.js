@@ -2,9 +2,6 @@
 var ProposalsView = Backbone.View.extend({
   template: require('../../templates/proposal/proposals.ejs'),
 
-  events: {
-  },
-
   initialize: function (params) {
     this.render();
 
@@ -13,7 +10,7 @@ var ProposalsView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({
-      proposals: this.collection
+      proposals: this.collection.toJSON()
     }));
   }
 

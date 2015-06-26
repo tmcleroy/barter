@@ -23,6 +23,8 @@ module.exports = function (sequelize, DataTypes) {
         Request.hasMany(models.Comment);
         // a request can have many proposals, a proposal can belong to one request
         Request.hasMany(models.Proposal);
+        // a request can have many submissions, a submission can belong to one request
+        Request.hasMany(models.Submission);
       }
     },
     instanceMethods: {

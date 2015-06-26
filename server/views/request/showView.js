@@ -15,7 +15,8 @@ var handler = function (req, res) {
         include: [models.User]
       },
       {
-        model: models.Proposal
+        model: models.Proposal,
+        include: [models.User]
       }
     ]
   }).then(function (request) {

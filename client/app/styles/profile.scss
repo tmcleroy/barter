@@ -17,3 +17,18 @@
     color: $green;
   }
 }
+
+// effect to recess the profile into comment/proposal
+.comment, .proposal {
+  .panel-body {
+    padding-top: 20px;
+  }
+  .profileContainer {
+    margin-bottom: -14px;
+    .profile {
+      background: white;
+      margin-left: 10px;
+      padding: 0 7px 0 3px;
+    }
+  }
+}

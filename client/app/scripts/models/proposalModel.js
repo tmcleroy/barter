@@ -1,4 +1,5 @@
 var ProposalModel = Backbone.Model.extend({
+
   urlRoot: '/api/proposals'
 
   // url: function () {

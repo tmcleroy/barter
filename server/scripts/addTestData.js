@@ -85,6 +85,13 @@ var fxn = function () {
          myModels.user.jim.addProposal(proposal);
        }));
        proposalPromises.push(models.Proposal.create({
+         body: 'This is my proposal blah blabh blah blah. Is your platform prepared for best-of-breed synergy growth? Efficiencies will come from strategically connecting our architectures. Change the way you do business - adopt best-in-class drivers.',
+         offer: 2500
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.jessica.addProposal(proposal);
+       }));
+       proposalPromises.push(models.Proposal.create({
          body: 'I know everything about this, And I\'ll do it for next to nothing.',
          offer: 100
        }).then(function (proposal) {
@@ -177,6 +184,34 @@ var fxn = function () {
        }));
        Sequelize.Promise.all(promises).then(function () {
          request.setComments(comments);
+       });
+
+       var proposalPromises = [];
+       var proposals = [];
+       // create the proposals to be added to the request
+       proposalPromises.push(models.Proposal.create({
+         body: 'i can do itttttt',
+         offer: 2590
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.jim.addProposal(proposal);
+       }));
+       proposalPromises.push(models.Proposal.create({
+         body: 'Is your platform prepared for best-of-breed synergy growth? Efficiencies will come from strategically connecting our architectures. Change the way you do business - adopt best-in-class drivers.',
+         offer: 2500
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.jessica.addProposal(proposal);
+       }));
+       proposalPromises.push(models.Proposal.create({
+         body: 'I know stuff',
+         offer: 1000
+       }).then(function (proposal) {
+         proposals.push(proposal);
+         myModels.user.laika.addProposal(proposal);
+       }));
+       Sequelize.Promise.all(proposalPromises).then(function () {
+         request.setProposals(proposals);
        });
      });
 

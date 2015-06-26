@@ -8,7 +8,6 @@ var passport = require('passport'); // authentication
 
 // app level requires
 var models = require('./models');
-
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public')); // public dir

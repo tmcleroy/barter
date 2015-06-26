@@ -48,6 +48,8 @@ module.exports = function (sequelize, DataTypes) {
         User.hasMany(models.Comment);
         // a user can have many proposals, a proposal can belong to a single user
         User.hasMany(models.Proposal);
+        // a user can have many submissions, a submission can belong to a single user
+        User.hasMany(models.Submission);
       }
     },
     instanceMethods: {
