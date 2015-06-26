@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
     rep: DataTypes.INTEGER,
     avatar: {
       type: DataTypes.STRING,
-      defaultValue: AVATAR_DIR + 'avatar-default.png',
+      defaultValue: function () { return AVATAR_DIR + 'avatar-default-' + (Math.floor(Math.random() * 10) + 1) + '.png'; },
       set: function () { // don't allow direct setting of this, it should always be based on the id
         var id = this.get('id') || 'default';
         this.setDataValue('avatar', AVATAR_DIR + 'avatar-' + id + '.png');
