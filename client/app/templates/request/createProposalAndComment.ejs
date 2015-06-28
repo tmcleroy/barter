@@ -1,7 +1,9 @@
 <div class="createProposalAndCommentView">
   <ul class="nav nav-tabs">
     <li role="presentation"><a href="#addComment" data-action="addComment">Add Comment</a></li>
-    <li role="presentation"><a href="#addProposal" data-action="addProposal">Make Proposal</a></li>
+    <% if (!mine) { /* you can't make a proposal on your own request */ %>
+      <li role="presentation"><a href="#addProposal" data-action="addProposal">Make Proposal</a></li>
+    <% } %>
   </ul>
   <div class="panel panel-default">
     <div class="actionContainer createCommentContainer hidden"></div>

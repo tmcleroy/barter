@@ -41,7 +41,8 @@ var RequestView = Backbone.View.extend({
       }),
       new CreateProposalAndCommentView({
         el: this.$('.createProposalAndCommentContainer'),
-        model: this.model
+        model: this.model,
+        mine: this.mine
       })
     ];
 

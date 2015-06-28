@@ -13,13 +13,16 @@ var CreateProposalAndCommentView = Backbone.View.extend({
   },
 
   initialize: function (params) {
+    this.mine = params.mine;
     this.views = {};
     this.render();
     _.defer(() => { this.$('[data-action="addComment"]').click(); });
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({
+      mine: this.mine
+    }));
   },
 
   toggleAddComment: function (evt) {
