@@ -14,7 +14,7 @@ var ProposalsView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({
-      allProposals: this.collection,
+      allProposals: this.collection.models,
       pendingProposals: this.collection.getPending(),
       rejectedProposals: this.collection.getRejected(),
       acceptedProposal: this.collection.getAccepted()

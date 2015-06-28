@@ -13,21 +13,21 @@
         <h5>Accepted</h5>
         <%= require('./proposal.ejs')(acceptedProposal.toJSON()) %>
       </div>
+    <% } else if (pendingProposals.length) { %>
+      <div class="pending subContainer">
+        <h5>Pending</h5>
+        <% _.each(pendingProposals.length && pendingProposals, function (proposal) { %>
+          <%= require('./proposal.ejs')(proposal.toJSON()) %>
+        <% }); %>
+      </div>
       <% if (rejectedProposals.length) { %>
         <div class="rejected subContainer">
           <h5>Rejected</h5>
-          <% _.each(rejectedProposals.length && rejectedProposals.toJSON(), function (proposal) { %>
-            <%= require('./proposal.ejs')(proposal) %>
+          <% _.each(rejectedProposals.length && rejectedProposals, function (proposal) { %>
+            <%= require('./proposal.ejs')(proposal.toJSON()) %>
           <% }); %>
         </div>
       <% } %>
-    <% } else if (allProposals.length) { %>
-      <div class="pending subContainer">
-        <h5>Pending</h5>
-        <% _.each(allProposals.length && allProposals.toJSON(), function (proposal) { %>
-          <%= require('./proposal.ejs')(proposal) %>
-        <% }); %>
-      </div>
     <% } %>
     <div class="noneMessage">No proposals yet.</div>
   </div>

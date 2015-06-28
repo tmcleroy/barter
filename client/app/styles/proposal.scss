@@ -8,7 +8,7 @@
   }
   .actionContainer {
     margin-left: 10px;
-    .accepted & {
+    .accepted &, .rejected & {
       display: none;
     }
     a {
