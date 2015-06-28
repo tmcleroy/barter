@@ -1,4 +1,4 @@
-<div class="proposal">
+<div class="proposal" data-id="<%= id %>">
 
   <div class="row head">
     <div class="col-sm-4 headLeft">
@@ -9,9 +9,12 @@
       </div>
     </div>
     <div class="col-sm-6 col-sm-offset-2 headRight">
-      <div class="offerContainer">
+      <span class="offerContainer">
         Requesting <span class="offer"><%= offer %></span> ę
-      </div>
+      </span>
+      <span class="actionContainer">
+        <a href="#accept" data-action="accept">Accept</a>|<a href="#reject" data-action="reject">Reject</a>
+      </span>
     </div>
   </div>
 

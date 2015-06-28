@@ -5,6 +5,12 @@
   }
 }
 
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 textarea {
   width: 100%;
   height: 200px;
@@ -62,5 +68,6 @@ div, span {
   }
   .headRight {
     height: 40px;
+    text-align: right;
   }
 }
