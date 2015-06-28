@@ -3,8 +3,7 @@ var middle = function requireAuth(req, res, next) {
     if (access || req.params.id == req.user.id) {
       return next();
     } else {
-      res.status(401);
-      res.send('you do not have the proper permissions to view or alter this user');
+      res.status(401).send('you do not have the proper permissions to view or alter this user');
     }
   });
 };

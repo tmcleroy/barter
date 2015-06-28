@@ -12,6 +12,13 @@ var ProposalModel = Backbone.Model.extend({
 
   setState: function (state) {
     this.set('state', this.stateMap[state]);
+    return $.ajax({
+      url: '/api/proposals/' + this.get('id') + '/state',
+      method: 'POST',
+      data: {
+        state: this.get('state')
+      }
+    });
   }
 
 });

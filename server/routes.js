@@ -15,6 +15,7 @@ var commentCreateView = require('./views/comment/createView');
 
 var proposalCreateView = require('./views/proposal/createView');
 var proposalUpdateView = require('./views/proposal/updateView');
+var proposalSetStateView = require('./views/proposal/setStateView');
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
@@ -57,7 +58,8 @@ module.exports = function (app) {
 
   // Proposal
   app.post('/api/proposals', proposalCreateView);
-  app.put('/api/proposals/:id', proposalUpdateView);
+  app.put('/api/proposals/:id', requireAdminPermission, proposalUpdateView);
+  app.post('/api/proposals/:id/state', proposalSetStateView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
