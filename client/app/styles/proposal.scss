@@ -1,3 +1,4 @@
+// proposals as displayed on request view
 .proposal {
   .headRight {
     margin-bottom: -7px;
@@ -22,6 +23,33 @@
       &:last-child {
         margin-right: 0;
       }
+    }
+  }
+}
+
+// proposals as displayed on my proposals view
+.proposal.listItem {
+  .panel-body {
+    padding-top: 10px;
+  }
+  .askOfferHead, .askOfferBody {
+    > div {
+      position: relative;
+      text-align: center;
+    }
+    .profileContainer, .asking {
+      display: inline-block;
+    }
+    .asking, .offering, .ask, .offer {
+      font-size: 22px;
+    }
+    .offering {
+      padding: 5px;
+    }
+    .asking {
+      position: relative;
+      top: -6px;
+      margin: 0 5px;
     }
   }
 }

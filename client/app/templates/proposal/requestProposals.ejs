@@ -1,0 +1,34 @@
+<div class="requestProposalsView">
+  <h4>Proposals</h4>
+  <span class="subHead">
+    <% if (acceptedProposal) { %>
+      1 accepted, awaiting submission.
+    <% } else if (allProposals.length) { %>
+      <%= pendingProposals.length %> pending, awaiting your approval.
+    <% } %>
+  </span>
+  <div class="proposals">
+    <% if (acceptedProposal) { %>
+      <div class="accepted subContainer">
+        <h5>Accepted</h5>
+        <%= require('./proposal.ejs')(acceptedProposal.toJSON()) %>
+      </div>
+    <% } else if (pendingProposals.length) { %>
+      <div class="pending subContainer">
+        <h5>Pending</h5>
+        <% _.each(pendingProposals.length && pendingProposals, function (proposal) { %>
+          <%= require('./proposal.ejs')(proposal.toJSON()) %>
+        <% }); %>
+      </div>
+      <% if (rejectedProposals.length) { %>
+        <div class="rejected subContainer">
+          <h5>Rejected</h5>
+          <% _.each(rejectedProposals.length && rejectedProposals, function (proposal) { %>
+            <%= require('./proposal.ejs')(proposal.toJSON()) %>
+          <% }); %>
+        </div>
+      <% } %>
+    <% } %>
+    <div class="noneMessage">No proposals yet.</div>
+  </div>
+</div>

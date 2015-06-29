@@ -11,6 +11,7 @@ var RegisterView = require('./views/registerView');
 var SettingsView = require('./views/settingsView');
 var RequestsView = require('./views/requestsView');
 var RequestView = require('./views/requestView');
+var ProposalsView = require('./views/proposalsView');
 var CreateRequestView = require('./views/createRequestView');
 var User = require('./models/userModel');
 
@@ -30,7 +31,9 @@ var Router = Backbone.Router.extend(_.defaults({
     'app/requests/browse(/)'      : 'requestsBrowse',
     'app/requests/show/:id(/)'    : 'requestsShow',
     'app/requests/create(/)'      : 'requestsCreate',
-    'app/requests/mine(/)'        : 'requestsMine'
+    'app/requests/mine(/)'        : 'requestsMine',
+
+    'app/proposals/mine(/)'       : 'proposalsMine'
   },
 
   initialize: function () {
@@ -141,7 +144,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new CreateRequestView({
-        el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer')
+        el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer'),
       });
       this.postRoute(viewName);
     }
@@ -154,6 +157,18 @@ var Router = Backbone.Router.extend(_.defaults({
       this.view = new RequestsView({
         el: $('<div class="requestsMineViewContainer" />').appendTo('#contentContainer'),
         collectionOverrides: { url: '/api/requests/mine' }
+      });
+      this.postRoute(viewName);
+    }
+  },
+
+  proposalsMine: function () {
+    var viewName = 'proposalsMine';
+
+    if (this.preRoute(viewName)) {
+      this.view = new ProposalsView({
+        el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
+        collectionOverrides: { url: '/api/proposals/mine' }
       });
       this.postRoute(viewName);
     }

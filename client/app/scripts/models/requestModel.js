@@ -1,30 +1,21 @@
+var NestedModel = require('./_nestedModel');
 var Requests = require('../collections/requestsCollection');
 var Comments = require('../collections/commentsCollection');
 var Tags = require('../collections/tagsCollection');
 var Proposals = require('../collections/proposalsCollection');
 var User = require('./userModel');
 
-var RequestModel = Backbone.Model.extend({
+var RequestModel = NestedModel.extend({
   collection: Requests,
 
   urlRoot: '/api/requests/',
 
   // nested model and collection defs
-  modelAndCollectionDefs: {
+  nestedDefs: {
     'User': User,
     'Tags': Tags,
     'Comments': Comments,
     'Proposals': Proposals
-  },
-
-  parse: function (response) {
-    // allows for nested Backbone models
-    // concept adapted from http://stackoverflow.com/a/9904874
-    _.each(this.modelAndCollectionDefs, (Model, key) => {
-      var raw = response[key];
-      response[key] = new Model(raw, { parse: true });
-    });
-    return response;
   }
 });
 

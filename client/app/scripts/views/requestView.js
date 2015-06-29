@@ -1,6 +1,6 @@
 var Request = require('../models/requestModel');
 var ProposalsSummaryView = require('../views/proposalsSummaryView');
-var ProposalsView = require('../views/proposalsView');
+var RequestProposalsView = require('../views/requestProposalsView');
 var CommentsView = require('../views/commentsView');
 var TagsView = require('../views/tagsView');
 var CreateProposalAndCommentView = require('../views/createProposalAndCommentView');
@@ -47,7 +47,7 @@ var RequestView = Backbone.View.extend({
     ];
 
     if (this.mine) {
-      this.views.push(new ProposalsView({
+      this.views.push(new RequestProposalsView({
         collection: this.model.get('Proposals'),
         el: this.$('.proposalsContainer')
       }));

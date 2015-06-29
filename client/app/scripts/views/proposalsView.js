@@ -1,31 +1,23 @@
+var ProposalsCollection = require('../collections/proposalsCollection');
 
 var ProposalsView = Backbone.View.extend({
   template: require('../../templates/proposal/proposals.ejs'),
 
-  events: {
-    'click .actionContainer [data-action]': 'actionClicked'
-  },
-
   initialize: function (params) {
-    this.render();
+    this.collection = new ProposalsCollection();
+    _.each(params.collectionOverrides, (val, key) => {
+      this.collection[key] = val;
+    });
 
-    this.listenTo(this.collection, 'sync add', this.render);
+    this.listenTo(this.collection, 'change sync', this.render);
+
+    this.collection.fetch();
   },
 
   render: function () {
     this.$el.html(this.template({
-      allProposals: this.collection.models,
-      pendingProposals: this.collection.getPending(),
-      rejectedProposals: this.collection.getRejected(),
-      acceptedProposal: this.collection.getAccepted()
+      proposals: this.collection
     }));
-  },
-
-  actionClicked: function (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target);
-    var proposal = this.collection.get($target.closest('[data-id]').attr('data-id'));
-    proposal.setState($target.attr('data-action')).done(_.bind(this.render, this));
   }
 
 });

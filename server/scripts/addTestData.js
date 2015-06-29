@@ -89,7 +89,7 @@ var fxn = function () {
          offer: 2500
        }).then(function (proposal) {
          proposals.push(proposal);
-         myModels.user.jessica.addProposal(proposal);
+         myModels.user.laika.addProposal(proposal);
        }));
        proposalPromises.push(models.Proposal.create({
          body: 'I know everything about this, And I\'ll do it for next to nothing.',

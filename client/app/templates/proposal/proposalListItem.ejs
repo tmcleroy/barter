@@ -1,0 +1,33 @@
+<div class="panel panel-default proposal listItem">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="panel-title"><a href="/app/requests/show/<%= proposal.get('Request').id %>"><%= proposal.get('Request').title %></a></h3>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row askOfferHead">
+      <div class="col-sm-6">
+        <div class="profileContainer">
+          <%= require('../profile/profile.ejs')({
+            user: proposal.get('Request').User
+          }) %>
+        </div>
+        <div class="asking">Asking</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="offering">Your Offer</div>
+      </div>
+    </div>
+    <div class="row askOfferBody">
+      <div class="col-sm-6">
+        <div class="offer ask"><%= proposal.get('Request').offer %> ę</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="offer"><%= proposal.get('offer') %> ę</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
