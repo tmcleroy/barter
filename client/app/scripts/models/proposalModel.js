@@ -2,10 +2,11 @@ var ProposalModel = Backbone.Model.extend({
 
   stateMap: {
     'rejected': -1,
-    'reject': -1,
     'pending': 0,
     'accepted': 1,
-    'accept': 1
+    '-1': 'rejected',
+    '0': 'pending',
+    '1': 'accepted'
   },
 
   urlRoot: '/api/proposals',

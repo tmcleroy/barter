@@ -6,26 +6,32 @@
       </div>
     </div>
   </div>
-  <div class="panel-body">
+  <div class="panel-body statusContainer <%= state %>">
     <div class="row askOfferHead">
       <div class="col-sm-6">
-        <div class="profileContainer">
-          <%= require('../profile/profile.ejs')({
-            user: proposal.get('Request').User
-          }) %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="profileContainer">
+              <%= require('../profile/profile.ejs')({
+                user: proposal.get('Request').User
+              }) %>
+            </div>
+            <div class="asking">Asking</div>
+          </div>
+          <div class="col-sm-12">
+            <div class="offer ask"><%= proposal.get('Request').offer %> ę</div>
+          </div>
         </div>
-        <div class="asking">Asking</div>
       </div>
       <div class="col-sm-6">
-        <div class="offering">Your Offer</div>
-      </div>
-    </div>
-    <div class="row askOfferBody">
-      <div class="col-sm-6">
-        <div class="offer ask"><%= proposal.get('Request').offer %> ę</div>
-      </div>
-      <div class="col-sm-6">
-        <div class="offer"><%= proposal.get('offer') %> ę</div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="offering">Your Offer</div>
+          </div>
+          <div class="col-sm-12">
+            <div class="offer"><%= proposal.get('offer') %> ę</div>
+          </div>
+        </div>
       </div>
     </div>
     </div>

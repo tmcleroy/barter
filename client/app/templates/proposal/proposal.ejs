@@ -12,9 +12,11 @@
       <span class="offerContainer">
         Requesting <span class="offer"><%= offer %></span> ę
       </span>
-      <span class="actionContainer">
-        <a href="#accept" data-action="accept">Accept</a>|<a href="#reject" data-action="reject">Reject</a>
-      </span>
+      <% if (state == 0) { /* pending */ %>
+        <span class="actionContainer">
+          <a href="#accepted" data-action="accepted">Accept</a>|<a href="#rejected" data-action="rejected">Reject</a>
+        </span>
+      <% } %>
     </div>
   </div>
 

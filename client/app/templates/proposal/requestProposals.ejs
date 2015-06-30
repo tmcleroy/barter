@@ -9,19 +9,19 @@
   </span>
   <div class="proposals">
     <% if (acceptedProposal) { %>
-      <div class="accepted subContainer">
+      <div class="accepted statusContainer">
         <h5>Accepted</h5>
         <%= require('./proposal.ejs')(acceptedProposal.toJSON()) %>
       </div>
     <% } else if (pendingProposals.length) { %>
-      <div class="pending subContainer">
+      <div class="pending statusContainer">
         <h5>Pending</h5>
         <% _.each(pendingProposals.length && pendingProposals, function (proposal) { %>
           <%= require('./proposal.ejs')(proposal.toJSON()) %>
         <% }); %>
       </div>
       <% if (rejectedProposals.length) { %>
-        <div class="rejected subContainer">
+        <div class="rejected statusContainer">
           <h5>Rejected</h5>
           <% _.each(rejectedProposals.length && rejectedProposals, function (proposal) { %>
             <%= require('./proposal.ejs')(proposal.toJSON()) %>
