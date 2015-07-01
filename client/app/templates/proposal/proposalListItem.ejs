@@ -6,7 +6,7 @@
       </div>
     </div>
   </div>
-  <div class="panel-body statusContainer <%= state %>">
+  <div class="panel-body">
     <div class="row askOfferHead">
       <div class="col-sm-6">
         <div class="row">
@@ -34,6 +34,12 @@
         </div>
       </div>
     </div>
-    </div>
+
+  </div>
+  <div class="statusBottom <%= proposal.getStateString() %>">
+    <span class="statusText"><%= proposal.getStateStringFormatted() %></span>
+    <% if (proposal.get('state') == 1) { %>
+      <a href="/app/submission/create/<%= proposal.get('Request').id %>" class="btn btn-default btn-sm pull-right">Make Submission</a>
+    <% } %>
   </div>
 </div>

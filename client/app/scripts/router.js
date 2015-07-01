@@ -21,19 +21,21 @@ var Router = Backbone.Router.extend(_.defaults({
   view: null,
 
   routes: {
-    '(/)'                         : 'home',
-    'home(/)'                     : 'home',
+    '(/)'                           : 'home',
+    'home(/)'                       : 'home',
 
-    'login(/)'                    : 'login',
-    'register(/)'                 : 'register',
-    'app/settings(/)'             : 'settings',
+    'login(/)'                      : 'login',
+    'register(/)'                   : 'register',
+    'app/settings(/)'               : 'settings',
 
-    'app/requests/browse(/)'      : 'requestsBrowse',
-    'app/requests/show/:id(/)'    : 'requestsShow',
-    'app/requests/create(/)'      : 'requestsCreate',
-    'app/requests/mine(/)'        : 'requestsMine',
+    'app/requests/browse(/)'        : 'requestsBrowse',
+    'app/requests/show/:id(/)'      : 'requestsShow',
+    'app/requests/create(/)'        : 'requestsCreate',
+    'app/requests/mine(/)'          : 'requestsMine',
 
-    'app/proposals/mine(/)'       : 'proposalsMine'
+    'app/proposals/mine(/)'         : 'proposalsMine',
+
+    'app/submission/create/:id(/)'  : 'submissionCreate'
   },
 
   initialize: function () {

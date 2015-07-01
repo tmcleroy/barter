@@ -2,8 +2,7 @@
   <div class="proposalList">
     <% proposals.each(function (prop) { %>
       <%= require('./proposalListItem.ejs')({
-        proposal: prop,
-        state: prop.stateMap[prop.get('state') + '']
+        proposal: prop
       }) %>
     <% }); %>
   </div>
