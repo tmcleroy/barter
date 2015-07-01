@@ -24,12 +24,17 @@ app.set('views', './server/views/templates/'); // set view template folder
 require('./config/passport')(passport); // pass passport for configuration
 require('./routes')(app); // initialize routes
 
+// command line args
+var resetData = process.argv[2] === 'reload-data';
+
 //                             set to true to overwrite db
-models.sequelize.sync({ force: true }).then(function () {
+models.sequelize.sync({ force: resetData }).then(function () {
 
-  require('./scripts/addTestData.js')();
+  if (resetData) {
+    require('./scripts/addTestData.js')();
+  }
 
-  app.listen(app.get('port'), function() {
+  app.listen(app.get('port'), function () {
     console.log('barter server listening on port ' + app.get('port'));
   });
 });
