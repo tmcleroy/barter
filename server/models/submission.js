@@ -3,6 +3,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Submission = sequelize.define('Submission', {
     body: DataTypes.TEXT,
+    link: DataTypes.STRING,
     state: {
       type: DataTypes.INTEGER,
       defaultValue: 0
@@ -12,6 +13,7 @@ module.exports = function (sequelize, DataTypes) {
       associate: function (models) {
         Submission.belongsTo(models.User);
         Submission.belongsTo(models.Request);
+        Submission.belongsTo(models.Proposal);
         Submission.hasMany(models.Comment);
       }
     },

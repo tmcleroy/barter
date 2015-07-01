@@ -10,8 +10,6 @@ var handler = function (req, res) {
   }).then(function (request) {
     request.setUser(req.user).then(function () {
       createTags(function (tags) {
-        console.log('tags ---------------------------------------');
-        console.log(tags);
         request.setTags(tags).then(function () {
           res.status(200).send(request);
         });

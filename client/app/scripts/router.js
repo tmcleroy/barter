@@ -13,6 +13,7 @@ var RequestsView = require('./views/requestsView');
 var RequestView = require('./views/requestView');
 var ProposalsView = require('./views/proposalsView');
 var CreateRequestView = require('./views/createRequestView');
+var CreateSubmissionView = require('./views/createSubmissionView');
 var User = require('./models/userModel');
 
 var Router = Backbone.Router.extend(_.defaults({
@@ -35,7 +36,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     'app/proposals/mine(/)'         : 'proposalsMine',
 
-    'app/submission/create/:id(/)'  : 'submissionCreate'
+    'app/submissions/create/:id(/)' : 'submissionsCreate'
   },
 
   initialize: function () {
@@ -174,8 +175,19 @@ var Router = Backbone.Router.extend(_.defaults({
       });
       this.postRoute(viewName);
     }
-  }
+  },
 
+  submissionsCreate: function (id) {
+    var viewName = 'submissionsCreate';
+
+    if (this.preRoute(viewName)) {
+      this.view = new CreateSubmissionView({
+        el: $('<div class="submissionsCreateViewContainer" />').appendTo('#contentContainer'),
+        requestId: id
+      });
+      this.postRoute(viewName);
+    }
+  }
 
 },
 { // global helpers

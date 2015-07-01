@@ -198,14 +198,16 @@ var fxn = function () {
        }));
        proposalPromises.push(models.Proposal.create({
          body: 'Is your platform prepared for best-of-breed synergy growth? Efficiencies will come from strategically connecting our architectures. Change the way you do business - adopt best-in-class drivers.',
-         offer: 2500
+         offer: 2500,
+         state: 1
        }).then(function (proposal) {
          proposals.push(proposal);
          myModels.user.jessica.addProposal(proposal);
        }));
        proposalPromises.push(models.Proposal.create({
          body: 'I know stuff',
-         offer: 1000
+         offer: 1000,
+         state: -1
        }).then(function (proposal) {
          proposals.push(proposal);
          myModels.user.laika.addProposal(proposal);
