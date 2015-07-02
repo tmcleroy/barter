@@ -25,8 +25,6 @@
 .createProposalAndCommentView {
   .panel {
     display: none;
-    padding: 10px;
-    border-top: none;
   }
   .nav.active + .panel {
     display: block;
@@ -39,10 +37,25 @@
 
 // creating a request
 .createRequestView {
+  textarea[data-attr="body"] {
+    resize: vertical;
+  }
   .tagsView {
     margin: 10px 0;
     > h4 {
       display: none;
+    }
+  }
+  .bodyEditor {
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .panel {
+      min-height: 292px;
+      overflow: auto;
+    }
+    .info {
+      color: #aaa;
     }
   }
 }

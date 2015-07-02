@@ -1,8 +1,9 @@
 var CreateCommentView = require('./createCommentView');
 var CreateProposalView = require('./createProposalView');
+var TabHelper = require('../helpers/_tabHelper');
 
 
-var CreateProposalAndCommentView = Backbone.View.extend({
+var CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
   template: require('../../templates/request/createProposalAndComment.ejs'),
 
   views: {},
@@ -59,18 +60,11 @@ var CreateProposalAndCommentView = Backbone.View.extend({
     }
   },
 
-  toggleTabs: function ($activeTab) {
-    this.$('li[role="presentation"]').removeClass('active');
-    this.$('.actionContainer').addClass('hidden');
-    // add active class to parent so the container panel becomes visible
-    $activeTab.addClass('active').parent().addClass('active');
-  },
-
   remove: function () {
     _.invoke(this.views, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
   }
 
-});
+}));
 
 module.exports = CreateProposalAndCommentView;

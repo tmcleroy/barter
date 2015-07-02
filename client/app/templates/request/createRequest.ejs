@@ -8,10 +8,28 @@
       <label>Offer</label>
       <input type="text" data-attr="offer" class="form-control" placeholder="Offer">
     </div>
-    <div class="form-group col-sm-12">
+
+
+    <div class="col-sm-12 tabbedView bodyEditor">
       <label>Body</label>
-      <textarea data-attr="body" class="form-control" rows="8" placeholder="Body"></textarea>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#write" data-action="write">Write</a></li>
+        <li role="presentation"><a href="#preview" data-action="preview">Preview</a></li>
+      </ul>
+      <div class="panel panel-default">
+        <div class="actionContainer writeContainer">
+          <div class="form-group">
+            <textarea data-attr="body" class="form-control" rows="12" placeholder="Body"></textarea>
+          </div>
+          <div class="info">Markdown supported</div>
+        </div>
+        <div class="actionContainer previewContainer hidden">
+          <div class="markdown"></div>
+        </div>
+      </div>
     </div>
+
+
     <div class="form-group col-sm-12">
       <label>Tags</label>
       <input type="text" data-attr="tags" class="form-control" placeholder="Tags">
@@ -23,3 +41,4 @@
     </div>
   </form>
 </div>
+<div class="md"></div>
