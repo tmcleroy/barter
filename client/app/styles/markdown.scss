@@ -1,0 +1,8 @@
+.markdown {
+  &.body {
+    margin-bottom: -10px; /* compensate for paragraph margin */
+  }
+  h1 {
+    margin-top: 10px;
+  }
+}

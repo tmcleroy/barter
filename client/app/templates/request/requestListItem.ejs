@@ -12,6 +12,8 @@
     </div>
   </div>
   <div class="panel-body">
-    <%= request.get('body') %>
+    <div class="markdown body">
+      <%= request.getBodyFormatted() %>
+    </div>
   </div>
 </div>
