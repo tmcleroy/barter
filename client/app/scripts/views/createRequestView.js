@@ -3,7 +3,7 @@ var Tags = require('../collections/tagsCollection');
 var Tag = require('../models/tagModel');
 var TagsView = require('./tagsView');
 var TabHelper = require('../helpers/_tabHelper');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 
 var CreateRequestView = Backbone.View.extend(_.extend(TabHelper, {
   template: require('../../templates/request/createRequest.ejs'),
@@ -69,15 +69,9 @@ var CreateRequestView = Backbone.View.extend(_.extend(TabHelper, {
     if (!$target.hasClass('active')) {
       this.toggleTabs($target);
       this.$('.previewContainer').toggleClass('hidden');
-
-      var html = markdown.toHTML(this.$('[data-attr="body"]').val());
+      var html = marked(this.$('[data-attr="body"]').val());
       this.$('.markdown').html(html);
     }
-  },
-
-  bodyKeydown: function (evt) {
-    var html = markdown.toHTML($(evt.target).val());
-    this.$('.md').html(html);
   }
 
 }));

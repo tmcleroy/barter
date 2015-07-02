@@ -4,7 +4,7 @@ var Comments = require('../collections/commentsCollection');
 var Tags = require('../collections/tagsCollection');
 var Proposals = require('../collections/proposalsCollection');
 var User = require('./userModel');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 
 var RequestModel = NestedModel.extend({
   collection: Requests,
@@ -20,7 +20,7 @@ var RequestModel = NestedModel.extend({
   },
 
   getBodyFormatted: function () {
-    return markdown.toHTML(this.get('body'));
+    return marked(this.get('body'));
   }
 });
 
