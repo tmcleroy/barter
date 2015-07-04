@@ -1,6 +1,7 @@
 var Submission = require('../models/submissionModel');
+var BodyEditorView = require('./_bodyEditorView');
 
-var CreateSubmissionView = Backbone.View.extend({
+var CreateSubmissionView = BodyEditorView.extend({
   template: require('../../templates/submission/createSubmission.ejs'),
 
   events: {

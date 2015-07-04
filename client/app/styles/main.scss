@@ -78,3 +78,19 @@ div, span {
     border-top: none;
   }
 }
+
+.bodyEditor {
+  textarea[data-attr="body"] {
+    resize: vertical;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .panel {
+    min-height: 292px;
+    overflow: auto;
+  }
+  .info {
+    color: #aaa;
+  }
+}

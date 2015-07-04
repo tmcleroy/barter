@@ -1,9 +1,6 @@
 <div class="createSubmissionView">
   <form>
-    <div class="form-group col-sm-12">
-      <label>Body</label>
-      <textarea data-attr="body" class="form-control" rows="8" placeholder="Body"></textarea>
-    </div>
+    <%= require('../bodyEditor.ejs')() %>
     <div class="form-group col-sm-9">
       <label>Link</label>
       <input type="text" data-attr="link" class="form-control" placeholder="Link">

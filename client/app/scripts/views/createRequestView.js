@@ -2,17 +2,14 @@ var Request = require('../models/requestModel');
 var Tags = require('../collections/tagsCollection');
 var Tag = require('../models/tagModel');
 var TagsView = require('./tagsView');
-var TabHelper = require('../helpers/_tabHelper');
-var marked = require('marked');
+var BodyEditorView = require('./_bodyEditorView');
 
-var CreateRequestView = Backbone.View.extend(_.extend(TabHelper, {
+var CreateRequestView = BodyEditorView.extend({
   template: require('../../templates/request/createRequest.ejs'),
 
   events: {
     'click [data-action="submit"]': 'submitClicked',
-    'keydown [data-attr="tags"]': 'tagsKeydown',
-    'click [data-action="write"]': 'toggleWrite',
-    'click [data-action="preview"]': 'togglePreview'
+    'keydown [data-attr="tags"]': 'tagsKeydown'
   },
 
   initialize: function (params) {
@@ -52,28 +49,7 @@ var CreateRequestView = Backbone.View.extend(_.extend(TabHelper, {
       this.$('[data-attr="tags"]').val('').focus();
       this.tags.add(new Tag({ name: tag }));
     }
-  },
-
-  toggleWrite: function (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.writeContainer').toggleClass('hidden');
-    }
-  },
-
-  togglePreview: function (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.previewContainer').toggleClass('hidden');
-      var html = marked(this.$('[data-attr="body"]').val());
-      this.$('.markdown').html(html);
-    }
   }
-
-}));
+});
 
 module.exports = CreateRequestView;
