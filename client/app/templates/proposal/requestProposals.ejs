@@ -3,27 +3,29 @@
   <span class="subHead">
     <% if (acceptedProposal) { %>
       1 accepted, awaiting submission.
-    <% } else if (allProposals.length) { %>
+    <% } else if (pendingProposals.length) { %>
       <%= pendingProposals.length %> pending, awaiting your approval.
     <% } %>
   </span>
   <div class="proposals">
-    <% if (acceptedProposal) { %>
+    <% if (acceptedProposal) { /* proposal accepted, don't show rejected ones */%>
       <div class="accepted statusContainer">
         <h5>Accepted</h5>
         <%= require('./proposal.ejs')(acceptedProposal.toJSON()) %>
       </div>
-    <% } else if (pendingProposals.length) { %>
-      <div class="pending statusContainer">
-        <h5>Pending</h5>
-        <% _.each(pendingProposals.length && pendingProposals, function (proposal) { %>
-          <%= require('./proposal.ejs')(proposal.toJSON()) %>
-        <% }); %>
-      </div>
+    <% } else { /* no proposal accepted, show pending and/or rejected proposals */%>
+      <% if (pendingProposals.length) { %>
+        <div class="pending statusContainer">
+          <h5>Pending</h5>
+          <% _.each(pendingProposals, function (proposal) { %>
+            <%= require('./proposal.ejs')(proposal.toJSON()) %>
+          <% }); %>
+        </div>
+      <% } %>
       <% if (rejectedProposals.length) { %>
         <div class="rejected statusContainer">
           <h5>Rejected</h5>
-          <% _.each(rejectedProposals.length && rejectedProposals, function (proposal) { %>
+          <% _.each(rejectedProposals, function (proposal) { %>
             <%= require('./proposal.ejs')(proposal.toJSON()) %>
           <% }); %>
         </div>
