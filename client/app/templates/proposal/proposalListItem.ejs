@@ -34,7 +34,12 @@
         </div>
       </div>
     </div>
-
+  </div>
+  <div class="panel-body proposalBodyPanel">
+    <h5 class="overlaidTitle">Your Proposal</h5>
+    <div class="proposalBody">
+      <%= proposal.get('body') %>
+    </div>
   </div>
   <div class="statusBottom <%= proposal.getStateString() %>">
     <span class="statusText"><%= proposal.getStateStringFormatted() %></span>

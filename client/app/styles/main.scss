@@ -94,3 +94,12 @@ div, span {
     color: #aaa;
   }
 }
+
+.overlaidTitle {
+  display: inline-block;
+  background-color: #fff;
+  padding: 5px;
+  position: relative;
+  top: -15px;
+  margin: 0;
+}

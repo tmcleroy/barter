@@ -10,13 +10,13 @@
   <div class="proposals">
     <% if (acceptedProposal) { /* proposal accepted, don't show rejected ones */%>
       <div class="accepted statusContainer">
-        <h5>Accepted</h5>
+        <h5 class="overlaidTitle">Accepted</h5>
         <%= require('./proposal.ejs')(acceptedProposal.toJSON()) %>
       </div>
     <% } else { /* no proposal accepted, show pending and/or rejected proposals */%>
       <% if (pendingProposals.length) { %>
         <div class="pending statusContainer">
-          <h5>Pending</h5>
+          <h5 class="overlaidTitle">Pending</h5>
           <% _.each(pendingProposals, function (proposal) { %>
             <%= require('./proposal.ejs')(proposal.toJSON()) %>
           <% }); %>
@@ -24,7 +24,7 @@
       <% } %>
       <% if (rejectedProposals.length) { %>
         <div class="rejected statusContainer">
-          <h5>Rejected</h5>
+          <h5 class="overlaidTitle">Rejected</h5>
           <% _.each(rejectedProposals, function (proposal) { %>
             <%= require('./proposal.ejs')(proposal.toJSON()) %>
           <% }); %>

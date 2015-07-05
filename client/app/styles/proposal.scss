@@ -22,16 +22,6 @@
   h4 {
     display: inline-block;
   }
-  .statusContainer {
-    h5 {
-      display: inline-block;
-      background-color: #fff;
-      padding: 5px;
-      position: relative;
-      top: -15px;
-      margin: 0;
-    }
-  }
   .proposal {
     .headRight {
       margin-bottom: -7px;
@@ -85,6 +75,10 @@
       top: -6px;
       margin: 0 5px;
     }
+  }
+  .proposalBodyPanel {
+    padding-top: 0px;
+    border-top: 1px solid #ccc;
   }
   .statusBottom {
     padding: 0 10px;
