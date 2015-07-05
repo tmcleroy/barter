@@ -2,9 +2,19 @@ var TabHelper = require('../helpers/_tabHelper');
 var marked = require('marked');
 
 var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
+  template: require('../../templates/bodyEditor.ejs'),
+
   events: {
     'click [data-action="write"]': 'toggleWrite',
     'click [data-action="preview"]': 'togglePreview'
+  },
+
+  initialize: function () {
+    this.render();
+  },
+
+  render: function () {
+    this.$el.html(this.template());
   },
 
   toggleWrite: function (evt) {
@@ -30,12 +40,12 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
 
 }));
 
-// good way to handle event hash inheritance
-// idea from http://danhough.com/blog/backbone-view-inheritance/
-BodyEditorView.extend = function (child) {
-  var view = Backbone.View.extend.apply(this, arguments);
-  view.prototype.events = _.extend({}, this.prototype.events, child.events);
-  return view;
-};
+// // good way to handle event hash inheritance
+// // idea from http://danhough.com/blog/backbone-view-inheritance/
+// BodyEditorView.extend = function (child) {
+//   var view = Backbone.View.extend.apply(this, arguments);
+//   view.prototype.events = _.extend({}, this.prototype.events, child.events);
+//   return view;
+// };
 
 module.exports = BodyEditorView;

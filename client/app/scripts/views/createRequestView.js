@@ -2,9 +2,9 @@ var Request = require('../models/requestModel');
 var Tags = require('../collections/tagsCollection');
 var Tag = require('../models/tagModel');
 var TagsView = require('./tagsView');
-var BodyEditorView = require('./_bodyEditorView');
+var BodyEditorView = require('./bodyEditorView');
 
-var CreateRequestView = BodyEditorView.extend({
+var CreateRequestView = Backbone.View.extend({
   template: require('../../templates/request/createRequest.ejs'),
 
   events: {
@@ -20,6 +20,9 @@ var CreateRequestView = BodyEditorView.extend({
 
   render: function () {
     this.$el.html(this.template());
+    new BodyEditorView({
+      el: this.$('.bodyEditorContainer')
+    });
     new TagsView({
       collection: this.tags,
       el: this.$('.tagsContainer'),
