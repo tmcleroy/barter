@@ -19,6 +19,7 @@ module.exports = function (sequelize, DataTypes) {
         Proposal.belongsTo(models.User);
         Proposal.belongsTo(models.Request);
         Proposal.hasMany(models.Comment);
+        Proposal.hasOne(models.Submission);
       }
     },
     instanceMethods: {

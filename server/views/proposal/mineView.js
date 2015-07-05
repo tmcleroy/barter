@@ -6,6 +6,9 @@ var handler = function (req, res) {
       {
         model: models.Request,
         include: [models.User]
+      },
+      {
+        model: models.Submission
       }
     ]
   }).then(function (proposals) {

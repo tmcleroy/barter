@@ -1,4 +1,16 @@
-var ProposalModel = Backbone.Model.extend({
+var NestedModel = require('./_nestedModel');
+var Submission = require('./submissionModel');
+var Proposals = require('../collections/proposalsCollection');
+var marked = require('marked');
+
+var ProposalModel = NestedModel.extend({
+  collection: Proposals,
+
+  urlRoot: '/api/proposals',
+
+  nestedDefs: {
+    'Submission': Submission
+  },
 
   stateMap: {
     '-1': 'rejected',
@@ -11,8 +23,6 @@ var ProposalModel = Backbone.Model.extend({
     pending: 0,
     accepted: 1
   },
-
-  urlRoot: '/api/proposals',
 
   setState: function (state) {
     this.set('state', this.stateStringMap[state]);
@@ -32,6 +42,10 @@ var ProposalModel = Backbone.Model.extend({
   getStateStringFormatted: function () {
     var stateString = this.getStateString();
     return stateString.replace(/^\w/, stateString.charAt(0).toUpperCase());
+  },
+
+  getBodyFormatted: function () {
+    return marked(this.get('body'));
   }
 
 });

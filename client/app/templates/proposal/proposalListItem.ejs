@@ -38,13 +38,21 @@
   <div class="panel-body proposalBodyPanel">
     <h5 class="overlaidTitle">Your Proposal</h5>
     <div class="proposalBody">
-      <%= proposal.get('body') %>
+      <%= proposal.getBodyFormatted() %>
     </div>
   </div>
-  <div class="statusBottom <%= proposal.getStateString() %>">
+  <div class="status <%= proposal.getStateString() %>">
     <span class="statusText"><%= proposal.getStateStringFormatted() %></span>
-    <% if (proposal.get('state') == 1) { %>
+    <% if (proposal.getStateString() === 'accepted' && !proposal.get('Submission')) { %>
       <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="btn btn-default btn-sm pull-right">Make Submission</a>
     <% } %>
   </div>
+  <% if (proposal.get('Submission')) { %>
+    <div class="panel-body submissionBodyPanel">
+      <h5 class="overlaidTitle">Your Submission</h5>
+      <div class="submissionBody">
+        <%= proposal.get('Submission').getBodyFormatted() %>
+      </div>
+    </div>
+  <% } %>
 </div>

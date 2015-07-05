@@ -24,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
         // a request can have many proposals, a proposal can belong to one request
         Request.hasMany(models.Proposal);
         // a request can have many submissions, a submission can belong to one request
-        Request.hasMany(models.Submission);
+        Request.hasOne(models.Submission);
       }
     },
     instanceMethods: {
