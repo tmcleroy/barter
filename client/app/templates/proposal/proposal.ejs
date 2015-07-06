@@ -1,18 +1,18 @@
-<div class="proposal" data-id="<%= id %>">
+<div class="proposal" data-id="<%= proposal.get('id') %>">
 
   <div class="row head">
     <div class="col-sm-4 headLeft">
       <div class="profileContainer">
         <%= require('../profile/profile.ejs')({
-          user: User
+          user: proposal.get('User')
         }) %>
       </div>
     </div>
     <div class="col-sm-6 col-sm-offset-2 headRight">
       <span class="offerContainer">
-        Requesting <span class="offer"><%= offer %></span> ę
+        Requesting <span class="offer"><%= proposal.get('offer') %></span> ę
       </span>
-      <% if (state == 0) { /* pending */ %>
+      <% if (proposal.get('state') == 0) { /* pending */ %>
         <span class="actionContainer">
           <a href="#accepted" data-action="accepted">Accept</a>|<a href="#rejected" data-action="rejected">Reject</a>
         </span>
@@ -22,7 +22,7 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <%= body %>
+      <%= proposal.getBodyFormatted() %>
     </div>
   </div>
 

@@ -44,7 +44,7 @@
   <div class="status <%= proposal.getStateString() %>">
     <span class="statusText"><%= proposal.getStateStringFormatted() %></span>
     <% if (proposal.getStateString() === 'accepted' && !proposal.get('Submission')) { %>
-      <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="btn btn-default btn-sm pull-right">Make Submission</a>
+      <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="pull-right">Make Submission</a>
     <% } %>
   </div>
   <% if (proposal.get('Submission')) { %>

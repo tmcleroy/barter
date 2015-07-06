@@ -7,7 +7,7 @@ var SubmissionsModel = Backbone.Model.extend({
   urlRoot: '/api/submissions',
 
   getBodyFormatted: function () {
-    return marked(this.get('body'));
+    return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
 });
 
