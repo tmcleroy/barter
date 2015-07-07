@@ -56,7 +56,6 @@ var RequestView = Backbone.View.extend({
 
   remove: function () {
     _.invoke(this.views, 'remove');
-
     Backbone.View.prototype.remove.apply(this, arguments);
   }
 });

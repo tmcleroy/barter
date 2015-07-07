@@ -16,14 +16,14 @@ var handler = function (req, res) {
       },
       {
         model: models.Proposal,
-        include: [models.User]
+        include: [models.User, models.Submission],
       },
       {
         model: models.Submission
       }
     ]
   }).then(function (request) {
-    res.status(200).json(request);
+    res.status(200).send(request);
   });
 };
 

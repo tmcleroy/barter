@@ -1,0 +1,23 @@
+<div class="submission module">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="title">TITLE</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="profileContainer">
+        <%= require('../profile/profile.ejs')({
+          size: 'small',
+          user: submission.get('User').toJSON()
+        }) %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default arrowUp">
+    <div class="panel-body">
+      <%= submission.getBodyFormatted() %>
+    </div>
+  </div>
+</div>
+<div class="commentsContainer module"></div>

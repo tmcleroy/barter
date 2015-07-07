@@ -5,7 +5,12 @@ var NestedModel = Backbone.Model.extend({
     _.each(this.nestedDefs, (ModelOrCollection, key) => {
       var raw = response[key];
       if (raw) {
-        response[key] = new ModelOrCollection(raw, { parse: true });
+        if (typeof ModelOrCollection === 'function') {
+          response[key] = new ModelOrCollection(raw, { parse: true });
+        } else {
+          console.warn('Invalid Model or Collection: There is likely a circular reference in this model/collection. We will use the raw data.');
+          response[key] = raw;
+        }
       }
     });
     return response;

@@ -13,6 +13,7 @@ var RequestsView = require('./views/requestsView');
 var RequestView = require('./views/requestView');
 var ProposalsView = require('./views/proposalsView');
 var CreateRequestView = require('./views/createRequestView');
+var SubmissionView = require('./views/submissionView');
 var CreateSubmissionView = require('./views/createSubmissionView');
 var User = require('./models/userModel');
 
@@ -36,6 +37,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
     'app/proposals/mine(/)'         : 'proposalsMine',
 
+    'app/submissions/show/:id(/)'   : 'submissionsShow',
     'app/submissions/create/:id(/)' : 'submissionsCreate'
   },
 
@@ -172,6 +174,18 @@ var Router = Backbone.Router.extend(_.defaults({
       this.view = new ProposalsView({
         el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
         collectionOverrides: { url: '/api/proposals/mine' }
+      });
+      this.postRoute(viewName);
+    }
+  },
+
+  submissionsShow: function (id) {
+    var viewName = 'submissionsShow';
+
+    if (this.preRoute(viewName)) {
+      this.view = new SubmissionView({
+        el: $('<div class="submissionsShowViewContainer" />').appendTo('#contentContainer'),
+        id: id
       });
       this.postRoute(viewName);
     }

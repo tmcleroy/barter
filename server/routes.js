@@ -18,6 +18,7 @@ var proposalCreateView = require('./views/proposal/createView');
 var proposalUpdateView = require('./views/proposal/updateView');
 var proposalSetStateView = require('./views/proposal/setStateView');
 
+var submissionShowView = require('./views/submission/showView');
 var submissionCreateView = require('./views/submission/createView');
 
 // handlers
@@ -66,6 +67,7 @@ module.exports = function (app) {
   app.post('/api/proposals/:id/state', proposalSetStateView);
 
   // Submission
+  app.get('/api/submissions/:id', submissionShowView);
   app.post('/api/submissions', submissionCreateView);
 
   // catch everything except the explicitly defined routes above

@@ -12,6 +12,10 @@
       <div class="accepted statusContainer">
         <h5 class="overlaidTitle">Accepted</h5>
         <%= require('./proposal.ejs')({ proposal: acceptedProposal }) %>
+        <% var sub = acceptedProposal.get('Submission'); %>
+        <% if (sub) { %>
+             <a href="/app/submissions/show/<%= sub.get('id') %>">View Submission</a>
+        <% } %>
       </div>
     <% } else { /* no proposal accepted, show pending and/or rejected proposals */%>
       <% if (pendingProposals.length) { %>
