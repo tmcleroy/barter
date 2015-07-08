@@ -1,5 +1,6 @@
 var Submission = require('../models/submissionModel');
 var CommentsView = require('../views/commentsView');
+var ModelHydrator = require('../models/_modelHydrator');
 
 var SubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/submission.ejs'),
@@ -12,13 +13,13 @@ var SubmissionView = Backbone.View.extend({
 
 
     this.model.fetch().done((Submission) => {
+      ModelHydrator.hydrateModels(this.model);
       this.mine = App.user.get('id') === Submission.UserId;
       this.render();
     });
   },
 
   render: function () {
-    console.log(this.model);
     this.$el.html(this.template({
       submission: this.model
     }));
