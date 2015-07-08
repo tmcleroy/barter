@@ -1,9 +1,10 @@
 var NestedModel = require('./_nestedModel');
 var Submission = require('./submissionModel');
 var Proposals = require('../collections/proposalsCollection');
+var StatefulHelper = require('./_statefulHelper');
 var marked = require('marked');
 
-var ProposalModel = NestedModel.extend({
+var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   collection: Proposals,
 
   urlRoot: '/api/proposals',
@@ -12,42 +13,10 @@ var ProposalModel = NestedModel.extend({
     'Submission': Submission
   },
 
-  stateMap: {
-    '-1': 'rejected',
-    '0': 'pending',
-    '1': 'accepted'
-  },
-
-  stateStringMap: {
-    rejected: -1,
-    pending: 0,
-    accepted: 1
-  },
-
-  setState: function (state) {
-    this.set('state', this.stateStringMap[state]);
-    return $.ajax({
-      url: '/api/proposals/' + this.get('id') + '/state',
-      method: 'POST',
-      data: {
-        state: this.get('state')
-      }
-    });
-  },
-
-  getStateString: function () {
-    return this.stateMap[this.get('state') + ''];
-  },
-
-  getStateStringFormatted: function () {
-    var stateString = this.getStateString();
-    return stateString.replace(/^\w/, stateString.charAt(0).toUpperCase());
-  },
-
   getBodyFormatted: function () {
     return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
 
-});
+}));
 
 module.exports = ProposalModel;

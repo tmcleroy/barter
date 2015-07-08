@@ -5,6 +5,10 @@ var ModelHydrator = require('../models/_modelHydrator');
 var SubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/submission.ejs'),
 
+  events: {
+    'click [data-action^="state-"]': 'stateClicked'
+  },
+
   views: [],
   mine: false,
 
@@ -20,6 +24,7 @@ var SubmissionView = Backbone.View.extend({
   },
 
   render: function () {
+    console.log(this.model);
     this.$el.html(this.template({
       submission: this.model
     }));
@@ -33,6 +38,11 @@ var SubmissionView = Backbone.View.extend({
     if (this.mine) {
       // mine stuff
     }
+  },
+
+  stateClicked: function (evt) {
+    var state = $(evt.target).attr('data-action').split(/state-/)[1];
+    this.model.setState(state).done(_.bind(this.render, this));
   },
 
   remove: function () {

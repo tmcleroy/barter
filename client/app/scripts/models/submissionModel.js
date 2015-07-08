@@ -4,10 +4,11 @@ var User = require('./userModel');
 var Request = require('./requestModel');
 var Proposal = require('./proposalModel');
 var Comments = require('../collections/commentsCollection');
+var StatefulHelper = require('./_statefulHelper');
 
 var marked = require('marked');
 
-var SubmissionsModel = NestedModel.extend({
+var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   collection: Submissions,
 
   urlRoot: '/api/submissions',
@@ -22,6 +23,6 @@ var SubmissionsModel = NestedModel.extend({
   getBodyFormatted: function () {
     return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
-});
+}));
 
 module.exports = SubmissionsModel;

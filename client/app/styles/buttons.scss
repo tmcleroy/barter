@@ -1,0 +1,22 @@
+.btn-accept, .btn-reject {
+  border: 1px solid;
+  background: white;
+  transition: background 0.3s, color 0.3s;
+  &:hover {
+    color: white;
+  }
+}
+.btn-accept {
+  color: $mute-green;
+  border-color: $mute-green;
+  &:hover {
+    background: $mute-green;
+  }
+}
+.btn-reject {
+  color: $mute-red;
+  border-color: $mute-red;
+  &:hover {
+    background: $mute-red;
+  }
+}

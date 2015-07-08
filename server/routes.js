@@ -20,6 +20,7 @@ var proposalSetStateView = require('./views/proposal/setStateView');
 
 var submissionShowView = require('./views/submission/showView');
 var submissionCreateView = require('./views/submission/createView');
+var submissionSetStateView = require('./views/submission/setStateView');
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
@@ -69,6 +70,7 @@ module.exports = function (app) {
   // Submission
   app.get('/api/submissions/:id', submissionShowView);
   app.post('/api/submissions', submissionCreateView);
+  app.post('/api/submissions/:id/state', submissionSetStateView);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file

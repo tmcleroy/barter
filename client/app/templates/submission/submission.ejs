@@ -1,7 +1,9 @@
 <div class="submission module">
   <div class="row">
     <div class="col-sm-12">
-      <h3 class="title">TITLE</h3>
+      <span class="stateText"><%= submission.getStateStringFormatted() %></span>
+      <p><%= submission.get('User').get('username') %>'s submission for your request titled:</p>
+      <h3 class="title"><%= submission.get('Request').get('title') %></h3>
     </div>
   </div>
   <div class="row">
@@ -14,9 +16,23 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default arrowUp">
+  <div class="panel panel-default arrowUp arrowUp-left">
     <div class="panel-body">
       <%= submission.getBodyFormatted() %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="state <%= submission.getStateString() %>">
+        <span class="stateText"><%= submission.getStateStringFormatted() %></span>
+        <% if (submission.getStateString() === 'pending') { %>
+          <div class="actionButtons pull-right">
+            <button class="btn btn-reject" data-action="state-rejected">Reject</button>
+            <button class="btn btn-accept" data-action="state-accepted">Accept</button>
+          </div>
+        <% } %>
+      </div>
     </div>
   </div>
 </div>

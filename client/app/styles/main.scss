@@ -50,6 +50,11 @@ button + button {
   	border-width: 9px;
   	margin-left: -9px;
   }
+  &.arrowUp-left {
+    &:after, &:before {
+      left: 20px;
+    }
+  }
 }
 
 .noneMessage {

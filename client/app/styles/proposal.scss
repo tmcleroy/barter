@@ -1,5 +1,5 @@
 // all proposals
-.statusContainer {
+.stateContainer {
   position: relative;
   margin-top: 20px;
   border: 1px solid #ccc;
@@ -83,7 +83,7 @@
   .submissionBodyPanel {
     margin-top: 20px;
   }
-  .status {
+  .state {
     padding: 4px 10px;
     margin: -1px;
     border-bottom-right-radius: 4px;
@@ -91,7 +91,7 @@
     a {
       color: white;
     }
-    .statusText {
+    .stateText {
       display: inline-block;
       color: white;
       font-size: 14px;

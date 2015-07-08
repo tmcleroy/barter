@@ -9,7 +9,7 @@
   </span>
   <div class="proposals">
     <% if (acceptedProposal) { /* proposal accepted, don't show rejected ones */%>
-      <div class="accepted statusContainer">
+      <div class="accepted stateContainer">
         <h5 class="overlaidTitle">Accepted</h5>
         <%= require('./proposal.ejs')({ proposal: acceptedProposal }) %>
         <% var sub = acceptedProposal.get('Submission'); %>
@@ -19,7 +19,7 @@
       </div>
     <% } else { /* no proposal accepted, show pending and/or rejected proposals */%>
       <% if (pendingProposals.length) { %>
-        <div class="pending statusContainer">
+        <div class="pending stateContainer">
           <h5 class="overlaidTitle">Pending</h5>
           <% _.each(pendingProposals, function (proposal) { %>
             <%= require('./proposal.ejs')({ proposal: proposal }) %>
@@ -27,7 +27,7 @@
         </div>
       <% } %>
       <% if (rejectedProposals.length) { %>
-        <div class="rejected statusContainer">
+        <div class="rejected stateContainer">
           <h5 class="overlaidTitle">Rejected</h5>
           <% _.each(rejectedProposals, function (proposal) { %>
             <%= require('./proposal.ejs')({ proposal: proposal }) %>
