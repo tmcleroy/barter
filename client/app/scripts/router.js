@@ -115,7 +115,8 @@ var Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new SettingsView({
-        el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer')
+        el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer'),
+        model: App.user
       });
       this.postRoute(viewName);
     }

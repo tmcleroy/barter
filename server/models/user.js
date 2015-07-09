@@ -1,5 +1,3 @@
-'use strict';
-
 var utils = require('../utils/utils');
 var ssaclAttributeRoles = require('ssacl-attribute-roles');
 
@@ -26,6 +24,10 @@ module.exports = function (sequelize, DataTypes) {
     },
     email: DataTypes.STRING,
     rep: DataTypes.INTEGER,
+    points: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10000
+    },
     avatar: {
       type: DataTypes.STRING,
       defaultValue: function () { return AVATAR_DIR + 'avatar-default-' + (Math.floor(Math.random() * 10) + 1) + '.png'; },
@@ -73,6 +75,7 @@ module.exports = function (sequelize, DataTypes) {
           username: this.get('username'),
           email: this.get('email'),
           rep: this.get('rep'),
+          points: this.get('points'),
           avatar: this.get('avatar')
         };
       }

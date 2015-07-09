@@ -42,6 +42,12 @@ var utils = {
         }
       });
     }
+  },
+
+  transferPoints: function (fromUser, toUser, amount) {
+    console.log('transfering ' + amount + ' points from ' + fromUser.get('username') + ' to ' + toUser.get('username'));
+    fromUser.updateAttributes({ points: Math.max(0, (fromUser.points - amount)) });
+    toUser.updateAttributes({ points: (toUser.points + amount) });
   }
 };
 
