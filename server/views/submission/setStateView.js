@@ -12,7 +12,7 @@ var handler = function (req, res) {
       if (submission.Request.UserId === req.user.id) {
         submission.updateAttributes({ state: parseInt(req.body.state, 10) }).then(function (submission) {
           if (submission.state === 1) { // accepted
-            utils.transferPoints(req.user, submission.User, submission.Proposal.offer);
+            utils.transferPoints(req.user, submission.User, submission.Proposal.offer, models);
           }
           res.status(200).send(submission);
         });

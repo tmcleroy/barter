@@ -1,7 +1,5 @@
 'use strict';
 
-var utils = require('../utils/utils');
-
 module.exports = function (sequelize, DataTypes) {
   var Comment = sequelize.define('Comment', {
     body: DataTypes.TEXT
