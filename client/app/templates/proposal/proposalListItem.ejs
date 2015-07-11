@@ -43,7 +43,7 @@
   }) %>
   <div class="state <%= proposal.getStateString() %>">
     <span class="stateText">Proposal <%= proposal.getStateStringFormatted() %></span>
-    <% if (proposal.getStateStringFormatted() === 'accepted' && !proposal.get('Submission')) { %>
+    <% if (proposal.is('accepted') && !proposal.get('Submission')) { %>
       <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="pull-right">Make Submission</a>
     <% } %>
   </div>
@@ -51,7 +51,7 @@
   <% var submission = proposal.get('Submission'); %>
   <% if (submission) { %>
     <%= require('../collapsibleContainer.ejs')({
-      classes: 'submissionBodyContainer noSideBorder',
+      classes: 'submissionBodyContainer noSideBorder animated',
       text: { show: 'Show Your Submission', hide: 'Hide Your Submission' },
       html: submission.getBodyFormatted(),
       collapsed: true,

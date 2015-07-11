@@ -33,6 +33,10 @@ var StatefulHelper = {
   getStateStringFormatted: function () {
     var stateString = this.getStateString();
     return stateString.replace(/^\w/, stateString.charAt(0).toUpperCase());
+  },
+
+  is: function (state) {
+    return this.getStateString() === state;
   }
 };
 

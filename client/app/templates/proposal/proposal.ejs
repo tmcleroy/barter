@@ -12,7 +12,7 @@
       <span class="offerContainer">
         Requesting <span class="offer"><%= proposal.get('offer') %></span> ę
       </span>
-      <% if (proposal.getStateString() === 'pending') { %>
+      <% if (proposal.is('pending')) { %>
         <span class="actionContainer">
           <a href="#accepted" data-action="accepted">Accept</a>|<a href="#rejected" data-action="rejected">Reject</a>
         </span>

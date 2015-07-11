@@ -31,7 +31,7 @@
 
       <div class="state <%= submission.getStateString() %>">
         <span class="stateText"><%= submission.getStateStringFormatted() %></span>
-        <% if (submission.getStateString() === 'pending') { %>
+        <% if (submission.is('pending')) { %>
           <div class="actionButtons pull-right">
             <button class="btn btn-reject" data-action="state-rejected">Reject</button>
             <button class="btn btn-accept" data-action="state-accepted">Accept</button>
