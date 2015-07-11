@@ -4,7 +4,7 @@
       <span class="stateText"><%= submission.getStateStringFormatted() %></span>
       <p><%= submission.get('User').get('username') %>'s submission for your request</p>
       <%= require('../collapsibleContainer.ejs')({
-        classes: 'submissionRequestContainer',
+        classes: 'submissionRequestContainer animated',
         text: { show: 'Show Request', hide: 'Hide Request' },
         html: require('../request/requestSimple.ejs')({ request: submission.get('Request') }),
         collapsed: true,

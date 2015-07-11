@@ -1,6 +1,6 @@
 var models = require('../models');
 
-module.exports = [
+var defs = [
   {
     name: 'user',
     model: models.User,
@@ -75,89 +75,7 @@ module.exports = [
         }
       }
     ]
-  },
-  {
-    name: 'skill',
-    model: models.Skill,
-    instances: [
-      {
-        name: 'javascript',
-        attrs: {
-          name: 'javascript'
-        }
-      },
-      {
-        name: 'ruby',
-        attrs: {
-          name: 'ruby'
-        }
-      },
-      {
-        name: 'java',
-        attrs: {
-          name: 'java'
-        }
-      },
-      {
-        name: 'cpp',
-        attrs: {
-          name: 'c++'
-        }
-      },
-      {
-        name: 'css',
-        attrs: {
-          name: 'css'
-        }
-      }
-    ]
-  },
-  {
-    name: 'tag',
-    model: models.Tag,
-    instances: [
-      {
-        name: 'algorithm',
-        attrs: {
-          name: 'algorithm'
-        }
-      },
-      {
-        name: 'database query',
-        attrs: {
-          name: 'database query'
-        }
-      },
-      {
-        name: 'regex',
-        attrs: {
-          name: 'regex'
-        }
-      },
-      {
-        name: 'fxn',
-        attrs: {
-          name: 'function'
-        }
-      },
-      {
-        name: 'one',
-        attrs: {
-          name: 'one'
-        }
-      },
-      {
-        name: 'two',
-        attrs: {
-          name: 'two'
-        }
-      },
-      {
-        name: 'three',
-        attrs: {
-          name: 'three'
-        }
-      }
-    ]
   }
 ];
+
+module.exports = defs;

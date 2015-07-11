@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var models = require('../models');
 var _ = require('lodash');
-
+var faker = require('faker');
 var defs = require('./dataDefs');
 
 var promises = [];
@@ -9,15 +9,49 @@ var myModels = {
   user: {},
   permission: {},
   skill: {},
-  tag: {}
+  tags: [],
+  comments: []
 };
+
+
+// helper funcs to get random stuff
+function randInt (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randRoundInt (min, max) {
+  var int = randInt(min, max);
+  return int - (int % 50);
+}
+
+function randFromObj (obj) {
+  var keys = _.keys(obj);
+  var index = randInt(0, (keys.length - 1));
+  var key = keys[index];
+  return obj[key];
+}
+
+function randArrFromArr (all, min, max) {
+  var ret = [];
+  _.times(randInt(min, max), function () {
+    ret.push(all[randInt(0, all.length - 1)]);
+  });
+  return ret;
+}
+
+function randTags (allTags) {
+  return randArrFromArr(allTags, 0, 5);
+}
+
+function randComments (allComments) {
+  return randArrFromArr(allComments, 0, 10);
+}
+
 
 var fxn = function () {
 
-  // All the instances that can exist in a vacuum will be created
-  // and added to the promises array
-
-  _.each(defs, function (modelDef) {
+  // predifined entities from dataDefs.js
+  _.each(defs, function (modelDef) { // predefined entities, see dataDefs.js
     var model = modelDef.model;
     var modelName = modelDef.name;
     _.each(modelDef.instances, function (def) {
@@ -28,24 +62,56 @@ var fxn = function () {
     });
   });
 
-  Sequelize.Promise.all(promises).then(function () {
-     _.each(myModels.user, function (user) {
-       user.addPermission(myModels.permission.user).then(function () { });
-       user.addSkill(myModels.skill.js).then(function () { });
+  _.times(randInt(10, 30), function (i) { // add random users to the already defined ones in datatDefs.js
+    promises.push(models.User.create({
+      username: faker.internet.userName(),
+      password: 'password', // so i can easily log in as any of these test users
+      email: faker.internet.email(),
+      rep: randInt(0, 10000)
+    }).then(function (model) {
+      myModels.user['random' + i] = model;
+    }));
+  });
+
+  _.times(randInt(100, 200), function (i) { // random tags
+    var methods = ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb'];
+    var index = randInt(0, methods.length - 1);
+    promises.push(models.Tag.create({ name: faker.hacker[methods[index]]() }).then(function (model) {
+      myModels.tags.push(model);
+    }));
+  });
+
+  _.times(randInt(100, 200), function (i) { // random comments
+    promises.push(models.Comment.create({ body: faker.lorem.paragraph() }).then(function (model) {
+      myModels.comments.push(model);
+    }));
+  });
+
+  Sequelize.Promise.all(promises).then(function () { // initial entities created above are done
+    // assign permisisons
+    _.each(myModels.user, function (user) {
+      user.addPermission(myModels.permission.user);
+    });
+    myModels.user.tommy.addPermission(myModels.permission.admin);
+    myModels.user.tommy.addPermission(myModels.permission.api);
+    myModels.user.jessica.addPermission(myModels.permission.api);
+
+    // assign a random user to each comment
+    _.each(myModels.comments, function (comment) {
+      randFromObj(myModels.user).addComment(comment);
+    });
+
+    _.times(randInt(30, 120), function (i) { // random requests
+       models.Request.create({
+         title: faker.hacker.phrase(),
+         body: faker.lorem.paragraphs(randInt(1, 4)),
+         offer: randRoundInt(100, 10000)
+       }).then(function (request) {
+         request.setUser(randFromObj(myModels.user));
+         request.setTags(randTags(myModels.tags));
+         request.setComments(randComments(myModels.comments));
+       });
      });
-
-     myModels.user.tommy.addPermission(myModels.permission.admin).then(function () { });
-     myModels.user.tommy.addPermission(myModels.permission.api).then(function () { });
-     myModels.user.jessica.addPermission(myModels.permission.api).then(function () { });
-
-     myModels.user.tommy.addSkill(myModels.skill.css).then(function () { });
-     myModels.user.tommy.addSkill(myModels.skill.cpp).then(function () { });
-     myModels.user.tommy.addSkill(myModels.skill.ruby).then(function () { });
-     myModels.user.jessica.addSkill(myModels.skill.cpp).then(function () { });
-     myModels.user.jessica.addSkill(myModels.skill.css).then(function () { });
-     myModels.user.laika.addSkill(myModels.skill.css).then(function () { });
-
-     // users now have permissions and skills
 
      // create some requests
      models.Request.create({
@@ -55,8 +121,9 @@ var fxn = function () {
      }).then(function (request) {
        var promises = [];
        var comments = [];
+
        promises.push(request.setUser(myModels.user.jessica));
-       promises.push(request.setTags([myModels.tag.regex]));
+       promises.push(request.setTags(randTags(myModels.tags)));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'What\'s your favorite planet?'
@@ -112,7 +179,7 @@ var fxn = function () {
        var promises = [];
        var comments = [];
        promises.push(request.setUser(myModels.user.tommy));
-       promises.push(request.setTags([myModels.tag.fxn, myModels.tag.algorithm]));
+       promises.push(request.setTags(randTags(myModels.tags)));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'Our business facilitates stand-ups to dynamically and globally align our proactive enterprise'
@@ -140,7 +207,6 @@ var fxn = function () {
        var promises = [];
        var comments = [];
        promises.push(request.setUser(myModels.user.tommy));
-       promises.push(request.setTags([myModels.tag.three, myModels.tag.fxn, myModels.tag.algorithm, myModels.tag.two]));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'Our business grows step-changes to proactively and ethically monetize our company-wide core competency.'
@@ -168,7 +234,7 @@ var fxn = function () {
        var promises = [];
        var comments = [];
        promises.push(request.setUser(myModels.user.tommy));
-       promises.push(request.setTags([myModels.tag.two, myModels.tag.fxn, myModels.tag.one, myModels.tag.algorithm]));
+       promises.push(request.setTags(randTags(myModels.tags)));
        // create the comments to be added to the request
        promises.push(models.Comment.create({
          body: 'Going forward, our proactive deliverable will deliver value to standard setters. Globally touching base about synergising executive searches will make us leaders in the senior capability industry. Change the way you do business - adopt holistic agile workflows.'
@@ -219,7 +285,7 @@ var fxn = function () {
 
 
 
-   });
+  });
 
 };
 
