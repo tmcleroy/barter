@@ -1,0 +1,25 @@
+.collapseWidget {
+  .collapseBtn {
+    position: relative;
+    bottom: -20px;
+    padding: 0 5px;
+    margin-left: 10px;
+    background: white;
+  }
+  .collapsibleContainer {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: max-height 40s, padding 1s;
+    &[data-collapsed="true"] {
+      padding: 0 10px;
+      max-height: 0;
+      transition: max-height 0.40s, padding 1s;
+    }
+    &[data-collapsed="false"] {
+      max-height: 100000px;
+    }
+  }
+}

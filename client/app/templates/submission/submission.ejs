@@ -2,8 +2,13 @@
   <div class="row">
     <div class="col-sm-12">
       <span class="stateText"><%= submission.getStateStringFormatted() %></span>
-      <p><%= submission.get('User').get('username') %>'s submission for your request titled:</p>
-      <h3 class="title"><%= submission.get('Request').get('title') %></h3>
+      <p><%= submission.get('User').get('username') %>'s submission for your request</p>
+      <%= require('../collapsibleContainer.ejs')({
+        classes: 'submissionRequestContainer',
+        text: { show: 'Show Request', hide: 'Hide Request' },
+        html: require('../request/requestSimple.ejs')({ request: submission.get('Request') }),
+        collapsed: true,
+      }) %>
     </div>
   </div>
   <div class="row">

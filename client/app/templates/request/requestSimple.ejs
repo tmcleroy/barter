@@ -1,0 +1,28 @@
+<div class="request module">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="title"><%= request.get('title') %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="profileContainer">
+        <%= require('../profile/profile.ejs')({
+          size: 'small',
+          user: request.get('User').toJSON()
+        }) %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-2 offerProposalsContainer">
+      <div class="offerContainer">
+        Offering <span class="offer"><%= request.get('offer') %></span> ę
+      </div>
+      <div class="proposalsSummaryContainer"></div>
+    </div>
+  </div>
+  <div class="panel panel-default arrowUp arrowUp-left">
+    <div class="panel-body">
+      <%= request.getBodyFormatted() %>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,8 @@ var SubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/submission.ejs'),
 
   events: {
-    'click [data-action^="state-"]': 'stateClicked'
+    'click [data-action^="state-"]': 'stateClicked',
+    // 'click [data-global-action="collapse"]': 'collapse'
   },
 
   views: [],
@@ -44,6 +45,15 @@ var SubmissionView = Backbone.View.extend({
     var state = $(evt.target).attr('data-action').split(/state-/)[1];
     this.model.setState(state).done(_.bind(this.render, this));
   },
+  //
+  // collapse: function (evt) {
+  //   evt.preventDefault();
+  //   var $target = $(evt.target);
+  //   var $container = $target.next('.collapsibleContainer');
+  //   var collapsed = $container.attr('data-collapsed') === 'true';
+  //   $target.text(collapsed ? 'hide' : 'show');
+  //   $container.attr('data-collapsed', !collapsed);
+  // },
 
   remove: function () {
     _.invoke(this.views, 'remove');

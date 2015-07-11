@@ -1,3 +1,4 @@
+var models = require('../models');
 var bcrypt = require('bcrypt');
 var AWS = require('aws-sdk');
 

@@ -9,7 +9,8 @@ var handler = function (req, res) {
         model: models.User
       },
       {
-        model: models.Request
+        model: models.Request,
+        include: [models.User]
       },
       {
         model: models.Comment,
