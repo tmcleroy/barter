@@ -23,7 +23,7 @@ var utils = {
         var $container = $target.next('.collapsibleContainer');
         var collapsed = $container.attr('data-collapsed') === 'true';
         var text = { show: $target.attr('data-showtext'), hide: $target.attr('data-hidetext') };
-        $target.text(collapsed ? text.show : text.hide);
+        $target.text(collapsed ? text.hide : text.show);
         $container.attr('data-collapsed', !collapsed);
       });
 
