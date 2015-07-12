@@ -1,17 +1,21 @@
-<div class="panel panel-default request">
-  <div class="panel-heading">
-    <div class="row">
-      <div class="col-sm-9">
-        <h3 class="panel-title"><a href="/app/requests/show/<%= request.id %>"><%= request.get('title') %></a></h3>
-      </div>
-      <div class="col-sm-3">
-        <div class="offerContainer pull-right">
-          Offering <span class="offer"><%= request.get('offer') %></span> points
-        </div>
-      </div>
+<%
+var moment = require('moment');
+var user = request.get('User');
+%>
+<div class="requestListItem">
+  <div class="col-sm-9">
+    <h4 class="title"><a href="/app/requests/show/<%= request.id %>"><%= request.get('title') %></a></h4>
+    <div class="requestMeta">
+      Requested by <a href="/users/<%= user.get('id') %>"><%= user.get('username') %></a> <%= moment(request.get('createdAt')).fromNow() %>
     </div>
   </div>
-  <div class="panel-body">
-    <%= request.getBodyFormatted() %>
+  <div class="col-sm-3">
+    <div class="sidePanel offerPanel">
+      offer
+    </div>
+    <div class="sidePanel proposalsPanel">
+      proposal
+    </div>
   </div>
+  <div class="clearfix"></div>
 </div>

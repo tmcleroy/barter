@@ -1,4 +1,4 @@
-<% var Moment = require('moment'); %>
+<% var moment = require('moment'); %>
 <div class="comment">
 
   <div class="row head">
@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-6 col-sm-offset-2 headRight">
       <div class="timeContainer">
-        <%= Moment(createdAt).fromNow() %>
+        <%= moment(createdAt).fromNow() %>
       </div>
     </div>
   </div>
