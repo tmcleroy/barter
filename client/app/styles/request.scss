@@ -1,8 +1,10 @@
 // request in list view
 .requestListItem {
   margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  &:hover {
+    background: $pale-grey;
+  }
   .title {
     margin: 0;
     overflow: hidden;
@@ -12,10 +14,31 @@
   .requestMeta {
     padding: 5px 0 2px;
   }
+  .rightCol {
+    height: 45px;
+    padding: 0;
+  }
   .sidePanel {
-    width: 50%;
     display: inline-block;
     float: left;
+    text-align: center;
+    height: inherit;
+    &.offerPanel {
+      width: 35%;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+    &.proposalsPanel {
+      width: 65%;
+      .offer {
+        display: inline-block;
+        margin-left: 5px;
+      }
+    }
+    .header {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
   }
 }
 
