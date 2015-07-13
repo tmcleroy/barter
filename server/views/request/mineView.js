@@ -2,7 +2,7 @@ var models = require('../../models');
 
 var handler = function (req, res) {
   req.user.getRequests({
-    include: [models.User, models.Tag, models.Comment, models.Proposal]
+    include: [models.User, models.Tag, models.Proposal]
   }).then(function (requests) {
     res.status(200).json(requests);
   });

@@ -5,11 +5,13 @@
     <div class="pull-right">
       <label>Sort By</label>
       <select class="form-control sortSelect sm" data-action="sort">
-        <option value="offer" <%= sort === 'offer' ? 'selected' : '' %>>Highest Offer</option>
-        <option value="-offer" <%= sort === '-offer' ? 'selected' : '' %>>Lowest Offer</option>
-        <option value="createdAt" <%= sort === 'createdAt' ? 'selected' : '' %>>Newest</option>
-        <option value="-createdAt" <%= sort === '-createdAt' ? 'selected' : '' %>>Oldest</option>
+        <option value="-offer" <%= sort === '-offer' ? 'selected' : '' %>>Highest Offer</option>
+        <option value="offer" <%= sort === 'offer' ? 'selected' : '' %>>Lowest Offer</option>
+        <option value="-createdAt" <%= sort === '-createdAt' ? 'selected' : '' %>>Newest</option>
+        <option value="createdAt" <%= sort === 'createdAt' ? 'selected' : '' %>>Oldest</option>
         <option value="updatedAt" <%= sort === 'updatedAt' ? 'selected' : '' %>>Recently Updated</option>
+        <option value="-numProposals" <%= sort === '-numProposals' ? 'selected' : '' %>>Most Proposals</option>
+        <option value="numProposals" <%= sort === 'numProposals' ? 'selected' : '' %>>Least Proposals</option>
       </select>
     </div>
     <div class="clearfix"></div>

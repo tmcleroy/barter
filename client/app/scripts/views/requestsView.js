@@ -8,7 +8,7 @@ var RequestsView = Backbone.View.extend({
   },
 
   initialize: function (params) {
-    this.sort = 'createdAt';
+    this.sort = '-createdAt';
     this.mine = params.mine;
     this.collection = new RequestsCollection();
     _.each(params.collectionOverrides, (val, key) => {

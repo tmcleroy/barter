@@ -2,6 +2,7 @@ var Sequelize = require('sequelize');
 var models = require('../models');
 var _ = require('lodash');
 var faker = require('faker');
+var moment = require('moment');
 var defs = require('./dataDefs');
 
 var promises = [];
@@ -47,6 +48,11 @@ function randComments (allComments) {
   return randArrFromArr(allComments, 0, 10);
 }
 
+function randDate () {
+  // format to match: 2015-07-11T23:30:46.092Z
+  // from now to 6 months ago
+  return moment().subtract(randInt(0, 262974), 'minutes').format();
+}
 
 var fxn = function () {
 
@@ -105,7 +111,8 @@ var fxn = function () {
        models.Request.create({
          title: faker.hacker.phrase(),
          body: faker.lorem.paragraphs(randInt(1, 4)),
-         offer: randRoundInt(100, 10000)
+         offer: randRoundInt(100, 10000),
+         createdAt: randDate()
        }).then(function (request) {
          request.setUser(randFromObj(myModels.user));
          request.setTags(randTags(myModels.tags));
