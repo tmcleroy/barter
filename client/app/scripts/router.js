@@ -162,7 +162,8 @@ var Router = Backbone.Router.extend(_.defaults({
     if (this.preRoute(viewName)) {
       this.view = new RequestsView({
         el: $('<div class="requestsMineViewContainer" />').appendTo('#contentContainer'),
-        collectionOverrides: { url: '/api/requests/mine' }
+        collectionOverrides: { url: '/api/requests/mine' },
+        mine: true
       });
       this.postRoute(viewName);
     }

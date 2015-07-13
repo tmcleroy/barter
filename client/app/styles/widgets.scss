@@ -33,3 +33,10 @@
     }
   }
 }
+
+// form elements
+select {
+  &.sm {
+    height: 29px;
+  }
+}

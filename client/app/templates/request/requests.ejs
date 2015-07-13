@@ -1,4 +1,20 @@
 <div class="requestsView">
+  <h1><%= mine ? 'My ' : '' %>Requests</h1>
+
+  <div class="controls">
+    <div class="pull-right">
+      <label>Sort By</label>
+      <select class="form-control sortSelect sm" data-action="sort">
+        <option value="offer" <%= sort === 'offer' ? 'selected' : '' %>>Highest Offer</option>
+        <option value="-offer" <%= sort === '-offer' ? 'selected' : '' %>>Lowest Offer</option>
+        <option value="createdAt" <%= sort === 'createdAt' ? 'selected' : '' %>>Newest</option>
+        <option value="-createdAt" <%= sort === '-createdAt' ? 'selected' : '' %>>Oldest</option>
+        <option value="updatedAt" <%= sort === 'updatedAt' ? 'selected' : '' %>>Recently Updated</option>
+      </select>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
   <div class="requestList">
     <% requests.each(function (request) { %>
       <%= require('./requestListItem.ejs')({
