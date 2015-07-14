@@ -57,6 +57,7 @@ button + button {
 
 .noneMessage {
   padding: 5px 0;
+  font-style: italic;
 }
 div, span {
   + .noneMessage {
@@ -104,5 +105,9 @@ div, span {
   padding: 5px;
   position: relative;
   top: -15px;
+  margin: 0;
+}
+
+.viewTitle {
   margin: 0;
 }
