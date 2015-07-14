@@ -5,7 +5,7 @@ var RequestsView = Backbone.View.extend({
 
   events: {
     'change [data-action="sort"]': 'sortChanged',
-    'change [data-action="page"]': 'pageChanged'
+    'click a[data-page]': 'pageChanged'
   },
 
   initialize: function (params) {
@@ -26,7 +26,8 @@ var RequestsView = Backbone.View.extend({
       requests: this.collection,
       mine: this.mine,
       sort: this.sort,
-      page: this.page
+      page: this.page,
+      pages: Math.ceil(this.collection.total / this.limit)
     }));
   },
 
@@ -49,7 +50,13 @@ var RequestsView = Backbone.View.extend({
   },
 
   pageChanged: function (evt) {
-    this.page = $(evt.target).val();
+    evt.preventDefault();
+    var val = $(evt.currentTarget).attr('data-page');
+    if (_.isNaN(parseInt(val, 10))) { // prev or next
+      this.page += { next: 1, prev: -1 }[val];
+    } else { // numerical page
+      this.page = parseInt(val, 10);
+    }
     this.cursor = (this.page - 1) * this.limit;
     this.fetch();
   }

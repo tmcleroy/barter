@@ -23,8 +23,8 @@ var handler = function (req, res) {
   var sort = sorts.default;
   var order = 'desc';
   if (sorts[req.query.sort]) {
-    sort = req.query.sort.replace(/^-/, '');
     order = req.query.sort.charAt(0) === '-' ? 'desc' : 'asc';
+    sort = req.query.sort.replace(/^-/, '');
   }
   // yes the double quotes are necessary https://github.com/sequelize/sequelize/issues/2495#issuecomment-75520604
   // and it must be wrapped in arrays because of this issue https://github.com/sequelize/sequelize/issues/2004
@@ -43,7 +43,10 @@ var handler = function (req, res) {
       // apply the limit and offset here since they were not set on the query
       requests.rows.sort(postSorts[req.query.sort]);
     }
-    res.status(200).json(requests.rows);
+    res.status(200).json({
+      items: requests.rows,
+      total: requests.count
+    });
   });
 };
 

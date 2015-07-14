@@ -1,20 +1,6 @@
 <div class="requestsView">
   <h1><%= mine ? 'My ' : '' %>Requests</h1>
-
-  <div class="controls">
-
-
-    <label>page</label>
-    <select class="form-control sm" data-action="page">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-
-
+  <div class="controls top">
     <div class="pull-right">
       <label>Sort By</label>
       <select class="form-control sortSelect sm" data-action="sort">
@@ -29,7 +15,6 @@
     </div>
     <div class="clearfix"></div>
   </div>
-
   <div class="requestList">
     <% requests.each(function (request) { %>
       <%= require('./requestListItem.ejs')({
@@ -38,5 +23,26 @@
         proposals: request.get('Proposals')
       }) %>
     <% }); %>
+  </div>
+  <div class="controls bottom">
+    <nav>
+      <ul class="pagination">
+        <li class="<%= (page !== 1 && page === 'prev') ? 'active' : '' %> <%= page === 1 ? 'disabled' : '' %>">
+          <a href="#" aria-label="Previous" data-page="prev">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <% for(var i = 0; i < pages; i++) { %>
+          <li class="<%= page === i + 1 ? 'active' : '' %>">
+            <a href="#" data-page="<%= i + 1 %>"><%= i + 1 %></a>
+          </li>
+        <% } %>
+        <li class="<%= (page !== pages && page === 'next') ? 'active' : '' %> <%= page === pages ? 'disabled' : '' %>">
+          <a href="#" aria-label="Next" data-page="next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>

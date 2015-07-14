@@ -1,13 +1,22 @@
 .requestsView {
   .controls {
     padding: 5px 0;
-    border-bottom: 1px solid #ccc;
+    &.top {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    &.bottom {
+      border-top: 1px solid #ccc;
+    }
     select {
       display: inline-block;
       width: auto;
     }
     label {
       margin: 0 5px;
+    }
+    .pagination {
+      margin: 10px 0;
     }
   }
 }
