@@ -27,16 +27,20 @@ var handler = function (req, res) {
     order = req.query.sort.charAt(0) === '-' ? 'desc' : 'asc';
   }
   // yes the double quotes are necessary https://github.com/sequelize/sequelize/issues/2495#issuecomment-75520604
-  var sortOrder = '"' + sort + '"' + ' ' + order;
+  // and it must be wrapped in arrays because of this issue https://github.com/sequelize/sequelize/issues/2004
+  // work around: http://stackoverflow.com/questions/22534339/sequelize-js-limit-and-sorting-bug
+  var sortOrder = [['"' + sort + '"', order]];
 
   models.Request.findAndCountAll({
     where: req.query.mine ? { UserId: req.user.id } : true,
     include: [models.User, models.Tag, models.Proposal],
     order: sortOrder,
+    // we need a way to not set limit and offset when a postSort is defined so we get the whole dataset to sort
     limit: limit,
     offset: cursor
   }).then(function (requests) {
     if (postSorts[req.query.sort]) {
+      // apply the limit and offset here since they were not set on the query
       requests.rows.sort(postSorts[req.query.sort]);
     }
     res.status(200).json(requests.rows);
