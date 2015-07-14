@@ -1,6 +1,6 @@
 var models = require('../../models');
 
-var sorts = {
+var sorts = { // sorts that can be on the query
   default: 'createdAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -8,7 +8,7 @@ var sorts = {
   offer: 'offer'
 };
 
-var postSorts = {
+var postSorts = { // sorts that must happen after the query
   'numProposals': function (a, b) {
     return a.Proposals.length - b.Proposals.length;
   },
@@ -18,6 +18,8 @@ var postSorts = {
 };
 
 var handler = function (req, res) {
+  var limit = req.query.limit || 10;
+  var cursor = req.query.cursor || 0;
   var sort = sorts.default;
   var order = 'desc';
   if (sorts[req.query.sort]) {
@@ -26,14 +28,18 @@ var handler = function (req, res) {
   }
   // yes the double quotes are necessary https://github.com/sequelize/sequelize/issues/2495#issuecomment-75520604
   var sortOrder = '"' + sort + '"' + ' ' + order;
-  models.Request.findAll({
+
+  models.Request.findAndCountAll({
+    where: req.query.mine ? { UserId: req.user.id } : true,
     include: [models.User, models.Tag, models.Proposal],
-    order: sortOrder
+    order: sortOrder,
+    limit: limit,
+    offset: cursor
   }).then(function (requests) {
     if (postSorts[req.query.sort]) {
-      requests.sort(postSorts[req.query.sort]);
+      requests.rows.sort(postSorts[req.query.sort]);
     }
-    res.status(200).json(requests);
+    res.status(200).json(requests.rows);
   });
 };
 

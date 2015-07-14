@@ -7,7 +7,6 @@ var userShowView = require('./views/user/showView');
 var userSkillIndexView = require('./views/user/skillIndexView');
 
 var requestIndexView = require('./views/request/indexView');
-var requestMineView = require('./views/request/mineView');
 var requestShowView = require('./views/request/showView');
 var requestCreateView = require('./views/request/createView');
 
@@ -54,7 +53,6 @@ module.exports = function (app) {
 
   // Request
   app.get('/api/requests', requestIndexView);
-  app.get('/api/requests/mine', requestMineView);
   app.get('/api/requests/:id', requestShowView);
   app.post('/api/requests', requestCreateView);
 
