@@ -1,4 +1,5 @@
 window.$ = require('jquery');
+window.jQuery = window.$;
 window._ = require('lodash');
 window.Backbone = require('backbone');
 Backbone.$ = $;
