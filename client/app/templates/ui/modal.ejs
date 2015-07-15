@@ -16,8 +16,8 @@
       </div>
 
       <div class="modal-footer">
-        <% if (dismissable) { %>
-          <button type="button" class="btn btn-default" data-action-"modal-dismiss"><%= buttons.dismiss %></button>
+        <% if (cancelable) { %>
+          <button type="button" class="btn btn-default" data-action="modal-cancel"><%= buttons.cancel %></button>
         <% } %>
         <% if (acceptable) { %>
           <button type="button" class="btn btn-primary" data-action="modal-accept"><%= buttons.accept %></button>

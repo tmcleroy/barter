@@ -21,18 +21,28 @@ var CreateProposalView = Backbone.View.extend({
 
   submitClicked: function (evt) {
     evt.preventDefault();
-    new ModalView({});
-    // var body = this.$('[data-attr="body"]').val();
-    // var offer = this.$('[data-attr="offer"]').val();
-    //
-    // this.model.set({
-    //   body: body,
-    //   offer: offer,
-    //   requestId: this.request.get('id')
-    // });
-    // this.model.save().done((proposal) => {
-    //   this.collection.add(proposal);
-    // });
+
+    var onAccept = _.bind(function (evt) {
+      var body = this.$('[data-attr="body"]').val();
+      var offer = this.$('[data-attr="offer"]').val();
+
+      this.model.set({
+        body: body,
+        offer: offer,
+        requestId: this.request.get('id')
+      });
+      this.model.save().done((proposal) => {
+        this.collection.add(proposal);
+      });
+    }, this);
+
+    new ModalView({
+      title: 'Confirm Proposal',
+      body: 'By submitting this proposal, you are committing to fulfill this request in exchange for <div class="offer">' + this.$('[data-attr="offer"]').val() + 'ę</div>',
+      buttons: { accept: 'I Understand', cancel: 'Go Back' },
+      dismissable: false,
+      onAccept: onAccept
+    });
   }
 
 });

@@ -1,0 +1,30 @@
+// vertically center a modal, adapted from http://stackoverflow.com/a/24829651/1669307
+.vertical-alignment-helper {
+  display: table;
+  height: 100%;
+  width: 100%;
+  pointer-events: none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  pointer-events: none;
+}
+.modal-content {
+  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+  width: inherit;
+  height: inherit;
+  /* To center horizontally */
+  margin: 0 auto;
+  pointer-events: all;
+}
+
+// .no-transition prevents the slide in from top animation of the default bootstrap modal
+.modal.fade.no-transition .modal-dialog {
+  transition: none;
+}
+
+.modal-header, .modal-footer {
+  border: none;
+}
