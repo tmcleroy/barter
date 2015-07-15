@@ -13,21 +13,26 @@ var ModalView = Backbone.View.extend({
     this.title = params.title || '';
     this.body = params.body || '';
     this.buttons = params.buttons || { accept: 'Okay', dismiss: 'Cancel' };
+    this.classes = params.classes || '';
 
     this.render();
   },
 
   render: function () {
     this.$el
-      .addClass('modal fade')
+      .addClass('modal fade no-transition')
       .html(this.template({
         title: this.title,
         body: this.body,
         dismissable: this.dismissable,
         acceptable: this.acceptable,
-        buttons: this.buttons
+        buttons: this.buttons,
+        classes: this.classes
       }))
-      .modal({show: true, backdrop: 'static', keyboard: false});
+      .modal({
+        show: true,
+        backdrop: true
+      });
   }
 });
 

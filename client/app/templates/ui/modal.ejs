@@ -1,26 +1,28 @@
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
+<div class="vertical-alignment-helper">
+  <div class="modal-dialog vertical-align-center <%= classes %>" role="document">
+    <div class="modal-content">
 
-    <div class="modal-header">
-      <% if (dismissable) { %>
-        <button type="button" class="close" aria-label="dismiss" data-ation="modal-dismiss"><span aria-hidden="true">&times;</span></button>
-      <% } %>
-      <% if (title) { %>
-        <h4 class="modal-title"><%= title %></h4>
-      <% } %>
-    </div>
+      <div class="modal-header">
+        <% if (dismissable) { %>
+          <button type="button" class="close" aria-label="dismiss" data-ation="modal-dismiss"><span aria-hidden="true">&times;</span></button>
+        <% } %>
+        <% if (title) { %>
+          <h4 class="modal-title"><%= title %></h4>
+        <% } %>
+      </div>
 
-    <div class="modal-body">
-      <%= body %>
-    </div>
+      <div class="modal-body">
+        <%= body %>
+      </div>
 
-    <div class="modal-footer">
-      <% if (dismissable) { %>
-        <button type="button" class="btn btn-default" data-action-"modal-dismiss"><%= buttons.dismiss %></button>
-      <% } %>
-      <% if (acceptable) { %>
-        <button type="button" class="btn btn-primary" data-action="modal-accept"><%= buttons.accept %></button>
-      <% } %>
+      <div class="modal-footer">
+        <% if (dismissable) { %>
+          <button type="button" class="btn btn-default" data-action-"modal-dismiss"><%= buttons.dismiss %></button>
+        <% } %>
+        <% if (acceptable) { %>
+          <button type="button" class="btn btn-primary" data-action="modal-accept"><%= buttons.accept %></button>
+        <% } %>
+      </div>
     </div>
   </div>
 </div>
