@@ -9,12 +9,15 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
     'click [data-action="preview"]': 'togglePreview'
   },
 
-  initialize: function () {
+  initialize: function (params) {
+    this.required = params.required;
     this.render();
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({
+      required: this.required
+    }));
   },
 
   toggleWrite: function (evt) {

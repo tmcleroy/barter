@@ -1,6 +1,7 @@
 # issues
 
 ### technical
+- figure out why sorting by highest offer doesn't work
 - figure out why included models object is empty when included by `server/utils/utils.js` `var models = require('../models');`
 - see if there is a better solution to having nested models/collections with circular references
  - temporarily fixed by calling `ModelHydrator.hydrateModels(/* the model */)`

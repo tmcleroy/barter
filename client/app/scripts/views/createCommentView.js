@@ -4,7 +4,7 @@ var CreateCommentView = Backbone.View.extend({
   template: require('../../templates/comment/createComment.ejs'),
 
   events: {
-    'click [data-action="submit"]': 'submitClicked'
+    'submit .ajaxForm': 'submitClicked'
   },
 
   initialize: function (params) {
