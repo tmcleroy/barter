@@ -40,8 +40,7 @@ var CreateProposalView = Backbone.View.extend({
           this.render();
           new Alert({
             type: 'success',
-            body: 'Proposal Submitted',
-            delay: 10
+            body: 'Proposal Submitted'
           });
         });
       }

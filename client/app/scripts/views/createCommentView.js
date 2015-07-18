@@ -1,4 +1,5 @@
 var Comment = require('../models/commentModel');
+var Alert = require('./components/alert');
 
 var CreateCommentView = Backbone.View.extend({
   template: require('../../templates/comment/createComment.ejs'),
@@ -19,6 +20,7 @@ var CreateCommentView = Backbone.View.extend({
   },
 
   submitClicked: function (evt) {
+    evt.preventDefault();
     var body = this.$('[data-attr="body"]').val();
     this.model.set({
       body: body,
@@ -26,6 +28,11 @@ var CreateCommentView = Backbone.View.extend({
     });
     this.model.save().done((comment) => {
       this.collection.add(comment);
+      this.render();
+      new Alert({
+        type: 'success',
+        body: 'Comment Submitted'
+      });
     });
   }
 

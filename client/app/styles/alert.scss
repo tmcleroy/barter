@@ -1,0 +1,14 @@
+#alertContainer {
+  position: fixed;
+  z-index: 100;
+  top: 25px;
+  left: 25%;
+  width: 50%;
+  font-size: 18px;
+  .alert {
+    .close {
+      font-size: 30px;
+      line-height: 0.7;
+    }
+  }
+}
