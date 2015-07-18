@@ -28,11 +28,16 @@ var CreateCommentView = Backbone.View.extend({
     });
     this.model.save().done((comment) => {
       this.collection.add(comment);
-      this.render();
-      new Alert({
-        type: 'success',
-        body: 'Comment Submitted'
-      });
+      this.afterSubmit();
+    });
+  },
+
+  afterSubmit: function () {
+    this.model = new Comment();
+    this.render();
+    new Alert({
+      type: 'success',
+      body: 'Comment Submitted'
     });
   }
 

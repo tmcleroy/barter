@@ -37,13 +37,18 @@ var CreateProposalView = Backbone.View.extend({
         });
         this.model.save().done((proposal) => {
           this.collection.add(proposal);
-          this.render();
-          new Alert({
-            type: 'success',
-            body: 'Proposal Submitted'
-          });
+          this.afterSubmit();
         });
       }
+    });
+  },
+
+  afterSubmit: function () {
+    this.model = new Proposal();
+    this.render();
+    new Alert({
+      type: 'success',
+      body: 'Proposal Submitted'
     });
   }
 
