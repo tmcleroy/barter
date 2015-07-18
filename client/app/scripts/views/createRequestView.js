@@ -3,7 +3,7 @@ var Tags = require('../collections/tagsCollection');
 var Tag = require('../models/tagModel');
 var TagsView = require('./tagsView');
 var BodyEditorView = require('./bodyEditorView');
-var ConfirmationModalView = require('./confirmationModalView');
+var ConfirmationModal = require('./confirmationModal');
 
 var CreateRequestView = Backbone.View.extend({
   template: require('../../templates/request/createRequest.ejs'),
@@ -35,7 +35,7 @@ var CreateRequestView = Backbone.View.extend({
   submitClicked: function (evt) {
     evt.preventDefault();
 
-    new ConfirmationModalView({
+    new ConfirmationModal({
       title: 'Confirm Request',
       body: 'By submitting this request you are committing to offer <span class="offer">' + this.$('[data-attr="offer"]').val() + 'ę</span> in exchange for its completion.',
       onAccept: (evt) => {

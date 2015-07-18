@@ -1,7 +1,7 @@
-var bsModal = require('../../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal');
+require('../../../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal');
 
-var ModalView = Backbone.View.extend({
-  template: require('../../templates/ui/modal.ejs'),
+var Modal = Backbone.View.extend({
+  template: require('../../../templates/components/modal.ejs'),
 
   events: {
     'click [data-action="modal-accept"]': 'onAccept',
@@ -46,4 +46,4 @@ var ModalView = Backbone.View.extend({
   }
 });
 
-module.exports = ModalView;
+module.exports = Modal;

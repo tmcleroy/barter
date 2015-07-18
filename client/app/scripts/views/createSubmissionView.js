@@ -1,6 +1,6 @@
 var Submission = require('../models/submissionModel');
 var BodyEditorView = require('./bodyEditorView');
-var ConfirmationModalView = require('./confirmationModalView');
+var ConfirmationModal = require('./confirmationModal');
 
 var CreateSubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/createSubmission.ejs'),
@@ -26,7 +26,7 @@ var CreateSubmissionView = Backbone.View.extend({
   submitClicked: function (evt) {
     evt.preventDefault();
 
-    new ConfirmationModalView({
+    new ConfirmationModal({
       title: 'Confirm Submission',
       body: 'Are you sure your submission is complete?',
       buttons: { accept: 'Yes, Submit', cancel: 'Go Back' },

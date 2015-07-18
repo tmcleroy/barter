@@ -1,5 +1,6 @@
 var Proposal = require('../models/proposalModel');
-var ConfirmationModalView = require('./confirmationModalView');
+var ConfirmationModal = require('./confirmationModal');
+var Alert = require('./components/alert');
 
 var CreateProposalView = Backbone.View.extend({
   template: require('../../templates/comment/createProposal.ejs'),
@@ -22,7 +23,7 @@ var CreateProposalView = Backbone.View.extend({
   submitClicked: function (evt) {
     evt.preventDefault();
 
-    new ConfirmationModalView({
+    new ConfirmationModal({
       title: 'Confirm Proposal',
       body: 'By submitting this proposal, you are committing to fulfill this request in exchange for <span class="offer">' + this.$('[data-attr="offer"]').val() + 'ę</span>',
       onAccept: (evt) => {
@@ -36,6 +37,12 @@ var CreateProposalView = Backbone.View.extend({
         });
         this.model.save().done((proposal) => {
           this.collection.add(proposal);
+          this.render();
+          new Alert({
+            type: 'success',
+            body: 'Proposal Submitted',
+            delay: 10
+          });
         });
       }
     });
