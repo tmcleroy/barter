@@ -40,6 +40,7 @@ var CreateRequestView = Backbone.View.extend({
       title: 'Confirm Request',
       body: `By submitting this request you are committing to offer <span class="offer">${ this.$('[data-attr="offer"]').val() }ę</span> in exchange for its completion.`,
       onAccept: (evt) => {
+        $('body').addClass('loading');
         var title = this.$('[data-attr="title"]').val();
         var body = this.$('[data-attr="body"]').val();
         var offer = this.$('[data-attr="offer"]').val();
@@ -51,6 +52,7 @@ var CreateRequestView = Backbone.View.extend({
           tags: _.map(this.tags.models, function (model) { return model.toJSON().name; })
         });
         this.model.save().done((model) => {
+          $('body').removeClass('loading');
           App.Router.navigate(`/app/requests/show/${ model.id }`, true);
           new Alert({
             type: 'success',

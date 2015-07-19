@@ -1,6 +1,7 @@
 var Submission = require('../models/submissionModel');
 var BodyEditorView = require('./bodyEditorView');
 var ConfirmationModal = require('./confirmationModal');
+var Alert = require('./components/alert');
 
 var CreateSubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/createSubmission.ejs'),
@@ -31,6 +32,7 @@ var CreateSubmissionView = Backbone.View.extend({
       body: 'Are you sure your submission is complete?',
       buttons: { accept: 'Yes, Submit', cancel: 'Go Back' },
       onAccept: (evt) => {
+        $('body').addClass('loading');
         var body = this.$('[data-attr="body"]').val();
         var link = this.$('[data-attr="link"]').val();
 
@@ -39,7 +41,14 @@ var CreateSubmissionView = Backbone.View.extend({
           link: link,
           requestId: this.requestId
         });
-        this.model.save();
+        this.model.save().done((model) => {
+          $('body').removeClass('loading');
+          // App.Router.navigate(`/app/requests/show/${ model.id }`, true);
+          new Alert({
+            type: 'success',
+            body: 'Submission Created'
+          });
+        });
       }
     });
   }

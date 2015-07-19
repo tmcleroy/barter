@@ -27,6 +27,7 @@ var CreateProposalView = Backbone.View.extend({
       title: 'Confirm Proposal',
       body: 'By submitting this proposal, you are committing to fulfill this request in exchange for <span class="offer">' + this.$('[data-attr="offer"]').val() + 'ę</span>',
       onAccept: (evt) => {
+        $('body').addClass('loading');
         var body = this.$('[data-attr="body"]').val();
         var offer = this.$('[data-attr="offer"]').val();
 
@@ -44,6 +45,7 @@ var CreateProposalView = Backbone.View.extend({
   },
 
   afterSubmit: function () {
+    $('body').removeClass('loading');
     this.model = new Proposal();
     this.render();
     new Alert({

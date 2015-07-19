@@ -1,3 +1,5 @@
+// helper class for sortable and paginatable views
+// see the indexView for requests or proposals
 var Sortable = function (queryParams) {
   this.limit = queryParams.limit || 10;
   this.cursor = queryParams.cursor || 0;

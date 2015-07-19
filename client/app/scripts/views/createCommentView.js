@@ -21,6 +21,7 @@ var CreateCommentView = Backbone.View.extend({
 
   submitClicked: function (evt) {
     evt.preventDefault();
+    $('body').addClass('loading');
     var body = this.$('[data-attr="body"]').val();
     this.model.set({
       body: body,
@@ -33,6 +34,7 @@ var CreateCommentView = Backbone.View.extend({
   },
 
   afterSubmit: function () {
+    $('body').removeClass('loading');
     this.model = new Comment();
     this.render();
     new Alert({
