@@ -1,63 +1,51 @@
-<div class="panel panel-default proposal listItem">
-  <div class="panel-heading">
-    <div class="row">
-      <div class="col-sm-12">
-        <h3 class="panel-title"><a href="/app/requests/show/<%= proposal.get('Request').id %>"><%= proposal.get('Request').title %></a></h3>
+<% var moment = require('moment'); %>
+<div class="proposal listItem">
+  <div class="row">
+    <div class="col-sm-8 leftCol">
+      <div class="preLabel proposalLabel">Your Proposal for &hellip;</div>
+      <h4 class="title"><a href="/app/requests/show/<%= request.id %>"><%= request.title %></a></h4>
+      <div class="requestMeta">
+        Requested by <a href="/users/<%= requestUser.id %>"><%= requestUser.username %></a> <%= moment(request.createdAt).fromNow() %>
+      </div>
+    </div>
+    <div class="col-sm-4 rightCol">
+      <div class="sidePanel offerPanel">
+        <div class="header">Offer</div>
+        <div class="offer"><%= request.offer %>ę</div>
+      </div>
+      <div class="sidePanel proposalsPanel">
+        <div class="header">Your Counter</div>
+        <div class="offer"><%= proposal.get('offer') %> ę</div>
       </div>
     </div>
   </div>
-  <div class="panel-body">
-    <div class="row askOfferHead">
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="profileContainer">
-              <%= require('../profile/profile.ejs')({
-                user: proposal.get('Request').User
-              }) %>
-            </div>
-            <div class="asking">Asking</div>
-          </div>
-          <div class="col-sm-12">
-            <div class="offer ask"><%= proposal.get('Request').offer %> ę</div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= require('../collapsibleContainer.ejs')({
+        classes: 'proposalBodyContainer noSideBorder animated',
+        text: { show: 'Show Your Proposal', hide: 'Hide Your Proposal' },
+        html: proposal.getBodyFormatted(),
+        collapsed: true,
+      }) %>
+      <div class="state <%= proposal.getStateString() %>">
+        <span class="stateText"><%= proposal.getStateStringFormatted() %></span>
+        <% if (proposal.is('accepted') && !proposal.get('Submission')) { %>
+          <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="pull-right">&nbsp;&mdash; Make Submission</a>
+        <% } %>
       </div>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="offering">Your Offer</div>
-          </div>
-          <div class="col-sm-12">
-            <div class="offer"><%= proposal.get('offer') %> ę</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <%= require('../collapsibleContainer.ejs')({
-    classes: 'proposalBodyContainer noSideBorder animated',
-    text: { show: 'Show Your Proposal', hide: 'Hide Your Proposal' },
-    html: proposal.getBodyFormatted(),
-    collapsed: true,
-  }) %>
-  <div class="state <%= proposal.getStateString() %>">
-    <span class="stateText">Proposal <%= proposal.getStateStringFormatted() %></span>
-    <% if (proposal.is('accepted') && !proposal.get('Submission')) { %>
-      <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="pull-right">Make Submission</a>
-    <% } %>
-  </div>
 
-  <% var submission = proposal.get('Submission'); %>
-  <% if (submission) { %>
-    <%= require('../collapsibleContainer.ejs')({
-      classes: 'submissionBodyContainer noSideBorder animated',
-      text: { show: 'Show Your Submission', hide: 'Hide Your Submission' },
-      html: submission.getBodyFormatted(),
-      collapsed: true,
-    }) %>
-    <div class="state <%= submission.getStateString() %>">
-      <span class="stateText">Submission <%= submission.getStateStringFormatted() %></span>
+      <% var submission = proposal.get('Submission'); %>
+      <% if (submission) { %>
+        <%= require('../collapsibleContainer.ejs')({
+          classes: 'submissionBodyContainer noSideBorder animated',
+          text: { show: 'Show Your Submission', hide: 'Hide Your Submission' },
+          html: submission.getBodyFormatted(),
+          collapsed: true,
+        }) %>
+        <div class="state <%= submission.getStateString() %>">
+          <span class="stateText">Submission <%= submission.getStateStringFormatted() %></span>
+        </div>
+      <% } %>
     </div>
-  <% } %>
+  </div>
 </div>

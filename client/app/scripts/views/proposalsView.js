@@ -1,22 +1,29 @@
+var PaginatedView = require('./paginatedView');
 var ProposalsCollection = require('../collections/proposalsCollection');
 
-var ProposalsView = Backbone.View.extend({
+var ProposalsView = PaginatedView.extend({
   template: require('../../templates/proposal/proposals.ejs'),
 
   initialize: function (params) {
+    console.log('init');
+    PaginatedView.prototype.initialize.call(this, arguments);
+    this.events = _.extend(PaginatedView.prototype.events, this.events);
+
+    this.mine = params.mine;
     this.collection = new ProposalsCollection();
-    _.each(params.collectionOverrides, (val, key) => {
-      this.collection[key] = val;
-    });
 
     this.listenTo(this.collection, 'change sync', this.render);
 
-    this.collection.fetch();
+    this.fetch();
   },
 
   render: function () {
     this.$el.html(this.template({
-      proposals: this.collection
+      proposals: this.collection,
+      mine: this.mine,
+      sort: this.sort,
+      page: this.page,
+      pages: Math.ceil(this.collection.total / this.limit)
     }));
   }
 

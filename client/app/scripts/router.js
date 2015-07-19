@@ -174,7 +174,7 @@ var Router = Backbone.Router.extend(_.defaults({
     if (this.preRoute(viewName)) {
       this.view = new ProposalsView({
         el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
-        collectionOverrides: { url: '/api/proposals/mine' }
+        mine: true
       });
       this.postRoute(viewName);
     }

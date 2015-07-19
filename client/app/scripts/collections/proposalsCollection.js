@@ -5,6 +5,11 @@ var ProposalsCollection = Backbone.Collection.extend({
 
   url: '/api/proposals',
 
+  parse: function (data) {
+    this.total = data.total;
+    return data.items;
+  },
+
   getAvgOffer: function () {
     var sum = this.reduce((memo, value) => {
       return memo + (value.get('offer') || 0);

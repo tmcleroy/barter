@@ -12,7 +12,7 @@ var requestCreateView = require('./views/request/createView');
 
 var commentCreateView = require('./views/comment/createView');
 
-var proposalMineView = require('./views/proposal/mineView');
+var proposalIndexView = require('./views/proposal/indexView');
 var proposalCreateView = require('./views/proposal/createView');
 var proposalUpdateView = require('./views/proposal/updateView');
 var proposalSetStateView = require('./views/proposal/setStateView');
@@ -60,8 +60,8 @@ module.exports = function (app) {
   app.post('/api/comments', commentCreateView);
 
   // Proposal
+  app.get('/api/proposals', proposalIndexView);
   app.post('/api/proposals', proposalCreateView);
-  app.get('/api/proposals/mine', proposalMineView);
   app.put('/api/proposals/:id', requireAdminPermission, proposalUpdateView);
   app.post('/api/proposals/:id/state', proposalSetStateView);
 

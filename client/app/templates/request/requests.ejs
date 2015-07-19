@@ -4,13 +4,14 @@
     <div class="pull-right">
       <label>Sort By</label>
       <select class="form-control sortSelect sm" data-action="sort">
-        <option value="-offer" <%= sort === '-offer' ? 'selected' : '' %>>Highest Offer</option>
-        <option value="offer" <%= sort === 'offer' ? 'selected' : '' %>>Lowest Offer</option>
         <option value="-createdAt" <%= sort === '-createdAt' ? 'selected' : '' %>>Newest</option>
         <option value="createdAt" <%= sort === 'createdAt' ? 'selected' : '' %>>Oldest</option>
         <option value="updatedAt" <%= sort === 'updatedAt' ? 'selected' : '' %>>Recently Updated</option>
-        <option value="-numProposals" <%= sort === '-numProposals' ? 'selected' : '' %>>Most Proposals</option>
-        <option value="numProposals" <%= sort === 'numProposals' ? 'selected' : '' %>>Least Proposals</option>
+        <option value="-offer" <%= sort === '-offer' ? 'selected' : '' %>>Highest Offer</option>
+        <option value="offer" <%= sort === 'offer' ? 'selected' : '' %>>Lowest Offer</option>
+        <% /* comment these options out until i implement back-end support for this */ %>
+        <!-- <option value="-numProposals" <%= sort === '-numProposals' ? 'selected' : '' %>>Most Proposals</option>
+        <option value="numProposals" <%= sort === 'numProposals' ? 'selected' : '' %>>Least Proposals</option> -->
       </select>
     </div>
     <div class="clearfix"></div>
@@ -25,24 +26,9 @@
     <% }); %>
   </div>
   <div class="controls bottom">
-    <nav>
-      <ul class="pagination">
-        <li class="<%= (page !== 1 && page === 'prev') ? 'active' : '' %> <%= page === 1 ? 'disabled' : '' %>">
-          <a href="#" aria-label="Previous" data-page="prev">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <% for(var i = 0; i < pages; i++) { %>
-          <li class="<%= page === i + 1 ? 'active' : '' %>">
-            <a href="#" data-page="<%= i + 1 %>"><%= i + 1 %></a>
-          </li>
-        <% } %>
-        <li class="<%= (page !== pages && page === 'next') ? 'active' : '' %> <%= page === pages ? 'disabled' : '' %>">
-          <a href="#" aria-label="Next" data-page="next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <%= require('../components/pagination.ejs')({
+      page: page,
+      pages: pages
+    }) %>
   </div>
 </div>

@@ -30,7 +30,6 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
   },
 
   togglePreview: function (evt) {
-    console.log('toggle preview');
     evt.preventDefault();
     var $target = $(evt.target).closest('li[role="presentation"]');
     if (!$target.hasClass('active')) {
