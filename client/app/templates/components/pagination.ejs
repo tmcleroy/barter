@@ -1,19 +1,21 @@
 <nav>
-  <ul class="pagination">
-    <li class="<%= (page !== 1 && page === 'prev') ? 'active' : '' %> <%= page === 1 ? 'disabled' : '' %>">
-      <a href="#" aria-label="Previous" data-page="prev">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <% for(var i = 0; i < pages; i++) { %>
-      <li class="<%= page === i + 1 ? 'active' : '' %>">
-        <a href="#" data-page="<%= i + 1 %>"><%= i + 1 %></a>
+  <% if (pages > 1) { /* only show if there is more than 1 page */ %>
+    <ul class="pagination">
+      <li class="<%= (page !== 1 && page === 'prev') ? 'active' : '' %> <%= page === 1 ? 'disabled' : '' %>">
+        <a href="#" aria-label="Previous" data-page="prev">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       </li>
-    <% } %>
-    <li class="<%= (page !== pages && page === 'next') ? 'active' : '' %> <%= page === pages ? 'disabled' : '' %>">
-      <a href="#" aria-label="Next" data-page="next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+      <% for(var i = 0; i < pages; i++) { %>
+        <li class="<%= page === i + 1 ? 'active' : '' %>">
+          <a href="#" data-page="<%= i + 1 %>"><%= i + 1 %></a>
+        </li>
+      <% } %>
+      <li class="<%= (page !== pages && page === 'next') ? 'active' : '' %> <%= page === pages ? 'disabled' : '' %>">
+        <a href="#" aria-label="Next" data-page="next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  <% } %>
 </nav>

@@ -1,24 +1,8 @@
 var models = require('../../models');
-
-var sorts = { // sorts that can be on the query
-  default: 'createdAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  title: 'title',
-  offer: 'offer'
-};
+var Sortable = require('../../helpers/sortable');
 
 var handler = function (req, res) {
-  var limit = req.query.limit || 10;
-  var cursor = req.query.cursor || 0;
-  var sort = sorts.default;
-  var order = 'desc';
-  if (sorts[req.query.sort]) {
-    order = req.query.sort.charAt(0) === '-' ? 'desc' : 'asc';
-    sort = req.query.sort.replace(/^-/, '');
-  }
-  var sortOrder = [['"' + sort + '"', order]];
-
+  var sortable = new Sortable(req.query);
   models.Proposal.findAndCountAll({
     where: req.query.mine ? { UserId: req.user.id } : true,
     include: [
@@ -30,9 +14,9 @@ var handler = function (req, res) {
         model: models.Submission
       }
     ],
-    order: sortOrder,
-    limit: limit,
-    offset: cursor
+    order: sortable.querySort,
+    limit: sortable.limit,
+    offset: sortable.cursor
   }).then(function (proposals) {
     res.status(200).json({
       items: proposals.rows,
