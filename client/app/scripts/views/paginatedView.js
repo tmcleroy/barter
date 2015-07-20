@@ -5,10 +5,10 @@ var PaginatedView = Backbone.View.extend({
   },
 
   initialize: function (params) {
-    this.page = 1;
-    this.cursor = 0;
-    this.limit = params.limit || 10;
-    this.sort = params.defaultSort || '-createdAt';
+    this.page = params.page || 1;
+    this.limit = Math.min(params.limit || 10, params.maxLimit || 100);
+    this.cursor = this.limit * (this.page - 1);
+    this.sort = params.sort || '-createdAt';
   },
 
   fetch: function () {
@@ -37,8 +37,21 @@ var PaginatedView = Backbone.View.extend({
     } else { // numerical page
       this.page = parseInt(val, 10);
     }
-    this.cursor = (this.page - 1) * this.limit;
+    this.cursor = this.limit * (this.page - 1);
     this.fetch();
+  },
+
+  updateUrl: function () {
+    var options = {
+      page: this.page,
+      limit: this.limit
+    };
+    var split = window.location.pathname.split(/\//);
+    // if there is a non-word character in the last segment (options are present)
+    if (split[split.length - 1].match(/\W/)) {
+      split.pop(); // pop off old options
+    }
+    App.Router.navigate(`${ split.join('/') }/${ JSON.stringify(options) }`);
   }
 
 });

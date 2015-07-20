@@ -26,7 +26,16 @@ var utils = {
         $target.text(collapsed ? text.hide : text.show);
         $container.attr('data-collapsed', !collapsed);
       });
+  },
 
+  parseQueryString: function (queryString) {
+    var params = {};
+    var tokens = decodeURIComponent(queryString).split(/&/g);
+    _.each(tokens, (token) => {
+      var split = token.split('=');
+      params[split[0]] = split[1];
+    });
+    return params;
   }
 };
 

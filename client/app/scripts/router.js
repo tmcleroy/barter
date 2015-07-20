@@ -16,6 +16,7 @@ var CreateRequestView = require('./views/createRequestView');
 var SubmissionView = require('./views/submissionView');
 var CreateSubmissionView = require('./views/createSubmissionView');
 var User = require('./models/userModel');
+var Utils = require('./utils.js');
 
 var Router = Backbone.Router.extend(_.defaults({
   lastView: null,
@@ -23,22 +24,22 @@ var Router = Backbone.Router.extend(_.defaults({
   view: null,
 
   routes: {
-    '(/)'                           : 'home',
-    'home(/)'                       : 'home',
+    '(/)'                                     : 'home',
+    'home(/)'                                 : 'home',
 
-    'login(/)'                      : 'login',
-    'register(/)'                   : 'register',
-    'app/settings(/)'               : 'settings',
+    'login(/)'                                : 'login',
+    'register(/)'                             : 'register',
+    'app/settings(/)'                         : 'settings',
 
-    'app/requests/browse(/)'        : 'requestsBrowse',
-    'app/requests/show/:id(/)'      : 'requestsShow',
-    'app/requests/create(/)'        : 'requestsCreate',
-    'app/requests/mine(/)'          : 'requestsMine',
+    'app/requests/browse(/)(:options)'        : 'requestsBrowse',
+    'app/requests/show/:id(/)'                : 'requestsShow',
+    'app/requests/create(/)'                  : 'requestsCreate',
+    'app/requests/mine(/)'                    : 'requestsMine',
 
-    'app/proposals/mine(/)'         : 'proposalsMine',
+    'app/proposals/mine(/)(:options)'         : 'proposalsMine',
 
-    'app/submissions/show/:id(/)'   : 'submissionsShow',
-    'app/submissions/create/:id(/)' : 'submissionsCreate'
+    'app/submissions/show/:id(/)'             : 'submissionsShow',
+    'app/submissions/create/:id(/)'           : 'submissionsCreate'
   },
 
   initialize: function () {
@@ -75,6 +76,10 @@ var Router = Backbone.Router.extend(_.defaults({
   postRoute: function (viewName) {
     this.lastView = this.currentView;
     Backbone.trigger('routeChanged', viewName);
+  },
+
+  parseOptions: function (options) {
+    return JSON.parse(options);
   },
 
   home: function () {
@@ -122,12 +127,12 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsBrowse: function () {
+  requestsBrowse: function (options) {
     var viewName = 'requestsBrowse';
-
     if (this.preRoute(viewName)) {
       this.view = new RequestsView({
-        el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer')
+        el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer'),
+        options: this.parseOptions(options)
       });
       this.postRoute(viewName);
     }
@@ -168,13 +173,14 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  proposalsMine: function () {
+  proposalsMine: function (options) {
     var viewName = 'proposalsMine';
 
     if (this.preRoute(viewName)) {
       this.view = new ProposalsView({
         el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
-        mine: true
+        mine: true,
+        options: this.parseOptions(options)
       });
       this.postRoute(viewName);
     }
