@@ -11,7 +11,15 @@ var PaginatedView = Backbone.View.extend({
     this.sort = params.sort || '-createdAt';
   },
 
+  // this is more of a post render function
+  // actual render logic should be provided by the extending view, see requestsView
+  render: function () {
+    this.$el.removeClass('loading');
+    this.updateUrl();
+  },
+
   fetch: function () {
+    this.$el.addClass('loading');
     var opts = {
       sort: this.sort,
       limit: this.limit,

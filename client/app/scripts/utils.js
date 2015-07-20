@@ -28,6 +28,8 @@ var utils = {
       });
   },
 
+  // turns query param string into object
+  // ?x=23&y=34 => { x: 23, y: 34 }
   parseQueryString: function (queryString) {
     var params = {};
     var tokens = decodeURIComponent(queryString).split(/&/g);

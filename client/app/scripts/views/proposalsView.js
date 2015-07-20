@@ -24,7 +24,7 @@ var ProposalsView = PaginatedView.extend({
       page: this.page,
       pages: Math.ceil(this.collection.total / this.limit)
     }));
-    this.updateUrl();
+    PaginatedView.prototype.render.call(this, arguments);
   }
 
 });
