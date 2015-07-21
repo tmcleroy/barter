@@ -1,6 +1,6 @@
 var PaginatedView = Backbone.View.extend({
   events: {
-    'change [data-action="sort"]': 'sortChanged',
+    'change select[data-action]': 'selectChanged',
     'click a[data-page]': 'pageChanged'
   },
 
@@ -31,9 +31,16 @@ var PaginatedView = Backbone.View.extend({
     });
   },
 
-  sortChanged: function (evt) {
-    var sort = $(evt.target).val();
-    this.sort = sort;
+  selectChanged: function (evt) {
+    var $target = $(evt.target);
+    var prop = $target.attr('data-action');
+    var val = $target.val();
+    // convert val to integer if it contains only digits
+    val = val.match(/\D/) ? val : parseInt(val, 10);
+    this[prop] = val;
+    if (prop === 'limit') {
+      this.page = 1;
+    }
     this.fetch();
   },
 

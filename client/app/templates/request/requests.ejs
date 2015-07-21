@@ -1,6 +1,7 @@
-<div class="requestsView">
+<div class="requestsView paginatedView">
   <h1 class="viewTitle"><%= mine ? 'My ' : '' %>Requests</h1>
   <div class="controls top">
+    <%= require('../components/limitSelect.ejs')({ limit: limit }) %>
     <div class="pull-right">
       <label>Sort By</label>
       <select class="form-control sortSelect sm" data-action="sort">
