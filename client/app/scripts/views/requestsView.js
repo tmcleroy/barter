@@ -7,6 +7,13 @@ var RequestsView = PaginatedView.extend({
   initialize: function (params) {
     this.mine = params.mine;
     this.collection = new RequestsCollection();
+    this.sorts = [
+      { sort: '-createdAt', display: 'Newest' },
+      { sort: 'createdAt', display: 'Oldest' },
+      { sort: 'updatedAt', display: 'Recently Updated' },
+      { sort: '-offer', display: 'Highest Offer' },
+      { sort: 'offer', display: 'Lowest Offer' }
+    ];
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
     this.events = _.extend(PaginatedView.prototype.events, this.events);

@@ -1,0 +1,6 @@
+<label>Sort By</label>
+<select class="form-control sortSelect sm <%= obj.classes %>" data-action="sort">
+  <% _.each(sorts, function (sortObj) { %>
+    <option value="<%= sortObj.sort %>" <%= sort === sortObj.sort ? 'selected' : '' %>><%= sortObj.display %></option>
+  <% }); %>
+</select>

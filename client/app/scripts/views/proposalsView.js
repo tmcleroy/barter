@@ -7,6 +7,11 @@ var ProposalsView = PaginatedView.extend({
   initialize: function (params) {
     this.mine = params.mine;
     this.collection = new ProposalsCollection();
+    this.sorts = [
+      { sort: '-createdAt', display: 'Newest' },
+      { sort: 'createdAt', display: 'Oldest' },
+      { sort: 'updatedAt', display: 'Recently Updated' }
+    ];
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
     this.events = _.extend(PaginatedView.prototype.events, this.events);
@@ -23,6 +28,7 @@ var ProposalsView = PaginatedView.extend({
       sort: this.sort,
       page: this.page,
       limit: this.limit,
+      sorts: this.sorts,
       pages: Math.ceil(this.collection.total / this.limit)
     }));
     PaginatedView.prototype.render.call(this, arguments);

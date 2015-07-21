@@ -3,7 +3,7 @@
     position: relative;
     bottom: -20px;
     padding: 0 5px;
-    margin-left: 10px;
+    margin: 0 10px;
     background: white;
   }
   .collapsibleContainer {
@@ -12,25 +12,32 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;
-    &.animated {
-      transition: max-height 40s, padding 1s;
-    }
     &[data-collapsed="true"] {
       padding: 0 10px;
       border-bottom-color: white;
       max-height: 0;
-      &.animated {
-        transition: max-height 0.40s, padding 1s, border-bottom-color 2s;
-      }
     }
     &[data-collapsed="false"] {
       max-height: 100000px;
     }
-    &.noSideBorder {
+  }
+  &.animated {
+    .collapsibleContainer {
+      transition: max-height 40s, padding 1s;
+      &[data-collapsed="true"] {
+        transition: max-height 0.40s, padding 1s, border-bottom-color 2s;
+      }
+    }
+  }
+  &.noSideBorder {
+    .collapsibleContainer {
       border-left: none;
       border-right: none;
       border-radius: 0;
     }
+  }
+  &.alignRight {
+    text-align: right;
   }
 }
 
