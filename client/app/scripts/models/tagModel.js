@@ -1,4 +1,4 @@
-var Tags = require('../collections/TagsCollection');
+var Tags = require('../collections/tagsCollection');
 
 var TagModel = Backbone.Model.extend({
   collection: Tags,

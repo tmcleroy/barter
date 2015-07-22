@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "postinstall": "gulp javascript && gulp sass",
+    "postinstall": "gulp sass && gulp javascript",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
