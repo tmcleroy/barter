@@ -50,7 +50,8 @@
     "lwip": "0.0.7",
     "aws-sdk": "~2.1.35",
     "moment": "~2.10.3",
-    "marked": "~0.3.3"
+    "marked": "~0.3.3",
+    "dotenv": "~1.2.0"
   },
   "devDependencies": {
     "faker": "~3.0.0"

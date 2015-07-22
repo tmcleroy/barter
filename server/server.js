@@ -1,10 +1,11 @@
-// 3rd party packages
+require('dotenv').load(); // environment variables in .env
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer'); // for file uploads
 var session = require('express-session');
 var passport = require('passport'); // authentication
+
 
 // app level requires
 var models = require('./models');
@@ -35,6 +36,6 @@ models.sequelize.sync({ force: resetData }).then(function () {
   }
 
   app.listen(app.get('port'), function () {
-    console.log('barter server listening on port ' + app.get('port'));
+    console.log('barter server running in ' + process.env.NODE_ENV + ', listening on port ' + app.get('port'));
   });
 });
