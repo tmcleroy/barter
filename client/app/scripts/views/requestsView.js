@@ -30,6 +30,7 @@ var RequestsView = PaginatedView.extend({
       sort: this.sort,
       page: this.page,
       limit: this.limit,
+      sorts: this.sorts,
       pages: Math.ceil(this.collection.total / this.limit)
     }));
     PaginatedView.prototype.render.call(this, arguments);

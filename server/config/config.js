@@ -12,7 +12,8 @@ module.exports = {
     dialect: 'postgres',
     username: process.env.DB_USER_PROD,
     database: process.env.DB_NAME_PROD,
-    native: true,
-    ssl: true
+    dialectOptions: {
+      ssl: true
+    }
   }
 };

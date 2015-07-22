@@ -2,20 +2,20 @@
   "name": "barter",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/FoxhoundNULL/barter.git"
+    "url": "git://github.com/tmcleroy/barter.git"
   },
   "author": "Tommy McLeroy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/FoxhoundNULL/barter/issues"
   },
-  "homepage": "https://github.com/FoxhoundNULL/barter",
+  "homepage": "https://github.com/tmcleroy/barter",
   "dependencies": {
     "express": "~4.12.4",
     "sequelize": "~3.1.1",
