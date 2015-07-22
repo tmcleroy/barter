@@ -1,5 +1,5 @@
 var NestedModel = require('./_nestedModel');
-var Submissions = require('../collections/SubmissionsCollection');
+var Submissions = require('../collections/submissionsCollection');
 var User = require('./userModel');
 var Request = require('./requestModel');
 var Proposal = require('./proposalModel');
