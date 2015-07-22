@@ -1,4 +1,4 @@
-var Comments = require('../collections/CommentsCollection');
+var Comments = require('../collections/commentsCollection');
 
 var CommentModel = Backbone.Model.extend({
   collection: Comments,
