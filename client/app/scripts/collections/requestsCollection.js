@@ -1,14 +1,10 @@
+var PaginatedCollection = require('./_paginatedCollection');
 var Request = require('../models/requestModel');
 
-var RequestsCollection = Backbone.Collection.extend({
+var RequestsCollection = PaginatedCollection.extend({
   model: Request,
 
-  url: '/api/requests',
-
-  parse: function (data) {
-    this.total = data.total;
-    return data.items;
-  }
+  url: '/api/requests'
 });
 
 module.exports = RequestsCollection;

@@ -40,8 +40,8 @@ function randArrFromArr (all, min, max) {
   return ret;
 }
 
-function randTags (allTags) {
-  return randArrFromArr(allTags, 0, 5);
+function randTags (allTags, min, max) {
+  return randArrFromArr(allTags, min || 0, max || 5);
 }
 
 function randComments (allComments) {
@@ -121,6 +121,82 @@ var fxn = function () {
      });
 
      // create some requests
+     setTimeout(function () {
+       models.Request.create({
+         title: 'Function to generate delta compression',
+         body: "Any work done on frame to frame delta compression of GPU command streams for remote applications? Don\'t concat view matrix, lots unchanged. Disregarding energy, I wonder how far you could push a thermal optimized design on a standalone headset before it limited comfort. 40W?.\r\n\r\n" +
+         "### Requirements\r\n" +
+         "- zlib buffer overloading\r\n" +
+         "- isomorphic vscale compression\r\n" +
+         "- triple cached matrices\r\n\r\n" +
+         "The isotropic directional nature of primitive processes is unfortunate -- I want photon control for VR and molecular control for propulsion.\r\n\r\n\r\n" +
+         "##### Here is what I have so far\r\n\r\n" +
+         "```\r\n" +
+         "#include <stdio.h>\r\n" +
+        "  \r\n" +
+         "main()\r\n" +
+         "{\r\n" +
+        "    int n, c;\r\n" +
+        "  \r\n" +
+        "    if ( n == 2 )\r\n" +
+        "       # I can't figure out what to do here\r\n" +
+        "    return 0;\r\n" +
+         "}\r\n" +
+         "```\r\n",
+         offer: 600
+       }).then(function (request) {
+         var promises = [];
+         var comments = [];
+
+         promises.push(request.setUser(myModels.user.john));
+         promises.push(request.setTags(randTags(myModels.tags, 3, 10)));
+         // create the comments to be added to the request
+         promises.push(models.Comment.create({
+           body: 'John, I think you should specify that this task needs to be fulfilled on a computer that uses only free software.'
+         }).then(function (comment) {
+           comments.push(comment);
+           myModels.user.richard.addComment(comment);
+         }));
+         promises.push(models.Comment.create({
+           body: 'Is this just text copied and pasted from your twitter feed?'
+         }).then(function (comment) {
+           comments.push(comment);
+           myModels.user.jessica.addComment(comment);
+         }));
+         Sequelize.Promise.all(promises).then(function () {
+           request.setComments(comments);
+         });
+
+         var proposalPromises = [];
+         var proposals = [];
+         // create the proposals to be added to the request
+         proposalPromises.push(models.Proposal.create({
+           body: 'I love you john, but i\'m going to need more points for this.',
+           offer: 900
+         }).then(function (proposal) {
+           proposals.push(proposal);
+           myModels.user.jim.addProposal(proposal);
+         }));
+         proposalPromises.push(models.Proposal.create({
+           body: 'John!!!, I\'m such a big fan, I\'ll do this for less than you asked.',
+           offer: 500
+         }).then(function (proposal) {
+           proposals.push(proposal);
+           myModels.user.laika.addProposal(proposal);
+         }));
+         proposalPromises.push(models.Proposal.create({
+           body: 'I know everything about this, And I\'ll do it for next to nothing.',
+           offer: 300
+         }).then(function (proposal) {
+           proposals.push(proposal);
+           myModels.user.tommy.addProposal(proposal);
+         }));
+         Sequelize.Promise.all(proposalPromises).then(function () {
+           request.setProposals(proposals);
+         });
+       });
+     }, 500);
+
      models.Request.create({
        title: 'Regex to validate email',
        body: 'I need a regex that validates an email address.',
@@ -175,7 +251,6 @@ var fxn = function () {
        Sequelize.Promise.all(proposalPromises).then(function () {
          request.setProposals(proposals);
        });
-
      });
 
      models.Request.create({

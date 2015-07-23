@@ -1,14 +1,10 @@
+var PaginatedCollection = require('./_paginatedCollection');
 var Proposal = require('../models/proposalModel');
 
-var ProposalsCollection = Backbone.Collection.extend({
+var ProposalsCollection = PaginatedCollection.extend({
   model: Proposal,
 
   url: '/api/proposals',
-
-  parse: function (data) {
-    this.total = data.total;
-    return data.items;
-  },
 
   getAvgOffer: function () {
     var sum = this.reduce((memo, value) => {

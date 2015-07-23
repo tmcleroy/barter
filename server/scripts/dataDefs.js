@@ -49,6 +49,24 @@ var defs = [
           email: 'jim@gmjfifjail.com',
           rep: 139
         }
+      },
+      {
+        name: 'john',
+        attrs: {
+          username: 'JohnCarmack',
+          password: 'id',
+          email: 'john@id.com',
+          rep: 10600
+        }
+      },
+      {
+        name: 'richard',
+        attrs: {
+          username: 'richard_stallman',
+          password: 'free',
+          email: 'rich@stallman.org',
+          rep: 780
+        }
       }
     ]
   },

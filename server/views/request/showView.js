@@ -16,7 +16,7 @@ var handler = function (req, res) {
       },
       {
         model: models.Proposal,
-        include: [models.User, models.Submission],
+        include: [models.User, models.Submission]
       },
       {
         model: models.Submission
