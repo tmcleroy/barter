@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server/server.js reload-data",
     "postinstall": "gulp sass && gulp javascript",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
