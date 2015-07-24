@@ -11,7 +11,8 @@ var myModels = {
   permission: {},
   skill: {},
   tags: [],
-  comments: []
+  comments: [],
+  proposals: []
 };
 
 
@@ -46,6 +47,10 @@ function randTags (allTags, min, max) {
 
 function randComments (allComments) {
   return randArrFromArr(allComments, 0, 10);
+}
+
+function randProposals (allProposals) {
+  return randArrFromArr(allProposals, 0, 10);
 }
 
 function randDate () {
@@ -93,6 +98,12 @@ var fxn = function () {
     }));
   });
 
+  _.times(randInt(100, 200), function (i) { // random proposals
+    promises.push(models.Proposal.create({ body: faker.lorem.paragraph() }).then(function (model) {
+      myModels.proposals.push(model);
+    }));
+  });
+
   Sequelize.Promise.all(promises).then(function () { // initial entities created above are done
     // assign permisisons
     _.each(myModels.user, function (user) {
@@ -107,6 +118,12 @@ var fxn = function () {
       randFromObj(myModels.user).addComment(comment);
     });
 
+    // assign a random user and value to each proposal
+    _.each(myModels.proposals, function (model) {
+      model.set('offer', randInt(50, 15000));
+      randFromObj(myModels.user).addProposal(model);
+    });
+
     _.times(randInt(30, 120), function (i) { // random requests
        models.Request.create({
          title: faker.hacker.phrase(),
@@ -117,6 +134,7 @@ var fxn = function () {
          request.setUser(randFromObj(myModels.user));
          request.setTags(randTags(myModels.tags));
          request.setComments(randComments(myModels.comments));
+         request.setProposals(randProposals(myModels.proposals));
        });
      });
 
@@ -171,15 +189,24 @@ var fxn = function () {
          var proposals = [];
          // create the proposals to be added to the request
          proposalPromises.push(models.Proposal.create({
+           body: 'I have 20 years of experience buffering the z-sectors of polygonally fragmented texture matrices. I will perform this task in a timely manner for the exact price you have offered. Thank you for your consideration John.',
+           offer: 600
+         }).then(function (proposal) {
+           proposals.push(proposal);
+           myModels.user.jessica.addProposal(proposal);
+         }));
+         proposalPromises.push(models.Proposal.create({
            body: 'I love you john, but i\'m going to need more points for this.',
-           offer: 900
+           offer: 900,
+           state: -1
          }).then(function (proposal) {
            proposals.push(proposal);
            myModels.user.jim.addProposal(proposal);
          }));
          proposalPromises.push(models.Proposal.create({
            body: 'John!!!, I\'m such a big fan, I\'ll do this for less than you asked.',
-           offer: 500
+           offer: 500,
+           state: -1
          }).then(function (proposal) {
            proposals.push(proposal);
            myModels.user.laika.addProposal(proposal);
@@ -190,6 +217,74 @@ var fxn = function () {
          }).then(function (proposal) {
            proposals.push(proposal);
            myModels.user.tommy.addProposal(proposal);
+         }));
+         Sequelize.Promise.all(proposalPromises).then(function () {
+           request.setProposals(proposals);
+         });
+       });
+
+
+
+
+
+
+
+       models.Request.create({
+         title: 'Javascript build system that is 100% free software',
+         body: "In recent months I have taken a liking to javascript. However, none of the most popular build systems (grunt, gulp, webpack etc.) meet my strict requirements.\r\n\r\n" +
+
+         "Now you may find yourself saying, \"But Richard, all of those projects are open source\". While that may be true, I have recently decided that I will not use any software that doesn't meet these criteria ...\r\n\r\n\r\n" +
+
+
+         "- Developed exclusively on systems that are 100% FREE\r\n" +
+        "  - yes that includes bootloaders, drivers, and even hardware schematics!!!\r\n" +
+         "- The project page must not use any CSS\r\n" +
+        "  - see [my homepage](https://stallman.org/) for a great example\r\n" +
+         "- Each contributor must ...\r\n" +
+        "  - be a card-carrying member of the green party\r\n" +
+        "  - own a signed copy of _The Lifelong Activist_\r\n\r\n" +
+
+         "Phew! that was exhausting formatting this request with markdown, far too much styling for my tastes.",
+         offer: 4500
+       }).then(function (request) {
+         var promises = [];
+         var comments = [];
+
+         promises.push(request.setUser(myModels.user.richard));
+         promises.push(request.setTags(randTags(myModels.tags, 3, 10)));
+         // create the comments to be added to the request
+         promises.push(models.Comment.create({
+           body: 'Richard, I think you may need to loosen your constraints a little bit. It\'s almost impossible to acquire a computer with 100% free software, let alone hardware schematics'
+         }).then(function (comment) {
+           comments.push(comment);
+           myModels.user.john.addComment(comment);
+         }));
+         promises.push(models.Comment.create({
+           body: 'Amen brother! FREE KEVIN!'
+         }).then(function (comment) {
+           comments.push(comment);
+           myModels.user.jim.addComment(comment);
+         }));
+         promises.push(models.Comment.create({
+           body: 'What do you have against CSS richard? It\'s FOSS isn\'t it?'
+         }).then(function (comment) {
+           comments.push(comment);
+           myModels.user.laika.addComment(comment);
+         }));
+         Sequelize.Promise.all(promises).then(function () {
+           request.setComments(comments);
+         });
+
+         var proposalPromises = [];
+         var proposals = [];
+         // create the proposals to be added to the request
+         proposalPromises.push(models.Proposal.create({
+           body: 'Rich, I\'ll do this for you because I consider you a good friend and I\'d like to accomplish something that more than 1% of the software development community can understand. I\'ll need 5000 though, that\'s my starting rate :)',
+           offer: 5000,
+           state: 1
+         }).then(function (proposal) {
+           proposals.push(proposal);
+           myModels.user.jessica.addProposal(proposal);
          }));
          Sequelize.Promise.all(proposalPromises).then(function () {
            request.setProposals(proposals);

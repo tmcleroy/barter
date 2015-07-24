@@ -1,3 +1,4 @@
+// collapsible containers
 .collapseWidget {
   .collapseBtn {
     position: relative;
@@ -41,13 +42,6 @@
   }
 }
 
-// form elements
-select {
-  &.sm {
-    height: 29px;
-  }
-}
-
 // loading
 // adapted from http://stephanwagner.me/only-css-loading-spinner
 @keyframes loading {
@@ -85,4 +79,11 @@ select {
   border-top-color: rgba(0, 0, 0, .6);
   animation: loading .6s linear infinite;
   -webkit-animation: loading .6s linear infinite;
+}
+
+// form elements
+select {
+  &.sm {
+    height: 29px;
+  }
 }

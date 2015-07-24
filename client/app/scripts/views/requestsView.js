@@ -1,5 +1,5 @@
-var PaginatedView = require('./paginatedView');
-var RequestsCollection = require('../collections/requestsCollection');
+import PaginatedView from './paginatedView';
+import RequestsCollection from '../collections/requestsCollection';
 
 var RequestsView = PaginatedView.extend({
   template: require('../../templates/request/requests.ejs'),
