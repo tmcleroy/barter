@@ -1,7 +1,7 @@
-var Submission = require('../models/submissionModel');
-var BodyEditorView = require('./bodyEditorView');
-var ConfirmationModal = require('./confirmationModal');
-var Alert = require('./components/alert');
+import Submission from '../models/submissionModel';
+import BodyEditorView from './bodyEditorView';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var CreateSubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/createSubmission.ejs'),
@@ -43,11 +43,11 @@ var CreateSubmissionView = Backbone.View.extend({
         });
         this.model.save().done((model) => {
           $('body').removeClass('loading');
-          // App.Router.navigate(`/app/requests/show/${ model.id }`, true);
           new Alert({
             type: 'success',
             body: 'Submission Created'
           });
+          App.Router.navigate('/app/proposals/mine', true);
         });
       }
     });
@@ -55,4 +55,4 @@ var CreateSubmissionView = Backbone.View.extend({
 
 });
 
-module.exports = CreateSubmissionView;
+export default CreateSubmissionView;
