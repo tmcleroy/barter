@@ -1,18 +1,20 @@
-<div class="col-sm-12 tabbedView bodyEditor">
-  <label>Body</label>
-  <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#write" data-action="write">Write</a></li>
-    <li role="presentation"><a href="#preview" data-action="preview">Preview</a></li>
-  </ul>
-  <div class="panel panel-default">
-    <div class="actionContainer writeContainer">
-      <div class="form-group">
-        <textarea data-attr="body" class="form-control" rows="12" placeholder="Body" <%= required ? 'required' : '' %>></textarea>
+<div class="row">
+  <div class="col-sm-12 tabbedView bodyEditor">
+    <label>Body</label>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#write" data-action="write">Write</a></li>
+      <li role="presentation"><a href="#preview" data-action="preview">Preview</a></li>
+    </ul>
+    <div class="panel panel-default">
+      <div class="actionContainer writeContainer">
+        <div class="form-group">
+          <textarea data-attr="body" class="form-control" rows="12" placeholder="Body" <%= required ? 'required' : '' %>></textarea>
+        </div>
+        <div class="info">Markdown supported</div>
       </div>
-      <div class="info">Markdown supported</div>
-    </div>
-    <div class="actionContainer previewContainer hidden">
-      <div class="markdown"></div>
+      <div class="actionContainer previewContainer hidden">
+        <div class="markdown"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,22 +1,28 @@
 <div class="createRequestView">
+  <h1 class="viewTitle">Submit Request</h1>
   <form class="ajaxForm">
-    <div class="form-group col-sm-9">
-      <label>Title</label>
-      <input type="text" data-attr="title" class="form-control" placeholder="Title" required>
-    </div>
-    <div class="form-group col-sm-3">
-      <label>Offer</label>
-      <input type="text" data-attr="offer" class="form-control" placeholder="Offer" required>
+    <div class="row">
+      <div class="form-group col-sm-9">
+        <label>Title</label>
+        <input type="text" data-attr="title" class="form-control" placeholder="Title" required>
+      </div>
+      <div class="form-group col-sm-3">
+        <label>Offer</label>
+        <input type="text" data-attr="offer" class="form-control" placeholder="Offer" required>
+      </div>
     </div>
     <div class="bodyEditorContainer" />
-    <div class="form-group col-sm-12">
-      <label>Tags</label>
-      <input type="text" data-attr="tags" class="form-control" placeholder="Tags">
-      <div class="tagsContainer"></div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <label>Tags</label>
+        <input type="text" data-attr="tags" class="form-control" placeholder="Tags">
+        <div class="tagsContainer"></div>
+      </div>
     </div>
-
-    <div class="col-sm-12 buttons">
-      <button class="btn btn-default" data-action="submit">Submit</button>
+    <div class="row">
+      <div class="col-sm-12 buttons">
+        <button class="btn btn-default" data-action="submit">Submit</button>
+      </div>
     </div>
   </form>
 </div>

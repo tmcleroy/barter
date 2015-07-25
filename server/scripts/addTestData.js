@@ -12,7 +12,8 @@ var myModels = {
   skill: {},
   tags: [],
   comments: [],
-  proposals: []
+  proposals: [],
+  requests: []
 };
 
 
@@ -50,7 +51,7 @@ function randComments (allComments) {
 }
 
 function randProposals (allProposals) {
-  return randArrFromArr(allProposals, 0, 10);
+  return randArrFromArr(allProposals, 5, 10);
 }
 
 function randDate () {
@@ -84,7 +85,7 @@ var fxn = function () {
     }));
   });
 
-  _.times(randInt(100, 200), function (i) { // random tags
+  _.times(randInt(150, 250), function (i) { // random tags
     var methods = ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb'];
     var index = randInt(0, methods.length - 1);
     promises.push(models.Tag.create({ name: faker.hacker[methods[index]]() }).then(function (model) {
@@ -92,14 +93,17 @@ var fxn = function () {
     }));
   });
 
-  _.times(randInt(100, 200), function (i) { // random comments
+  _.times(randInt(150, 250), function (i) { // random comments
     promises.push(models.Comment.create({ body: faker.lorem.paragraph() }).then(function (model) {
       myModels.comments.push(model);
     }));
   });
 
-  _.times(randInt(100, 200), function (i) { // random proposals
-    promises.push(models.Proposal.create({ body: faker.lorem.paragraph() }).then(function (model) {
+  _.times(randInt(150, 250), function (i) { // random proposals
+    promises.push(models.Proposal.create({
+      body: faker.lorem.paragraph(),
+      offer: randInt(50, 15000)
+    }).then(function (model) {
       myModels.proposals.push(model);
     }));
   });
@@ -118,23 +122,37 @@ var fxn = function () {
       randFromObj(myModels.user).addComment(comment);
     });
 
-    // assign a random user and value to each proposal
-    _.each(myModels.proposals, function (model) {
-      model.set('offer', randInt(50, 15000));
-      randFromObj(myModels.user).addProposal(model);
-    });
+    // // assign a random user and value to each proposal
+    // _.each(myModels.proposals, function (model) {
+    //   randFromObj(myModels.user).addProposal(model);
+    // });
 
-    _.times(randInt(30, 120), function (i) { // random requests
+    _.times(randInt(100, 150), function (i) { // random requests
        models.Request.create({
          title: faker.hacker.phrase(),
          body: faker.lorem.paragraphs(randInt(1, 4)),
          offer: randRoundInt(100, 10000),
          createdAt: randDate()
        }).then(function (request) {
-         request.setUser(randFromObj(myModels.user));
-         request.setTags(randTags(myModels.tags));
-         request.setComments(randComments(myModels.comments));
-         request.setProposals(randProposals(myModels.proposals));
+         myModels.requests.push(request);
+         request.setUser(randFromObj(myModels.user)).then(function (model) {
+           request.setTags(randTags(myModels.tags)).then(function (model) {
+             request.setComments(randComments(myModels.comments)).then(function (model) {
+               var proposals = randProposals(myModels.proposals);
+               request.setProposals(proposals).then(function (model) {
+                 // give each proposal a user
+                 _.each(proposals, function (proposal) {
+                   randFromObj(myModels.user).addProposal(proposal);
+                 });
+                 // 33% chance of accepting one proposal
+                 if (proposals.length && randInt(0, 100) % 3 === 0) {
+                   proposals[0].set('state', 1).save();
+                 }
+               });
+             });
+           });
+         });
+
        });
      });
 
@@ -284,7 +302,7 @@ var fxn = function () {
            state: 1
          }).then(function (proposal) {
            proposals.push(proposal);
-           myModels.user.jessica.addProposal(proposal);
+           myModels.user.john.addProposal(proposal);
          }));
          Sequelize.Promise.all(proposalPromises).then(function () {
            request.setProposals(proposals);

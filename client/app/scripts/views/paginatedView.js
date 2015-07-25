@@ -38,9 +38,7 @@ var PaginatedView = Backbone.View.extend({
     // convert val to integer if it contains only digits
     val = val.match(/\D/) ? val : parseInt(val, 10);
     this[prop] = val;
-    if (prop === 'limit') {
-      this.page = 1;
-    }
+    this.page = 1;
     this.fetch();
   },
 
