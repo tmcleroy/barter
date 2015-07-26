@@ -36,4 +36,4 @@ var ProposalsView = PaginatedView.extend({
 
 });
 
-module.exports = ProposalsView;
+export default ProposalsView;

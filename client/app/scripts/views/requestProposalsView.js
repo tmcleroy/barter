@@ -13,11 +13,13 @@ var ProposalsView = Backbone.View.extend({
   },
 
   render: function () {
+    var accepted = this.collection.getAccepted();
     this.$el.html(this.template({
       allProposals: this.collection.models,
       pendingProposals: this.collection.getPending(),
       rejectedProposals: this.collection.getRejected(),
-      acceptedProposal: this.collection.getAccepted()
+      acceptedProposal: accepted,
+      submission: accepted && accepted.get('Submission')
     }));
   },
 
@@ -30,4 +32,4 @@ var ProposalsView = Backbone.View.extend({
 
 });
 
-module.exports = ProposalsView;
+export default ProposalsView;

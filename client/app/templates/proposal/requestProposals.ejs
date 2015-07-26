@@ -2,7 +2,12 @@
   <h4>Proposals</h4>
   <span class="subHead">
     <% if (acceptedProposal) { %>
-      1 accepted, awaiting submission.
+      1 accepted,
+      <% if (submission) { %>
+        <a href="/app/submissions/show/<%= submission.get('id') %>">view submission</a>.
+      <% } else { %>
+        awaiting submission.
+      <% } %>
     <% } else if (pendingProposals.length) { %>
       <%= pendingProposals.length %> pending, awaiting your approval.
     <% } %>
@@ -12,9 +17,8 @@
       <div class="accepted stateContainer">
         <h5 class="overlaidTitle">Accepted</h5>
         <%= require('./proposal.ejs')({ proposal: acceptedProposal }) %>
-        <% var sub = acceptedProposal.get('Submission'); %>
-        <% if (sub) { %>
-             <a href="/app/submissions/show/<%= sub.get('id') %>">View Submission</a>
+        <% if (submission) { %>
+             <a href="/app/submissions/show/<%= submission.get('id') %>">View Submission</a>
         <% } %>
       </div>
     <% } else { /* no proposal accepted, show pending and/or rejected proposals */%>

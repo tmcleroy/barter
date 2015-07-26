@@ -50,4 +50,4 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
 //   return view;
 // };
 
-module.exports = BodyEditorView;
+export default BodyEditorView;

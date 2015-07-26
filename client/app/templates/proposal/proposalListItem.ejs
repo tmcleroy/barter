@@ -27,7 +27,7 @@
         html: proposal.getBodyFormatted(),
         collapsed: true,
       }) %>
-      <div class="state <%= proposal.getStateString() %>">
+      <div class="state <%= proposal.getStateString() %> pull-right">
         <span class="stateText"><%= proposal.getStateStringFormatted() %></span>
         <% if (proposal.is('accepted') && !proposal.get('Submission')) { %>
           <a href="/app/submissions/create/<%= proposal.get('Request').id %>" class="pull-right">&nbsp;&mdash; Make Submission</a>

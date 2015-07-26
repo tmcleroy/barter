@@ -20,4 +20,4 @@ var ModelHydrator = {
   }
 };
 
-module.exports = ModelHydrator;
+export default ModelHydrator;

@@ -1,6 +1,6 @@
-let User = require('./models/userModel');
+import User from './models/userModel';
 
-let api = {
+const api = {
   login: function (username, password) {
     return $.post('/login', {
       username: username,
@@ -17,7 +17,7 @@ let api = {
       Backbone.trigger('loggedOut');
       if (redirRoute) { App.Router.navigate(redirRoute, true); }
     }).fail((xhr, status, error) => {
-      console.log(status + ' ' + error);
+      console.log(status, error);
     });
   },
 
@@ -32,4 +32,4 @@ let api = {
   }
 };
 
-module.exports = api;
+export default api;

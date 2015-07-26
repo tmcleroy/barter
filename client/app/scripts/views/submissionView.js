@@ -1,13 +1,14 @@
-var Submission = require('../models/submissionModel');
-var CommentsView = require('../views/commentsView');
-var ModelHydrator = require('../models/_modelHydrator');
+import Submission from '../models/submissionModel';
+import CommentsView from '../views/commentsView';
+import ModelHydrator from '../models/_modelHydrator';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var SubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/submission.ejs'),
 
   events: {
-    'click [data-action^="state-"]': 'stateClicked',
-    // 'click [data-global-action="collapse"]': 'collapse'
+    'click [data-action^="state-"]': 'stateClicked'
   },
 
   views: [],
@@ -15,7 +16,6 @@ var SubmissionView = Backbone.View.extend({
 
   initialize: function (params) {
     this.model = new Submission({ id: params.id });
-
 
     this.model.fetch().done((Submission) => {
       ModelHydrator.hydrateModels(this.model);
@@ -25,35 +25,43 @@ var SubmissionView = Backbone.View.extend({
   },
 
   render: function () {
-    console.log(this.model);
     this.$el.html(this.template({
-      submission: this.model
+      submission: this.model,
+      state: this.model.getStateString(),
+      stateFormatted: this.model.getStateStringFormatted()
     }));
-    this.views = [
-      new CommentsView({
-        collection: this.model.get('Comments'),
-        el: this.$('.commentsContainer')
-      })
-    ];
+    // this.views = [
+    //   new CommentsView({
+    //     collection: this.model.get('Comments'),
+    //     el: this.$('.commentsContainer')
+    //   })
+    // ];
 
     if (this.mine) {
       // mine stuff
     }
   },
 
-  stateClicked: function (evt) {
+  stateClicked (evt) {
     var state = $(evt.target).attr('data-action').split(/state-/)[1];
-    this.model.setState(state).done(_.bind(this.render, this));
+
+    new ConfirmationModal({
+      title: 'Confirm Action',
+      body: `Are you sure you want to ${ state.slice(0, -2) } this submission`,
+      buttons: { accept: `Yes, ${ state.slice(0, -2) }`, cancel: 'Go Back' },
+      onAccept: (evt) => {
+        $('body').addClass('loading');
+        this.model.setState(state).done((model) => {
+          $('body').removeClass('loading');
+          new Alert({
+            type: { accepted: 'success', rejected: 'info' }[state],
+            body: `Submission ${ state }`
+          });
+          App.Router.navigate('/app/requests/mine', true);
+        });
+      }
+    });
   },
-  //
-  // collapse: function (evt) {
-  //   evt.preventDefault();
-  //   var $target = $(evt.target);
-  //   var $container = $target.next('.collapsibleContainer');
-  //   var collapsed = $container.attr('data-collapsed') === 'true';
-  //   $target.text(collapsed ? 'hide' : 'show');
-  //   $container.attr('data-collapsed', !collapsed);
-  // },
 
   remove: function () {
     _.invoke(this.views, 'remove');
@@ -61,4 +69,4 @@ var SubmissionView = Backbone.View.extend({
   }
 });
 
-module.exports = SubmissionView;
+export default SubmissionView;

@@ -45,7 +45,7 @@ var CreateSubmissionView = Backbone.View.extend({
           $('body').removeClass('loading');
           new Alert({
             type: 'success',
-            body: 'Submission Created'
+            body: 'Submission created'
           });
           App.Router.navigate('/app/proposals/mine', true);
         });

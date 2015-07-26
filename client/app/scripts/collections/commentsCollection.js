@@ -5,4 +5,4 @@ var CommentsCollection = Backbone.Collection.extend({
   url: '/api/comments'
 });
 
-module.exports = CommentsCollection;
+export default CommentsCollection;

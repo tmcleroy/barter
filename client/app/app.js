@@ -9,15 +9,13 @@ var Api = require('./scripts/api');
 var Utils = require('./scripts/utils');
 
 $(function () { // document ready
-
+  App.API = Api;
   App.Router = new Router();
   Backbone.history.start({
     pushState: true,
     root: '/'
   });
   App.Router.navigate(location.pathname, true);
-
-  App.API = Api;
 
   Utils.initializeGlobalHandlers();
 

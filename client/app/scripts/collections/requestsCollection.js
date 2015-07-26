@@ -7,4 +7,4 @@ var RequestsCollection = PaginatedCollection.extend({
   url: '/api/requests'
 });
 
-module.exports = RequestsCollection;
+export default RequestsCollection;

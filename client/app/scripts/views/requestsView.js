@@ -38,4 +38,4 @@ var RequestsView = PaginatedView.extend({
 
 });
 
-module.exports = RequestsView;
+export default RequestsView;

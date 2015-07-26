@@ -14,4 +14,4 @@ var HomeView = Backbone.View.extend({
 
 });
 
-module.exports = HomeView;
+export default HomeView;

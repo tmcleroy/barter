@@ -25,4 +25,4 @@ var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   }
 }));
 
-module.exports = SubmissionsModel;
+export default SubmissionsModel;

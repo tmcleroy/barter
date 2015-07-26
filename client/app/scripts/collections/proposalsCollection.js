@@ -26,4 +26,4 @@ var ProposalsCollection = PaginatedCollection.extend({
   }
 });
 
-module.exports = ProposalsCollection;
+export default ProposalsCollection;

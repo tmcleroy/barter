@@ -17,4 +17,4 @@ var NestedModel = Backbone.Model.extend({
   }
 });
 
-module.exports = NestedModel;
+export default NestedModel;

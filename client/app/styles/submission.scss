@@ -1,6 +1,13 @@
 // viewing a submisison
 .submission {
+  .title {
+    margin-top: 5px;
+  }
   .profileContainer {
     margin: 15px 0px 15px;
+  }
+  .state {
+    top: 0;
+    margin-right: 10px;
   }
 }

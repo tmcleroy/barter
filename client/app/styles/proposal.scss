@@ -83,33 +83,4 @@
   .submissionBodyPanel {
     margin-top: 20px;
   }
-  .state {
-    position: relative;
-    top: -24px;
-    float: right;
-    border-radius: 0;
-    text-align: center;
-    padding: 3px 10px;
-    a {
-      color: white;
-    }
-    .stateText {
-      display: inline-block;
-      color: white;
-      font-size: 14px;
-    }
-    .btn-sm {
-      margin: 7px 0;
-    }
-    &.pending {
-      background-color: $mute-grey;
-    }
-    &.accepted {
-      background-color: $mute-green;
-      border-radius: 0;
-    }
-    &.rejected {
-      background-color: $mute-red;
-    }
-  }
 }

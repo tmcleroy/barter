@@ -19,4 +19,4 @@ var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
 
 }));
 
-module.exports = ProposalModel;
+export default ProposalModel;

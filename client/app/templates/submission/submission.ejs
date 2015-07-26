@@ -1,8 +1,10 @@
 <div class="submission module">
   <div class="row">
     <div class="col-sm-12">
-      <span class="stateText"><%= submission.getStateStringFormatted() %></span>
-      <p><%= submission.get('User').get('username') %>'s submission for your request</p>
+      <div class="state <%= state %>">
+        <span class="stateText"><%= stateFormatted %></span>
+      </div>
+      <h5 class="title"><%= submission.get('User').get('username') %>'s submission for your request</h5>
       <%= require('../collapsibleContainer.ejs')({
         classes: 'submissionRequestContainer animated',
         text: { show: 'Show Request', hide: 'Hide Request' },
@@ -11,6 +13,7 @@
       }) %>
     </div>
   </div>
+  <h4>Submission</h4>
   <div class="row">
     <div class="col-sm-4">
       <div class="profileContainer">
@@ -28,16 +31,15 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-
-      <div class="state <%= submission.getStateString() %>">
-        <span class="stateText"><%= submission.getStateStringFormatted() %></span>
-        <% if (submission.is('pending')) { %>
-          <div class="actionButtons pull-right">
-            <button class="btn btn-reject" data-action="state-rejected">Reject</button>
-            <button class="btn btn-accept" data-action="state-accepted">Accept</button>
-          </div>
-        <% } %>
+      <div class="state <%= state %>">
+        <span class="stateText"><%= stateFormatted %></span>
       </div>
+      <% if (state === 'pending') { %>
+        <div class="actionButtons pull-right">
+          <button class="btn btn-reject" data-action="state-rejected">Reject</button>
+          <button class="btn btn-accept" data-action="state-accepted">Accept</button>
+        </div>
+      <% } %>
     </div>
   </div>
 </div>

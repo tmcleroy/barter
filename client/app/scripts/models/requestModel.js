@@ -26,4 +26,4 @@ var RequestModel = NestedModel.extend({
   }
 });
 
-module.exports = RequestModel;
+export default RequestModel;

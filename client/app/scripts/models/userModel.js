@@ -5,4 +5,4 @@ var UserModel = Backbone.Model.extend({
   }
 });
 
-module.exports = UserModel;
+export default UserModel;
