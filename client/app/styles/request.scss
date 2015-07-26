@@ -1,8 +1,3 @@
-// request in list view
-.requestListItem {
-}
-
-// viewing a request
 .request {
   .offerProposalsContainer {
     padding: 15px;
@@ -16,6 +11,12 @@
   .profile {
     .username {
       text-align: right;
+    }
+  }
+
+  &.listItem {
+    h5 {
+      display: inline-block;
     }
   }
 }
@@ -37,8 +38,5 @@
 .createRequestView {
   .tagsView {
     margin: 10px 0;
-    > h4 {
-      display: none;
-    }
   }
 }

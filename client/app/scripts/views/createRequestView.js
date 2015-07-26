@@ -29,7 +29,8 @@ var CreateRequestView = Backbone.View.extend({
     new TagsView({
       collection: this.tags,
       el: this.$('.tagsContainer'),
-      editable: true
+      editable: true,
+      classes: 'simple'
     });
   },
 

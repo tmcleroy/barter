@@ -1,3 +1,18 @@
+.tagsView {
+  &.simple {
+    display: inline-block;
+    h4 {
+      display: none;
+    }
+  }
+  &.small {
+    .tag {
+      font-size: 11px;
+      padding: 1px 4px;
+    }
+  }
+}
+
 .tag {
   display: inline-block;
   margin-bottom: 4px;

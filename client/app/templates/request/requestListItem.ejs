@@ -20,4 +20,13 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h5>Tags: </h5>
+      <%= require('../tag/tags.ejs')({
+        tags: request.get('Tags'),
+        classes: 'simple small'
+      }) %>
+    </div>
+  </div>
 </div>
