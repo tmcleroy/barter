@@ -1,10 +1,10 @@
-var PaginatedView = Backbone.View.extend({
+const PaginatedView = Backbone.View.extend({
   events: {
     'change select[data-action]': 'selectChanged',
     'click a[data-page]': 'pageChanged'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.page = params.page || 1;
     this.limit = Math.min(params.limit || 10, params.maxLimit || 100);
     this.cursor = this.limit * (this.page - 1);
@@ -13,12 +13,12 @@ var PaginatedView = Backbone.View.extend({
 
   // this is more of a post render function
   // actual render logic should be provided by the extending view, see requestsView
-  render: function () {
+  render () {
     this.$el.removeClass('loading');
     this.updateUrl();
   },
 
-  fetch: function () {
+  fetch () {
     this.$el.addClass('loading');
     var opts = {
       sort: this.sort,
@@ -31,7 +31,7 @@ var PaginatedView = Backbone.View.extend({
     });
   },
 
-  selectChanged: function (evt) {
+  selectChanged (evt) {
     var $target = $(evt.target);
     var prop = $target.attr('data-action');
     var val = $target.val();
@@ -45,7 +45,7 @@ var PaginatedView = Backbone.View.extend({
     this.fetch();
   },
 
-  pageChanged: function (evt) {
+  pageChanged (evt) {
     evt.preventDefault();
     var val = $(evt.currentTarget).attr('data-page');
     if (_.isNaN(parseInt(val, 10))) { // prev or next
@@ -57,7 +57,7 @@ var PaginatedView = Backbone.View.extend({
     this.fetch();
   },
 
-  updateUrl: function () {
+  updateUrl () {
     var options = {
       page: this.page,
       limit: this.limit,

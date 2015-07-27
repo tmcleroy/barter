@@ -1,10 +1,14 @@
 import PaginatedView from './paginatedView';
 import RequestsCollection from '../collections/requestsCollection';
 
-var RequestsView = PaginatedView.extend({
+const RequestsView = PaginatedView.extend({
   template: require('../../templates/request/requests.ejs'),
 
-  initialize: function (params) {
+  events: {
+    'change [data-action="tags"]': 'tagsChanged'
+  },
+
+  initialize (params) {
     this.mine = params.mine;
     this.collection = new RequestsCollection();
     this.sorts = [
@@ -23,7 +27,13 @@ var RequestsView = PaginatedView.extend({
     this.fetch();
   },
 
-  render: function () {
+  tagsChanged (evt) {
+    var $target = $(evt.target);
+    var val = $target.val();
+    this.fetch();
+  },
+
+  render () {
     this.$el.html(this.template({
       requests: this.collection,
       mine: this.mine,

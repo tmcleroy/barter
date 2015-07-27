@@ -14,7 +14,11 @@ var handler = function (req, res) {
   }));
   models.Request.findAndCountAll({
     where: req.query.mine ? { UserId: req.user.id } : true,
-    include: [models.User, models.Tag, models.Proposal],
+    include: [
+      { model: models.User },
+      { model: models.Tag },
+      { model: models.Proposal }
+    ],
     order: sortable.querySort,
     // we need a way to not set limit and offset when a postSort is defined so we get the whole dataset to sort
     limit: sortable.limit,

@@ -21,7 +21,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <%= require('../collapsibleContainer.ejs')({
+      <%= require('../components/collapsibleContainer.ejs')({
         classes: 'proposalBodyContainer noSideBorder animated',
         text: { show: 'Show Your Proposal', hide: 'Hide Your Proposal' },
         html: proposal.getBodyFormatted(),
@@ -36,7 +36,7 @@
 
       <% var submission = proposal.get('Submission'); %>
       <% if (submission) { %>
-        <%= require('../collapsibleContainer.ejs')({
+        <%= require('../components/collapsibleContainer.ejs')({
           classes: 'submissionBodyContainer noSideBorder animated',
           text: { show: 'Show Your Submission', hide: 'Hide Your Submission' },
           html: submission.getBodyFormatted(),
