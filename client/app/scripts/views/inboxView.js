@@ -1,14 +1,27 @@
+import Notifications from '../collections/notificationsCollection.js';
+
 var InboxView = Backbone.View.extend({
   template: require('../../templates/inbox.ejs'),
 
-  initialize: function (params) {
-    this.render();
+  initialize (params) {
+    this.collection = new Notifications();
+
+    this.listenTo(this.collection, 'change sync', this.render);
+    this.fetchNotifications();
   },
 
-  render: function () {
+  fetchNotifications () {
+    this.$el.addClass('loading');
+    this.collection.fetch({
+      data: { where: 'unseen' }
+    });
+  },
+
+  render () {
     this.$el.html(this.template({
-      user: this.model
+      notifications: this.collection
     }));
+    this.$el.removeClass('loading');
   }
 });
 

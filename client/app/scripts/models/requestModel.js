@@ -1,11 +1,11 @@
-var NestedModel = require('./_nestedModel');
-var Requests = require('../collections/requestsCollection');
-var Comments = require('../collections/commentsCollection');
-var Tags = require('../collections/tagsCollection');
-var Proposals = require('../collections/proposalsCollection');
-var Submission = require('./submissionModel');
-var User = require('./userModel');
-var marked = require('marked');
+import NestedModel from './_nestedModel';
+import Requests from '../collections/requestsCollection';
+import Comments from '../collections/commentsCollection';
+import Tags from '../collections/tagsCollection';
+import Proposals from '../collections/proposalsCollection';
+import Submission from './submissionModel';
+import User from './userModel';
+import marked from 'marked';
 
 var RequestModel = NestedModel.extend({
   collection: Requests,
