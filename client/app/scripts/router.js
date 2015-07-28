@@ -9,6 +9,7 @@ import HomeView from './views/homeView';
 import LoginView from './views/loginView';
 import RegisterView from './views/registerView';
 import SettingsView from './views/settingsView';
+import InboxView from './views/inboxView';
 import RequestsView from './views/requestsView';
 import RequestView from './views/requestView';
 import ProposalsView from './views/proposalsView';
@@ -16,7 +17,6 @@ import CreateRequestView from './views/createRequestView';
 import SubmissionView from './views/submissionView';
 import CreateSubmissionView from './views/createSubmissionView';
 import User from './models/userModel';
-import Utils from './utils.js';
 
 var Router = Backbone.Router.extend(_.defaults({
   lastView: null,
@@ -30,6 +30,8 @@ var Router = Backbone.Router.extend(_.defaults({
     'login(/)(:options)'                      : 'login',
     'register(/)'                             : 'register',
     'app/settings(/)'                         : 'settings',
+    'app/inbox(/)'                            : 'inbox',
+
 
     'app/requests/browse(/)(:options)'        : 'requestsBrowse',
     'app/requests/show/:id(/)'                : 'requestsShow',
@@ -123,6 +125,17 @@ var Router = Backbone.Router.extend(_.defaults({
       this.view = new SettingsView({
         el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer'),
         model: App.user
+      });
+      this.postRoute(viewName);
+    }
+  },
+
+  inbox: function () {
+    var viewName = 'inbox';
+
+    if (this.preRoute(viewName)) {
+      this.view = new InboxView({
+        el: $('<div class="inboxViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }

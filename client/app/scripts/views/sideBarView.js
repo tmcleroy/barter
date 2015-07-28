@@ -3,6 +3,10 @@ var SideBarView = Backbone.View.extend({
 
   initialize: function (params) {
     this.render();
+
+    App.API.getUnreadNotificationCount().done((count) => {
+      console.log(`${ count } unread notifications`);
+    });
     this.listenTo(Backbone, 'routeChanged', this.routeChanged);
   },
 

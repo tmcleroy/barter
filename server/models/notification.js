@@ -9,7 +9,11 @@ module.exports = function (sequelize, DataTypes) {
     // objectId => The ID of that particular request
     predicate: DataTypes.STRING,
     objectType: DataTypes.STRING, // name of the model. User, Proposal, Request, etc.
-    objectId: DataTypes.INTEGER // id of ^
+    objectId: DataTypes.INTEGER, // id of ^
+    seen: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     classMethods: {
       associate: function (models) {
