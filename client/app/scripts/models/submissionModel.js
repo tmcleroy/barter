@@ -1,10 +1,10 @@
-var NestedModel = require('./_nestedModel');
-var Submissions = require('../collections/submissionsCollection');
-var User = require('./userModel');
-var Request = require('./requestModel');
-var Proposal = require('./proposalModel');
-var Comments = require('../collections/commentsCollection');
-var StatefulHelper = require('./_statefulHelper');
+import NestedModel from './_nestedModel';
+import Submissions from '../collections/submissionsCollection';
+import User from './userModel';
+import Request from './requestModel';
+import Proposal from './proposalModel';
+import Comments from '../collections/commentsCollection';
+import StatefulHelper from './_statefulHelper';
 
 var marked = require('marked');
 

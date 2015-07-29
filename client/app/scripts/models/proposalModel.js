@@ -1,8 +1,8 @@
-var NestedModel = require('./_nestedModel');
-var Submission = require('./submissionModel');
-var Proposals = require('../collections/proposalsCollection');
-var StatefulHelper = require('./_statefulHelper');
-var marked = require('marked');
+import NestedModel from './_nestedModel';
+import Submission from './submissionModel';
+import Proposals from '../collections/proposalsCollection';
+import StatefulHelper from './_statefulHelper';
+import marked from 'marked';
 
 var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   collection: Proposals,
