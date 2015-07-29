@@ -1,10 +1,10 @@
 import PaginatedView from './paginatedView';
 import RequestsCollection from '../collections/requestsCollection';
 
-const RequestsView = PaginatedView.extend({
+var RequestsView = PaginatedView.extend({
   template: require('../../templates/request/requests.ejs'),
 
-  events: {
+  _events: { // MAY NOT WORK AT THE MOMENT
     'change [data-action="tags"]': 'tagsChanged'
   },
 
@@ -20,14 +20,16 @@ const RequestsView = PaginatedView.extend({
     ];
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
-    this.events = _.extend(PaginatedView.prototype.events, this.events);
+    this.events = _.extend({}, PaginatedView.prototype.events, this._events);
 
     this.listenTo(this.collection, 'change sync', this.render);
 
     this.fetch();
+    console.log(this.events);
   },
 
   tagsChanged (evt) {
+    console.log('TAGS CHANGED');
     var $target = $(evt.target);
     var val = $target.val();
     this.fetch();

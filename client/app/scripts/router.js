@@ -148,6 +148,7 @@ var Router = Backbone.Router.extend(_.defaults({
         el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer'),
         options: this.parseOptions(options)
       });
+      console.log(this.view.events);
       this.postRoute(viewName);
     }
   },

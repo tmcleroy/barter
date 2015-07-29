@@ -14,16 +14,14 @@ var RequestView = Backbone.View.extend({
   initialize: function (params) {
     this.model = new Request({ id: params.id });
 
-
     this.model.fetch().done((Request) => {
       this.mine = App.user.get('id') === Request.UserId;
       this.render();
-      // this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'change', this.render);
     });
   },
 
   render: function () {
-    console.log(this.model);
     this.$el.html(this.template({
       request: this.model
     }));
