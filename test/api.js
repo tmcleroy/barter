@@ -27,22 +27,18 @@ function status302RedirectToLogin (route, done) {
 describe('Server Routes', function () {
 
   describe('No auth required', function () {
-
-    it('root should return 200 with expected html', function (done) {
+    it('reqs to / should return 200 with expected html', function (done) {
       status200Html('/', done);
     });
-
   });
 
   describe('Auth required', function () {
-
     it('reqs to /api/* should be redirected to /login', function (done) {
       status302RedirectToLogin('/api/', done);
     });
     it('reqs to /app/* should be redirected to /login', function (done) {
       status302RedirectToLogin('/app/', done);
     });
-
   });
 
 });
