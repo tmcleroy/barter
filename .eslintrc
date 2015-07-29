@@ -71,7 +71,6 @@
     "no-undef-init": 1,
     "no-unreachable": 1,
     "no-use-before-define": [1, "nofunc"],
-    "no-warning-comments": [1, {"terms": ["todo", "fixme"]}],
     "no-wrap-func": 1,
     "quote-props": [0, "as-needed"],
     "radix": 1,
@@ -85,12 +84,15 @@
     "use-isnan": 1,
     "valid-typeof": 1,
     "wrap-iife": [1, "inside"],
-    "yoda": 0
+    "yoda": 0,
+    "handle-callback-err": 0
   },
   "globals": {
       "App": true,
       "$": true,
       "_": true,
-      "Backbone": true
+      "Backbone": true,
+      "describe": true,
+      "it": true
   }
 }
