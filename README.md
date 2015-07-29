@@ -36,3 +36,6 @@ the app will be available at http://localhost:5000
 provide the command line argument `reload-data` to reload the database with test data, this must be done at least once so there is some data in your database
 
 `node server/server.js reload-data`
+
+#### Run tests
+`npm test`
