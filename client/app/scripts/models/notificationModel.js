@@ -10,15 +10,15 @@ var NotificationModel = NestedModel.extend({
 
   urlRoot: '/api/notifications/',
 
-  nestedDefs: {
-    'User': User,
-    'SubjectUser': User,
-    'ObjectUser': User,
-    'ObjectComment': Comment,
-    'ObjectProposal': Proposal,
-    'ObjectRequest': Request,
-    'ObjectSubmission': Submission
-  }
+  // nestedDefs: {
+  //   'User': User,
+  //   'SubjectUser': User,
+  //   'ObjectUser': User,
+  //   'ObjectComment': Comment,
+  //   'ObjectProposal': Proposal,
+  //   'ObjectRequest': Request,
+  //   'ObjectSubmission': Submission
+  // }
 });
 
 export default NotificationModel;

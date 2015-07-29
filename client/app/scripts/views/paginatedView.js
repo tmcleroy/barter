@@ -26,6 +26,7 @@ const PaginatedView = Backbone.View.extend({
       cursor: this.cursor
     };
     if (this.mine) { opts.mine = true; }
+    console.log(this.collection);
     this.collection.fetch({
       data: opts
     });
