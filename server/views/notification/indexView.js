@@ -7,13 +7,15 @@ var whereMap = {
 };
 
 var handler = function (req, res) {
+  console.log("FUUUUCK");
   var where = _.extend({}, whereMap[req.query.where], { UserId: req.user.id });
   if (req.query.countOnly) {
-    models.Notification.count({
-      where: where
-    }).then(function (count) {
-      res.status(200).json(count);
-    });
+    res.status(200).json(0);
+    // models.Notification.count({
+    //   where: where
+    // }).then(function (count) {
+    //   res.status(200).json(count);
+    // });
   } else {
     models.Notification.findAll({
       where: where,

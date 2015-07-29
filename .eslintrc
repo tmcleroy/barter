@@ -71,7 +71,6 @@
     "no-undef-init": 1,
     "no-unreachable": 1,
     "no-use-before-define": [1, "nofunc"],
-    "no-warning-comments": [1, {"terms": ["todo", "fixme"]}],
     "no-wrap-func": 1,
     "quote-props": [0, "as-needed"],
     "radix": 1,

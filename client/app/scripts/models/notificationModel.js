@@ -1,6 +1,9 @@
 import NestedModel from './_nestedModel';
 import Notifications from '../collections/notificationsCollection';
 import User from './userModel';
+import Proposal from './proposalModel';
+import Request from './requestModel';
+import Submission from './submissionModel';
 
 var NotificationModel = NestedModel.extend({
   collection: Notifications,
@@ -9,7 +12,12 @@ var NotificationModel = NestedModel.extend({
 
   nestedDefs: {
     'User': User,
-    'SubjectUser': User
+    'SubjectUser': User,
+    'ObjectUser': User,
+    'ObjectComment': Comment,
+    'ObjectProposal': Proposal,
+    'ObjectRequest': Request,
+    'ObjectSubmission': Submission
   }
 });
 
