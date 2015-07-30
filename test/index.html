@@ -1,0 +1,36 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  <link rel="stylesheet" href="../server/public/dist/styles/app.css">
+</head>
+<body>
+  <div id="mochaAppContainer" style="top: 0px; position: fixed"></div>
+
+  <!-- Mocha's parent element -->
+  <div id="mocha"></div>
+  <!-- Mocha source code -->
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <!-- Chai syntax souce code (optional) -->
+  <script src="../node_modules/chai/chai.js"></script>
+  <!-- Minimal mocha setup code -->
+  <script>
+    mocha.ui('bdd');
+    mocha.reporter('html');
+    mocha.setup();
+    expect = chai.expect;
+    assert = chai.assert;
+  </script>
+  <script src="./test.js"></script>
+   <script>
+     if (window.mochaPhantomJS) {
+       mochaPhantomJS.run();
+     } else {
+       mocha.run();
+     }
+   </script>
+
+</body>
+</html>
