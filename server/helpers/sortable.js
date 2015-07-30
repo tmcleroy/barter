@@ -13,7 +13,7 @@ var Sortable = function (queryParams) {
   var sort = queryParams.sort ? queryParams.sort.replace(/^-/, '') : this.sorts.default;
   var order = 'desc';
   if (this.sorts[sort]) {
-    order = queryParams.sort.charAt(0) === '-' ? 'desc' : 'asc';
+    order = queryParams.sort && queryParams.sort.charAt(0) === '-' ? 'desc' : 'asc';
   }
   // yes the double quotes are necessary https://github.com/sequelize/sequelize/issues/2495#issuecomment-75520604
   // and it must be wrapped in arrays because of this issue https://github.com/sequelize/sequelize/issues/2004

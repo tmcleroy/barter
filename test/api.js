@@ -2,6 +2,7 @@ require('dotenv').load(); // environment variables in .env
 var assert = require('chai').assert;
 var request = require('supertest');
 var testUser = require('superagent').agent();
+var _ = require('lodash');
 
 var url = 'http://localhost:' + process.env.PORT;
 
@@ -48,18 +49,32 @@ describe('Server Routes', function () {
       testUser.post(url + '/login')
         .send({ username: USERNAME, password: PASSWORD })
         .end(function (err, res) {
+          _.extend(testUser, res.body);
           assert.equal(res.status, 200, 'status should be 200');
           assert.equal(res.body.username, USERNAME, 'correct username should be returned');
           done();
         });
     });
-    it('test user can browse requests', function (done) {
-      testUser.get(url + '/app/requests/browse')
-        .end(function (err, res) {
-          assert.equal(res.status, 200, 'status should be 200');
-          done();
-        });
+    describe('Requests', function () {
+      it('indexView vanilla', function (done) {
+        testUser.get(url + '/api/requests')
+          .end(function (err, res) {
+            assert.equal(res.status, 200, 'status should be 200');
+            assert(res.body.items.length > 1 && res.body.total > 1, 'should return items array and total');
+            done();
+          });
+      });
+      it('indexView mine', function (done) {
+        testUser.get(url + '/api/requests?mine=true')
+          .end(function (err, res) {
+            var allMine = _.every(res.body.items, function (item) { return item.UserId === testUser.id; });
+            assert.equal(res.status, 200, 'status should be 200');
+            assert(allMine, 'each item should belong to the user');
+            done();
+          });
+      });
     });
+
   });
 
 });
