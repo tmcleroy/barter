@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         // the user concerned with the notification (Tommy in the above example)
-        Notification.belongsTo(models.User, { as: 'User' });
+        Notification.belongsTo(models.User);
         // the user who performed the action that triggered the notification (Bill in the above example)
         Notification.belongsTo(models.User, { as: 'SubjectUser' });
 

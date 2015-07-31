@@ -15,6 +15,7 @@ var RequestView = Backbone.View.extend({
     this.model = new Request({ id: params.id });
 
     this.model.fetch().done((Request) => {
+      console.log(Request);
       this.mine = App.user.get('id') === Request.UserId;
       this.render();
       this.listenTo(this.model, 'change', this.render);

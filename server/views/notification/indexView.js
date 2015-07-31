@@ -16,7 +16,7 @@ var handler = function (req, res) {
     });
   } else {
     models.Notification.findAll({
-      where: where,
+      // where: where,
       include: [
         { model: models.User },
         { model: models.User, as: 'SubjectUser' }

@@ -18,6 +18,7 @@ var InboxView = Backbone.View.extend({
   },
 
   render () {
+    console.log(this.collection);
     this.$el.html(this.template({
       notifications: this.collection
     }));
