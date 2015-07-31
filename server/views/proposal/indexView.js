@@ -4,7 +4,7 @@ var Sortable = require('../../helpers/sortable');
 var handler = function (req, res) {
   var sortable = new Sortable(req.query);
   models.Proposal.findAndCountAll({
-    where: req.query.mine ? { UserId: req.user.id } : true,
+    where: { UserId: req.user.id }, // never expose other users proposals
     include: [
       {
         model: models.Request,

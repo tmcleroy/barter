@@ -52,28 +52,9 @@ describe('Server Routes', function () {
           _.extend(testUser, res.body);
           assert.equal(res.status, 200, 'status should be 200');
           assert.equal(res.body.username, USERNAME, 'correct username should be returned');
+          assert.equal(res.body.password, undefined, 'password is not exposed');
           done();
         });
-    });
-
-    describe('Requests', function () {
-      it('indexView default', function (done) {
-        testUser.get(url + '/api/requests')
-          .end(function (err, res) {
-            assert.equal(res.status, 200, 'status should be 200');
-            assert(res.body.items.length > 1 && res.body.total > 1, 'should return items array and total');
-            done();
-          });
-      });
-      it('indexView mine', function (done) {
-        testUser.get(url + '/api/requests?mine=true')
-          .end(function (err, res) {
-            var allMine = _.every(res.body.items, function (item) { return item.UserId === testUser.id; });
-            assert.equal(res.status, 200, 'status should be 200');
-            assert(allMine, 'each item should belong to the user');
-            done();
-          });
-      });
     });
 
     describe('Sortable views', function () {
@@ -84,7 +65,6 @@ describe('Server Routes', function () {
             _.each(res.body.items, function (item, i) {
               if (i && res.body.items[i - 1].offer > item.offer) { ascending = false; }
             });
-            assert.equal(res.status, 200, 'status should be 200');
             assert(ascending, 'items should be sorted in ascending order.');
             done();
           });
@@ -96,7 +76,6 @@ describe('Server Routes', function () {
             _.each(res.body.items, function (item, i) {
               if (i && res.body.items[i - 1].offer < item.offer) { descending = false; }
             });
-            assert.equal(res.status, 200, 'status should be 200');
             assert(descending, 'items should be sorted in descending order.');
             done();
           });
@@ -104,12 +83,45 @@ describe('Server Routes', function () {
     });
 
     describe('Paginated views', function () {
-      it('Limit should be honored', function (done) {
+      it('Page and limit should be honored', function (done) {
         var limit = 15;
-        testUser.get(url + '/api/requests?limit=' + limit)
+        testUser.get(url + '/api/requests?limit=' + limit + '&cursor=0')
+          .end(function (err1, res1) {
+            testUser.get(url + '/api/requests?limit=' + limit + '&cursor=1')
+              .end(function (err1, res2) {
+                var bodiesEqual = _.isEqual(res1.body.items, res2.body.items);
+                assert.equal(res1.body.items.length, limit, 'limit should be honored');
+                assert(!bodiesEqual, 'items of each request should differ');
+                done();
+              });
+          });
+      });
+    });
+
+    describe('Requests', function () {
+      it('indexView default', function (done) {
+        testUser.get(url + '/api/requests')
           .end(function (err, res) {
-            assert.equal(res.status, 200, 'status should be 200');
-            assert.equal(res.body.items.length, limit, 'number of items should be the same as the limit');
+            assert(res.body.items.length > 1 && res.body.total > 1, 'should return items array and total');
+            done();
+          });
+      });
+      it('indexView mine', function (done) {
+        testUser.get(url + '/api/requests?mine=true')
+          .end(function (err, res) {
+            var allMine = _.every(res.body.items, function (item) { return item.UserId === testUser.id; });
+            assert(allMine, 'each item should belong to the user');
+            done();
+          });
+      });
+    });
+
+    describe('Proposals', function () {
+      it('only show owned proposals', function (done) {
+        testUser.get(url + '/api/proposals')
+          .end(function (err, res) {
+            var allMine = _.every(res.body.items, function (item) { return item.UserId === testUser.id; });
+            assert(allMine, 'each item should belong to the user');
             done();
           });
       });

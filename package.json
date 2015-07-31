@@ -58,7 +58,8 @@
     "mocha": "~2.2.5",
     "supertest": "~1.0.1",
     "chai": "~3.2.0",
-    "superagent": "~1.2.0"
+    "superagent": "~1.2.0",
+    "bluebird": "~2.9.34"
   },
   "devDependencies": {}
 }
