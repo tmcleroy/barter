@@ -56,4 +56,4 @@ var CreateProposalView = Backbone.View.extend({
 
 });
 
-export default CreateProposalView;
+module.exports =  CreateProposalView;

@@ -45,4 +45,4 @@ var CreateCommentView = Backbone.View.extend({
 
 });
 
-export default CreateCommentView;
+module.exports =  CreateCommentView;

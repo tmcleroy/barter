@@ -9,4 +9,4 @@ var TagsCollection = Backbone.Collection.extend({
   }
 });
 
-export default TagsCollection;
+module.exports = TagsCollection;

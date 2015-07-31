@@ -1,10 +1,10 @@
-import Request from '../models/requestModel';
-import Tags from '../collections/tagsCollection';
-import Tag from '../models/tagModel';
-import TagsView from './tagsView';
-import BodyEditorView from './bodyEditorView';
-import ConfirmationModal from './confirmationModal';
-import Alert from './components/alert';
+var Request = require('../models/requestModel');
+var Tags = require('../collections/tagsCollection');
+var Tag = require('../models/tagModel');
+var TagsView = require('./tagsView');
+var BodyEditorView = require('./bodyEditorView');
+var ConfirmationModal = require('./confirmationModal');
+var Alert = require('./components/alert');
 
 var CreateRequestView = Backbone.View.extend({
   template: require('../../templates/request/createRequest.ejs'),
@@ -74,4 +74,4 @@ var CreateRequestView = Backbone.View.extend({
   }
 });
 
-export default CreateRequestView;
+module.exports =  CreateRequestView;

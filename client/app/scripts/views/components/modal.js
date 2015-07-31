@@ -46,4 +46,4 @@ var Modal = Backbone.View.extend({
   }
 });
 
-export default Modal;
+module.exports =  Modal;

@@ -30,4 +30,4 @@ var Alert = Backbone.View.extend({
 
 });
 
-export default Alert;
+module.exports =  Alert;

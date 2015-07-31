@@ -43,11 +43,11 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
 }));
 
 // // good way to handle event hash inheritance
-// // idea from http://danhough.com/blog/backbone-view-inheritance/
+// // idea = require(http://danhough.com/blog/backbone-view-inheritance/
 // BodyEditorView.extend = function (child) {
 //   var view = Backbone.View.extend.apply(this, arguments);
 //   view.prototype.events = _.extend({}, this.prototype.events, child.events);
 //   return view;
 // };
 
-export default BodyEditorView;
+module.exports =  BodyEditorView;

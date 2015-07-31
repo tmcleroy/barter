@@ -1,8 +1,8 @@
-import Submission from '../models/submissionModel';
-import CommentsView from '../views/commentsView';
-import ModelHydrator from '../models/_modelHydrator';
-import ConfirmationModal from './confirmationModal';
-import Alert from './components/alert';
+var Submission = require('../models/submissionModel');
+var CommentsView = require('../views/commentsView');
+var ModelHydrator = require('../models/_modelHydrator');
+var ConfirmationModal = require('./confirmationModal');
+var Alert = require('./components/alert');
 
 var SubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/submission.ejs'),
@@ -69,4 +69,4 @@ var SubmissionView = Backbone.View.extend({
   }
 });
 
-export default SubmissionView;
+module.exports =  SubmissionView;

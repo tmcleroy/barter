@@ -12,4 +12,4 @@ var SettingsView = Backbone.View.extend({
   }
 });
 
-export default SettingsView;
+module.exports =  SettingsView;

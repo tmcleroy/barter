@@ -5,4 +5,4 @@ var SubmissionsCollection = Backbone.Collection.extend({
   url: '/api/submissions'
 });
 
-export default SubmissionsCollection;
+module.exports =  SubmissionsCollection;

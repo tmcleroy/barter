@@ -1,4 +1,4 @@
-import Notification from '../models/notificationModel';
+var Notification = require('../models/notificationModel');
 
 var NotificationsCollection = Backbone.Collection.extend({
   model: Notification,
@@ -6,4 +6,4 @@ var NotificationsCollection = Backbone.Collection.extend({
   url: '/api/notifications'
 });
 
-export default NotificationsCollection;
+module.exports = NotificationsCollection;

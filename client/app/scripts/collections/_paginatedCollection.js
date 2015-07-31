@@ -6,4 +6,4 @@ var PaginatedCollection = Backbone.Collection.extend({
   }
 });
 
-export default PaginatedCollection;
+module.exports =  PaginatedCollection;

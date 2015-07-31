@@ -26,4 +26,4 @@ var TagsView = Backbone.View.extend({
 
 });
 
-export default TagsView;
+module.exports =  TagsView;

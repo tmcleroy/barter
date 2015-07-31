@@ -41,4 +41,4 @@ var utils = {
   }
 };
 
-export default utils;
+module.exports =  utils;

@@ -19,4 +19,4 @@ var ProposalsSummaryView = Backbone.View.extend({
 
 });
 
-export default ProposalsSummaryView;
+module.exports =  ProposalsSummaryView;

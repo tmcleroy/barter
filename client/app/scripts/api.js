@@ -1,4 +1,4 @@
-import User from './models/userModel';
+var User = require('./models/userModel');
 
 const api = {
   login (username, password) {
@@ -54,4 +54,4 @@ const api = {
   }
 };
 
-export default api;
+module.exports =  api;

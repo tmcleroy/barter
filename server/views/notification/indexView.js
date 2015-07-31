@@ -18,8 +18,13 @@ var handler = function (req, res) {
     models.Notification.findAll({
       where: where,
       include: [
-        { model: models.User },
-        { model: models.User, as: 'SubjectUser' }
+        { model: models.User, as: 'User' },
+        { model: models.User, as: 'SubjectUser' },
+        { model: models.User, as: 'ObjectUser' },
+        { model: models.Comment, as: 'ObjectComment' },
+        { model: models.Proposal, as: 'ObjectProposal' },
+        { model: models.Request, as: 'ObjectRequest' },
+        { model: models.Submission, as: 'ObjectSubmission' }
       ]
     }).then(function (notifications) {
       res.status(200).json(notifications);

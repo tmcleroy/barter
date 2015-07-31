@@ -1,4 +1,4 @@
-import ProfileView from './profileView.js';
+var ProfileView = require('./profileView.js');
 
 var HeaderView = Backbone.View.extend({
   template: require('../../templates/header.ejs'),
@@ -42,4 +42,4 @@ var HeaderView = Backbone.View.extend({
   }
 });
 
-export default HeaderView;
+module.exports =  HeaderView;

@@ -59,4 +59,4 @@ var RequestView = Backbone.View.extend({
   }
 });
 
-export default RequestView;
+module.exports =  RequestView;

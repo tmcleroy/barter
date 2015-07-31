@@ -1,5 +1,5 @@
-var PaginatedCollection = require('./_paginatedCollection');
 var Proposal = require('../models/proposalModel');
+var PaginatedCollection = require('./_paginatedCollection');
 
 var ProposalsCollection = PaginatedCollection.extend({
   model: Proposal,
@@ -26,4 +26,4 @@ var ProposalsCollection = PaginatedCollection.extend({
   }
 });
 
-export default ProposalsCollection;
+module.exports = ProposalsCollection;

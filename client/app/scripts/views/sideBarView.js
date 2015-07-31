@@ -30,4 +30,4 @@ var SideBarView = Backbone.View.extend({
 
 });
 
-export default SideBarView;
+module.exports =  SideBarView;

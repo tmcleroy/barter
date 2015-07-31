@@ -1,4 +1,4 @@
-import Backbone from 'backbone';
+var Backbone = require('backbone');
 
 var ProfileView = Backbone.View.extend({
   template: require('../../templates/profile/profile.ejs'),
@@ -25,4 +25,4 @@ var ProfileView = Backbone.View.extend({
 
 });
 
-export default ProfileView;
+module.exports =  ProfileView;

@@ -1,15 +1,12 @@
-import NestedModel from './_nestedModel';
-import Requests from '../collections/requestsCollection';
-import Comments from '../collections/commentsCollection';
-import Tags from '../collections/tagsCollection';
-import Proposals from '../collections/proposalsCollection';
-import Submission from './submissionModel';
-import User from './userModel';
-import marked from 'marked';
+var NestedModel = require('./_nestedModel');
+var Comments = require('../collections/commentsCollection');
+var Tags = require('../collections/tagsCollection');
+var Proposals = require('../collections/proposalsCollection');
+var Submission = require('./submissionModel');
+var User = require('./userModel');
+var marked = require('marked');
 
 var RequestModel = NestedModel.extend({
-  collection: Requests,
-
   urlRoot: '/api/requests/',
 
   // nested model and collection defs
@@ -26,4 +23,4 @@ var RequestModel = NestedModel.extend({
   }
 });
 
-export default RequestModel;
+module.exports =  RequestModel;

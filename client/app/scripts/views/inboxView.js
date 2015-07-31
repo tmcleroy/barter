@@ -1,9 +1,10 @@
-import Notifications from '../collections/notificationsCollection.js';
+var Notifications = require('../collections/notificationsCollection');
 
 var InboxView = Backbone.View.extend({
   template: require('../../templates/inbox.ejs'),
 
   initialize (params) {
+    console.log('initializing inboxView');
     this.collection = new Notifications();
 
     this.listenTo(this.collection, 'change sync', this.render);
@@ -25,4 +26,4 @@ var InboxView = Backbone.View.extend({
   }
 });
 
-export default InboxView;
+module.exports =  InboxView;

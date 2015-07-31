@@ -1,5 +1,4 @@
 var NestedModel = require('./_nestedModel');
-var Submissions = require('../collections/submissionsCollection');
 var User = require('./userModel');
 var Request = require('./requestModel');
 var Proposal = require('./proposalModel');
@@ -9,8 +8,6 @@ var StatefulHelper = require('./_statefulHelper');
 var marked = require('marked');
 
 var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
-  collection: Submissions,
-
   urlRoot: '/api/submissions',
 
   nestedDefs: {
@@ -25,4 +22,4 @@ var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   }
 }));
 
-export default SubmissionsModel;
+module.exports = SubmissionsModel;

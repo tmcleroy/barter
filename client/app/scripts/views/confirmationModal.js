@@ -19,4 +19,4 @@ var ConfirmationModal = Modal.extend({
   }
 });
 
-export default ConfirmationModal;
+module.exports =  ConfirmationModal;

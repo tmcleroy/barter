@@ -1,5 +1,5 @@
-import PaginatedView from './paginatedView';
-import RequestsCollection from '../collections/requestsCollection';
+var PaginatedView = require('./paginatedView');
+var RequestsCollection = require('../collections/requestsCollection');
 
 var RequestsView = PaginatedView.extend({
   template: require('../../templates/request/requests.ejs'),
@@ -29,13 +29,14 @@ var RequestsView = PaginatedView.extend({
   },
 
   tagsChanged (evt) {
-    console.log('TAGS CHANGED');
     var $target = $(evt.target);
     var val = $target.val();
     this.fetch();
   },
 
   render () {
+    console.log('AHAHHAHAHAHA');
+    console.log(this.collection);
     this.$el.html(this.template({
       requests: this.collection,
       mine: this.mine,
@@ -50,4 +51,4 @@ var RequestsView = PaginatedView.extend({
 
 });
 
-export default RequestsView;
+module.exports =  RequestsView;

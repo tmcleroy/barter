@@ -74,4 +74,4 @@ var PaginatedView = Backbone.View.extend({
 
 });
 
-export default PaginatedView;
+module.exports =  PaginatedView;

@@ -1,5 +1,5 @@
-import PaginatedView from './paginatedView';
-import ProposalsCollection from '../collections/proposalsCollection';
+var PaginatedView = require('./paginatedView');
+var ProposalsCollection = require('../collections/proposalsCollection');
 
 var ProposalsView = PaginatedView.extend({
   template: require('../../templates/proposal/proposals.ejs'),
@@ -36,4 +36,4 @@ var ProposalsView = PaginatedView.extend({
 
 });
 
-export default ProposalsView;
+module.exports =  ProposalsView;

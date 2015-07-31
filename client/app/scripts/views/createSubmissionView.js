@@ -1,7 +1,7 @@
-import Submission from '../models/submissionModel';
-import BodyEditorView from './bodyEditorView';
-import ConfirmationModal from './confirmationModal';
-import Alert from './components/alert';
+var Submission = require('../models/submissionModel');
+var BodyEditorView = require('./bodyEditorView');
+var ConfirmationModal = require('./confirmationModal');
+var Alert = require('./components/alert');
 
 var CreateSubmissionView = Backbone.View.extend({
   template: require('../../templates/submission/createSubmission.ejs'),
@@ -55,4 +55,4 @@ var CreateSubmissionView = Backbone.View.extend({
 
 });
 
-export default CreateSubmissionView;
+module.exports =  CreateSubmissionView;

@@ -1,16 +1,30 @@
-import NestedModel from './_nestedModel';
-import Notifications from '../collections/notificationsCollection';
-import User from './userModel';
+// TODO this line is bad and should be fixed
+// var Comments = require('../collections/commentsCollection'); // this is necessary, try loading a request without it
+var Proposals = require('../collections/proposalsCollection'); // this is necessary, try loading a request without it
+
+var NestedModel = require('./_nestedModel');
+var User = require('./userModel');
+var Comment = require('./commentModel');
+var Proposal = require('./proposalModel');
+var Request = require('./requestModel');
+var Submission = require('./submissionModel');
 
 var NotificationModel = NestedModel.extend({
-  collection: Notifications,
+  initialize () {
+    console.log('initializing notificationmodel');
+  },
 
   urlRoot: '/api/notifications/',
 
   nestedDefs: {
     'User': User,
-    'SubjectUser': User
+    'SubjectUser': User,
+    'ObjectUser': User,
+    'ObjectComment': Comment,
+    'ObjectProposal': Proposal,
+    'ObjectRequest': Request,
+    'ObjectSubmission': Submission
   }
 });
 
-export default NotificationModel;
+module.exports =  NotificationModel;

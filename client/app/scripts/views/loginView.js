@@ -42,4 +42,4 @@ var LoginView = Backbone.View.extend({
 
 });
 
-export default LoginView;
+module.exports =  LoginView;
