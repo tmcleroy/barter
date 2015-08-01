@@ -15,7 +15,7 @@ $(function () { // document ready
     pushState: true,
     root: '/'
   });
-  App.Router.navigate(location.pathname, true);
+  // App.Router.navigate(location.pathname, true);
 
   Utils.initializeGlobalHandlers();
 

@@ -32,7 +32,7 @@ var avatarUploadHandler = require('./handlers/avatarUploadHandler');
 // middleware
 var requireAuth = require('./middleware/requireAuth');
 var requireAdminPermission = require('./middleware/requireAdminPermission');
-var requireApiPermission = require('./middleware/requireApiPermission');
+// var requireApiPermission = require('./middleware/requireApiPermission');
 var requireIdMatch = require('./middleware/requireIdMatch');
 
 
@@ -40,7 +40,6 @@ module.exports = function (app) {
 
   app.all('/api/*', requireAuth/*, requireApiPermission*/);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
-
 
   app.post('/login', passport.authenticate('local'), loginHandler);
   app.post('/register', registerHandler);
@@ -77,7 +76,8 @@ module.exports = function (app) {
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
-  // serve rootView for all routes so the single page app can do its thang
+  // serve rootView for all unspecified routes
+  // so the single page app can handle the routing from there
   app.get('*', rootView);
 
 };

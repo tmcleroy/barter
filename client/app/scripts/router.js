@@ -44,7 +44,7 @@ var Router = Backbone.Router.extend(_.defaults({
     'app/submissions/create/:id(/)'           : 'submissionsCreate'
   },
 
-  initialize: function () {
+  initialize () {
     App.user = App.serverVars.user ? new User(App.serverVars.user) : null;
     $('#appContainer').html(AppSkeleton());
 
@@ -64,7 +64,7 @@ var Router = Backbone.Router.extend(_.defaults({
   },
 
   // returns boolean whether to continue rendering the new view
-  preRoute: function (viewName) {
+  preRoute (viewName) {
     if (this.view) { this.view.remove(); }
     this.currentView = viewName;
     if (this.lastView !== this.currentView) {
@@ -75,16 +75,16 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  postRoute: function (viewName) {
+  postRoute (viewName) {
     this.lastView = this.currentView;
     Backbone.trigger('routeChanged', viewName);
   },
 
-  parseOptions: function (options) {
+  parseOptions (options) {
     return JSON.parse(options);
   },
 
-  home: function () {
+  home () {
     var viewName = 'home';
 
     if (this.preRoute(viewName)) {
@@ -95,7 +95,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  login: function (options) {
+  login (options) {
     var viewName = 'login';
 
     if (this.preRoute(viewName)) {
@@ -107,7 +107,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  register: function () {
+  register () {
     var viewName = 'register';
 
     if (this.preRoute(viewName)) {
@@ -118,7 +118,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  settings: function () {
+  settings () {
     var viewName = 'settings';
 
     if (this.preRoute(viewName)) {
@@ -130,7 +130,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  inbox: function () {
+  inbox () {
     var viewName = 'inbox';
 
     if (this.preRoute(viewName)) {
@@ -141,7 +141,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsBrowse: function (options) {
+  requestsBrowse (options) {
     var viewName = 'requestsBrowse';
     if (this.preRoute(viewName)) {
       this.view = new RequestsView({
@@ -153,7 +153,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsShow: function (id) {
+  requestsShow (id) {
     var viewName = 'requestsShow';
 
     if (this.preRoute(viewName)) {
@@ -165,7 +165,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsCreate: function () {
+  requestsCreate () {
     var viewName = 'requestsCreate';
 
     if (this.preRoute(viewName)) {
@@ -176,7 +176,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsMine: function (options) {
+  requestsMine (options) {
     var viewName = 'requestsMine';
 
     if (this.preRoute(viewName)) {
@@ -189,7 +189,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  proposalsMine: function (options) {
+  proposalsMine (options) {
     var viewName = 'proposalsMine';
 
     if (this.preRoute(viewName)) {
@@ -202,7 +202,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  submissionsShow: function (id) {
+  submissionsShow (id) {
     var viewName = 'submissionsShow';
 
     if (this.preRoute(viewName)) {
@@ -214,7 +214,7 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  submissionsCreate: function (id) {
+  submissionsCreate (id) {
     var viewName = 'submissionsCreate';
 
     if (this.preRoute(viewName)) {
@@ -224,11 +224,16 @@ var Router = Backbone.Router.extend(_.defaults({
       });
       this.postRoute(viewName);
     }
-  }
+  },
 
+  // OVERRIDES
+  navigate () {
+    arguments[0] += window.location.search;
+    Backbone.Router.prototype.navigate.apply(this, arguments);
+  }
 },
 { // global helpers
 
 }));
 
-module.exports =  Router;
+module.exports = Router;

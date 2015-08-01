@@ -1,13 +1,13 @@
 // TODO this line is bad and should be fixed
 // var Comments = require('../collections/commentsCollection'); // this is necessary, try loading a request without it
-var Proposals = require('../collections/proposalsCollection'); // this is necessary, try loading a request without it
+// var Proposals = require('../collections/proposalsCollection'); // this is necessary, try loading a request without it
 
 var NestedModel = require('./_nestedModel');
 var User = require('./userModel');
-var Comment = require('./commentModel');
-var Proposal = require('./proposalModel');
-var Request = require('./requestModel');
-var Submission = require('./submissionModel');
+// var Comment = require('./commentModel');
+// var Proposal = require('./proposalModel');
+// var Request = require('./requestModel');
+// var Submission = require('./submissionModel');
 
 var NotificationModel = NestedModel.extend({
   initialize () {
@@ -20,10 +20,10 @@ var NotificationModel = NestedModel.extend({
     'User': User,
     'SubjectUser': User,
     'ObjectUser': User,
-    'ObjectComment': Comment,
-    'ObjectProposal': Proposal,
-    'ObjectRequest': Request,
-    'ObjectSubmission': Submission
+    // 'ObjectComment': Comment,
+    // 'ObjectProposal': Proposal,
+    // 'ObjectRequest': Request,
+    // 'ObjectSubmission': Submission
   }
 });
 

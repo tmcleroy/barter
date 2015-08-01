@@ -35,8 +35,6 @@ var RequestsView = PaginatedView.extend({
   },
 
   render () {
-    console.log('AHAHHAHAHAHA');
-    console.log(this.collection);
     this.$el.html(this.template({
       requests: this.collection,
       mine: this.mine,
