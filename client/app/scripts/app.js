@@ -4,9 +4,9 @@ window._ = require('lodash');
 window.Backbone = require('backbone');
 Backbone.$ = $;
 
-var Router = require('./scripts/router');
-var Api = require('./scripts/api');
-var Utils = require('./scripts/utils');
+var Router = require('./router');
+var Api = require('./api');
+var Utils = require('./utils');
 
 $(function () { // document ready
   App.API = Api;

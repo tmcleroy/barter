@@ -2,26 +2,45 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var argv = require('yargs').argv;
+var awspublish = require('gulp-awspublish');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 $.parallelize = require('concurrent-transform');
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var packageJson = require('./package.json');
+
 var browserify = require('browserify');
 var babelify = require("babelify");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var gutil = require('gulp-util');
 var underscorify = require('node-underscorify');
 var sass = require('gulp-sass');
-var awspublish = require('gulp-awspublish');
 
-var S3_CONFIG = {
-  profile: 'barter',
-  region: 'us-west-2',
-  bucket: 'barter.app'
-};
 
+gulp.task('dev', function (cb) {
+  var devConfig = require('./webpack.config.dev')();
+  devConfig.output.publicPath = 'http://localhost:' + packageJson.appConfig.devPort + '/';
+  var compiler = webpack(devConfig);
+
+  var server = new WebpackDevServer(compiler, {
+    contentBase: path.join(__dirname, 'client/app'),
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    lazy: false,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    publicPath: '/',
+    stats: { colors: true }
+  });
+
+  server.listen(packageJson.appConfig.devPort, 'localhost', function () {});
+});
 
 gulp.task('watch', function () {
   gulp.start('javascript');
@@ -30,22 +49,22 @@ gulp.task('watch', function () {
   gulp.watch(['client/app/**/*.scss'], ['sass']);
 });
 
-gulp.task('deploy', function () {
-  var awsCredentials = JSON.parse(fs.readFileSync(process.env.HOME + '/.aws/credentials.json')).barter;
+gulp.task('deploy', function (cb) {
+  var awsCredentials = JSON.parse(fs.readFileSync(process.env.HOME + '/.aws/credentials.json'))[packageJson.appConfig.s3.profile];
 
   var publisher = awspublish.create({
     accessKeyId: awsCredentials.aws_access_key_id,
     secretAccessKey: awsCredentials.aws_secret_access_key,
-    region: S3_CONFIG.region,
+    region: packageJson.appConfig.s3.region,
     params: {
-      Bucket: S3_CONFIG.bucket
+      Bucket: packageJson.appConfig.s3.bucket
     }
   });
 
   var target = argv.target;
 
   if (!target) {
-    throw new gutil.PluginError('publish', 'Specify a target using --target=<name>');
+    throw new $.util.PluginError('publish', 'Specify a target using --target=<name>');
   }
 
   var destPath = 'public/dist/' + target + '/';
@@ -75,7 +94,7 @@ gulp.task('javascript', function () {
     .pipe(sourcemaps.init({loadMaps: true}))
       // Add transformation tasks to the pipeline here.
       .pipe(uglify())
-      .on('error', gutil.log)
+      .on('error', $.util.log)
     .pipe(sourcemaps.write('./app/'))
     .pipe(gulp.dest('./server/public/dist/scripts/'));
 });
