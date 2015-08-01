@@ -10,14 +10,13 @@ module.exports = function () {
       path.join(__dirname, '/client/app/scripts/app')
     ],
     output: {
-        path: path.join(__dirname, '/build/'),
+        path: path.join(__dirname, '/server/public/dist/build/'),
         library: '[name]',
         filename: 'scripts/[name].dev.js'
     },
     resolve: {
       root: [
         path.join(__dirname, '/client/app/scripts'),
-        // path.join(__dirname, '/client/app/bower_components'),
         path.join(__dirname, '/client/app/styles')
       ],
       alias: {
@@ -64,7 +63,7 @@ module.exports = function () {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery',
-        '_': 'underscore'
+        '_': 'lodash'
       }),
       new webpack.NoErrorsPlugin(),
       new webpack.HotModuleReplacementPlugin()

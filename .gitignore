@@ -3,3 +3,4 @@ server/public/dist
 *.log
 *.pid
 .env
+build/*

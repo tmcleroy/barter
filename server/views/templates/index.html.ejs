@@ -8,12 +8,21 @@
           user: <%- user %>
         }
       };
+      var prefix, js, css;
       var PROD_ENV = 'production';
       var env = decodeURIComponent((document.location.href.match(/[?&]env=([^&#]+)/) || []).pop() || '') || PROD_ENV;
       var local = window.location.hostname === 'localhost';
-      var prefix = (local && env === PROD_ENV) ? '/dist/' : 'https://s3-us-west-2.amazonaws.com/barter.app/public/dist/' + env + '/';
+      if (local && env === PROD_ENV) { // local dev mode
+        prefix = '/dist/';
+        js = 'app.dev.js';
+        css = 'app.dev.css';
+      } else { // hosted or locally testing on an env
+        prefix = 'https://s3-us-west-2.amazonaws.com/barter.app/public/dist/' + env + '/';
+        js = 'app.js';
+        css = 'app.css';
+      }
 
-      document.write('<scrip' + 't type="text/javascript" charset="utf-8" src="' + prefix + 'scripts/app.js"><\/script>');
+      document.write('<scrip' + 't type="text/javascript" charset="utf-8" src="' + prefix + 'scripts/' + js + '"><\/script>');
       document.write('<link rel="stylesheet" type="text/css" href="' + prefix + 'styles/app.css"/>');
     })();
   </script>

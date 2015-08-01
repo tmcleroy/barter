@@ -42,6 +42,23 @@ gulp.task('dev', function (cb) {
   server.listen(packageJson.appConfig.devPort, 'localhost', function () {});
 });
 
+gulp.task('dist', function (cb) {
+  var distConfig = require('./webpack.config.dist')();
+  webpack(distConfig, function (err, stats) {
+    if (err) {
+      throw new $.util.PluginError('dist', err);
+    }
+
+    $.util.log('[dist]', stats.toString({
+      colors: true
+    }));
+
+
+    cb();
+  });
+
+});
+
 gulp.task('watch', function () {
   gulp.start('javascript');
   gulp.start('sass');
