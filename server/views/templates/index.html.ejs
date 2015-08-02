@@ -13,7 +13,7 @@
       var env = decodeURIComponent((document.location.href.match(/[?&]env=([^&#]+)/) || []).pop() || '') || PROD_ENV;
       var local = window.location.hostname === 'localhost';
       if (local && env === PROD_ENV) { // local dev mode
-        prefix = '/dist/';
+        prefix = 'http://localhost:5001/'; // webpack-dev-server must be running at this location
         js = 'main.dev.js';
         css = 'main.dev.css';
       } else { // hosted or locally testing on an env
@@ -21,9 +21,6 @@
         js = 'main.js';
         css = 'main.css';
       }
-
-      // js = 'main.js';
-      // css = 'main.css';
 
       document.write('<scrip' + 't type="text/javascript" charset="utf-8" src="' + prefix + 'scripts/' + js + '"><\/script>');
       document.write('<link rel="stylesheet" type="text/css" href="' + prefix + 'styles/' + css + '"/>');

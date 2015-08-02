@@ -1,6 +1,7 @@
-var path = require('path');
 var webpack = require('webpack');
+var path = require('path');
 var packageJson = require('./package.json');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function () {
   return {
@@ -11,17 +12,9 @@ module.exports = function () {
     ],
     output: {
         path: path.join(__dirname, '/server/public/dist/'),
+        publicPath: 'http://localhost:' + packageJson.appConfig.devPort + '/',
         library: '[name]',
         filename: 'scripts/[name].dev.js'
-    },
-    resolve: {
-      root: [
-        path.join(__dirname, '/client/app/scripts'),
-        path.join(__dirname, '/client/app/styles')
-      ],
-      alias: {
-        // 'templates': path.join(__dirname, '/.dev/scripts/templates')
-      }
     },
     module: {
       loaders: [
@@ -36,38 +29,30 @@ module.exports = function () {
         },
         {
           test: /\.ejs$/,
-          loader: "ejs-loader?variable=data"
+          loader: 'ejs-loader'
         },
         {
           test: /\.scss$/,
-          loader: 'style-loader!css-loader!sass-loader'
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
         },
         {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader'
-        },
-        {
-          test: /(\.woff|\.ttf|\.eot|\.svg|\.png|\.gif)$/,
-          loader: 'url-loader'
+          test: /(\.woff|\.woff2|\.ttf|\.eot|\.svg|\.png|\.jpg|\.gif)$/,
+          loader: 'file-loader?name=assets/[name]-[hash].[ext]'
         }
       ]
     },
     plugins: [
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      }),
-      // new webpack.ResolverPlugin(
-      //   new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-      // ),
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+      new ExtractTextPlugin('styles/[name].dev.css'),
+      new webpack.NoErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery',
         _: 'lodash',
         Backbone: 'backbone'
-      }),
-      new webpack.NoErrorsPlugin(),
-      new webpack.HotModuleReplacementPlugin()
+      })
     ],
     devtool: 'eval-source-map',
     debug: true

@@ -18,19 +18,17 @@ import '../styles/alert.scss';
 import '../styles/lists.scss';
 import '../styles/pagination.scss';
 
-import Router from './router';
-import Api from './api';
-import Utils from './utils';
+let Router = require('./router');
+let Api = require('./api');
+let Utils = require('./utils');
 
-$(function () { // document ready
+$(() => { // document ready
   App.API = Api;
   App.Router = new Router();
   Backbone.history.start({
     pushState: true,
     root: '/'
   });
-  // App.Router.navigate(location.pathname, true);
 
   Utils.initializeGlobalHandlers();
-
 });
