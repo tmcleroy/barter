@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var argv = require('yargs').argv;
@@ -6,19 +5,10 @@ var awspublish = require('gulp-awspublish');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 $.parallelize = require('concurrent-transform');
+$.runSequence = require('run-sequence');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var packageJson = require('./package.json');
-
-var browserify = require('browserify');
-var babelify = require("babelify");
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var underscorify = require('node-underscorify');
-var sass = require('gulp-sass');
-
 
 gulp.task('dev', function (cb) {
   var devConfig = require('./webpack.config.dev')();
@@ -42,6 +32,10 @@ gulp.task('dev', function (cb) {
   server.listen(packageJson.appConfig.devPort, 'localhost', function () {});
 });
 
+gulp.task('deploy', function (cb) {
+  return $.runSequence('clean', 'dist', 'publish', cb);
+});
+
 gulp.task('dist', function (cb) {
   var distConfig = require('./webpack.config.dist')();
   webpack(distConfig, function (err, stats) {
@@ -53,20 +47,11 @@ gulp.task('dist', function (cb) {
       colors: true
     }));
 
-
     cb();
   });
-
 });
 
-gulp.task('watch', function () {
-  gulp.start('javascript');
-  gulp.start('sass');
-  gulp.watch(['client/app/**/*.js', 'client/app/**/*.ejs'], ['javascript']);
-  gulp.watch(['client/app/**/*.scss'], ['sass']);
-});
-
-gulp.task('deploy', function (cb) {
+gulp.task('publish', function (cb) {
   var awsCredentials = JSON.parse(fs.readFileSync(process.env.HOME + '/.aws/credentials.json'))[packageJson.appConfig.s3.profile];
 
   var publisher = awspublish.create({
@@ -96,36 +81,59 @@ gulp.task('deploy', function (cb) {
     .pipe(awspublish.reporter());
 });
 
-gulp.task('javascript', function () {
-
-  var tplTransform = underscorify.transform({
-    extensions: ['ejs', 'html']
-  });
-
-  return browserify('./client/app/app.js', { debug: true /* for sourcemaps */ })
-    .transform(babelify)
-    .transform(tplTransform)
-    .bundle()
-    .pipe(source('./app.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-      // Add transformation tasks to the pipeline here.
-      .pipe(uglify())
-      .on('error', $.util.log)
-    .pipe(sourcemaps.write('./app/'))
-    .pipe(gulp.dest('./server/public/dist/scripts/'));
+gulp.task('clean', function () {
+  return gulp.src(['.dev', 'server/public/dist'])
+    .pipe($.clean());
 });
 
-gulp.task('sass', function () {
-  gulp.src('./node_modules/bootstrap-sass/assets/fonts/bootstrap/**/*') // bootstrap fonts
-    .pipe(gulp.dest('./server/public/dist/fonts/bootstrap'));
+// var _ = require('lodash');
+// var browserify = require('browserify');
+// var babelify = require("babelify");
+// var source = require('vinyl-source-stream');
+// var buffer = require('vinyl-buffer');
+// var uglify = require('gulp-uglify');
+// var sourcemaps = require('gulp-sourcemaps');
+// var underscorify = require('node-underscorify');
+// var sass = require('gulp-sass');
 
-  gulp.src('./client/app/styles/app.scss') // app styles
-    .pipe(sass({
-      style: 'compressed',
-      loadPath: [ // bootstrap styles
-        './node_modules/bootstrap-sass/assets/stylesheets'
-      ]
-    }).on('error', sass.logError))
-      .pipe(gulp.dest('./server/public/dist/styles'));
-});
+// gulp.task('watch', function () {
+//   gulp.start('javascript');
+//   gulp.start('sass');
+//   gulp.watch(['client/app/**/*.js', 'client/app/**/*.ejs'], ['javascript']);
+//   gulp.watch(['client/app/**/*.scss'], ['sass']);
+// });
+//
+
+// gulp.task('javascript', function () {
+//
+//   var tplTransform = underscorify.transform({
+//     extensions: ['ejs', 'html']
+//   });
+//
+//   return browserify('./client/app/app.js', { debug: true /* for sourcemaps */ })
+//     .transform(babelify)
+//     .transform(tplTransform)
+//     .bundle()
+//     .pipe(source('./app.js'))
+//     .pipe(buffer())
+//     .pipe(sourcemaps.init({loadMaps: true}))
+//       // Add transformation tasks to the pipeline here.
+//       .pipe(uglify())
+//       .on('error', $.util.log)
+//     .pipe(sourcemaps.write('./app/'))
+//     .pipe(gulp.dest('./server/public/dist/scripts/'));
+// });
+//
+// gulp.task('sass', function () {
+//   gulp.src('./node_modules/bootstrap-sass/assets/fonts/bootstrap/**/*') // bootstrap fonts
+//     .pipe(gulp.dest('./server/public/dist/fonts/bootstrap'));
+//
+//   gulp.src('./client/app/styles/app.scss') // app styles
+//     .pipe(sass({
+//       style: 'compressed',
+//       loadPath: [ // bootstrap styles
+//         './node_modules/bootstrap-sass/assets/stylesheets'
+//       ]
+//     }).on('error', sass.logError))
+//       .pipe(gulp.dest('./server/public/dist/styles'));
+// });

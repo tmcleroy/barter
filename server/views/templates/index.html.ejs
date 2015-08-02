@@ -14,16 +14,19 @@
       var local = window.location.hostname === 'localhost';
       if (local && env === PROD_ENV) { // local dev mode
         prefix = '/dist/';
-        js = 'app.dev.js';
-        css = 'app.dev.css';
+        js = 'main.dev.js';
+        css = 'main.dev.css';
       } else { // hosted or locally testing on an env
         prefix = 'https://s3-us-west-2.amazonaws.com/barter.app/public/dist/' + env + '/';
-        js = 'app.js';
-        css = 'app.css';
+        js = 'main.js';
+        css = 'main.css';
       }
 
+      // js = 'main.js';
+      // css = 'main.css';
+
       document.write('<scrip' + 't type="text/javascript" charset="utf-8" src="' + prefix + 'scripts/' + js + '"><\/script>');
-      document.write('<link rel="stylesheet" type="text/css" href="' + prefix + 'styles/app.css"/>');
+      document.write('<link rel="stylesheet" type="text/css" href="' + prefix + 'styles/' + css + '"/>');
     })();
   </script>
 </head>

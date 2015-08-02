@@ -10,19 +10,6 @@ module.exports = function () {
         library: '[name]',
         filename: 'scripts/[name].js'
     },
-    resolve: {
-      root: [
-        path.join(__dirname, '/app/scripts'),
-        path.join(__dirname, '/app/styles')
-      ],
-      alias: {
-        // 'bootstrap_sass': 'bootstrap-sass',
-        // 'rad': 'rad/dist/scripts',
-        // 'templates': path.join(__dirname, '/.dev/scripts/templates'),
-        // 'localstorage': path.join(__dirname, '/app/bower_components/Backbone.localStorage/backbone.localStorage.js'),
-        // 'twittertext': path.join(__dirname, '/app/bower_components/twitter-text/js/twitter-text.js')
-      }
-    },
     module: {
       loaders: [
         {
@@ -36,54 +23,32 @@ module.exports = function () {
         },
         {
           test: /\.ejs$/,
-          loader: "ejs-loader?variable=data"
+          loader: 'ejs-loader'
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract(
-            'style-loader', 'css!sass', {
-              publicPath: '../'
-            }
-          )
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
         },
         {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract(
-            'style-loader', 'css', {
-              publicPath: '../'
-            }
-          )
-        },
-        {
-          test: /(\.woff|\.ttf|\.eot|\.svg|\.png|\.gif)$/,
+          test: /(\.woff|\.woff2|\.ttf|\.eot|\.svg|\.png|\.jpg|\.gif)$/,
           loader: 'file-loader?name=assets/[name]-[hash].[ext]'
         }
       ]
     },
     plugins: [
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      }),
-      new webpack.ResolverPlugin(
-        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-      ),
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        exclude: /templates\.js($|\?)/,
-        compress: {
-          drop_console: true
-        }
-      }),
+      new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.OccurenceOrderPlugin(true),
-      new webpack.PrefetchPlugin('./client/app/styles/app.scss'),
+      new webpack.NoErrorsPlugin(),
+      new ExtractTextPlugin('styles/[name].css'),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery',
-        '_': 'lodash'
-      }),
-      new ExtractTextPlugin('styles/main.css', { allChunks: true }),
-      new webpack.NoErrorsPlugin()
+        _: 'lodash',
+        Backbone: 'backbone'
+      })
     ]
   };
 };

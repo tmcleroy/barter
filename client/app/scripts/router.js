@@ -1,22 +1,19 @@
-var Backbone = require('backbone');
-var _ = require('lodash');
-
-var AppSkeleton = require('../templates/app.ejs');
-var HeaderView = require('./views/headerView');
-var FooterView = require('./views/footerView');
-var SideBarView = require('./views/sideBarView.js');
-var HomeView = require('./views/homeView');
-var LoginView = require('./views/loginView');
-var RegisterView = require('./views/registerView');
-var SettingsView = require('./views/settingsView');
-var InboxView = require('./views/inboxView');
-var RequestsView = require('./views/requestsView');
-var RequestView = require('./views/requestView');
-var ProposalsView = require('./views/proposalsView');
-var CreateRequestView = require('./views/createRequestView');
-var SubmissionView = require('./views/submissionView');
-var CreateSubmissionView = require('./views/createSubmissionView');
-var User = require('./models/userModel');
+import AppSkeleton from '../templates/app.ejs';
+import HeaderView from './views/headerView';
+import FooterView from './views/footerView';
+import SideBarView from './views/sideBarView.js';
+import HomeView from './views/homeView';
+import LoginView from './views/loginView';
+import RegisterView from './views/registerView';
+import SettingsView from './views/settingsView';
+import InboxView from './views/inboxView';
+import RequestsView from './views/requestsView';
+import RequestView from './views/requestView';
+import ProposalsView from './views/proposalsView';
+import CreateRequestView from './views/createRequestView';
+import SubmissionView from './views/submissionView';
+import CreateSubmissionView from './views/createSubmissionView';
+import User from './models/userModel';
 
 var Router = Backbone.Router.extend(_.defaults({
   lastView: null,
@@ -236,4 +233,4 @@ var Router = Backbone.Router.extend(_.defaults({
 
 }));
 
-module.exports = Router;
+export default Router;

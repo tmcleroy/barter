@@ -1,12 +1,26 @@
-window.$ = require('jquery');
-window.jQuery = window.$;
-window._ = require('lodash');
-window.Backbone = require('backbone');
 Backbone.$ = $;
+import '../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import '../styles/variables.scss';
+import '../styles/main.scss';
+import '../styles/widgets.scss';
+import '../styles/header.scss';
+import '../styles/profile.scss';
+import '../styles/request.scss';
+import '../styles/comment.scss';
+import '../styles/proposal.scss';
+import '../styles/submission.scss';
+import '../styles/tag.scss';
+import '../styles/offer.scss';
+import '../styles/markdown.scss';
+import '../styles/buttons.scss';
+import '../styles/modal.scss';
+import '../styles/alert.scss';
+import '../styles/lists.scss';
+import '../styles/pagination.scss';
 
-var Router = require('./router');
-var Api = require('./api');
-var Utils = require('./utils');
+import Router from './router';
+import Api from './api';
+import Utils from './utils';
 
 $(function () { // document ready
   App.API = Api;

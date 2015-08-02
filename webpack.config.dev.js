@@ -10,7 +10,7 @@ module.exports = function () {
       path.join(__dirname, '/client/app/scripts/app')
     ],
     output: {
-        path: path.join(__dirname, '/server/public/dist/build/'),
+        path: path.join(__dirname, '/server/public/dist/'),
         library: '[name]',
         filename: 'scripts/[name].dev.js'
     },
@@ -63,7 +63,8 @@ module.exports = function () {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery',
-        '_': 'lodash'
+        _: 'lodash',
+        Backbone: 'backbone'
       }),
       new webpack.NoErrorsPlugin(),
       new webpack.HotModuleReplacementPlugin()
