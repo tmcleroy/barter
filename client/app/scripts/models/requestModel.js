@@ -1,9 +1,4 @@
 var NestedModel = require('./_nestedModel');
-var Comments = require('../collections/commentsCollection');
-var Tags = require('../collections/tagsCollection');
-var Proposals = require('../collections/proposalsCollection');
-var Submission = require('./submissionModel');
-var User = require('./userModel');
 var marked = require('marked');
 
 var RequestModel = NestedModel.extend({
@@ -11,11 +6,11 @@ var RequestModel = NestedModel.extend({
 
   // nested model and collection defs
   nestedDefs: {
-    'User': User,
-    'Tags': Tags,
-    'Comments': Comments,
-    'Proposals': Proposals,
-    'Submission': Submission
+    'User': 'User',
+    'Tags': 'Tags',
+    'Comments': 'Comments',
+    'Proposals': 'Proposals',
+    'Submission': 'Submission'
   },
 
   getBodyFormatted: function () {
@@ -23,4 +18,4 @@ var RequestModel = NestedModel.extend({
   }
 });
 
-module.exports =  RequestModel;
+module.exports = RequestModel;

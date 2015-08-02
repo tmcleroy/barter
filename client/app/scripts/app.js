@@ -31,4 +31,23 @@ $(() => { // document ready
   });
 
   Utils.initializeGlobalHandlers();
+
+  App.modelsAndCollections = {
+    // models
+    User: require('./models/userModel'),
+    Comment: require('./models/commentModel'),
+    Proposal: require('./models/proposalModel'),
+    Request: require('./models/requestModel'),
+    Submission: require('./models/submissionModel'),
+    Notification: require('./models/notificationModel'),
+    Tag: require('./models/tagModel'),
+    // collections
+    Comments: require('./collections/commentsCollection'),
+    Proposals: require('./collections/proposalsCollection'),
+    Requests: require('./collections/requestsCollection'),
+    Submissions: require('./collections/submissionsCollection'),
+    Notifications: require('./collections/notificationsCollection'),
+    Tags: require('./collections/tagsCollection')
+  };
+
 });

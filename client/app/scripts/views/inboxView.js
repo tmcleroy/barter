@@ -19,6 +19,7 @@ var InboxView = Backbone.View.extend({
   },
 
   render () {
+    console.log(this.collection.first().attributes);
     this.$el.html(this.template({
       notifications: this.collection
     }));
@@ -26,4 +27,4 @@ var InboxView = Backbone.View.extend({
   }
 });
 
-module.exports =  InboxView;
+module.exports = InboxView;

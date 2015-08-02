@@ -1,6 +1,5 @@
 var Submission = require('../models/submissionModel');
 var CommentsView = require('../views/commentsView');
-var ModelHydrator = require('../models/_modelHydrator');
 var ConfirmationModal = require('./confirmationModal');
 var Alert = require('./components/alert');
 
@@ -18,7 +17,6 @@ var SubmissionView = Backbone.View.extend({
     this.model = new Submission({ id: params.id });
 
     this.model.fetch().done((Submission) => {
-      ModelHydrator.hydrateModels(this.model);
       this.mine = App.user.get('id') === Submission.UserId;
       this.render();
     });
@@ -69,4 +67,4 @@ var SubmissionView = Backbone.View.extend({
   }
 });
 
-module.exports =  SubmissionView;
+module.exports = SubmissionView;

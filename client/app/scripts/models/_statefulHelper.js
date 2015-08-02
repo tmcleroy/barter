@@ -40,4 +40,4 @@ var StatefulHelper = {
   }
 };
 
-module.exports =  StatefulHelper;
+module.exports = StatefulHelper;
