@@ -1,14 +1,16 @@
 #Barter
 
-#### Set up database
+### Local dev environment setup
+
+#### database
 have a postgresql database running at `localhost:5432`
 
 with username `postgres` and trust (no password) authentication
 
 the database should have a database named `barter`
 
-#### Set up S3 credentials
-note: you only really need this if you want avatar uploads to work
+#### S3
+**note:** you only really need this if you want avatar uploads to work, or to deploy front-end code to s3.
 
 create or modify the file `~/.aws/credentials` to include the lines
 
@@ -17,25 +19,40 @@ create or modify the file `~/.aws/credentials` to include the lines
 aws_access_key_id = <contact-repo-owner>
 aws_secret_access_key = <contact-repo-owner>
 ```
+necessary for avatar uploads ^
 
-contact the owner of this repo to get those values
+also create the file `~/.aws/credentials.json` and include the lines
+```json
+{
+  "barter": {
+    "aws_access_key_id": "<contact-repo-owner>",
+    "aws_secret_access_key": "<contact-repo-owner>"
+  }
+}
+```
+necessary for deploying front-end code ^
 
-#### Install dependencies
+contact the owner of this repo to get the s3 keys
+
+#### install dependencies
 `npm install`
 
-#### Bundle assets
-(also rebundles on asset changes)
+#### deploy front-end
+```sh
+# production, be careful what you deploy
+gulp deploy --target=production
+# custom env
+gulp deploy --target=myenv
+```
 
-`gulp watch`
+visit an en env by appending `?env=myenv` to the url
 
-#### Run server
+#### server
 `node server/server.js`
 
 the app will be available at http://localhost:5000
 
-provide the command line argument `reload-data` to reload the database with test data, this must be done at least once so there is some data in your database
+provide the command line argument `reload-data` to reload the database with test data, this must be done at least once so there is some data in your test database
 
-`node server/server.js reload-data`
-
-#### Run tests
+#### tests
 `npm test`
