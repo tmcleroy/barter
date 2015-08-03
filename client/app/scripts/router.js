@@ -31,7 +31,7 @@ var Router = Backbone.Router.extend(_.defaults({
 
 
     'app/requests/browse(/)(:options)'        : 'requestsBrowse',
-    'app/requests/show/:id(/)'                : 'requestsShow',
+    'app/requests/show/:id(/)(:options)'      : 'requestsShow',
     'app/requests/create(/)'                  : 'requestsCreate',
     'app/requests/mine(/)(:options)'          : 'requestsMine',
 
@@ -150,13 +150,14 @@ var Router = Backbone.Router.extend(_.defaults({
     }
   },
 
-  requestsShow (id) {
+  requestsShow (id, options) {
     var viewName = 'requestsShow';
 
     if (this.preRoute(viewName)) {
       this.view = new RequestView({
         el: $('<div class="requestsShowViewContainer" />').appendTo('#contentContainer'),
-        id: id
+        id: id,
+        options: this.parseOptions(options)
       });
       this.postRoute(viewName);
     }

@@ -1,13 +1,15 @@
 module.exports = function (sequelize, DataTypes) {
   // example notification as a sentence:
   // "Hey Tommy, Bill commented on your request"
+  // actionType => 'Comment'
+  // actionId => The id of the comment
   // User => Tommy's User instance
   // SubjectUser => Bill's User instance
   // ObjectRequest => The intance of that request (ObjectUser, ObjectProposal, etc. will be null)
-  // predicate => 'commented on'
   // objectType => 'Request'
   var Notification = sequelize.define('Notification', {
-    predicate: DataTypes.STRING,
+    actionType: DataTypes.STRING,
+    actionId: DataTypes.INTEGER,
     // name of the model type of the object. User, Proposal, Request, etc.
     // needed so we can easily know which object type is set (see associations below)
     objectType: DataTypes.STRING,

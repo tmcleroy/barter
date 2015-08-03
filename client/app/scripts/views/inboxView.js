@@ -4,7 +4,6 @@ var InboxView = Backbone.View.extend({
   template: require('../../templates/inbox.ejs'),
 
   initialize (params) {
-    console.log('initializing inboxView');
     this.collection = new Notifications();
 
     this.listenTo(this.collection, 'change sync', this.render);
@@ -19,7 +18,7 @@ var InboxView = Backbone.View.extend({
   },
 
   render () {
-    console.log(this.collection.first().attributes);
+    console.log(this.collection);
     this.$el.html(this.template({
       notifications: this.collection
     }));

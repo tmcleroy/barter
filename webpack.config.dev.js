@@ -20,7 +20,9 @@ module.exports = function () {
       loaders: [
         {
           test: /\.js$/,
-          include: path.join(__dirname, 'client/app/scripts'),
+          include: [
+            path.join(__dirname, 'client/app/scripts')
+          ],
           loader: 'babel-loader',
           query: {
             optional: ['runtime'],

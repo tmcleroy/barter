@@ -12,6 +12,8 @@ var RequestView = Backbone.View.extend({
   mine: false,
 
   initialize: function (params) {
+    this.options = params.options;
+    console.log(this.options);
     this.model = new Request({ id: params.id });
 
     this.model.fetch().done((Request) => {
@@ -51,6 +53,10 @@ var RequestView = Backbone.View.extend({
         el: this.$('.proposalsContainer')
       }));
     }
+    if (this.options && this.options.goto) {
+      window.location.hash = this.options.goto;
+      $(this.options.goto).addClass('highlighted');
+    }
   },
 
   remove: function () {
@@ -59,4 +65,4 @@ var RequestView = Backbone.View.extend({
   }
 });
 
-module.exports =  RequestView;
+module.exports = RequestView;

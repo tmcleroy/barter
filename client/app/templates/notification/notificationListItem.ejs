@@ -1,7 +1,11 @@
 <div class="notification listItem">
   <div class="row">
     <div class="col-sm-12">
-      <%= notification.get('predicate') %>
+      <a href="<%= notification.get('SubjectUser').getProfileUrl() %>"><%= notification.get('SubjectUser').get('username') %></a>
+      <span class="predicate"><%= notification.getPredicate() %></span> your
+      <%= require('../notification/objectDisplay.ejs')({
+        notification: notification
+      }) %>
     </div>
   </div>
 </div>

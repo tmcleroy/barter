@@ -7,11 +7,12 @@ var handler = function (req, res) {
   }).then(function (comment) {
     models.Request.findOne({ where: { id: req.body.requestId }}).then(function (request) {
       models.Notification.create({
-        SubjectUserId: req.user.id,
-        UserId: request.UserId,
-        predicate: 'commented on',
+        actionType: 'Comment',
+        actionId: comment.id,
         objectType: 'Request',
-        ObjectRequestId: request.id
+        ObjectRequestId: request.id,
+        SubjectUserId: req.user.id,
+        UserId: request.UserId
       });
       // TODO single set of RequestId and UserId
       comment.setRequest(request).then(function () {
