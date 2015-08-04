@@ -17,6 +17,7 @@ var handler = function (req, res) {
   } else {
     models.Notification.findAll({
       where: where,
+      order: [['"createdAt"', 'desc']],
       include: [
         { model: models.User, as: 'User' },
         { model: models.User, as: 'SubjectUser' },

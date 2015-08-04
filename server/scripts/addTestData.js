@@ -477,11 +477,7 @@ var fxn = function () {
          request.setProposals(proposals);
        });
      });
-
-
-
   });
-
 };
 
 module.exports = fxn;
