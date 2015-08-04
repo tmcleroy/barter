@@ -42,7 +42,7 @@
           html: submission.getBodyFormatted(),
           collapsed: true,
         }) %>
-        <div class="state <%= submission.getStateString() %>">
+        <div class="state <%= submission.getStateString() %> pull-right">
           <span class="stateText">Submission <%= submission.getStateStringFormatted() %></span>
         </div>
       <% } %>

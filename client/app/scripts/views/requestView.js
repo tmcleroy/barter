@@ -54,8 +54,7 @@ var RequestView = Backbone.View.extend({
       }));
     }
     if (this.options && this.options.goto) {
-      // TODO figure out how to do this without altering window history
-      window.location.hash = this.options.goto;
+      $('html, body').scrollTop($(this.options.goto).offset().top);
       $(this.options.goto).addClass('highlighted');
     }
   },

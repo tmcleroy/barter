@@ -24,12 +24,23 @@ var NotificationModel = NestedModel.extend({
   },
 
   getObjectUrl () {
+    var url = '';
     var objectType = this.get('objectType');
     var objectId = this.get(`Object${ objectType }`).get('id');
     var actionType = this.get('actionType');
     var actionId = this.get('actionId');
     var options = encodeURIComponent(`{"goto":"#${ actionType }-${ actionId }"}`);
-    return `/app/${ objectType }s/show/${ objectId }/${ options }`.toLowerCase();
+
+    // submission on a request, link directly to the submission
+    if (objectType === 'Request' && actionType === 'Submission') {
+      url = `/app/${ actionType }s/show/${ actionId }`;
+    }
+    // comment or proposal on a request, link directly to the request itself and
+    // highlight the comment or proposal
+    else {
+      url = `/app/${ objectType }s/show/${ objectId }/${ options }`;
+    }
+    return url.toLowerCase();
   }
 });
 

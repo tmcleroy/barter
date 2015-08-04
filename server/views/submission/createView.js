@@ -1,5 +1,4 @@
 var models = require('../../models');
-var Sequelize = require('sequelize');
 
 var handler = function (req, res) {
   // assure that the accepted proposal belongs to the current user
@@ -9,16 +8,20 @@ var handler = function (req, res) {
       if (proposal.UserId === req.user.id) {
         models.Submission.create({
           body: req.body.body,
-          link: req.body.link
+          link: req.body.link,
+          UserId: req.user.id,
+          RequestId: request.id,
+          ProposalId: proposal.id
         }).then(function (submission) {
-          var promises = [];
-          // FIXME there may be a way to bulk set these attrs
-          promises.push(submission.setUser(req.user));
-          promises.push(submission.setRequest(request));
-          promises.push(submission.setProposal(proposal));
-          Sequelize.Promise.all(promises).then(function () {
-            res.status(200).send(submission);
+          models.Notification.create({
+            actionType: 'Submission',
+            actionId: submission.id,
+            objectType: 'Request',
+            ObjectRequestId: request.id,
+            SubjectUserId: req.user.id,
+            UserId: request.UserId
           });
+          res.status(200).send(submission);
         });
       } else {
         res.status(401).send('You do not have permission to make a submission on this request.');

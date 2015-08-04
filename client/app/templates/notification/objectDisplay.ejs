@@ -1,5 +1,5 @@
 <%= notification.get('objectType').toLowerCase() %>
-<% if (notification.get('objectType').toLowerCase() === 'request') { %>
+<% if (notification.get('objectType') === 'Request') { %>
   <h4 class="title">
     <a href="<%= notification.getObjectUrl() %>">
       <%= notification.get('Object' + notification.get('objectType')).get('title') %>

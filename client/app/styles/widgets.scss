@@ -120,3 +120,23 @@ select {
     background-color: $mute-red;
   }
 }
+
+// highlighted elements
+.highlighted {
+  border-radius: 2px;
+  animation: pulsate 0.75s ease-out;
+  animation-iteration-count: 3;
+  animation-delay: 0.2s;
+
+  @keyframes pulsate {
+    0% {
+      opacity: 1;
+      box-shadow: 0 0 0 0px #ccc;
+    }
+    50% {
+      opacity: 0.2;
+      box-shadow: 0 0 0 7px #ccc;
+    }
+  }
+
+}
