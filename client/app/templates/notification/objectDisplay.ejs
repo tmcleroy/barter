@@ -5,7 +5,7 @@
       <%= notification.get('Object' + notification.get('objectType')).get('title') %>
     </a>
   </h4>
-<% } else if (notification.get('objectType') === 'Proposal') { %>
+<% } else if (_.contains(['Proposal', 'Submission'], notification.get('objectType'))) { %>
   for the request
   <h4 class="title">
     <a href="<%= notification.getObjectUrl() %>">

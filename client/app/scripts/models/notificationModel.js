@@ -17,8 +17,8 @@ var NotificationModel = NestedModel.extend({
     'Comment': '<b>commented</b> on',
     'Proposal': 'has a <b>proposal</b> for',
     'Submission': 'made a <b>submission</b> for',
-    'accept': 'accepted',
-    'reject': 'rejected'
+    'accept': '<b>accepted</b>',
+    'reject': '<b>rejected</b>'
   },
 
   getPredicate () {
@@ -36,9 +36,9 @@ var NotificationModel = NestedModel.extend({
 
     if (objectType === 'Request') { // comment, proposal, or submission on a request
       if (actionType === 'Submission') { // submission on a request
-        url = `/app/${ actionType }s/show/${ actionId }`; // link directly to the submission
+        url = `/app/submissions/show/${ actionId }`; // link directly to the submission
       } else { // comment or proposal on a request
-        url = `/app/${ objectType }s/show/${ objectId }/${ options }`; // link directly to the request itself and highlight the comment or proposal
+        url = `/app/requests/show/${ this.get('ObjectRequestId') }/${ options }`; // link directly to the request itself and highlight the comment or proposal
       }
     } else if (objectType === 'Proposal') { // proposal accepted or rejected
       if (actionType === 'accept') {
@@ -46,6 +46,8 @@ var NotificationModel = NestedModel.extend({
       } else {
         url = `/app/requests/show/${ this.get('ObjectRequestId') }`; // link to the request for which you got rejected
       }
+    } else if (objectType === 'Submission') { // submission accepted or rejected
+      url = `/app/submissions/show/${ this.get('ObjectSubmissionId') }`; // link to the submission
     }
 
     return url.toLowerCase();

@@ -4,7 +4,7 @@
       <div class="state <%= state %>">
         <span class="stateText"><%= stateFormatted %></span>
       </div>
-      <h5 class="title"><%= submission.get('User').get('username') %>'s submission for your request</h5>
+      <h5 class="title"><%= submissionOwner %> submission for <%= requestOwner %> request</h5>
       <%= require('../components/collapsibleContainer.ejs')({
         classes: 'submissionRequestContainer animated',
         text: { show: 'Show Request', hide: 'Hide Request' },

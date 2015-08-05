@@ -23,10 +23,15 @@ var SubmissionView = Backbone.View.extend({
   },
 
   render: function () {
+    var user = this.model.get('User');
+    var request = this.model.get('Request');
+    console.log(this.model.get('Request'));
     this.$el.html(this.template({
       submission: this.model,
       state: this.model.getStateString(),
-      stateFormatted: this.model.getStateStringFormatted()
+      stateFormatted: this.model.getStateStringFormatted(),
+      submissionOwner: user.get('id') === App.user.get('id') ? 'your' : `${ user.get('username') }'s`,
+      requestOwner: request.get('UserId') === App.user.get('id') ? 'your' : `${ request.get('User').get('username') }'s`
     }));
     // this.views = [
     //   new CommentsView({
