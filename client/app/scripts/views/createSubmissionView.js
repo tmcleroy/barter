@@ -1,4 +1,4 @@
-var Submission = require('../models/submissionModel');
+var Submission = require('scripts/models/submissionModel');
 var BodyEditorView = require('./bodyEditorView');
 var ConfirmationModal = require('./confirmationModal');
 var Alert = require('./components/alert');
@@ -55,4 +55,4 @@ var CreateSubmissionView = Backbone.View.extend({
 
 });
 
-module.exports =  CreateSubmissionView;
+module.exports = CreateSubmissionView;

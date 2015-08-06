@@ -2,8 +2,8 @@ var _ = require('lodash');
 var models = require('../../models');
 
 var whereMap = {
-  seen: { seen: true },
-  unseen: { seen: false }
+  seen: { state: 1 },
+  unseen: { state: -1 }
 };
 
 var handler = function (req, res) {

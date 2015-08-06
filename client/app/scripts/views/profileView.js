@@ -25,4 +25,4 @@ var ProfileView = Backbone.View.extend({
 
 });
 
-module.exports =  ProfileView;
+module.exports = ProfileView;

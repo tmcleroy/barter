@@ -1,7 +1,11 @@
-var Notifications = require('../collections/notificationsCollection');
+var Notifications = require('scripts/collections/notificationsCollection');
 
 var InboxView = Backbone.View.extend({
-  template: require('../../templates/inbox.ejs'),
+  template: require('templates/inbox.ejs'),
+
+  events: {
+    'click [data-action="seen"]': 'seenNotification'
+  },
 
   initialize (params) {
     this.collection = new Notifications();
@@ -18,11 +22,14 @@ var InboxView = Backbone.View.extend({
   },
 
   render () {
-    console.log(this.collection);
     this.$el.html(this.template({
       notifications: this.collection
     }));
     this.$el.removeClass('loading');
+  },
+
+  seenNotification (evt) {
+    this.collection.findWhere({ id: parseInt($(evt.target).attr('data-id'), 10) }).setState('seen');
   }
 });
 

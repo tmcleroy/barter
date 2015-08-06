@@ -1,4 +1,4 @@
-var Proposal = require('../models/proposalModel');
+var Proposal = require('scripts/models/proposalModel');
 var ConfirmationModal = require('./confirmationModal');
 var Alert = require('./components/alert');
 
@@ -56,4 +56,4 @@ var CreateProposalView = Backbone.View.extend({
 
 });
 
-module.exports =  CreateProposalView;
+module.exports = CreateProposalView;

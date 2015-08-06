@@ -1,14 +1,14 @@
 <%= notification.get('objectType').toLowerCase() %>
 <% if (notification.get('objectType') === 'Request') { %>
   <h4 class="title">
-    <a href="<%= notification.getObjectUrl() %>">
+    <a href="<%= notification.getObjectUrl() %>" data-action="seen" data-id="<%= notification.get('id') %>">
       <%= notification.get('Object' + notification.get('objectType')).get('title') %>
     </a>
   </h4>
 <% } else if (_.contains(['Proposal', 'Submission'], notification.get('objectType'))) { %>
   for the request
   <h4 class="title">
-    <a href="<%= notification.getObjectUrl() %>">
+    <a href="<%= notification.getObjectUrl() %>" data-action="seen" data-id="<%= notification.get('id') %>">
       <%= notification.get('ObjectRequest').get('title') %>
     </a>
   </h4>

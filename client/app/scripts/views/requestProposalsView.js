@@ -32,4 +32,4 @@ var ProposalsView = Backbone.View.extend({
 
 });
 
-module.exports =  ProposalsView;
+module.exports = ProposalsView;

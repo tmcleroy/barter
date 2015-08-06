@@ -42,4 +42,4 @@ var HeaderView = Backbone.View.extend({
   }
 });
 
-module.exports =  HeaderView;
+module.exports = HeaderView;

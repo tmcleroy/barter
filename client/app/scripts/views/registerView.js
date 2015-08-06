@@ -38,4 +38,4 @@ var RegisterView = Backbone.View.extend({
 
 });
 
-module.exports =  RegisterView;
+module.exports = RegisterView;

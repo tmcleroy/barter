@@ -1,19 +1,19 @@
-let AppSkeleton = require('../templates/app.ejs');
-let HeaderView = require('./views/headerView');
-let FooterView = require('./views/footerView');
-let SideBarView = require('./views/sideBarView.js');
-let HomeView = require('./views/homeView');
-let LoginView = require('./views/loginView');
-let RegisterView = require('./views/registerView');
-let SettingsView = require('./views/settingsView');
-let InboxView = require('./views/inboxView');
-let RequestsView = require('./views/requestsView');
-let RequestView = require('./views/requestView');
-let ProposalsView = require('./views/proposalsView');
-let CreateRequestView = require('./views/createRequestView');
-let SubmissionView = require('./views/submissionView');
-let CreateSubmissionView = require('./views/createSubmissionView');
-let User = require('./models/userModel');
+let AppSkeleton = require('templates/app.ejs');
+let HeaderView = require('scripts/views/headerView');
+let FooterView = require('scripts/views/footerView');
+let SideBarView = require('scripts/views/sideBarView.js');
+let HomeView = require('scripts/views/homeView');
+let LoginView = require('scripts/views/loginView');
+let RegisterView = require('scripts/views/registerView');
+let SettingsView = require('scripts/views/settingsView');
+let InboxView = require('scripts/views/inboxView');
+let RequestsView = require('scripts/views/requestsView');
+let RequestView = require('scripts/views/requestView');
+let ProposalsView = require('scripts/views/proposalsView');
+let CreateRequestView = require('scripts/views/createRequestView');
+let SubmissionView = require('scripts/views/submissionView');
+let CreateSubmissionView = require('scripts/views/createSubmissionView');
+let User = require('scripts/models/userModel');
 
 var Router = Backbone.Router.extend(_.defaults({
   lastView: null,
@@ -28,7 +28,6 @@ var Router = Backbone.Router.extend(_.defaults({
     'register(/)'                             : 'register',
     'app/settings(/)'                         : 'settings',
     'app/inbox(/)'                            : 'inbox',
-
 
     'app/requests/browse(/)(:options)'        : 'requestsBrowse',
     'app/requests/show/:id(/)(:options)'      : 'requestsShow',

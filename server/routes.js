@@ -22,6 +22,7 @@ var submissionCreateView = require('./views/submission/createView');
 var submissionSetStateView = require('./views/submission/setStateView');
 
 var notificationIndexView = require('./views/notification/indexView');
+var notificationSetStateView = require('./views/notification/setStateView');
 
 // handlers
 var loginHandler = require('./handlers/loginHandler');
@@ -68,6 +69,7 @@ module.exports = function (app) {
 
   // Notification
   app.get('/api/notifications', notificationIndexView);
+  app.post('/api/notifications/:id/state', notificationSetStateView);
 
   // Submission
   app.get('/api/submissions/:id', submissionShowView);

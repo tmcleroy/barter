@@ -1,4 +1,4 @@
-var User = require('./models/userModel');
+var User = require('scripts/models/userModel');
 
 const api = {
   login (username, password) {
@@ -54,4 +54,4 @@ const api = {
   }
 };
 
-module.exports =  api;
+module.exports = api;

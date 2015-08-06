@@ -1,5 +1,5 @@
-var NestedModel = require('./_nestedModel');
-var StatefulHelper = require('./_statefulHelper');
+var NestedModel = require('scripts/models/_nestedModel');
+var StatefulHelper = require('scripts/models/_statefulHelper');
 var marked = require('marked');
 
 var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {

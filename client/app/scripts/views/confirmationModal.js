@@ -19,4 +19,4 @@ var ConfirmationModal = Modal.extend({
   }
 });
 
-module.exports =  ConfirmationModal;
+module.exports = ConfirmationModal;

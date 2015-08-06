@@ -1,7 +1,8 @@
-var NestedModel = require('./_nestedModel');
+let NestedModel = require('./_nestedModel');
+var StatefulHelper = require('scripts/models/_statefulHelper');
 
-var NotificationModel = NestedModel.extend({
-  urlRoot: '/api/notifications/',
+let NotificationModel = NestedModel.extend(_.extend({}, StatefulHelper, {
+  urlRoot: '/api/notifications',
 
   nestedDefs: {
     'User': 'User',
@@ -26,12 +27,12 @@ var NotificationModel = NestedModel.extend({
   },
 
   getObjectUrl () {
-    var url = '';
-    var objectType = this.get('objectType');
-    var objectId = this.get(`Object${ objectType }`).get('id');
-    var actionType = this.get('actionType');
-    var actionId = this.get('actionId');
-    var options = encodeURIComponent(`{"goto":"#${ actionType }-${ actionId }"}`);
+    let url = '';
+    let objectType = this.get('objectType');
+    let objectId = this.get(`Object${ objectType }`).get('id');
+    let actionType = this.get('actionType');
+    let actionId = this.get('actionId');
+    let options = encodeURIComponent(`{"goto":"#${ actionType }-${ actionId }"}`);
 
 
     if (objectType === 'Request') { // comment, proposal, or submission on a request
@@ -52,6 +53,6 @@ var NotificationModel = NestedModel.extend({
 
     return url.toLowerCase();
   }
-});
+}));
 
 module.exports = NotificationModel;

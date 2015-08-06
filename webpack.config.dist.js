@@ -10,6 +10,11 @@ module.exports = function () {
         library: '[name]',
         filename: 'scripts/[name].js'
     },
+    resolve: {
+      root: [
+        path.join(__dirname, '/client/app')
+      ]
+    },
     module: {
       loaders: [
         {

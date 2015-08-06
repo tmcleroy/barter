@@ -1,5 +1,5 @@
-var Submission = require('../models/submissionModel');
-var CommentsView = require('../views/commentsView');
+var Submission = require('scripts/models/submissionModel');
+var CommentsView = require('scripts/views/commentsView');
 var ConfirmationModal = require('./confirmationModal');
 var Alert = require('./components/alert');
 

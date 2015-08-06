@@ -1,5 +1,5 @@
 var PaginatedView = require('./paginatedView');
-var ProposalsCollection = require('../collections/proposalsCollection');
+var ProposalsCollection = require('scripts/collections/proposalsCollection');
 
 var ProposalsView = PaginatedView.extend({
   template: require('../../templates/proposal/proposals.ejs'),
@@ -36,4 +36,4 @@ var ProposalsView = PaginatedView.extend({
 
 });
 
-module.exports =  ProposalsView;
+module.exports = ProposalsView;

@@ -1,6 +1,6 @@
 // models that have states can extend this
 // models that extend this must have urlRoot defined
-// see submissionModel.js or proposalModel.js for examples
+// see submissionModel.js, proposalModel.js for examples
 
 var StatefulHelper = {
   stateMap: {
@@ -12,13 +12,15 @@ var StatefulHelper = {
   stateStringMap: {
     rejected: -1,
     pending: 0,
-    accepted: 1
+    accepted: 1,
+    unseen: -1,
+    seen: 1
   },
 
-  setState: function (state) {
+  setState (state) {
     this.set('state', this.stateStringMap[state]);
     return $.ajax({
-      url: this.urlRoot + '/' + this.get('id') + '/state',
+      url: `${ this.urlRoot }/${ this.get('id') }/state`,
       method: 'POST',
       data: {
         state: this.get('state')
@@ -26,16 +28,16 @@ var StatefulHelper = {
     });
   },
 
-  getStateString: function () {
-    return this.stateMap[this.get('state') + ''];
+  getStateString () {
+    return this.stateMap[`${ this.get('state') }`];
   },
 
-  getStateStringFormatted: function () {
+  getStateStringFormatted () {
     var stateString = this.getStateString();
     return stateString.replace(/^\w/, stateString.charAt(0).toUpperCase());
   },
 
-  is: function (state) {
+  is (state) {
     return this.getStateString() === state;
   }
 };

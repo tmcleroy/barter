@@ -15,4 +15,4 @@ var CommentsView = Backbone.View.extend({
 
 });
 
-module.exports =  CommentsView;
+module.exports = CommentsView;

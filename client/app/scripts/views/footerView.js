@@ -14,4 +14,4 @@ var FooterView = Backbone.View.extend({
 
 });
 
-module.exports =  FooterView;
+module.exports = FooterView;

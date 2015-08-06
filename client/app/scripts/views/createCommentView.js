@@ -1,4 +1,4 @@
-var Comment = require('../models/commentModel');
+var Comment = require('scripts/models/commentModel');
 var Alert = require('./components/alert');
 
 var CreateCommentView = Backbone.View.extend({
@@ -45,4 +45,4 @@ var CreateCommentView = Backbone.View.extend({
 
 });
 
-module.exports =  CreateCommentView;
+module.exports = CreateCommentView;

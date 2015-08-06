@@ -34,20 +34,20 @@ $(() => { // document ready
 
   App.modelsAndCollections = {
     // models
-    User: require('./models/userModel'),
-    Comment: require('./models/commentModel'),
-    Proposal: require('./models/proposalModel'),
-    Request: require('./models/requestModel'),
-    Submission: require('./models/submissionModel'),
-    Notification: require('./models/notificationModel'),
-    Tag: require('./models/tagModel'),
+    User: require('scripts/models/userModel'),
+    Comment: require('scripts/models/commentModel'),
+    Proposal: require('scripts/models/proposalModel'),
+    Request: require('scripts/models/requestModel'),
+    Submission: require('scripts/models/submissionModel'),
+    Notification: require('scripts/models/notificationModel'),
+    Tag: require('scripts/models/tagModel'),
     // collections
-    Comments: require('./collections/commentsCollection'),
-    Proposals: require('./collections/proposalsCollection'),
-    Requests: require('./collections/requestsCollection'),
-    Submissions: require('./collections/submissionsCollection'),
-    Notifications: require('./collections/notificationsCollection'),
-    Tags: require('./collections/tagsCollection')
+    Comments: require('scripts/collections/commentsCollection'),
+    Proposals: require('scripts/collections/proposalsCollection'),
+    Requests: require('scripts/collections/requestsCollection'),
+    Submissions: require('scripts/collections/submissionsCollection'),
+    Notifications: require('scripts/collections/notificationsCollection'),
+    Tags: require('scripts/collections/tagsCollection')
   };
 
 });

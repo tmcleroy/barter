@@ -1,5 +1,5 @@
 var PaginatedView = require('./paginatedView');
-var RequestsCollection = require('../collections/requestsCollection');
+var RequestsCollection = require('scripts/collections/requestsCollection');
 
 var RequestsView = PaginatedView.extend({
   template: require('../../templates/request/requests.ejs'),
@@ -49,4 +49,4 @@ var RequestsView = PaginatedView.extend({
 
 });
 
-module.exports =  RequestsView;
+module.exports = RequestsView;

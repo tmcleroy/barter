@@ -1,4 +1,4 @@
-var Proposal = require('../models/proposalModel');
+var Proposal = require('scripts/models/proposalModel');
 var PaginatedCollection = require('./_paginatedCollection');
 
 var ProposalsCollection = PaginatedCollection.extend({

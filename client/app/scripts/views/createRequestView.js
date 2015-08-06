@@ -1,6 +1,6 @@
-var Request = require('../models/requestModel');
-var Tags = require('../collections/tagsCollection');
-var Tag = require('../models/tagModel');
+var Request = require('scripts/models/requestModel');
+var Tags = require('scripts/collections/tagsCollection');
+var Tag = require('scripts/models/tagModel');
 var TagsView = require('./tagsView');
 var BodyEditorView = require('./bodyEditorView');
 var ConfirmationModal = require('./confirmationModal');
@@ -74,4 +74,4 @@ var CreateRequestView = Backbone.View.extend({
   }
 });
 
-module.exports =  CreateRequestView;
+module.exports = CreateRequestView;

@@ -1,4 +1,4 @@
-var Notification = require('../models/notificationModel');
+var Notification = require('scripts/models/notificationModel');
 
 var NotificationsCollection = Backbone.Collection.extend({
   model: Notification,

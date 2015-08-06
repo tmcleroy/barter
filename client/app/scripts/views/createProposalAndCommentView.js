@@ -67,4 +67,4 @@ var CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
 
 }));
 
-module.exports =  CreateProposalAndCommentView;
+module.exports = CreateProposalAndCommentView;

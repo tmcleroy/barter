@@ -13,9 +13,9 @@ module.exports = function (sequelize, DataTypes) {
     // name of the model type of the object. User, Proposal, Request, etc.
     // needed so we can easily know which object type is set (see associations below)
     objectType: DataTypes.STRING,
-    seen: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+    state: {
+      type: DataTypes.INTEGER,
+      defaultValue: -1 // unseen
     }
   }, {
     classMethods: {

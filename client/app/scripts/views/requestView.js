@@ -1,9 +1,9 @@
-var Request = require('../models/requestModel');
-var ProposalsSummaryView = require('../views/proposalsSummaryView');
-var RequestProposalsView = require('../views/requestProposalsView');
-var CommentsView = require('../views/commentsView');
-var TagsView = require('../views/tagsView');
-var CreateProposalAndCommentView = require('../views/createProposalAndCommentView');
+var Request = require('scripts/models/requestModel');
+var ProposalsSummaryView = require('scripts/views/proposalsSummaryView');
+var RequestProposalsView = require('scripts/views/requestProposalsView');
+var CommentsView = require('scripts/views/commentsView');
+var TagsView = require('scripts/views/tagsView');
+var CreateProposalAndCommentView = require('scripts/views/createProposalAndCommentView');
 
 var RequestView = Backbone.View.extend({
   template: require('../../templates/request/request.ejs'),
