@@ -1,4 +1,4 @@
-var Notifications = require('scripts/collections/notificationsCollection');
+import Notifications from 'scripts/collections/notificationsCollection';
 
 var InboxView = Backbone.View.extend({
   template: require('templates/inbox.ejs'),
@@ -33,4 +33,4 @@ var InboxView = Backbone.View.extend({
   }
 });
 
-module.exports = InboxView;
+export default InboxView;

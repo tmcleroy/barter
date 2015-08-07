@@ -1,13 +1,13 @@
-var Request = require('scripts/models/requestModel');
-var Tags = require('scripts/collections/tagsCollection');
-var Tag = require('scripts/models/tagModel');
-var TagsView = require('./tagsView');
-var BodyEditorView = require('./bodyEditorView');
-var ConfirmationModal = require('./confirmationModal');
-var Alert = require('./components/alert');
+import Request from 'scripts/models/requestModel';
+import Tags from 'scripts/collections/tagsCollection';
+import Tag from 'scripts/models/tagModel';
+import TagsView from 'scripts/views/tagsView';
+import BodyEditorView from 'scripts/views/bodyEditorView';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var CreateRequestView = Backbone.View.extend({
-  template: require('../../templates/request/createRequest.ejs'),
+  template: require('templates/request/createRequest.ejs'),
 
   events: {
     'submit .ajaxForm': 'submitClicked',
@@ -74,4 +74,4 @@ var CreateRequestView = Backbone.View.extend({
   }
 });
 
-module.exports = CreateRequestView;
+export default CreateRequestView;

@@ -1,24 +1,24 @@
 <div class="requestsView paginatedView">
   <h1 class="viewTitle"><%= mine ? 'My ' : 'Browse ' %>Requests</h1>
   <div class="controls top">
-    <%= require('../components/limitSelect.ejs')({ limit: limit }) %>
+    <%= require('templates/components/limitSelect.ejs')({ limit: limit }) %>
     <div class="pull-right">
-      <%= require('../components/sortSelect.ejs')({
+      <%= require('templates/components/sortSelect.ejs')({
         sorts: sorts,
         sort: sort
       }) %>
     </div>
     <div class="clearfix"></div>
-    <%= require('../components/collapsibleContainer.ejs')({
+    <%= require('templates/components/collapsibleContainer.ejs')({
       classes: 'advancedSearchContainer noSideBorder alignRight animated',
       text: { show: 'Advanced Search', hide: 'Hide Advanced Search' },
-      html: require('../components/advancedSearch.ejs')(),
+      html: require('templates/components/advancedSearch.ejs')(),
       collapsed: true,
     }) %>
   </div>
   <div class="requestList">
     <% requests.each(function (request) { %>
-      <%= require('./requestListItem.ejs')({
+      <%= require('templates/request/requestListItem.ejs')({
         request: request,
         user: request.get('User'),
         proposals: request.get('Proposals')
@@ -26,7 +26,7 @@
     <% }); %>
   </div>
   <div class="controls bottom">
-    <%= require('../components/pagination.ejs')({
+    <%= require('templates/components/pagination.ejs')({
       page: page,
       pages: pages
     }) %>

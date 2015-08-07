@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <a href="<%= notification.get('SubjectUser').getProfileUrl() %>"><%= notification.get('SubjectUser').get('username') %></a>
       <span class="predicate"><%= notification.getPredicate() %></span> your
-      <%= require('../notification/objectDisplay.ejs')({
+      <%= require('templates/notification/objectDisplay.ejs')({
         notification: notification
       }) %>
     </div>

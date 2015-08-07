@@ -1,10 +1,10 @@
-var Submission = require('scripts/models/submissionModel');
-var CommentsView = require('scripts/views/commentsView');
-var ConfirmationModal = require('./confirmationModal');
-var Alert = require('./components/alert');
+import Submission from 'scripts/models/submissionModel';
+import CommentsView from 'scripts/views/commentsView';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var SubmissionView = Backbone.View.extend({
-  template: require('../../templates/submission/submission.ejs'),
+  template: require('templates/submission/submission.ejs'),
 
   events: {
     'click [data-action^="state-"]': 'stateClicked'
@@ -72,4 +72,4 @@ var SubmissionView = Backbone.View.extend({
   }
 });
 
-module.exports = SubmissionView;
+export default SubmissionView;

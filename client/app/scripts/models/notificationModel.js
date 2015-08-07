@@ -1,5 +1,5 @@
-let NestedModel = require('./_nestedModel');
-var StatefulHelper = require('scripts/models/_statefulHelper');
+import NestedModel from 'scripts/models/_nestedModel';
+import StatefulHelper from 'scripts/models/_statefulHelper';
 
 let NotificationModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/notifications',
@@ -55,4 +55,4 @@ let NotificationModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   }
 }));
 
-module.exports = NotificationModel;
+export default NotificationModel;

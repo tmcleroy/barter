@@ -1,5 +1,5 @@
-var NestedModel = require('./_nestedModel');
-var marked = require('marked');
+import NestedModel from 'scripts/models/_nestedModel';
+import marked from 'marked';
 
 var RequestModel = NestedModel.extend({
   urlRoot: '/api/requests/',
@@ -18,4 +18,4 @@ var RequestModel = NestedModel.extend({
   }
 });
 
-module.exports = RequestModel;
+export default RequestModel;

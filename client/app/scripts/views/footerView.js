@@ -1,5 +1,5 @@
 var FooterView = Backbone.View.extend({
-  template: require('../../templates/footer.ejs'),
+  template: require('templates/footer.ejs'),
 
   events: {
   },
@@ -14,4 +14,4 @@ var FooterView = Backbone.View.extend({
 
 });
 
-module.exports = FooterView;
+export default FooterView;

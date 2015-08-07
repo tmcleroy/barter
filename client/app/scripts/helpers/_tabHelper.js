@@ -8,4 +8,4 @@ var helpers = {
   }
 };
 
-module.exports = helpers;
+export default helpers;

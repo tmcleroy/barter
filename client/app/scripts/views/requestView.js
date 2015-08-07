@@ -1,12 +1,12 @@
-var Request = require('scripts/models/requestModel');
-var ProposalsSummaryView = require('scripts/views/proposalsSummaryView');
-var RequestProposalsView = require('scripts/views/requestProposalsView');
-var CommentsView = require('scripts/views/commentsView');
-var TagsView = require('scripts/views/tagsView');
-var CreateProposalAndCommentView = require('scripts/views/createProposalAndCommentView');
+import Request from 'scripts/models/requestModel';
+import ProposalsSummaryView from 'scripts/views/proposalsSummaryView';
+import RequestProposalsView from 'scripts/views/requestProposalsView';
+import CommentsView from 'scripts/views/commentsView';
+import TagsView from 'scripts/views/tagsView';
+import CreateProposalAndCommentView from 'scripts/views/createProposalAndCommentView';
 
 var RequestView = Backbone.View.extend({
-  template: require('../../templates/request/request.ejs'),
+  template: require('templates/request/request.ejs'),
 
   views: [],
   mine: false,
@@ -65,4 +65,4 @@ var RequestView = Backbone.View.extend({
   }
 });
 
-module.exports = RequestView;
+export default RequestView;

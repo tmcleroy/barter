@@ -1,7 +1,7 @@
-var NestedModel = require('./_nestedModel');
-var StatefulHelper = require('./_statefulHelper');
+import NestedModel from 'scripts/models/_nestedModel';
+import StatefulHelper from './_statefulHelper';
 
-var marked = require('marked');
+import marked from 'marked';
 
 var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/submissions',
@@ -18,4 +18,4 @@ var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   }
 }));
 
-module.exports = SubmissionsModel;
+export default SubmissionsModel;

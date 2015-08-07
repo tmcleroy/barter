@@ -1,8 +1,8 @@
-var Comment = require('scripts/models/commentModel');
+import Comment from 'scripts/models/commentModel';
 
 var CommentsCollection = Backbone.Collection.extend({
   model: Comment,
   url: '/api/comments'
 });
 
-module.exports = CommentsCollection;
+export default CommentsCollection;

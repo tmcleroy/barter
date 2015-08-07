@@ -1,8 +1,8 @@
-var PaginatedView = require('./paginatedView');
-var RequestsCollection = require('scripts/collections/requestsCollection');
+import PaginatedView from 'scripts/views/paginatedView';
+import RequestsCollection from 'scripts/collections/requestsCollection';
 
 var RequestsView = PaginatedView.extend({
-  template: require('../../templates/request/requests.ejs'),
+  template: require('templates/request/requests.ejs'),
 
   _events: { // MAY NOT WORK AT THE MOMENT
     'change [data-action="tags"]': 'tagsChanged'
@@ -49,4 +49,4 @@ var RequestsView = PaginatedView.extend({
 
 });
 
-module.exports = RequestsView;
+export default RequestsView;

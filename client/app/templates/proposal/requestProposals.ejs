@@ -16,7 +16,7 @@
     <% if (acceptedProposal) { /* proposal accepted, don't show rejected ones */%>
       <div class="accepted stateContainer">
         <h5 class="overlaidTitle">Accepted</h5>
-        <%= require('./proposal.ejs')({ proposal: acceptedProposal }) %>
+        <%= require('templates/proposal/proposal.ejs')({ proposal: acceptedProposal }) %>
         <% if (submission) { %>
              <a href="/app/submissions/show/<%= submission.get('id') %>">View Submission</a>
         <% } %>
@@ -26,7 +26,7 @@
         <div class="pending stateContainer">
           <h5 class="overlaidTitle">Pending</h5>
           <% _.each(pendingProposals, function (proposal) { %>
-            <%= require('./proposal.ejs')({ proposal: proposal }) %>
+            <%= require('templates/proposal/proposal.ejs')({ proposal: proposal }) %>
           <% }); %>
         </div>
       <% } %>
@@ -34,7 +34,7 @@
         <div class="rejected stateContainer">
           <h5 class="overlaidTitle">Rejected</h5>
           <% _.each(rejectedProposals, function (proposal) { %>
-            <%= require('./proposal.ejs')({ proposal: proposal }) %>
+            <%= require('templates/proposal/proposal.ejs')({ proposal: proposal }) %>
           <% }); %>
         </div>
       <% } %>

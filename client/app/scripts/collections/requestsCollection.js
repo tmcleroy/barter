@@ -1,5 +1,5 @@
-var PaginatedCollection = require('./_paginatedCollection');
-var Request = require('scripts/models/requestModel');
+import PaginatedCollection from './_paginatedCollection';
+import Request from 'scripts/models/requestModel';
 
 var RequestsCollection = PaginatedCollection.extend({
   model: Request,
@@ -7,4 +7,4 @@ var RequestsCollection = PaginatedCollection.extend({
   url: '/api/requests'
 });
 
-module.exports = RequestsCollection;
+export default RequestsCollection;

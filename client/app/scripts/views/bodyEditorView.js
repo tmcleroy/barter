@@ -1,8 +1,8 @@
-var TabHelper = require('../helpers/_tabHelper');
-var marked = require('marked');
+import TabHelper from '../helpers/_tabHelper';
+import marked from 'marked';
 
 var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
-  template: require('../../templates/bodyEditor.ejs'),
+  template: require('templates/bodyEditor.ejs'),
 
   events: {
     'click [data-action="write"]': 'toggleWrite',
@@ -50,4 +50,4 @@ var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
 //   return view;
 // };
 
-module.exports = BodyEditorView;
+export default BodyEditorView;

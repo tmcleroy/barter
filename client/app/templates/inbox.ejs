@@ -1,6 +1,6 @@
 <div class="notificationsView">
   <h1 class="viewTitle">Notifications</h1>
   <% notifications.each(function (notification) { %>
-    <%= require('./notification/notificationListItem.ejs')({ notification: notification }) %>
+    <%= require('templates/notification/notificationListItem.ejs')({ notification: notification }) %>
   <% }) %>
 </div>

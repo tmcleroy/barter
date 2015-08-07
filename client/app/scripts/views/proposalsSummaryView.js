@@ -1,6 +1,6 @@
 
 var ProposalsSummaryView = Backbone.View.extend({
-  template: require('../../templates/proposal/proposalsSummary.ejs'),
+  template: require('templates/proposal/proposalsSummary.ejs'),
 
   events: {
   },
@@ -19,4 +19,4 @@ var ProposalsSummaryView = Backbone.View.extend({
 
 });
 
-module.exports = ProposalsSummaryView;
+export default ProposalsSummaryView;

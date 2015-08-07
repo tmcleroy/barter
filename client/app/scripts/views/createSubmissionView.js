@@ -1,10 +1,10 @@
-var Submission = require('scripts/models/submissionModel');
-var BodyEditorView = require('./bodyEditorView');
-var ConfirmationModal = require('./confirmationModal');
-var Alert = require('./components/alert');
+import Submission from 'scripts/models/submissionModel';
+import BodyEditorView from 'scripts/views/bodyEditorView';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var CreateSubmissionView = Backbone.View.extend({
-  template: require('../../templates/submission/createSubmission.ejs'),
+  template: require('templates/submission/createSubmission.ejs'),
 
   events: {
     'submit .ajaxForm': 'submitClicked'
@@ -55,4 +55,4 @@ var CreateSubmissionView = Backbone.View.extend({
 
 });
 
-module.exports = CreateSubmissionView;
+export default CreateSubmissionView;

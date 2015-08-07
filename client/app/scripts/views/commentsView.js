@@ -1,5 +1,5 @@
 var CommentsView = Backbone.View.extend({
-  template: require('../../templates/comment/comments.ejs'),
+  template: require('templates/comment/comments.ejs'),
 
   initialize: function (params) {
     this.render();
@@ -15,4 +15,4 @@ var CommentsView = Backbone.View.extend({
 
 });
 
-module.exports = CommentsView;
+export default CommentsView;

@@ -1,10 +1,10 @@
-var CreateCommentView = require('./createCommentView');
-var CreateProposalView = require('./createProposalView');
-var TabHelper = require('../helpers/_tabHelper');
+import CreateCommentView from 'scripts/views/createCommentView';
+import CreateProposalView from 'scripts/views/createProposalView';
+import TabHelper from '../helpers/_tabHelper';
 
 
 var CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
-  template: require('../../templates/request/createProposalAndComment.ejs'),
+  template: require('templates/request/createProposalAndComment.ejs'),
 
   views: {},
 
@@ -67,4 +67,4 @@ var CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
 
 }));
 
-module.exports = CreateProposalAndCommentView;
+export default CreateProposalAndCommentView;

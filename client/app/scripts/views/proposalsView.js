@@ -1,8 +1,8 @@
-var PaginatedView = require('./paginatedView');
-var ProposalsCollection = require('scripts/collections/proposalsCollection');
+import PaginatedView from 'scripts/views/paginatedView';
+import ProposalsCollection from 'scripts/collections/proposalsCollection';
 
 var ProposalsView = PaginatedView.extend({
-  template: require('../../templates/proposal/proposals.ejs'),
+  template: require('templates/proposal/proposals.ejs'),
 
   initialize: function (params) {
     this.mine = params.mine;
@@ -36,4 +36,4 @@ var ProposalsView = PaginatedView.extend({
 
 });
 
-module.exports = ProposalsView;
+export default ProposalsView;

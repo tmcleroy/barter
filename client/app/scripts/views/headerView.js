@@ -1,7 +1,7 @@
-var ProfileView = require('./profileView.js');
+import ProfileView from 'scripts/views/profileView';
 
 var HeaderView = Backbone.View.extend({
-  template: require('../../templates/header.ejs'),
+  template: require('templates/header.ejs'),
 
   events: {
     'click [data-logged-in]': 'logInOutClicked',
@@ -42,4 +42,4 @@ var HeaderView = Backbone.View.extend({
   }
 });
 
-module.exports = HeaderView;
+export default HeaderView;

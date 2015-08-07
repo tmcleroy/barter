@@ -1,5 +1,5 @@
-var Proposal = require('scripts/models/proposalModel');
-var PaginatedCollection = require('./_paginatedCollection');
+import Proposal from 'scripts/models/proposalModel';
+import PaginatedCollection from './_paginatedCollection';
 
 var ProposalsCollection = PaginatedCollection.extend({
   model: Proposal,
@@ -26,4 +26,4 @@ var ProposalsCollection = PaginatedCollection.extend({
   }
 });
 
-module.exports = ProposalsCollection;
+export default ProposalsCollection;

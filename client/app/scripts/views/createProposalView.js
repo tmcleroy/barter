@@ -1,9 +1,9 @@
-var Proposal = require('scripts/models/proposalModel');
-var ConfirmationModal = require('./confirmationModal');
-var Alert = require('./components/alert');
+import Proposal from 'scripts/models/proposalModel';
+import ConfirmationModal from './confirmationModal';
+import Alert from './components/alert';
 
 var CreateProposalView = Backbone.View.extend({
-  template: require('../../templates/comment/createProposal.ejs'),
+  template: require('templates/comment/createProposal.ejs'),
 
   events: {
     'submit .ajaxForm': 'submitClicked'
@@ -56,4 +56,4 @@ var CreateProposalView = Backbone.View.extend({
 
 });
 
-module.exports = CreateProposalView;
+export default CreateProposalView;

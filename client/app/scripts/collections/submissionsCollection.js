@@ -1,8 +1,8 @@
-var Submission = require('scripts/models/submissionModel');
+import Submission from 'scripts/models/submissionModel';
 
 var SubmissionsCollection = Backbone.Collection.extend({
   model: Submission,
   url: '/api/submissions'
 });
 
-module.exports = SubmissionsCollection;
+export default SubmissionsCollection;

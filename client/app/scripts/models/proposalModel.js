@@ -1,6 +1,6 @@
-var NestedModel = require('scripts/models/_nestedModel');
-var StatefulHelper = require('scripts/models/_statefulHelper');
-var marked = require('marked');
+import NestedModel from 'scripts/models/_nestedModel';
+import StatefulHelper from 'scripts/models/_statefulHelper';
+import marked from 'marked';
 
 var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/proposals',
@@ -15,4 +15,4 @@ var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
 
 }));
 
-module.exports = ProposalModel;
+export default ProposalModel;

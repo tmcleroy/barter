@@ -1,15 +1,15 @@
 <div class="proposalsView paginatedView">
   <h1 class="viewTitle"><%= mine ? 'My ' : 'Browse' %>Proposals</h1>
   <div class="controls top">
-    <%= require('../components/limitSelect.ejs')({ limit: limit }) %>
+    <%= require('templates/components/limitSelect.ejs')({ limit: limit }) %>
     <div class="pull-right">
-      <%= require('../components/sortSelect.ejs')({
+      <%= require('templates/components/sortSelect.ejs')({
         sorts: sorts,
         sort: sort
       }) %>
     </div>
     <div class="clearfix"></div>
-    <%= require('../components/collapsibleContainer.ejs')({
+    <%= require('templates/components/collapsibleContainer.ejs')({
       classes: 'advancedSearchContainer noSideBorder alignRight animated',
       text: { show: 'Advanced Search', hide: 'Hide Advanced Search' },
       html: '<p>ADVANCED SEARCH</p>',
@@ -18,7 +18,7 @@
   </div>
   <div class="proposalList">
     <% proposals.each(function (proposal) { %>
-      <%= require('./proposalListItem.ejs')({
+      <%= require('templates/proposal/proposalListItem.ejs')({
         proposal: proposal,
         request: proposal.get('Request'),
         user: proposal.get('User'),
@@ -27,7 +27,7 @@
     <% }); %>
   </div>
   <div class="controls bottom">
-    <%= require('../components/pagination.ejs')({
+    <%= require('templates/components/pagination.ejs')({
       page: page,
       pages: pages
     }) %>

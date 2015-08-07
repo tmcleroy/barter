@@ -5,10 +5,10 @@
         <span class="stateText"><%= stateFormatted %></span>
       </div>
       <h5 class="title"><%= submissionOwner %> submission for <%= requestOwner %> request</h5>
-      <%= require('../components/collapsibleContainer.ejs')({
+      <%= require('templates/components/collapsibleContainer.ejs')({
         classes: 'submissionRequestContainer animated',
         text: { show: 'Show Request', hide: 'Hide Request' },
-        html: require('../request/requestSimple.ejs')({ request: submission.get('Request') }),
+        html: require('templates/request/requestSimple.ejs')({ request: submission.get('Request') }),
         collapsed: true,
       }) %>
     </div>
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="profileContainer">
-        <%= require('../profile/profile.ejs')({
+        <%= require('templates/profile/profile.ejs')({
           size: 'small',
           user: submission.get('User').toJSON()
         }) %>

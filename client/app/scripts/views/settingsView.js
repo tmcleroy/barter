@@ -1,5 +1,5 @@
 var SettingsView = Backbone.View.extend({
-  template: require('../../templates/settings.ejs'),
+  template: require('templates/settings.ejs'),
 
   initialize: function (params) {
     this.render();
@@ -12,4 +12,4 @@ var SettingsView = Backbone.View.extend({
   }
 });
 
-module.exports = SettingsView;
+export default SettingsView;

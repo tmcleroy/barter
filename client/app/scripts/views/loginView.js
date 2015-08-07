@@ -1,6 +1,6 @@
 
 var LoginView = Backbone.View.extend({
-  template: require('../../templates/login.ejs'),
+  template: require('templates/login.ejs'),
 
   events: {
     'click button[type="submit"]': 'submit'
@@ -42,4 +42,4 @@ var LoginView = Backbone.View.extend({
 
 });
 
-module.exports = LoginView;
+export default LoginView;

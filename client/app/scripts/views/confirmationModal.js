@@ -1,4 +1,4 @@
-var Modal = require('./components/modal');
+import Modal from './components/modal';
 
 var ConfirmationModal = Modal.extend({
   initialize: function (params) {
@@ -19,4 +19,4 @@ var ConfirmationModal = Modal.extend({
   }
 });
 
-module.exports = ConfirmationModal;
+export default ConfirmationModal;

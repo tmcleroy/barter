@@ -1,5 +1,5 @@
 var Alert = Backbone.View.extend({
-  template: require('../../../templates/components/alert.ejs'),
+  template: require('templates/components/alert.ejs'),
 
   initialize: function (params) {
     this.$el = $('<div />').appendTo($('#alertContainer'));
@@ -30,4 +30,4 @@ var Alert = Backbone.View.extend({
 
 });
 
-module.exports = Alert;
+export default Alert;

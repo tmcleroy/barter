@@ -1,6 +1,6 @@
 
 var ProposalsView = Backbone.View.extend({
-  template: require('../../templates/proposal/requestProposals.ejs'),
+  template: require('templates/proposal/requestProposals.ejs'),
 
   events: {
     'click .actionContainer [data-action]': 'actionClicked'
@@ -32,4 +32,4 @@ var ProposalsView = Backbone.View.extend({
 
 });
 
-module.exports = ProposalsView;
+export default ProposalsView;

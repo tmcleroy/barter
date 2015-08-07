@@ -1,4 +1,4 @@
-var Tag = require('scripts/models/tagModel');
+import Tag from 'scripts/models/tagModel';
 
 var TagsCollection = Backbone.Collection.extend({
   model: Tag,
@@ -9,4 +9,4 @@ var TagsCollection = Backbone.Collection.extend({
   }
 });
 
-module.exports = TagsCollection;
+export default TagsCollection;

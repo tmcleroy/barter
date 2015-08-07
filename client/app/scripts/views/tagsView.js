@@ -1,5 +1,5 @@
 var TagsView = Backbone.View.extend({
-  template: require('../../templates/tag/tags.ejs'),
+  template: require('templates/tag/tags.ejs'),
 
   events: {
     'click .remove': 'removeClicked'
@@ -26,4 +26,4 @@ var TagsView = Backbone.View.extend({
 
 });
 
-module.exports = TagsView;
+export default TagsView;

@@ -1,8 +1,8 @@
-var Comment = require('scripts/models/commentModel');
-var Alert = require('./components/alert');
+import Comment from 'scripts/models/commentModel';
+import Alert from './components/alert';
 
 var CreateCommentView = Backbone.View.extend({
-  template: require('../../templates/comment/createComment.ejs'),
+  template: require('templates/comment/createComment.ejs'),
 
   events: {
     'submit .ajaxForm': 'submitClicked'
@@ -45,4 +45,4 @@ var CreateCommentView = Backbone.View.extend({
 
 });
 
-module.exports = CreateCommentView;
+export default CreateCommentView;

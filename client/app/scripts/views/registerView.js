@@ -1,5 +1,5 @@
 var RegisterView = Backbone.View.extend({
-  template: require('../../templates/register.ejs'),
+  template: require('templates/register.ejs'),
 
   events: {
     'click button[type="submit"]': 'submit'
@@ -38,4 +38,4 @@ var RegisterView = Backbone.View.extend({
 
 });
 
-module.exports = RegisterView;
+export default RegisterView;
