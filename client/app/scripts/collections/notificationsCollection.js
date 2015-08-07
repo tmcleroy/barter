@@ -1,9 +1,19 @@
 import Notification from 'scripts/models/notificationModel';
 
-var NotificationsCollection = Backbone.Collection.extend({
+const NotificationsCollection = Backbone.Collection.extend({
   model: Notification,
 
-  url: '/api/notifications'
+  url: '/api/notifications',
+
+  setAllSeen () {
+    return $.ajax({
+      url: `${ this.url }/allStates`,
+      method: 'POST',
+      data: {
+        state: 1
+      }
+    });
+  }
 });
 
 export default NotificationsCollection;

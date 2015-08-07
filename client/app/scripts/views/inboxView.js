@@ -4,13 +4,14 @@ var InboxView = Backbone.View.extend({
   template: require('templates/inbox.ejs'),
 
   events: {
-    'click [data-action="seen"]': 'seenNotification'
+    'click [data-action="seen"]': 'seenNotification',
+    'click [data-action="all-seen"]': 'seenAll'
   },
 
   initialize (params) {
     this.collection = new Notifications();
 
-    this.listenTo(this.collection, 'change sync', this.render);
+    this.listenTo(this.collection, 'change sync', this.collectionChanged);
     this.fetchNotifications();
   },
 
@@ -19,6 +20,11 @@ var InboxView = Backbone.View.extend({
     this.collection.fetch({
       data: { where: 'unseen' }
     });
+  },
+
+  collectionChanged () {
+    this.render();
+    Backbone.trigger('change:notifications', this.collection);
   },
 
   render () {
@@ -30,6 +36,10 @@ var InboxView = Backbone.View.extend({
 
   seenNotification (evt) {
     this.collection.findWhere({ id: parseInt($(evt.target).attr('data-id'), 10) }).setState('seen');
+  },
+
+  seenAll (evt) {
+    this.collection.setAllSeen().done(::this.fetchNotifications);
   }
 });
 

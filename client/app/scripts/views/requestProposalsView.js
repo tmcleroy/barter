@@ -27,7 +27,7 @@ var ProposalsView = Backbone.View.extend({
     evt.preventDefault();
     var $target = $(evt.target);
     var proposal = this.collection.get($target.closest('[data-id]').attr('data-id'));
-    proposal.setState($target.attr('data-action')).done(_.bind(this.render, this));
+    proposal.setState($target.attr('data-action')).done(::this.render);
   }
 
 });

@@ -15,13 +15,13 @@ var Alert = Backbone.View.extend({
     setTimeout(() => {
       this.close();
     }, this.options.delay * 1000);
+
+    // handler must be set here, not in the events hash. I have no idea why
+    this.$el.on('click', '.close', ::this.close);
   },
 
   render: function () {
     this.$el.html(this.template(this.options));
-
-    // handler must be set here, not in the events hash. I have no idea why
-    this.$el.on('click', '.close', _.bind(this.close, this));
   },
 
   close: function () {

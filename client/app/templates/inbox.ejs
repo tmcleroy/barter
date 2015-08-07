@@ -1,5 +1,11 @@
-<div class="notificationsView">
+<div class="notificationsView paginatedView">
   <h1 class="viewTitle">Notifications</h1>
+  <div class="controls top">
+    <div class="pull-right">
+      <button class="btn btn-default" data-action="all-seen">Mark All Seen</button>
+    </div>
+  <div class="clearfix"></div>
+  </div>
   <% notifications.each(function (notification) { %>
     <%= require('templates/notification/notificationListItem.ejs')({ notification: notification }) %>
   <% }) %>

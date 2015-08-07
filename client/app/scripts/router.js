@@ -15,7 +15,7 @@ import SubmissionView from 'scripts/views/submissionView';
 import CreateSubmissionView from 'scripts/views/createSubmissionView';
 import User from 'scripts/models/userModel';
 
-var Router = Backbone.Router.extend(_.defaults({
+const Router = Backbone.Router.extend(_.defaults({
   lastView: null,
   currentView: null,
   view: null,
