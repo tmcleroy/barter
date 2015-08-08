@@ -29,8 +29,8 @@ const SideBarView = Backbone.View.extend({
 
   updateInboxCount (collection) {
     let count = 0;
-    // collection explicitly passed in by event triggerer
-    // so we don't have to refetch the unseen notification count
+    // if collection is explicitly passed in by event triggerer
+    // we don't have to refetch the unseen notification count
     if (collection) {
       count = collection.where({ state: -1 }).length;
       this.unseenNotifications.set('count', count);

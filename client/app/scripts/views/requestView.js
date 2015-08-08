@@ -13,7 +13,6 @@ const RequestView = Backbone.View.extend({
 
   initialize (params) {
     this.options = params.options;
-    console.log(this.options);
     this.model = new Request({ id: params.id });
 
     this.model.fetch().done((Request) => {

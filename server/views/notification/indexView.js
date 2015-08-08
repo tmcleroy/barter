@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var models = require('../../models');
+var Sortable = require('../../helpers/sortable');
 
 var whereMap = {
   seen: { state: 1 },
@@ -7,6 +8,7 @@ var whereMap = {
 };
 
 var handler = function (req, res) {
+  var sortable = new Sortable(req.query);
   var where = _.extend({}, whereMap[req.query.where], { UserId: req.user.id });
   if (req.query.countOnly) {
     models.Notification.count({
@@ -15,9 +17,11 @@ var handler = function (req, res) {
       res.status(200).json(count);
     });
   } else {
-    models.Notification.findAll({
+    models.Notification.findAndCountAll({
       where: where,
       order: [['"createdAt"', 'desc']],
+      limit: sortable.limit,
+      offset: sortable.cursor,
       include: [
         { model: models.User, as: 'User' },
         { model: models.User, as: 'SubjectUser' },
@@ -28,7 +32,10 @@ var handler = function (req, res) {
         { model: models.Submission, as: 'ObjectSubmission' }
       ]
     }).then(function (notifications) {
-      res.status(200).json(notifications);
+      res.status(200).json({
+        items: notifications.rows,
+        total: notifications.count
+      });
     });
   }
 };

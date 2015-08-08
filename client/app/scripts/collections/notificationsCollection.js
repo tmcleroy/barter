@@ -1,6 +1,7 @@
+import PaginatedCollection from './_paginatedCollection';
 import Notification from 'scripts/models/notificationModel';
 
-const NotificationsCollection = Backbone.Collection.extend({
+const NotificationsCollection = PaginatedCollection.extend({
   model: Notification,
 
   url: '/api/notifications',

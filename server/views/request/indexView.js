@@ -20,7 +20,6 @@ var handler = function (req, res) {
       { model: models.Proposal }
     ],
     order: sortable.querySort,
-    // we need a way to not set limit and offset when a postSort is defined so we get the whole dataset to sort
     limit: sortable.limit,
     offset: sortable.cursor
   }).then(function (requests) {

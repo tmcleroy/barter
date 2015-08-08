@@ -4,8 +4,10 @@ import RequestsCollection from 'scripts/collections/requestsCollection';
 const RequestsView = PaginatedView.extend({
   template: require('templates/request/requests.ejs'),
 
-  _events: { // MAY NOT WORK AT THE MOMENT
-    'change [data-action="tags"]': 'tagsChanged'
+  events () {
+    return _.extend({}, PaginatedView.prototype.events, {
+      'change [data-action="tags"]': 'tagsChanged'
+    });
   },
 
   initialize (params) {
@@ -20,14 +22,13 @@ const RequestsView = PaginatedView.extend({
     ];
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
-    this.events = _.extend({}, PaginatedView.prototype.events, this._events);
 
     this.listenTo(this.collection, 'change sync', this.render);
 
     this.fetch();
-    console.log(this.events);
   },
 
+  // keeping this around for when we are ready to implement filtering by tags
   tagsChanged (evt) {
     var $target = $(evt.target);
     var val = $target.val();

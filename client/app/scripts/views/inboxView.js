@@ -1,30 +1,42 @@
+import PaginatedView from 'scripts/views/paginatedView';
 import Notifications from 'scripts/collections/notificationsCollection';
 
-const InboxView = Backbone.View.extend({
+const InboxView = PaginatedView.extend({
   template: require('templates/inbox.ejs'),
 
-  events: {
-    'click [data-action="seen"]': 'seenNotification',
-    'click [data-action="all-seen"]': 'seenAll'
+  events () {
+    return _.extend({}, PaginatedView.prototype.events, {
+      'click [data-action="seen"]': 'seenNotification',
+      'click [data-action="all-seen"]': 'seenAll'
+    });
   },
 
   initialize (params) {
     this.collection = new Notifications();
 
+    PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
+
     this.listenTo(this.collection, 'change sync', this.collectionChanged);
-    this.fetchNotifications();
+    this.fetch();
   },
 
-  fetchNotifications () {
+  // OVERRIDE
+  fetch () {
     this.$el.addClass('loading');
+    const opts = {
+      where: 'unseen',
+      sort: this.sort,
+      limit: this.limit,
+      cursor: this.cursor
+    };
     this.collection.fetch({
-      data: { where: 'unseen' }
+      data: opts
     });
   },
 
   collectionChanged () {
     this.render();
-    Backbone.trigger('change:notifications', this.collection);
+    Backbone.trigger('change:notifications');
   },
 
   render () {
@@ -39,7 +51,7 @@ const InboxView = Backbone.View.extend({
   },
 
   seenAll (evt) {
-    this.collection.setAllSeen().done(::this.fetchNotifications);
+    this.collection.setAllSeen().done(::this.fetch);
   }
 });
 
