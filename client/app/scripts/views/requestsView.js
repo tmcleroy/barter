@@ -1,7 +1,7 @@
 import PaginatedView from 'scripts/views/paginatedView';
 import RequestsCollection from 'scripts/collections/requestsCollection';
 
-var RequestsView = PaginatedView.extend({
+const RequestsView = PaginatedView.extend({
   template: require('templates/request/requests.ejs'),
 
   _events: { // MAY NOT WORK AT THE MOMENT

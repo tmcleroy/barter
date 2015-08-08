@@ -1,6 +1,6 @@
 import Notifications from 'scripts/collections/notificationsCollection';
 
-var InboxView = Backbone.View.extend({
+const InboxView = Backbone.View.extend({
   template: require('templates/inbox.ejs'),
 
   events: {

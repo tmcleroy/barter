@@ -1,4 +1,4 @@
-var Alert = Backbone.View.extend({
+const Alert = Backbone.View.extend({
   template: require('templates/components/alert.ejs'),
 
   initialize: function (params) {

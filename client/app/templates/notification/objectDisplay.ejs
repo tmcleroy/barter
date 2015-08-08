@@ -1,3 +1,4 @@
+<% var moment = require('moment'); %>
 <%= notification.get('objectType').toLowerCase() %>
 <% if (notification.get('objectType') === 'Request') { %>
   <h4 class="title">
@@ -13,3 +14,4 @@
     </a>
   </h4>
 <% } %>
+<%= moment(notification.get('createdAt')).fromNow() %>

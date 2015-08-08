@@ -1,5 +1,4 @@
-
-var ProposalsView = Backbone.View.extend({
+const ProposalsView = Backbone.View.extend({
   template: require('templates/proposal/requestProposals.ejs'),
 
   events: {

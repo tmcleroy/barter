@@ -2,7 +2,7 @@
 // models that extend this must have urlRoot defined
 // see submissionModel.js, proposalModel.js for examples
 
-var StatefulHelper = {
+const StatefulHelper = {
   stateMap: {
     '-1': 'rejected',
     '0': 'pending',
