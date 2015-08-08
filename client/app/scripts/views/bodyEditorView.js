@@ -1,7 +1,7 @@
 import TabHelper from '../helpers/_tabHelper';
 import marked from 'marked';
 
-var BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
+const BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
   template: require('templates/bodyEditor.ejs'),
 
   events: {

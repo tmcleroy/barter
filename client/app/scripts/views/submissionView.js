@@ -3,7 +3,7 @@ import CommentsView from 'scripts/views/commentsView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
 
-var SubmissionView = Backbone.View.extend({
+const SubmissionView = Backbone.View.extend({
   template: require('templates/submission/submission.ejs'),
 
   events: {

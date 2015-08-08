@@ -1,4 +1,4 @@
-var RegisterView = Backbone.View.extend({
+const RegisterView = Backbone.View.extend({
   template: require('templates/register.ejs'),
 
   events: {

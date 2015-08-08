@@ -1,4 +1,4 @@
-var TagsView = Backbone.View.extend({
+const TagsView = Backbone.View.extend({
   template: require('templates/tag/tags.ejs'),
 
   events: {

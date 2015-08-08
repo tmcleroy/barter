@@ -1,4 +1,4 @@
-var SettingsView = Backbone.View.extend({
+const SettingsView = Backbone.View.extend({
   template: require('templates/settings.ejs'),
 
   initialize: function (params) {

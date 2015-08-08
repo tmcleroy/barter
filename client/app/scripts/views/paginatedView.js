@@ -1,4 +1,4 @@
-var PaginatedView = Backbone.View.extend({
+const PaginatedView = Backbone.View.extend({
 
   events: {
     'change select[data-action]': 'selectChanged',

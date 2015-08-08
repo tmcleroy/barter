@@ -2,7 +2,7 @@ import NestedModel from 'scripts/models/_nestedModel';
 import StatefulHelper from 'scripts/models/_statefulHelper';
 import marked from 'marked';
 
-var ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
+const ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/proposals',
 
   nestedDefs: {

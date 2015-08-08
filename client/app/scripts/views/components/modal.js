@@ -1,6 +1,6 @@
 require('../../../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal');
 
-var Modal = Backbone.View.extend({
+const Modal = Backbone.View.extend({
   template: require('templates/components/modal.ejs'),
 
   events: {

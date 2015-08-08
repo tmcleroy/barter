@@ -2,7 +2,7 @@ import Proposal from 'scripts/models/proposalModel';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
 
-var CreateProposalView = Backbone.View.extend({
+const CreateProposalView = Backbone.View.extend({
   template: require('templates/comment/createProposal.ejs'),
 
   events: {

@@ -1,4 +1,4 @@
-var CommentsView = Backbone.View.extend({
+const CommentsView = Backbone.View.extend({
   template: require('templates/comment/comments.ejs'),
 
   initialize: function (params) {

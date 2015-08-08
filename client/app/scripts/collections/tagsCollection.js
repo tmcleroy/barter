@@ -1,6 +1,6 @@
 import Tag from 'scripts/models/tagModel';
 
-var TagsCollection = Backbone.Collection.extend({
+const TagsCollection = Backbone.Collection.extend({
   model: Tag,
   url: '/api/tags',
   add: function (tag) {

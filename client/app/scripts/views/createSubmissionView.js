@@ -3,7 +3,7 @@ import BodyEditorView from 'scripts/views/bodyEditorView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
 
-var CreateSubmissionView = Backbone.View.extend({
+const CreateSubmissionView = Backbone.View.extend({
   template: require('templates/submission/createSubmission.ejs'),
 
   events: {

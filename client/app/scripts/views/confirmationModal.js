@@ -1,6 +1,6 @@
 import Modal from './components/modal';
 
-var ConfirmationModal = Modal.extend({
+const ConfirmationModal = Modal.extend({
   initialize: function (params) {
 
     this._onAccept = params.onAccept;

@@ -1,7 +1,7 @@
 import Proposal from 'scripts/models/proposalModel';
 import PaginatedCollection from './_paginatedCollection';
 
-var ProposalsCollection = PaginatedCollection.extend({
+const ProposalsCollection = PaginatedCollection.extend({
   model: Proposal,
 
   url: '/api/proposals',

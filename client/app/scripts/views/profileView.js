@@ -1,6 +1,6 @@
 import Backbone from 'backbone';
 
-var ProfileView = Backbone.View.extend({
+const ProfileView = Backbone.View.extend({
   template: require('templates/profile/profile.ejs'),
 
   events: {

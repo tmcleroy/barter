@@ -1,7 +1,7 @@
 import PaginatedCollection from './_paginatedCollection';
 import Request from 'scripts/models/requestModel';
 
-var RequestsCollection = PaginatedCollection.extend({
+const RequestsCollection = PaginatedCollection.extend({
   model: Request,
 
   url: '/api/requests'

@@ -1,4 +1,4 @@
-var TagModel = Backbone.Model.extend({
+const TagModel = Backbone.Model.extend({
   urlRoot: '/api/tags'
 });
 

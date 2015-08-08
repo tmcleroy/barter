@@ -3,7 +3,7 @@ import CreateProposalView from 'scripts/views/createProposalView';
 import TabHelper from '../helpers/_tabHelper';
 
 
-var CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
+const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
   template: require('templates/request/createProposalAndComment.ejs'),
 
   views: {},

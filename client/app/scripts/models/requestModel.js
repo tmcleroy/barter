@@ -1,7 +1,7 @@
 import NestedModel from 'scripts/models/_nestedModel';
 import marked from 'marked';
 
-var RequestModel = NestedModel.extend({
+const RequestModel = NestedModel.extend({
   urlRoot: '/api/requests/',
 
   // nested model and collection defs

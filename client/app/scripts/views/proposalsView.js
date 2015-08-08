@@ -1,7 +1,7 @@
 import PaginatedView from 'scripts/views/paginatedView';
 import ProposalsCollection from 'scripts/collections/proposalsCollection';
 
-var ProposalsView = PaginatedView.extend({
+const ProposalsView = PaginatedView.extend({
   template: require('templates/proposal/proposals.ejs'),
 
   initialize: function (params) {

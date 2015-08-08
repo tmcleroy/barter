@@ -1,4 +1,4 @@
-var CommentModel = Backbone.Model.extend({
+const CommentModel = Backbone.Model.extend({
   urlRoot: '/api/comments'
 });
 

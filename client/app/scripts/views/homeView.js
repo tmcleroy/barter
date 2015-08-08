@@ -1,4 +1,4 @@
-var HomeView = Backbone.View.extend({
+const HomeView = Backbone.View.extend({
   template: require('templates/home.ejs'),
 
   events: {

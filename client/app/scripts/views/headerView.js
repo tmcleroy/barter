@@ -1,6 +1,6 @@
 import ProfileView from 'scripts/views/profileView';
 
-var HeaderView = Backbone.View.extend({
+const HeaderView = Backbone.View.extend({
   template: require('templates/header.ejs'),
 
   events: {

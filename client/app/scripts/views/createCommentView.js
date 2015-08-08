@@ -1,7 +1,7 @@
 import Comment from 'scripts/models/commentModel';
 import Alert from './components/alert';
 
-var CreateCommentView = Backbone.View.extend({
+const CreateCommentView = Backbone.View.extend({
   template: require('templates/comment/createComment.ejs'),
 
   events: {

@@ -1,5 +1,5 @@
 
-var ProposalsSummaryView = Backbone.View.extend({
+const ProposalsSummaryView = Backbone.View.extend({
   template: require('templates/proposal/proposalsSummary.ejs'),
 
   events: {

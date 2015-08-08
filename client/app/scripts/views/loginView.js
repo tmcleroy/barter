@@ -1,5 +1,5 @@
 
-var LoginView = Backbone.View.extend({
+const LoginView = Backbone.View.extend({
   template: require('templates/login.ejs'),
 
   events: {

@@ -3,7 +3,7 @@ import StatefulHelper from './_statefulHelper';
 
 import marked from 'marked';
 
-var SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
+const SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/submissions',
 
   nestedDefs: {

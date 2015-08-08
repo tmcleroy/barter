@@ -1,4 +1,4 @@
-var UserModel = Backbone.Model.extend({
+const UserModel = Backbone.Model.extend({
   getProfileUrl: function () {
     return '/api/users/' + this.id;
   }
