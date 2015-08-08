@@ -14,13 +14,13 @@ const CreateRequestView = Backbone.View.extend({
     'keydown [data-attr="tags"]': 'tagsKeydown'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.model = new Request();
     this.tags = new Tags();
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
     new BodyEditorView({
       el: this.$('.bodyEditorContainer'),
@@ -34,7 +34,7 @@ const CreateRequestView = Backbone.View.extend({
     });
   },
 
-  submitClicked: function (evt) {
+  submitClicked (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({
@@ -64,7 +64,7 @@ const CreateRequestView = Backbone.View.extend({
     });
   },
 
-  tagsKeydown: function (evt) {
+  tagsKeydown (evt) {
     if (_.contains([188, 13, 9], evt.which)) {
       evt.preventDefault();
       var tag = this.$('[data-attr="tags"]').val();

@@ -13,7 +13,7 @@ const RequestModel = NestedModel.extend({
     'Submission': 'Submission'
   },
 
-  getBodyFormatted: function () {
+  getBodyFormatted () {
     return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
 });

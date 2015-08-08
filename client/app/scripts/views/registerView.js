@@ -5,15 +5,15 @@ const RegisterView = Backbone.View.extend({
     'click button[type="submit"]': 'submit'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
   },
 
-  submit: function (evt) {
+  submit (evt) {
     evt.preventDefault();
 
     var $form = $(evt.target).closest('form');

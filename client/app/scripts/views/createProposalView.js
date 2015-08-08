@@ -9,18 +9,18 @@ const CreateProposalView = Backbone.View.extend({
     'submit .ajaxForm': 'submitClicked'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.request = params.request;
     this.render();
 
     this.model = new Proposal();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
   },
 
-  submitClicked: function (evt) {
+  submitClicked (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({
@@ -44,7 +44,7 @@ const CreateProposalView = Backbone.View.extend({
     });
   },
 
-  afterSubmit: function () {
+  afterSubmit () {
     $('body').removeClass('loading');
     this.model = new Proposal();
     this.render();

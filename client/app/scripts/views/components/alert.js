@@ -1,7 +1,7 @@
 const Alert = Backbone.View.extend({
   template: require('templates/components/alert.ejs'),
 
-  initialize: function (params) {
+  initialize (params) {
     this.$el = $('<div />').appendTo($('#alertContainer'));
     this.options = _.defaults(params || {}, {
       type: 'info',
@@ -20,11 +20,11 @@ const Alert = Backbone.View.extend({
     this.$el.on('click', '.close', ::this.close);
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template(this.options));
   },
 
-  close: function () {
+  close () {
     this.$el.remove();
   }
 

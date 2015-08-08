@@ -13,20 +13,20 @@ const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
     'click [data-action="addProposal"]': 'toggleAddProposal'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.mine = params.mine;
     this.views = {};
     this.render();
     _.defer(() => { this.$('[data-action="addComment"]').click(); });
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       mine: this.mine
     }));
   },
 
-  toggleAddComment: function (evt) {
+  toggleAddComment (evt) {
     evt.preventDefault();
     var $target = $(evt.target).closest('li[role="presentation"]');
     if (!$target.hasClass('active')) {
@@ -43,7 +43,7 @@ const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
     }
   },
 
-  toggleAddProposal: function (evt) {
+  toggleAddProposal (evt) {
     evt.preventDefault();
     var $target = $(evt.target).closest('li[role="presentation"]');
     if (!$target.hasClass('active')) {
@@ -60,7 +60,7 @@ const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
     }
   },
 
-  remove: function () {
+  remove () {
     _.invoke(this.views, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
   }

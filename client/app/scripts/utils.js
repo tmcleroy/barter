@@ -1,5 +1,5 @@
 var utils = {
-  initializeGlobalHandlers: function () {
+  initializeGlobalHandlers () {
     $(document)
       // allows backbone to handle routing slash-based urls
       .on('click', 'a[href^="/"]', (evt) => {
@@ -30,7 +30,7 @@ var utils = {
 
   // turns query param string into object
   // ?x=23&y=34 => { x: 23, y: 34 }
-  parseQueryString: function (queryString) {
+  parseQueryString (queryString) {
     var params = {};
     var tokens = decodeURIComponent(queryString).split(/&/g);
     _.each(tokens, (token) => {

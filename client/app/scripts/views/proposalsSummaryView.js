@@ -5,13 +5,13 @@ const ProposalsSummaryView = Backbone.View.extend({
   events: {
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
 
     this.listenTo(this.collection, 'sync change add', this.render);
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       proposals: this.collection
     }));

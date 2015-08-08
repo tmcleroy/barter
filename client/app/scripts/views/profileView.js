@@ -6,7 +6,7 @@ const ProfileView = Backbone.View.extend({
   events: {
   },
 
-  initialize: function (params) {
+  initialize (params) {
     if (!App.user) {
       this.remove();
       return;
@@ -16,7 +16,7 @@ const ProfileView = Backbone.View.extend({
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       size: this.size,
       user: App.user.toJSON()

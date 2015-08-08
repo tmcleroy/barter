@@ -4,7 +4,7 @@ import ProposalsCollection from 'scripts/collections/proposalsCollection';
 const ProposalsView = PaginatedView.extend({
   template: require('templates/proposal/proposals.ejs'),
 
-  initialize: function (params) {
+  initialize (params) {
     this.mine = params.mine;
     this.collection = new ProposalsCollection();
     this.sorts = [
@@ -21,7 +21,7 @@ const ProposalsView = PaginatedView.extend({
     this.fetch();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       proposals: this.collection,
       mine: this.mine,

@@ -13,7 +13,7 @@ const SubmissionView = Backbone.View.extend({
   views: [],
   mine: false,
 
-  initialize: function (params) {
+  initialize (params) {
     this.model = new Submission({ id: params.id });
 
     this.model.fetch().done((Submission) => {
@@ -22,7 +22,7 @@ const SubmissionView = Backbone.View.extend({
     });
   },
 
-  render: function () {
+  render () {
     var user = this.model.get('User');
     var request = this.model.get('Request');
     console.log(this.model.get('Request'));
@@ -66,7 +66,7 @@ const SubmissionView = Backbone.View.extend({
     });
   },
 
-  remove: function () {
+  remove () {
     _.invoke(this.views, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
   }

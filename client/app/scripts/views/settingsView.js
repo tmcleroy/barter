@@ -1,11 +1,11 @@
 const SettingsView = Backbone.View.extend({
   template: require('templates/settings.ejs'),
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       user: this.model
     }));

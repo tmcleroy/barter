@@ -10,13 +10,13 @@ const CreateSubmissionView = Backbone.View.extend({
     'submit .ajaxForm': 'submitClicked'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.requestId = params.requestId;
     this.model = new Submission();
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
     new BodyEditorView({
       el: this.$('.bodyEditorContainer'),
@@ -24,7 +24,7 @@ const CreateSubmissionView = Backbone.View.extend({
     });
   },
 
-  submitClicked: function (evt) {
+  submitClicked (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({

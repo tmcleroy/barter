@@ -1,7 +1,7 @@
 import Modal from './components/modal';
 
 const ConfirmationModal = Modal.extend({
-  initialize: function (params) {
+  initialize (params) {
 
     this._onAccept = params.onAccept;
 
@@ -13,7 +13,7 @@ const ConfirmationModal = Modal.extend({
     }, params));
   },
 
-  onAccept: function (evt) {
+  onAccept (evt) {
     this._onAccept();
     Modal.prototype.onAccept.call(this, arguments);
   }

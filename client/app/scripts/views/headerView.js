@@ -8,18 +8,18 @@ const HeaderView = Backbone.View.extend({
     'click [data-action="register"]': 'registerClicked'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
 
     this.listenTo(Backbone, 'loggedIn loggedOut', this.render);
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({ loggedIn: !!App.user }));
     this.renderProfile();
   },
 
-  renderProfile: function () {
+  renderProfile () {
     this.$('.profileContainer').empty();
     new ProfileView({
       el: $('<div>').appendTo(this.$('.profileContainer')),
@@ -27,7 +27,7 @@ const HeaderView = Backbone.View.extend({
     });
   },
 
-  logInOutClicked: function (evt) {
+  logInOutClicked (evt) {
     evt.preventDefault();
     var loggedIn = !!App.user;
     if (loggedIn) {
@@ -37,7 +37,7 @@ const HeaderView = Backbone.View.extend({
     }
   },
 
-  registerClicked: function (evt) {
+  registerClicked (evt) {
     App.Router.navigate('register', true);
   }
 });

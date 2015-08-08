@@ -11,7 +11,7 @@ const RequestView = Backbone.View.extend({
   views: [],
   mine: false,
 
-  initialize: function (params) {
+  initialize (params) {
     this.options = params.options;
     console.log(this.options);
     this.model = new Request({ id: params.id });
@@ -23,7 +23,7 @@ const RequestView = Backbone.View.extend({
     });
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       request: this.model
     }));
@@ -59,7 +59,7 @@ const RequestView = Backbone.View.extend({
     }
   },
 
-  remove: function () {
+  remove () {
     _.invoke(this.views, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
   }

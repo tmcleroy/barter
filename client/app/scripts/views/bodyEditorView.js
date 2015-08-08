@@ -9,18 +9,18 @@ const BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
     'click [data-action="preview"]': 'togglePreview'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.required = params.required;
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template({
       required: this.required
     }));
   },
 
-  toggleWrite: function (evt) {
+  toggleWrite (evt) {
     evt.preventDefault();
     var $target = $(evt.target).closest('li[role="presentation"]');
     if (!$target.hasClass('active')) {
@@ -29,7 +29,7 @@ const BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
     }
   },
 
-  togglePreview: function (evt) {
+  togglePreview (evt) {
     evt.preventDefault();
     var $target = $(evt.target).closest('li[role="presentation"]');
     if (!$target.hasClass('active')) {

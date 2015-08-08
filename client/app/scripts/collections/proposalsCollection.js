@@ -6,22 +6,22 @@ const ProposalsCollection = PaginatedCollection.extend({
 
   url: '/api/proposals',
 
-  getAvgOffer: function () {
+  getAvgOffer () {
     var sum = this.reduce((memo, value) => {
       return memo + (value.get('offer') || 0);
     }, 0);
     return Math.round(sum / this.length);
   },
 
-  getPending: function () {
+  getPending () {
     return this.where({ state: 0 });
   },
 
-  getRejected: function () {
+  getRejected () {
     return this.where({ state: -1 });
   },
 
-  getAccepted: function () {
+  getAccepted () {
     return this.findWhere({ state: 1 });
   }
 });

@@ -8,7 +8,7 @@ const Modal = Backbone.View.extend({
     'click [data-action="modal-cancel"]': 'onCancel'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.options = _.defaults(params || {}, {
       $el: $('<div />').appendTo($('body')),
       dismissable: true,
@@ -22,7 +22,7 @@ const Modal = Backbone.View.extend({
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el
       .addClass('modal fade no-transition')
       .attr('tabindex', -1) // need for esc to close modal
@@ -33,15 +33,15 @@ const Modal = Backbone.View.extend({
       });
   },
 
-  onAccept: function (evt) {
+  onAccept (evt) {
     this.close();
   },
 
-  onCancel: function (evt) {
+  onCancel (evt) {
     this.close();
   },
 
-  close: function () {
+  close () {
     this.$el.modal('hide');
   }
 });

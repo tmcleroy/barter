@@ -4,11 +4,11 @@ const FooterView = Backbone.View.extend({
   events: {
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
   }
 

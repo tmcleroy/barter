@@ -5,13 +5,13 @@ const ProposalsView = Backbone.View.extend({
     'click .actionContainer [data-action]': 'actionClicked'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
 
     this.listenTo(this.collection, 'sync add', this.render);
   },
 
-  render: function () {
+  render () {
     var accepted = this.collection.getAccepted();
     this.$el.html(this.template({
       allProposals: this.collection.models,
@@ -22,7 +22,7 @@ const ProposalsView = Backbone.View.extend({
     }));
   },
 
-  actionClicked: function (evt) {
+  actionClicked (evt) {
     evt.preventDefault();
     var $target = $(evt.target);
     var proposal = this.collection.get($target.closest('[data-id]').attr('data-id'));

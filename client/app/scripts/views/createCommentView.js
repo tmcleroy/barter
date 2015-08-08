@@ -8,18 +8,18 @@ const CreateCommentView = Backbone.View.extend({
     'submit .ajaxForm': 'submitClicked'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.request = params.request;
     this.render();
 
     this.model = new Comment();
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
   },
 
-  submitClicked: function (evt) {
+  submitClicked (evt) {
     evt.preventDefault();
     $('body').addClass('loading');
     var body = this.$('[data-attr="body"]').val();
@@ -33,7 +33,7 @@ const CreateCommentView = Backbone.View.extend({
     });
   },
 
-  afterSubmit: function () {
+  afterSubmit () {
     $('body').removeClass('loading');
     this.model = new Comment();
     this.render();

@@ -13,7 +13,7 @@ const SubmissionsModel = NestedModel.extend(_.extend({}, StatefulHelper, {
     'Request': 'Request'
   },
 
-  getBodyFormatted: function () {
+  getBodyFormatted () {
     return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
 }));

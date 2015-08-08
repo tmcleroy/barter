@@ -6,7 +6,7 @@ const LoginView = Backbone.View.extend({
     'click button[type="submit"]': 'submit'
   },
 
-  initialize: function (params) {
+  initialize (params) {
     this.render();
     // temporary demo code
     if (params.options && params.options.demo === 'john') {
@@ -17,11 +17,11 @@ const LoginView = Backbone.View.extend({
     }
   },
 
-  render: function () {
+  render () {
     this.$el.html(this.template());
   },
 
-  submit: function (evt) {
+  submit (evt) {
     evt.preventDefault();
 
     var $form = $(evt.target).closest('form');
@@ -30,7 +30,7 @@ const LoginView = Backbone.View.extend({
     this.login(username, password);
   },
 
-  login: function (username, password) {
+  login (username, password) {
     App.API.login(username, password)
       .done((user) => {
         App.Router.navigate('app/requests/mine', true);

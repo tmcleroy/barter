@@ -1,5 +1,5 @@
 const NestedModel = Backbone.Model.extend({
-  parse: function (response) {
+  parse (response) {
     // allows for nested Backbone models
     // concept adapted = require(http://stackoverflow.com/a/9904874
     _.each(this.nestedDefs, (ModelOrCollectionKey, prop) => {
