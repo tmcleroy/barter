@@ -6,9 +6,11 @@
     </div>
   <div class="clearfix"></div>
   </div>
-  <% notifications.each(function (notification) { %>
-    <%= require('templates/notification/notificationListItem.ejs')({ notification: notification }) %>
-  <% }) %>
+  <div class="notifications">
+    <% notifications.each(function (notification) { %>
+      <%= require('templates/notification/notificationListItem.ejs')({ notification: notification }) %>
+    <% }) %>
+    <div class="noneMessage">You have no notifications</div>
+  </div>
+  <div class="infiniteLoading"></div>
 </div>
-<!-- placeholder for infinite scroll funny business -->
-<a href="#" data-page="2">PAGE 2</a>

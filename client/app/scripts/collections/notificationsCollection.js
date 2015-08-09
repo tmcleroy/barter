@@ -14,6 +14,14 @@ const NotificationsCollection = PaginatedCollection.extend({
         state: 1
       }
     });
+  },
+
+  fetchAdditional (options) {
+    return $.ajax({
+      url: this.url,
+      method: 'GET',
+      data: options
+    });
   }
 });
 

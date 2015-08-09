@@ -13,7 +13,8 @@ const PaginatedView = Backbone.View.extend({
   },
 
   // this is more of a post render function
-  // actual render logic should be provided by the extending view, see requestsView
+  // actual render logic should be provided by the extending view,
+  // then the extending view can call super. see requestsView for example
   render () {
     this.$el.removeClass('loading');
     this.updateUrl();
