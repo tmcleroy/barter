@@ -36,7 +36,7 @@ const LoginView = Backbone.View.extend({
         App.Router.navigate('app/requests/mine', true);
       })
       .fail((xhr, status, error) => {
-        console.log(status, error);
+        console.error(status, error);
       });
   }
 

@@ -22,7 +22,7 @@ const PaginatedView = Backbone.View.extend({
 
   fetch () {
     this.$el.addClass('loading');
-    var opts = {
+    let opts = {
       sort: this.sort,
       limit: this.limit,
       cursor: this.cursor
@@ -34,9 +34,9 @@ const PaginatedView = Backbone.View.extend({
   },
 
   selectChanged (evt) {
-    var $target = $(evt.target);
-    var prop = $target.attr('data-action');
-    var val = $target.val();
+    let $target = $(evt.target);
+    let prop = $target.attr('data-action');
+    let val = $target.val();
     // convert val to integer if it contains only digits
     val = val.match(/\D/) ? val : parseInt(val, 10);
     this[prop] = val;
@@ -49,7 +49,7 @@ const PaginatedView = Backbone.View.extend({
 
   pageChanged (evt) {
     evt.preventDefault();
-    var val = $(evt.currentTarget).attr('data-page');
+    let val = $(evt.currentTarget).attr('data-page');
     if (_.isNaN(parseInt(val, 10))) { // prev or next
       this.page += { next: 1, prev: -1 }[val];
     } else { // numerical page
@@ -60,12 +60,12 @@ const PaginatedView = Backbone.View.extend({
   },
 
   updateUrl () {
-    var options = {
+    const options = {
       page: this.page,
       limit: this.limit,
       sort: this.sort
     };
-    var split = window.location.pathname.split(/\//);
+    let split = window.location.pathname.split(/\//);
     // if there is a non-word character in the last segment (options are present)
     if (split[split.length - 1].match(/\W/)) {
       split.pop(); // pop off old options

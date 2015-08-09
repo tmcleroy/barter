@@ -24,7 +24,7 @@ const api = {
       Backbone.trigger('loggedOut');
       if (redirRoute) { App.Router.navigate(redirRoute, true); }
     }).fail((xhr, status, error) => {
-      console.log(status, error);
+      console.error(status, error);
     });
   },
 

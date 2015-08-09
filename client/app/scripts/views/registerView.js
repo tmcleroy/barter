@@ -28,11 +28,11 @@ const RegisterView = Backbone.View.extend({
             App.Router.navigate('app', true);
           })
           .fail((xhr, status, error) => {
-            console.log(status + ' ' + error);
+            console.error(status + ' ' + error);
           });
       })
       .fail((xhr, status, error) => {
-        console.log(status + ' ' + error);
+        console.error(status + ' ' + error);
       });
   }
 

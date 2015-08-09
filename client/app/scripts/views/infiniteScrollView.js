@@ -23,7 +23,7 @@ const InfiniteScrollView = Backbone.View.extend({
 
   fetch () {
     this.$el.addClass('loading');
-    var opts = _.extend({
+    const opts = _.extend({
       sort: this.sort,
       limit: this.limit,
       cursor: this.cursor
@@ -35,7 +35,7 @@ const InfiniteScrollView = Backbone.View.extend({
 
   fetchAdditional () {
     this.$('.infiniteLoading').addClass('loading');
-    var opts = _.extend({
+    const opts = _.extend({
       sort: this.sort,
       limit: this.limit,
       cursor: this.cursor
@@ -55,8 +55,6 @@ const InfiniteScrollView = Backbone.View.extend({
   pageChanged (evt) {
     this.page += 1;
     this.cursor = this.limit * (this.page - 1);
-    console.log('page', this.page);
-    console.log('cursor', this.cursor);
     this.fetchAdditional();
   },
 

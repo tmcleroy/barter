@@ -25,7 +25,6 @@ const SubmissionView = Backbone.View.extend({
   render () {
     var user = this.model.get('User');
     var request = this.model.get('Request');
-    console.log(this.model.get('Request'));
     this.$el.html(this.template({
       submission: this.model,
       state: this.model.getStateString(),
