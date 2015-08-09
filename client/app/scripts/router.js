@@ -131,8 +131,7 @@ const Router = Backbone.Router.extend(_.defaults({
 
     if (this.preRoute(viewName)) {
       this.view = new InboxView({
-        el: $('<div class="inboxViewContainer" />').appendTo('#contentContainer'),
-        options: { limit: 30 }
+        el: $('<div class="inboxViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }

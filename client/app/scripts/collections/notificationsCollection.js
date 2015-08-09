@@ -20,7 +20,7 @@ const NotificationsCollection = PaginatedCollection.extend({
     return $.ajax({
       url: this.url,
       method: 'GET',
-      data: options
+      data: options.data
     });
   }
 });
