@@ -4,6 +4,8 @@ import Notifications from 'scripts/collections/notificationsCollection';
 const InboxView = PaginatedView.extend({
   template: require('templates/inbox.ejs'),
 
+  scrollOffset: 500,
+
   events () {
     return _.extend({}, PaginatedView.prototype.events, {
       'click [data-action="seen"]': 'seenNotification',
@@ -16,6 +18,7 @@ const InboxView = PaginatedView.extend({
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
 
+    $(window).on('scroll', _.throttle(::this.onScroll, 100));
     this.listenTo(this.collection, 'change sync', this.collectionChanged);
     this.fetch();
   },
@@ -32,6 +35,12 @@ const InboxView = PaginatedView.extend({
     this.collection.fetch({
       data: opts
     });
+  },
+
+  onScroll () {
+    if ($(window).scrollTop() + $(window).height() >= $(document).height() - this.scrollOffset) {
+      console.log('they hatin');
+    }
   },
 
   collectionChanged () {
