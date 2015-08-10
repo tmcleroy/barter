@@ -65,11 +65,14 @@ const CreateRequestView = Backbone.View.extend({
   },
 
   tagsKeydown (evt) {
+    // comma, enter, tab
     if (_.contains([188, 13, 9], evt.which)) {
       evt.preventDefault();
-      var tag = this.$('[data-attr="tags"]').val();
-      this.$('[data-attr="tags"]').val('').focus();
-      this.tags.add(new Tag({ name: tag }));
+      var tag = this.$('[data-attr="tags"]').val().trim();
+      if (tag.length > 1) { // contains more than just whitespace
+        this.$('[data-attr="tags"]').val('').focus();
+        this.tags.add(new Tag({ name: tag }));
+      }
     }
   }
 });
