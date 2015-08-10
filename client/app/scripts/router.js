@@ -63,12 +63,7 @@ const Router = Backbone.Router.extend(_.defaults({
   preRoute (viewName) {
     if (this.view) { this.view.remove(); }
     this.currentView = viewName;
-    if (this.lastView !== this.currentView) {
-      $('#contentContainer').empty();
-      return true;
-    } else {
-      return false;
-    }
+    $('#contentContainer').empty();
   },
 
   postRoute (viewName) {
@@ -83,147 +78,137 @@ const Router = Backbone.Router.extend(_.defaults({
   home () {
     var viewName = 'home';
 
-    if (this.preRoute(viewName)) {
-      this.view = new HomeView({
-        el: $('<div class="homeViewContainer" />').appendTo('#contentContainer')
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new HomeView({
+      el: $('<div class="homeViewContainer" />').appendTo('#contentContainer')
+    });
+    this.postRoute(viewName);
   },
 
   login (options) {
     var viewName = 'login';
 
-    if (this.preRoute(viewName)) {
-      this.view = new LoginView({
-        el: $('<div class="loginViewContainer" />').appendTo('#contentContainer'),
-        options: this.parseOptions(options)
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new LoginView({
+      el: $('<div class="loginViewContainer" />').appendTo('#contentContainer'),
+      options: this.parseOptions(options)
+    });
+    this.postRoute(viewName);
   },
 
   register () {
     var viewName = 'register';
 
-    if (this.preRoute(viewName)) {
-      this.view = new RegisterView({
-        el: $('<div class="registerViewContainer" />').appendTo('#contentContainer')
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new RegisterView({
+      el: $('<div class="registerViewContainer" />').appendTo('#contentContainer')
+    });
+    this.postRoute(viewName);
   },
 
   settings () {
     var viewName = 'settings';
 
-    if (this.preRoute(viewName)) {
-      this.view = new SettingsView({
-        el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer'),
-        model: App.user
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new SettingsView({
+      el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer'),
+      model: App.user
+    });
+    this.postRoute(viewName);
   },
 
   inbox () {
     var viewName = 'inbox';
 
-    if (this.preRoute(viewName)) {
-      this.view = new InboxView({
-        el: $('<div class="inboxViewContainer" />').appendTo('#contentContainer')
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new InboxView({
+      el: $('<div class="inboxViewContainer" />').appendTo('#contentContainer')
+    });
+    this.postRoute(viewName);
   },
 
   requestsBrowse (options) {
     var viewName = 'requestsBrowse';
-    if (this.preRoute(viewName)) {
-      this.view = new RequestsView({
-        el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer'),
-        options: this.parseOptions(options)
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new RequestsView({
+      el: $('<div class="requestsBrowseContainer" />').appendTo('#contentContainer'),
+      options: this.parseOptions(options)
+    });
+    this.postRoute(viewName);
   },
 
   requestsShow (id, options) {
     var viewName = 'requestsShow';
 
-    if (this.preRoute(viewName)) {
-      this.view = new RequestView({
-        el: $('<div class="requestsShowViewContainer" />').appendTo('#contentContainer'),
-        id: id,
-        options: this.parseOptions(options)
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new RequestView({
+      el: $('<div class="requestsShowViewContainer" />').appendTo('#contentContainer'),
+      id: id,
+      options: this.parseOptions(options)
+    });
+    this.postRoute(viewName);
   },
 
   requestsCreate () {
     var viewName = 'requestsCreate';
 
-    if (this.preRoute(viewName)) {
-      this.view = new CreateRequestView({
-        el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer'),
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new CreateRequestView({
+      el: $('<div class="requestsCreateViewContainer" />').appendTo('#contentContainer')
+    });
+    this.postRoute(viewName);
   },
 
   requestsMine (options) {
     var viewName = 'requestsMine';
 
-    if (this.preRoute(viewName)) {
-      this.view = new RequestsView({
-        el: $('<div class="requestsMineViewContainer" />').appendTo('#contentContainer'),
-        options: this.parseOptions(options),
-        mine: true
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new RequestsView({
+      el: $('<div class="requestsMineViewContainer" />').appendTo('#contentContainer'),
+      options: this.parseOptions(options),
+      mine: true
+    });
+    this.postRoute(viewName);
   },
 
   proposalsMine (options) {
     var viewName = 'proposalsMine';
 
-    if (this.preRoute(viewName)) {
-      this.view = new ProposalsView({
-        el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
-        mine: true,
-        options: this.parseOptions(options)
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new ProposalsView({
+      el: $('<div class="proposalsMineViewContainer" />').appendTo('#contentContainer'),
+      mine: true,
+      options: this.parseOptions(options)
+    });
+    this.postRoute(viewName);
   },
 
   submissionsShow (id) {
     var viewName = 'submissionsShow';
 
-    if (this.preRoute(viewName)) {
-      this.view = new SubmissionView({
-        el: $('<div class="submissionsShowViewContainer" />').appendTo('#contentContainer'),
-        id: id
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new SubmissionView({
+      el: $('<div class="submissionsShowViewContainer" />').appendTo('#contentContainer'),
+      id: id
+    });
+    this.postRoute(viewName);
   },
 
   submissionsCreate (id) {
     var viewName = 'submissionsCreate';
 
-    if (this.preRoute(viewName)) {
-      this.view = new CreateSubmissionView({
-        el: $('<div class="submissionsCreateViewContainer" />').appendTo('#contentContainer'),
-        requestId: id
-      });
-      this.postRoute(viewName);
-    }
+    this.preRoute(viewName);
+    this.view = new CreateSubmissionView({
+      el: $('<div class="submissionsCreateViewContainer" />').appendTo('#contentContainer'),
+      requestId: id
+    });
+    this.postRoute(viewName);
   },
 
   // OVERRIDES
   navigate () {
+    // NOTE
+    // always persist url query params. ex. ?var1=abc&var2=def
     arguments[0] += window.location.search;
     Backbone.Router.prototype.navigate.apply(this, arguments);
   }

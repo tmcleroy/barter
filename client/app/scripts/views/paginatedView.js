@@ -17,10 +17,9 @@ const PaginatedView = Backbone.View.extend({
   // then the extending view can call super. see requestsView.js for example
   render () {
     this.$el.removeClass('loading');
-    this.updateUrl();
   },
 
-  fetch () {
+  fetch (updateUrl) {
     this.$el.addClass('loading');
     let opts = {
       sort: this.sort,
@@ -31,6 +30,9 @@ const PaginatedView = Backbone.View.extend({
     this.collection.fetch({
       data: opts
     });
+    if (updateUrl) {
+      this.updateUrl();
+    }
   },
 
   selectChanged (evt) {
@@ -44,7 +46,7 @@ const PaginatedView = Backbone.View.extend({
       this.page = 1;
       this.cursor = this.limit * (this.page - 1);
     }
-    this.fetch();
+    this.fetch(true);
   },
 
   pageChanged (evt) {
@@ -56,7 +58,7 @@ const PaginatedView = Backbone.View.extend({
       this.page = parseInt(val, 10);
     }
     this.cursor = this.limit * (this.page - 1);
-    this.fetch();
+    this.fetch(true);
   },
 
   updateUrl () {
