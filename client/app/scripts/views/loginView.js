@@ -1,6 +1,7 @@
+import template from 'templates/login.ejs';
 
 const LoginView = Backbone.View.extend({
-  template: require('templates/login.ejs'),
+  template,
 
   events: {
     'click button[type="submit"]': 'submit'
@@ -24,16 +25,16 @@ const LoginView = Backbone.View.extend({
   submit (evt) {
     evt.preventDefault();
 
-    var $form = $(evt.target).closest('form');
-    var username = $form.find('input[name="username"]').val();
-    var password = $form.find('input[name="password"]').val();
+    const $form = $(evt.target).closest('form');
+    const username = $form.find('input[name="username"]').val();
+    const password = $form.find('input[name="password"]').val();
     this.login(username, password);
   },
 
   login (username, password) {
     App.API.login(username, password)
       .done((user) => {
-        App.Router.navigate('app/requests/mine', true);
+        App.Router.navigate('app/requests/browse');
       })
       .fail((xhr, status, error) => {
         console.error(status, error);

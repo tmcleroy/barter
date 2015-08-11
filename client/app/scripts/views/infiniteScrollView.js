@@ -10,7 +10,7 @@ const InfiniteScrollView = Backbone.View.extend({
     this.limit = Math.min(params.limit || 30, params.maxLimit || 100);
     this.cursor = this.limit * (this.page - 1);
     this.sort = params.sort || '-createdAt';
-    this.scrollOffset = params.scrollOffset || 200;
+    this.scrollOffset = params.scrollOffset || $(window).height() / 2;
     this.fetchOptions = params.fetchOptions || {};
 
     this.listenTo(this.collection, 'change sync', (collection) => {

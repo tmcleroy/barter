@@ -1,0 +1,5 @@
+<div class="editProfileView">
+  <%= require('templates/profile/profile.ejs')({ user: user }) %>
+  <p>You have <%= user.get('points') %> points</p>
+  <a href="/app/settings">Settings</a>
+</div>

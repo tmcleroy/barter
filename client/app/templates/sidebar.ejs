@@ -1,12 +1,12 @@
 <div class="list-group">
-  <a href="/app/requests/browse" class="list-group-item" data-route="requestsBrowse">Browse Requests</a>
-  <a href="/app/requests/create" class="list-group-item" data-route="requestsCreate">Submit Request</a>
-  <a href="/app/requests/mine" class="list-group-item" data-route="requestsMine">My Requests</a>
-  <a href="/app/proposals/mine" class="list-group-item" data-route="proposalsMine">My Proposals</a>
-  <a href="/app/inbox" class="list-group-item" data-route="inbox">Inbox
+  <a href="/app/requests/browse" class="list-group-item <%= route === 'requestsBrowse' ? 'active' : '' %>" data-route="requestsBrowse">Browse Requests</a>
+  <a href="/app/requests/create" class="list-group-item <%= route === 'requestsCreate' ? 'active' : '' %>" data-route="requestsCreate">Submit Request</a>
+  <a href="/app/requests/mine" class="list-group-item <%= route === 'requestsMine' ? 'active' : '' %>" data-route="requestsMine">My Requests</a>
+  <a href="/app/proposals/mine" class="list-group-item <%= route === 'proposalsMine' ? 'active' : '' %>" data-route="proposalsMine">My Proposals</a>
+  <a href="/app/inbox" class="list-group-item <%= route === 'inbox' ? 'active' : '' %>" data-route="inbox">Inbox
     <% if (unseen) { %>
       <span class="badge unseen"><%= unseen %></span>
     <% } %>
   </a>
-  <!-- <a href="/app/settings" class="list-group-item" data-route="settings">Settings</a> -->
+  <a href="/app/profile" class="list-group-item <%= route === 'profile' ? 'active' : '' %>" data-route="profile">Profile</a>
 </div>

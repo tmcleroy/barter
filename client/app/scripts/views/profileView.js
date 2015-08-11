@@ -1,7 +1,7 @@
-import Backbone from 'backbone';
+import template from 'templates/profile/profile.ejs';
 
 const ProfileView = Backbone.View.extend({
-  template: require('templates/profile/profile.ejs'),
+  template,
 
   events: {
   },
@@ -19,7 +19,7 @@ const ProfileView = Backbone.View.extend({
   render () {
     this.$el.html(this.template({
       size: this.size,
-      user: App.user.toJSON()
+      user: App.user
     }));
   }
 

@@ -1,7 +1,7 @@
 <div class="profile">
-  <img src="<%= user.avatar %>" class="avatar"></img>
+  <img src="<%= user.get('avatar') %>" class="avatar"></img>
   <div class="usernameRepContainer">
-    <div class="username"><%= user.username %></div>
-    <div class="rep"><%= user.rep %></div>
+    <div class="username"><%= user.get('username') %></div>
+    <div class="rep"><%= user.get('rep') %></div>
   </div>
 </div>

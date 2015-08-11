@@ -12,6 +12,7 @@ const ProposalsView = PaginatedView.extend({
       { sort: 'createdAt', display: 'Oldest' },
       { sort: 'updatedAt', display: 'Recently Updated' }
     ];
+    params.sort = params.sort ? params.sort : 'updatedAt';
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
     this.events = _.extend(PaginatedView.prototype.events, this.events);

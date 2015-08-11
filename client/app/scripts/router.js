@@ -5,6 +5,7 @@ import SideBarView from 'scripts/views/sideBarView.js';
 import HomeView from 'scripts/views/homeView';
 import LoginView from 'scripts/views/loginView';
 import RegisterView from 'scripts/views/registerView';
+import EditProfileView from 'scripts/views/editProfileView';
 import SettingsView from 'scripts/views/settingsView';
 import InboxView from 'scripts/views/inboxView';
 import RequestsView from 'scripts/views/requestsView';
@@ -26,6 +27,7 @@ const Router = Backbone.Router.extend(_.defaults({
 
     'login(/)(:options)'                      : 'login',
     'register(/)'                             : 'register',
+    'app/profile(/)'                          : 'profile',
     'app/settings(/)'                         : 'settings',
     'app/inbox(/)'                            : 'inbox',
 
@@ -55,8 +57,6 @@ const Router = Backbone.Router.extend(_.defaults({
     new SideBarView({
       el: $('<div class="sidebarViewContainer" />').appendTo('#sidebarContainer')
     });
-
-    this.listenTo(Backbone, 'loggedIn', this.loggedIn);
   },
 
   // returns boolean whether to continue rendering the new view
@@ -102,6 +102,17 @@ const Router = Backbone.Router.extend(_.defaults({
     this.preRoute(viewName);
     this.view = new RegisterView({
       el: $('<div class="registerViewContainer" />').appendTo('#contentContainer')
+    });
+    this.postRoute(viewName);
+  },
+
+  profile () {
+    var viewName = 'profile';
+
+    this.preRoute(viewName);
+    this.view = new EditProfileView({
+      el: $('<div class="editProfileViewContainer" />').appendTo('#contentContainer'),
+      model: App.user
     });
     this.postRoute(viewName);
   },
