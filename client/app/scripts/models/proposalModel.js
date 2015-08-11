@@ -6,7 +6,8 @@ const ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
   urlRoot: '/api/proposals',
 
   nestedDefs: {
-    'Submission': 'Submission'
+    User: 'User',
+    Submission: 'Submission'
   },
 
   getBodyFormatted () {

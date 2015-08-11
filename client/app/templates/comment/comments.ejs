@@ -1,8 +1,8 @@
 <div class="commentsView">
   <h4>Comments</h4>
   <div class="comments">
-    <% _.each(comments, function (comment) { %>
-      <%= require('templates/comment/comment.ejs')(comment) %>
+    <% comments.each(function (comment) { %>
+      <%= require('templates/comment/comment.ejs')({ comment: comment }) %>
     <% }); %>
     <div class="noneMessage">No comments yet.</div>
   </div>

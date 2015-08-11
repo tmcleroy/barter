@@ -34,7 +34,7 @@ const LoginView = Backbone.View.extend({
   login (username, password) {
     App.API.login(username, password)
       .done((user) => {
-        App.Router.navigate('app/requests/browse');
+        App.Router.navigate('app/requests/browse', true);
       })
       .fail((xhr, status, error) => {
         console.error(status, error);

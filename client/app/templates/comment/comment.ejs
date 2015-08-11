@@ -1,24 +1,24 @@
 <% var moment = require('moment'); %>
-<div id="comment-<%= id %>"class="comment">
+<div id="comment-<%= comment.get('id') %>"class="comment">
 
   <div class="row head">
     <div class="col-sm-4 headLeft">
       <div class="profileContainer">
         <%= require('templates/profile/profile.ejs')({
-          user: User
+          user: comment.get('User')
         }) %>
       </div>
     </div>
     <div class="col-sm-6 col-sm-offset-2 headRight">
       <div class="timeContainer">
-        <%= moment(createdAt).fromNow() %>
+        <%= moment(comment.get('createdAt')).fromNow() %>
       </div>
     </div>
   </div>
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <%= body %>
+      <%= comment.get('body') %>
     </div>
   </div>
 

@@ -9,7 +9,7 @@
       <div class="profileContainer">
         <%= require('templates/profile/profile.ejs')({
           size: 'small',
-          user: request.get('User').toJSON()
+          user: request.get('User')
         }) %>
       </div>
     </div>

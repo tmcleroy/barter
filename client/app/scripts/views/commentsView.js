@@ -9,7 +9,7 @@ const CommentsView = Backbone.View.extend({
 
   render () {
     this.$el.html(this.template({
-      comments: this.collection.toJSON()
+      comments: this.collection
     }));
   }
 
