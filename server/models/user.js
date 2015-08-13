@@ -23,7 +23,10 @@ module.exports = function (sequelize, DataTypes) {
       roles: false
     },
     email: DataTypes.STRING,
-    rep: DataTypes.INTEGER,
+    rep: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     points: {
       type: DataTypes.INTEGER,
       defaultValue: 10000

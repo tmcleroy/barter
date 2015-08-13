@@ -11,13 +11,13 @@ import 'styles/comment.scss';
 import 'styles/proposal.scss';
 import 'styles/submission.scss';
 import 'styles/tag.scss';
-import 'styles/offer.scss';
 import 'styles/markdown.scss';
 import 'styles/buttons.scss';
 import 'styles/modal.scss';
 import 'styles/alert.scss';
 import 'styles/lists.scss';
 import 'styles/pagination.scss';
+import 'styles/notifications.scss';
 
 let Router = require('./router');
 let Api = require('./api');

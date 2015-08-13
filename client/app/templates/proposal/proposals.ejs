@@ -16,7 +16,7 @@
       collapsed: true,
     }) %>
   </div>
-  <div class="proposalList">
+  <div class="itemList proposalList">
     <% proposals.each(function (proposal) { %>
       <%= require('templates/proposal/proposalListItem.ejs')({
         proposal: proposal,
@@ -25,6 +25,7 @@
         requestUser: proposal.get('Request').User
       }) %>
     <% }); %>
+    <div class="noneMessage">You haven't made any proposals. Try to <a href="/app/requests/browse">find a request</a> you'd like to complete.</div>
   </div>
   <div class="controls bottom">
     <%= require('templates/components/pagination.ejs')({

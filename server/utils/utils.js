@@ -48,7 +48,10 @@ var utils = {
   transferPoints: function (fromUser, toUser, amount, models) {
     console.log('transferring ' + amount + ' points from ' + fromUser.get('username') + ' to ' + toUser.get('username'));
     fromUser.updateAttributes({ points: Math.max(0, (fromUser.points - amount)) });
-    toUser.updateAttributes({ points: (toUser.points + amount) });
+    toUser.updateAttributes({
+      points: (toUser.points + amount),
+      rep: (toUser.rep + Math.floor(amount / 2)) // rep increases by half of the bounty
+    });
     models.Transaction.create({
       amount: amount,
       fromUserId: fromUser.id,

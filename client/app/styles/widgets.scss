@@ -138,5 +138,13 @@ select {
       box-shadow: 0 0 0 7px #ccc;
     }
   }
+}
 
+// display of point related things, offers, balance, etc.
+.offer {
+  font-weight: bold;
+  color: $green;
+}
+.balance {
+  color: $green;
 }

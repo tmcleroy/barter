@@ -1,7 +1,7 @@
 <div class="notificationsView paginatedView">
   <h1 class="viewTitle">Notifications</h1>
+  <label class="unseen"><%= notifications.total %> unseen</label>
   <div class="controls top">
-    <label><%= notifications.total %> unseen</label>
     <div class="pull-right">
       <button class="btn btn-default" data-action="all-seen">Mark All Seen</button>
     </div>
@@ -11,7 +11,7 @@
     <% notifications.each(function (notification) { %>
       <%= require('templates/notification/notificationListItem.ejs')({ notification: notification }) %>
     <% }) %>
-    <div class="noneMessage">You have no notifications</div>
+    <div class="noneMessage">You have no unseen notifications</div>
   </div>
   <div class="infiniteLoading"></div>
 </div>

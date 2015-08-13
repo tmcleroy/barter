@@ -2,7 +2,7 @@ const RegisterView = Backbone.View.extend({
   template: require('templates/register.ejs'),
 
   events: {
-    'click button[type="submit"]': 'submit'
+    'submit .ajaxForm': 'submit'
   },
 
   initialize (params) {
@@ -15,6 +15,7 @@ const RegisterView = Backbone.View.extend({
 
   submit (evt) {
     evt.preventDefault();
+    this.$el.addClass('loading');
 
     var $form = $(evt.target).closest('form');
     var username = $form.find( 'input[name="username"]' ).val();
@@ -25,7 +26,7 @@ const RegisterView = Backbone.View.extend({
       .done((user) => {
         App.API.login(username, password)
           .done(() => {
-            App.Router.navigate('app', true);
+            App.Router.navigate('app/profile', true);
           })
           .fail((xhr, status, error) => {
             console.error(status + ' ' + error);
