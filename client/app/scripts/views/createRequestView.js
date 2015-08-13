@@ -3,15 +3,36 @@ import Tags from 'scripts/collections/tagsCollection';
 import Tag from 'scripts/models/tagModel';
 import TagsView from 'scripts/views/tagsView';
 import BodyEditorView from 'scripts/views/bodyEditorView';
+import FormValidationView from 'scripts/views/formValidationView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
 
-const CreateRequestView = Backbone.View.extend({
+const CreateRequestView = FormValidationView.extend({
   template: require('templates/request/createRequest.ejs'),
 
-  events: {
-    'submit .ajaxForm': 'submitClicked',
+  events: _.extend({}, FormValidationView.prototype.events, {
     'keydown [data-attr="tags"]': 'tagsKeydown'
+  }),
+
+  validations: {
+    'title': {
+      test: val => val.length > 10,
+      message: {
+        body: 'Title must be at least 10 characters.'
+      }
+    },
+    'offer': {
+      test: val => (/^\d+$/).test(val),
+      message: {
+        body: 'Offer must be a whole number.'
+      }
+    },
+    'body': {
+      test: val => val.length > 50,
+      message: {
+        body: 'Description must be at least 50 characters.'
+      }
+    }
   },
 
   initialize (params) {
@@ -34,7 +55,7 @@ const CreateRequestView = Backbone.View.extend({
     });
   },
 
-  submitClicked (evt) {
+  validFormSubmitted (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({
@@ -69,7 +90,7 @@ const CreateRequestView = Backbone.View.extend({
     if (_.contains([188, 13, 9], evt.which)) {
       evt.preventDefault();
       var tag = this.$('[data-attr="tags"]').val().trim();
-      if (tag.length > 1) { // contains more than just whitespace
+      if (tag.length > 1) { // tag contains more than just whitespace
         this.$('[data-attr="tags"]').val('').focus();
         this.tags.add(new Tag({ name: tag }));
       }

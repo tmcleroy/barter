@@ -38,5 +38,8 @@
 .createRequestView {
   .tagsView {
     margin: 10px 0;
+    h4 {
+      display: none;
+    }
   }
 }

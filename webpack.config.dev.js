@@ -18,7 +18,8 @@ module.exports = function () {
     },
     resolve: {
       root: [
-        path.join(__dirname, '/client/app')
+        path.join(__dirname, '/client/app'),
+        path.join(__dirname, '/node_modules')
       ]
     },
     module: {
