@@ -62,7 +62,7 @@ module.exports = function () {
         Backbone: 'backbone'
       })
     ],
-    devtool: 'eval-source-map',
+    devtool: 'inline-source-map',
     debug: true
   };
 };

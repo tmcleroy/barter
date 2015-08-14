@@ -1,13 +1,19 @@
 import Submission from 'scripts/models/submissionModel';
 import BodyEditorView from 'scripts/views/bodyEditorView';
+import FormValidationView from 'scripts/views/formValidationView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
+import template from 'templates/submission/createSubmission.ejs';
 
-const CreateSubmissionView = Backbone.View.extend({
-  template: require('templates/submission/createSubmission.ejs'),
-
-  events: {
-    'submit .ajaxForm': 'submitClicked'
+const CreateSubmissionView = FormValidationView.extend({
+  template,
+  validations: {
+    'body': {
+      test: val => val.length > 20,
+      message: {
+        body: 'Submission must be at least 20 characters.'
+      }
+    }
   },
 
   initialize (params) {
@@ -24,7 +30,7 @@ const CreateSubmissionView = Backbone.View.extend({
     });
   },
 
-  submitClicked (evt) {
+  validFormSubmitted (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({

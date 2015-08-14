@@ -6,10 +6,10 @@ import BodyEditorView from 'scripts/views/bodyEditorView';
 import FormValidationView from 'scripts/views/formValidationView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
+import template from 'templates/request/createRequest.ejs';
 
 const CreateRequestView = FormValidationView.extend({
-  template: require('templates/request/createRequest.ejs'),
-
+  template,
   events: _.extend({}, FormValidationView.prototype.events, {
     'keydown [data-attr="tags"]': 'tagsKeydown'
   }),

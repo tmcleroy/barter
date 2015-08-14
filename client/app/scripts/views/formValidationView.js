@@ -16,7 +16,7 @@ const FormValidationView = Backbone.View.extend({
   // },
 
   events: {
-    'submit .validatedForm': 'validateForm',
+    'submit form': 'validateForm',
     'focus [data-attr]': 'removeMessage'
   },
 
@@ -35,7 +35,8 @@ const FormValidationView = Backbone.View.extend({
           html: true,
           placement: validation.message.position || 'top',
           trigger: 'manual'
-        }).popover('show');
+        }).popover('show') // show the popover
+        .data('bs.popover').tip().addClass('validationError'); // add validationError class
       }
       allValid = allValid && inputValid; // allValid will be false if any of these inputs fail
     });

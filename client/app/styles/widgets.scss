@@ -148,3 +148,10 @@ select {
 .balance {
   color: $green;
 }
+
+// validation error popovers
+.validationError {
+  .popover-title {
+    background-color: #FFB8B8;
+  }
+}
