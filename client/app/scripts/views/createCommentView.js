@@ -1,5 +1,5 @@
 import Comment from 'scripts/models/commentModel';
-import FormValidationView from 'scripts/views/formvalidationView';
+import FormValidationView from 'scripts/views/formValidationView';
 import Alert from './components/alert';
 
 const CreateCommentView = FormValidationView.extend({

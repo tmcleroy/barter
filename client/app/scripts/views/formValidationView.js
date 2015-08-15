@@ -17,19 +17,21 @@ const FormValidationView = Backbone.View.extend({
     let allValid = true;
 
     _.each(this.validations, (validation, name) => {
-      let $elem = this.$(`[data-attr="${ name }"]`);
-      let inputValid = validation.test($elem.val());
-      if (!inputValid) {
-        $elem.popover({
+      const $input = this.$(`[data-attr="${ name }"]`);
+      const inputValid = validation.test($input.val());
+
+      if (!inputValid) { // validation error
+        let $msgElem = this.getMsgElem($input);
+        $msgElem.popover({
           title: 'Validation Error',
           content: validation.message.body,
           html: true,
           placement: validation.message.position || 'top',
           trigger: 'manual'
-        }).popover('show') // show the popover
+        }).popover('show')
         .data('bs.popover').tip().addClass('validationError'); // add validationError class
       }
-      allValid = allValid && inputValid; // allValid will be false if any of these inputs fail
+      allValid = allValid && inputValid; // allValid will be false if any of the inputs fail
     });
 
     if (allValid) {
@@ -37,8 +39,16 @@ const FormValidationView = Backbone.View.extend({
     }
   },
 
+  // returns the closest `[data-anchor="validation"]` element if available (see bodyEditor.ejs)
+  // otherwise, returns the form input element itself
+  getMsgElem ($input) {
+    const $anchor = $input.closest('[data-anchor="validation"]');
+    return $anchor.length ? $anchor : $input;
+  },
+
   removeMessage (evt) {
-    $(evt.target).popover('hide');
+    let $msgElem = this.getMsgElem($(evt.target));
+    $msgElem.popover('hide');
   }
 
 });

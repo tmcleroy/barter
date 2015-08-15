@@ -1,11 +1,11 @@
 import Proposal from 'scripts/models/proposalModel';
-import FormValidationView from 'scripts/views/formvalidationView';
+import FormValidationView from 'scripts/views/formValidationView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
+import template from 'templates/comment/createProposal.ejs';
 
 const CreateProposalView = FormValidationView.extend({
-  template: require('templates/comment/createProposal.ejs'),
-
+  template,
   validations: {
     'body': {
       test: val => val.length >= 5,
@@ -34,14 +34,14 @@ const CreateProposalView = FormValidationView.extend({
 
   validFormSubmitted (evt) {
     evt.preventDefault();
+    const offer = parseInt(this.$('[data-attr="offer"]').val(), 10);
+    const body = this.$('[data-attr="body"]').val();
 
     new ConfirmationModal({
       title: 'Confirm Proposal',
-      body: 'By submitting this proposal, you are committing to fulfill this request in exchange for <span class="offer">' + this.$('[data-attr="offer"]').val() + 'ę</span>',
+      body: `By submitting this proposal, you are committing to fulfill this request in exchange for <span class="offer">${ offer }ę</span>`,
       onAccept: (evt) => {
         $('body').addClass('loading');
-        var body = this.$('[data-attr="body"]').val();
-        var offer = this.$('[data-attr="offer"]').val();
 
         this.model.set({
           body: body,

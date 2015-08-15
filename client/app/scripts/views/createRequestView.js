@@ -28,9 +28,9 @@ const CreateRequestView = FormValidationView.extend({
       }
     },
     'body': {
-      test: val => val.length >= 50,
+      test: val => val.length >= 30,
       message: {
-        body: 'Description must be at least 50 characters.'
+        body: 'Description must be at least 30 characters.'
       }
     }
   },
@@ -57,21 +57,22 @@ const CreateRequestView = FormValidationView.extend({
 
   validFormSubmitted (evt) {
     evt.preventDefault();
+    const title = this.$('[data-attr="title"]').val();
+    const body = this.$('[data-attr="body"]').val();
+    const offer = parseInt(this.$('[data-attr="offer"]').val(), 10);
+
 
     new ConfirmationModal({
       title: 'Confirm Request',
-      body: `By submitting this request you are committing to offer <span class="offer">${ this.$('[data-attr="offer"]').val() }ę</span> in exchange for its completion.`,
+      body: `By submitting this request you are committing to offer <span class="offer">${ offer }ę</span> in exchange for its completion.`,
       onAccept: (evt) => {
         $('body').addClass('loading');
-        var title = this.$('[data-attr="title"]').val();
-        var body = this.$('[data-attr="body"]').val();
-        var offer = this.$('[data-attr="offer"]').val();
 
         this.model.set({
           title: title,
           body: body,
           offer: offer,
-          tags: _.map(this.tags.models, function (model) { return model.toJSON().name; })
+          tags: _.map(this.tags.models, model => model.toJSON().name )
         });
         this.model.save().done((model) => {
           $('body').removeClass('loading');
@@ -89,7 +90,7 @@ const CreateRequestView = FormValidationView.extend({
     // comma, enter, tab
     if (_.contains([188, 13, 9], evt.which)) {
       evt.preventDefault();
-      var tag = this.$('[data-attr="tags"]').val().trim();
+      const tag = this.$('[data-attr="tags"]').val().trim();
       if (tag.length > 1) { // tag contains more than just whitespace
         this.$('[data-attr="tags"]').val('').focus();
         this.tags.add(new Tag({ name: tag }));
