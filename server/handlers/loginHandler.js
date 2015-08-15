@@ -1,6 +1,5 @@
 var handler = function (req, res, next) {
-  res.status(200);
-  res.send(req.user.toClientJSON());
+  res.status(200).send(req.user.toJSON());
 };
 
 module.exports = handler;

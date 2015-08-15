@@ -18,6 +18,11 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: -1 // unseen
     }
   }, {
+    defaultScope: {
+      where: {
+        state: -1 // unseen
+      }
+    },
     classMethods: {
       associate: function (models) {
         // the user concerned with the notification (Tommy in the above example)

@@ -5,13 +5,15 @@ module.exports = function (sequelize, DataTypes) {
     body: DataTypes.TEXT,
     offer: {
       type: DataTypes.INTEGER,
+      validate: { isInt: true },
       set: function (val) {
         this.setDataValue('offer', parseInt(val, 10));
       }
     },
     state: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
+      validate: { isInt: true }
     }
   }, {
     classMethods: {

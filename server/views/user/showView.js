@@ -6,7 +6,7 @@ var handler = function (req, res) {
     attributes: ['id', 'username', 'email', 'rep', 'avatar'],
     include: [ models.Skill, models.Permission ]
   }).then(function (user) {
-    res.status(200).json(user.toClientJSON());
+    res.status(200).send(user.toJSON());
   });
 };
 

@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     body: DataTypes.TEXT,
     offer: {
       type: DataTypes.INTEGER,
+      validate: { isInt: true },
       set: function (val) {
         this.setDataValue('offer', parseInt(val, 10));
       }

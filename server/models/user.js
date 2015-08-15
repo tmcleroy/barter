@@ -22,7 +22,14 @@ module.exports = function (sequelize, DataTypes) {
       // https://github.com/mickhansen/ssacl-attribute-roles
       roles: false
     },
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      // email can can only be accessed if you explicitly pass the admin role user.get({role: 'admin'});
+      roles: {
+        admin: { get: true },
+        self: true
+      }
+    },
     rep: {
       type: DataTypes.INTEGER,
       defaultValue: 0
@@ -71,16 +78,6 @@ module.exports = function (sequelize, DataTypes) {
           var access = names.indexOf('admin') > -1 || names.indexOf('api') > -1;
           cb(!!access);
         });
-      },
-      toClientJSON: function () {
-        return { // be careful, this gets written into index.html.ejs
-          id: this.get('id'),
-          username: this.get('username'),
-          email: this.get('email'),
-          rep: this.get('rep'),
-          points: this.get('points'),
-          avatar: this.get('avatar')
-        };
       }
     }
   });

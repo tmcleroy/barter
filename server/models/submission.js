@@ -3,10 +3,10 @@
 module.exports = function (sequelize, DataTypes) {
   var Submission = sequelize.define('Submission', {
     body: DataTypes.TEXT,
-    link: DataTypes.STRING,
     state: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
+      validate: { isInt: true }
     }
   }, {
     classMethods: {
