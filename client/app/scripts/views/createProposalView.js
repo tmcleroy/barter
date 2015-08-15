@@ -1,12 +1,24 @@
 import Proposal from 'scripts/models/proposalModel';
+import FormValidationView from 'scripts/views/formvalidationView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
 
-const CreateProposalView = Backbone.View.extend({
+const CreateProposalView = FormValidationView.extend({
   template: require('templates/comment/createProposal.ejs'),
 
-  events: {
-    'submit .ajaxForm': 'submitClicked'
+  validations: {
+    'body': {
+      test: val => val.length >= 5,
+      message: {
+        body: 'Description must be at least 5 characters.'
+      }
+    },
+    'offer': {
+      test: val => (/^\d+$/).test(val),
+      message: {
+        body: 'Offer must be a whole number.'
+      }
+    }
   },
 
   initialize (params) {
@@ -20,7 +32,7 @@ const CreateProposalView = Backbone.View.extend({
     this.$el.html(this.template());
   },
 
-  submitClicked (evt) {
+  validFormSubmitted (evt) {
     evt.preventDefault();
 
     new ConfirmationModal({

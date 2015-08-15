@@ -16,7 +16,7 @@ const CreateRequestView = FormValidationView.extend({
 
   validations: {
     'title': {
-      test: val => val.length > 10,
+      test: val => val.length >= 10,
       message: {
         body: 'Title must be at least 10 characters.'
       }
@@ -28,7 +28,7 @@ const CreateRequestView = FormValidationView.extend({
       }
     },
     'body': {
-      test: val => val.length > 50,
+      test: val => val.length >= 50,
       message: {
         body: 'Description must be at least 50 characters.'
       }

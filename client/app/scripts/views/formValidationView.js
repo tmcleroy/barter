@@ -1,19 +1,10 @@
 import 'bootstrap-sass/assets/javascripts/bootstrap/tooltip';
 import 'bootstrap-sass/assets/javascripts/bootstrap/popover';
 
+// extending views must implement the `validFormSubmitted` function
+// and provide the `validations` propoerty
+// see createRequestView for an example
 const FormValidationView = Backbone.View.extend({
-
-  // expect validations to be supplied by the child view
-  // see createRequestView for an example
-  // validations: {
-  //   'title': { // the [data-attr] value for the input
-  //     test: val => val.length > 10,
-  //     message: {
-  //       body: 'Title must be at least 10 characters.',
-  //       position: 'bottom' // default is 'top'
-  //     }
-  //   }
-  // },
 
   events: {
     'submit form': 'validateForm',

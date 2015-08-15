@@ -1,11 +1,17 @@
 import Comment from 'scripts/models/commentModel';
+import FormValidationView from 'scripts/views/formvalidationView';
 import Alert from './components/alert';
 
-const CreateCommentView = Backbone.View.extend({
+const CreateCommentView = FormValidationView.extend({
   template: require('templates/comment/createComment.ejs'),
 
-  events: {
-    'submit .ajaxForm': 'submitClicked'
+  validations: {
+    'body': {
+      test: val => val.length >= 5,
+      message: {
+        body: 'Description must be at least 5 characters.'
+      }
+    }
   },
 
   initialize (params) {
@@ -19,7 +25,7 @@ const CreateCommentView = Backbone.View.extend({
     this.$el.html(this.template());
   },
 
-  submitClicked (evt) {
+  validFormSubmitted (evt) {
     evt.preventDefault();
     $('body').addClass('loading');
     var body = this.$('[data-attr="body"]').val();
