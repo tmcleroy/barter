@@ -21,9 +21,10 @@
       margin-top: -10px;
     }
   }
-  .itemList {
-    .noneMessage {
-      padding: 15px 0 35px;
-    }
+  // vertical spacing for noneMessage when there are no list items in a paginated view
+  // for example, no items under my requests or my proposals.
+  // using specific child selectors (>) here to avoid affecting request list items with no tags
+  > .itemList > .noneMessage {
+    padding: 15px 0 35px;
   }
 }
