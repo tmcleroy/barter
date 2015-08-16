@@ -1,6 +1,7 @@
-const TagsView = Backbone.View.extend({
-  template: require('templates/tag/tags.ejs'),
+import template from 'templates/tag/tags.ejs';
 
+const TagsView = Backbone.View.extend({
+  template,
   events: {
     'click .remove': 'removeClicked'
   },
@@ -20,7 +21,7 @@ const TagsView = Backbone.View.extend({
   },
 
   removeClicked (evt) {
-    var name = $(evt.target).closest('.tag').attr('data-name');
+    const name = $(evt.target).closest('.tag').attr('data-name');
     this.collection.remove(this.collection.where({ name: name }));
   }
 
