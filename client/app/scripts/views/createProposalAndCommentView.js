@@ -1,23 +1,17 @@
 import CreateCommentView from 'scripts/views/createCommentView';
 import CreateProposalView from 'scripts/views/createProposalView';
-import TabHelper from '../helpers/_tabHelper';
+import TabbedView from 'scripts/views/tabbedView';
+import template from 'templates/request/createProposalAndComment.ejs';
 
-
-const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
-  template: require('templates/request/createProposalAndComment.ejs'),
-
+const CreateProposalAndCommentView = TabbedView.extend({
+  template,
   views: {},
-
-  events: {
-    'click [data-action="addComment"]': 'toggleAddComment',
-    'click [data-action="addProposal"]': 'toggleAddProposal'
-  },
 
   initialize (params) {
     this.mine = params.mine;
     this.views = {};
     this.render();
-    _.defer(() => { this.$('[data-action="addComment"]').click(); });
+    _.defer(() => { this.$('[data-action="toggleAddComment"]').click(); });
   },
 
   render () {
@@ -26,37 +20,32 @@ const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
     }));
   },
 
-  toggleAddComment (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.createCommentContainer').toggleClass('hidden');
+  tabChanged (action) {
+    this.$('.actionContainer').addClass('hidden');
+    this[action]();
+  },
 
-      if (!this.views.createCommentView) {
-        this.views.createCommentView = new CreateCommentView({
-          el: this.$('.createCommentContainer'),
-          collection: this.model.get('Comments'),
-          request: this.model
-        });
-      }
+  toggleAddComment () {
+    this.$('.createCommentContainer').toggleClass('hidden');
+
+    if (!this.views.createCommentView) {
+      this.views.createCommentView = new CreateCommentView({
+        el: this.$('.createCommentContainer'),
+        collection: this.model.get('Comments'),
+        request: this.model
+      });
     }
   },
 
-  toggleAddProposal (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.createProposalContainer').toggleClass('hidden');
+  toggleAddProposal () {
+    this.$('.createProposalContainer').toggleClass('hidden');
 
-      if (!this.views.createProposalView) {
-        this.views.createProposalView = new CreateProposalView({
-          el: this.$('.createProposalContainer'),
-          collection: this.model.get('Proposals'),
-          request: this.model
-        });
-      }
+    if (!this.views.createProposalView) {
+      this.views.createProposalView = new CreateProposalView({
+        el: this.$('.createProposalContainer'),
+        collection: this.model.get('Proposals'),
+        request: this.model
+      });
     }
   },
 
@@ -65,6 +54,6 @@ const CreateProposalAndCommentView = Backbone.View.extend(_.extend(TabHelper, {
     Backbone.View.prototype.remove.apply(this, arguments);
   }
 
-}));
+});
 
 export default CreateProposalAndCommentView;
