@@ -5,7 +5,7 @@ import SideBarView from 'scripts/views/sideBarView.js';
 import HomeView from 'scripts/views/homeView';
 import LoginView from 'scripts/views/loginView';
 import RegisterView from 'scripts/views/registerView';
-import EditProfileView from 'scripts/views/editProfileView';
+import ManageProfileView from 'scripts/views/manageProfileView';
 import SettingsView from 'scripts/views/settingsView';
 import InboxView from 'scripts/views/inboxView';
 import RequestsView from 'scripts/views/requestsView';
@@ -64,7 +64,11 @@ const Router = Backbone.Router.extend(_.defaults({
 
   // returns boolean whether or not to proceed with rendering the route, or redirect to login
   preRoute (viewName) {
-    if (this.view) { this.view.remove(); }
+    if (this.view) {
+      this.stopListening(this.view);
+      this.view.remove();
+      this.view = null;
+    }
     $('#contentContainer').empty();
 
     // not logged in and accessing an auth-gated route
@@ -124,20 +128,8 @@ const Router = Backbone.Router.extend(_.defaults({
     const viewName = 'profile';
 
     if (this.preRoute(viewName)) {
-      this.view = new EditProfileView({
-        el: $('<div class="editProfileViewContainer" />').appendTo('#contentContainer'),
-        model: App.user
-      });
-      this.postRoute(viewName);
-    }
-  },
-
-  settings () {
-    const viewName = 'settings';
-
-    if (this.preRoute(viewName)) {
-      this.view = new SettingsView({
-        el: $('<div class="settingsViewContainer" />').appendTo('#contentContainer'),
+      new ManageProfileView({
+        el: $('<div class="manageProfileViewContainer1" />').appendTo('#contentContainer'),
         model: App.user
       });
       this.postRoute(viewName);
@@ -243,14 +235,10 @@ const Router = Backbone.Router.extend(_.defaults({
 
   // OVERRIDES
   navigate () {
-    // NOTE
-    // always persist url query params. ex. ?var1=abc&var2=def
+    // NOTE always persist url query params. ex. ?var1=abc&var2=def
     arguments[0] += window.location.search;
     Backbone.Router.prototype.navigate.apply(this, arguments);
   }
-},
-{ // global helpers
-
 }));
 
 export default Router;

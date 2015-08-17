@@ -2,17 +2,12 @@ import template from 'templates/profile/profile.ejs';
 
 const ProfileView = Backbone.View.extend({
   template,
-
-  events: {
-  },
-
   initialize (params) {
     if (!App.user) {
       this.remove();
       return;
     }
     this.size = params.size;
-
     this.render();
   },
 

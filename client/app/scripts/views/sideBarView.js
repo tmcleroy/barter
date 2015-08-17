@@ -34,7 +34,7 @@ const SideBarView = Backbone.View.extend({
   routeChanged (route) {
     this.route = route;
     this.$('[data-route]').removeClass('active');
-    this.$('[data-route="' + this.route + '"]').addClass('active');
+    this.$(`[data-route="${ this.route }"]`).addClass('active');
   },
 
   updateInboxCount (collection) {

@@ -1,8 +1,7 @@
-import template from 'templates/profile/edit.ejs';
+import template from 'templates/profile/editProfile.ejs';
 
-const ProfileView = Backbone.View.extend({
+const EditProfileView = Backbone.View.extend({
   template,
-
   initialize (params) {
     this.render();
   },
@@ -14,4 +13,4 @@ const ProfileView = Backbone.View.extend({
   }
 });
 
-export default ProfileView;
+export default EditProfileView;
