@@ -27,7 +27,6 @@ const CreateProposalAndCommentView = TabbedView.extend({
 
   toggleAddComment () {
     this.$('.createCommentContainer').toggleClass('hidden');
-
     if (!this.views.createCommentView) {
       this.views.createCommentView = new CreateCommentView({
         el: this.$('.createCommentContainer'),
@@ -39,7 +38,6 @@ const CreateProposalAndCommentView = TabbedView.extend({
 
   toggleAddProposal () {
     this.$('.createProposalContainer').toggleClass('hidden');
-
     if (!this.views.createProposalView) {
       this.views.createProposalView = new CreateProposalView({
         el: this.$('.createProposalContainer'),
@@ -53,7 +51,6 @@ const CreateProposalAndCommentView = TabbedView.extend({
     _.invoke(this.views, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
   }
-
 });
 
 export default CreateProposalAndCommentView;

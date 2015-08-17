@@ -1,14 +1,9 @@
-import TabHelper from '../helpers/_tabHelper';
+import TabbedView from 'scripts/views/tabbedView';
 import marked from 'marked';
+import template from 'templates/bodyEditor.ejs';
 
-const BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
-  template: require('templates/bodyEditor.ejs'),
-
-  events: {
-    'click [data-action="write"]': 'toggleWrite',
-    'click [data-action="preview"]': 'togglePreview'
-  },
-
+const BodyEditorView = TabbedView.extend({
+  template,
   initialize (params) {
     this.required = params.required;
     this.render();
@@ -20,34 +15,20 @@ const BodyEditorView = Backbone.View.extend(_.extend(TabHelper, {
     }));
   },
 
-  toggleWrite (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.writeContainer').toggleClass('hidden');
-    }
+  tabChanged (action) {
+    this.$('.actionContainer').addClass('hidden');
+    this[action]();
   },
 
-  togglePreview (evt) {
-    evt.preventDefault();
-    var $target = $(evt.target).closest('li[role="presentation"]');
-    if (!$target.hasClass('active')) {
-      this.toggleTabs($target);
-      this.$('.previewContainer').toggleClass('hidden');
-      var html = marked(this.$('[data-attr="body"]').val());
-      this.$('.markdown').html(html);
-    }
+  toggleWrite () {
+    this.$('.writeContainer').toggleClass('hidden');
+  },
+
+  togglePreview () {
+    this.$('.previewContainer').toggleClass('hidden');
+    var html = marked(this.$('[data-attr="body"]').val());
+    this.$('.markdown').html(html);
   }
-
-}));
-
-// // good way to handle event hash inheritance
-// // idea = require(http://danhough.com/blog/backbone-view-inheritance/
-// BodyEditorView.extend = function (child) {
-//   var view = Backbone.View.extend.apply(this, arguments);
-//   view.prototype.events = _.extend({}, this.prototype.events, child.events);
-//   return view;
-// };
+});
 
 export default BodyEditorView;
