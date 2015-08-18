@@ -1,14 +1,14 @@
 var _ = require('lodash');
 var Sequelize = require('sequelize');
-var models = require('../../models');
+var models = require('../../../models');
 
 var handler = function (req, res) {
   models.User.findOne({
-    where: { id: req.params.id }
+    where: { id: req.user.id }
   }).then(function (user) {
     // create tags if they don't exist, and get their ids
     createTags(function (tags) {
-      user.setSubscribedTags(tags).then(function () {
+      user.setTags(tags).then(function () {
         res.status(200).send(user);
       });
     });

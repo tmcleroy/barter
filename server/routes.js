@@ -53,8 +53,8 @@ module.exports = function (app) {
   // User
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
-  app.get('/api/users/:id/subscriptions', requireIdMatch, userSubscriptionsGetView);
-  app.post('/api/users/:id/subscriptions', requireIdMatch, userSubscriptionsSetView);
+  app.get('/api/users/:id/subscriptions', userSubscriptionsGetView);
+  app.post('/api/users/:id/subscriptions', userSubscriptionsSetView);
 
   // Request
   app.get('/api/requests', requestIndexView);
