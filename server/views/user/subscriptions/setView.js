@@ -3,22 +3,19 @@ var Sequelize = require('sequelize');
 var models = require('../../models');
 
 var handler = function (req, res) {
-  models.Request.create({
-    title: req.body.title,
-    body: req.body.body,
-    offer: req.body.offer
-  }).then(function (request) {
-    request.setUser(req.user).then(function () {
-      createTags(function (tags) {
-        request.setTags(tags).then(function () {
-          res.status(200).send(request);
-        });
+  models.User.findOne({
+    where: { id: req.params.id }
+  }).then(function (user) {
+    // create tags if they don't exist, and get their ids
+    createTags(function (tags) {
+      user.setSubscribedTags(tags).then(function () {
+        res.status(200).send(user);
       });
     });
   });
 
   // TODO abstract this into utils for now
-  // this exact function is duplicated in user/subscriptions/setView
+  // this exact function is duplicated in requests/createView
   function createTags (cb) {
     var promises = [];
     var tags = {};
@@ -35,6 +32,5 @@ var handler = function (req, res) {
     });
   }
 };
-
 
 module.exports = handler;

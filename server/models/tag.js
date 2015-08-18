@@ -10,6 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       associate: function (models) {
         // a tag can belong to many requests
         Tag.belongsToMany(models.Request, { through: 'TagRequest' });
+        Tag.belongsToMany(models.User, { through: 'SubscribedUsers' });
       }
     },
     instanceMethods: {

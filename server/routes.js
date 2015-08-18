@@ -4,7 +4,8 @@ var passport = require('passport');
 var rootView = require('./views/rootView');
 var userIndexView = require('./views/user/indexView');
 var userShowView = require('./views/user/showView');
-var userSkillIndexView = require('./views/user/skillIndexView');
+var userSubscriptionsSetView = require('./views/user/subscriptions/setView');
+var userSubscriptionsGetView = require('./views/user/subscriptions/getView');
 
 var requestIndexView = require('./views/request/indexView');
 var requestShowView = require('./views/request/showView');
@@ -52,7 +53,8 @@ module.exports = function (app) {
   // User
   app.get('/api/users', requireAdminPermission, userIndexView);
   app.get('/api/users/:id', requireIdMatch, userShowView);
-  app.get('/api/users/:id/skills', requireIdMatch, userSkillIndexView);
+  app.get('/api/users/:id/subscriptions', requireIdMatch, userSubscriptionsGetView);
+  app.post('/api/users/:id/subscriptions', requireIdMatch, userSubscriptionsSetView);
 
   // Request
   app.get('/api/requests', requestIndexView);

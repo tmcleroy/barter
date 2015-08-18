@@ -62,6 +62,9 @@ module.exports = function (sequelize, DataTypes) {
         User.hasMany(models.Proposal);
         // a user can have many submissions, a submission can belong to a single user
         User.hasMany(models.Submission);
+        // a user can belong to (subscribe to) many tags (to get notifications when a request with that tag is created)
+        // a tag can belong to many users (be subscribed to by many users)
+        User.belongsToMany(models.Tag, { through: 'SubscribedTags' });
       }
     },
     instanceMethods: {
