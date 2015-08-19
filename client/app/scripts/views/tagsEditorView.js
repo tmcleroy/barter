@@ -5,13 +5,16 @@ import template from 'templates/tag/tagsEditor.ejs';
 const TagsEditorView = Backbone.View.extend({
   template,
   events: {
-    'keydown [data-attr="tags"]': 'tagsKeydown'
+    'keydown [data-attr="tags"]': 'tagsKeydown',
+    'blur [data-attr="tags"]': 'tagsBlur'
   },
 
   delimiterKeycodes: [188, 13, 9],
+  addOnBlur: true,
 
   initialize (params) {
     this.render();
+    this.addOnBlur = params.addOnBlur || true;
   },
 
   render () {
@@ -28,11 +31,23 @@ const TagsEditorView = Backbone.View.extend({
     // comma, enter, tab
     if (_.contains(this.delimiterKeycodes, evt.which)) {
       evt.preventDefault();
-      const tag = this.$('[data-attr="tags"]').val().trim();
-      if (tag.length > 1) { // tag contains more than just whitespace
-        this.$('[data-attr="tags"]').val('').focus();
-        this.collection.add(new Tag({ name: tag }));
-      }
+      this.addTag(this.$('[data-attr="tags"]').val(), true);
+    }
+  },
+
+  tagsBlur (evt) {
+    if (this.addOnBlur) {
+      this.addTag(this.$('[data-attr="tags"]').val());
+    }
+  },
+
+  addTag (tag, refocus) {
+    tag = tag.trim();
+    let $input = this.$('[data-attr="tags"]');
+    if (tag.length > 1) { // tag contains more than just whitespace
+      this.collection.add(new Tag({ name: tag }));
+      $input.val('');
+      if (refocus) { $input.focus(); }
     }
   }
 

@@ -30,10 +30,14 @@ const SettingsView = Backbone.View.extend({
   },
 
   subscribe (evt) {
+    this.$el.addClass('loading');
     evt.preventDefault();
-    var tags = _.map(this.subscriptions.models, model => model.toJSON().name);
-    App.user.setSubscriptions(tags).done((data) => {
-      console.log('set tags', data);
+    _.delay(() => { // allow some time for stranded tags to be added to the collection
+      var tags = _.map(this.subscriptions.models, model => model.toJSON().name);
+      App.user.setSubscriptions(tags).done((data) => {
+        console.log('set tags', data);
+        this.$el.removeClass('loading');
+      }, 100);
     });
   }
 });

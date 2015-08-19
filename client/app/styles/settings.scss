@@ -1,0 +1,12 @@
+.settings {
+  .notificationSettings {
+    .tagsEditorContainer {
+      > label, .tagsView h4 {
+        display: none;
+      }
+      .tagsContainer {
+        margin: 10px 0 5px;
+      }
+    }
+  }
+}
