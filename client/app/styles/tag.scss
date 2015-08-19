@@ -1,3 +1,5 @@
+@import "variables";
+
 .tagsView {
   &.simple {
     display: inline-block;
@@ -11,6 +13,13 @@
       padding: 1px 4px;
     }
   }
+  [data-action="remove-all"] {
+    margin-left: 5px;
+    color: #ccc;
+    &:hover {
+      color: $mute-red;
+    }
+  }
 }
 
 .tag {
@@ -22,7 +31,7 @@
   background: #efefef;
   cursor: default;
 
-  .remove {
+  [data-action="remove"] {
     display: none;
     .editable & {
       display: inline;

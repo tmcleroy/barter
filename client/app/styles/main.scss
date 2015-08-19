@@ -56,7 +56,7 @@ textarea {
   padding: 5px 0;
   font-style: italic;
 }
-div, span {
+* { // .noneMessage is hidden if there it has any siblings before it
   + .noneMessage {
     display: none;
   }

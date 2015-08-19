@@ -10,11 +10,9 @@ const TagsEditorView = Backbone.View.extend({
   },
 
   delimiterKeycodes: [188, 13, 9],
-  addOnBlur: true,
 
   initialize (params) {
     this.render();
-    this.addOnBlur = params.addOnBlur || true;
   },
 
   render () {
@@ -28,26 +26,26 @@ const TagsEditorView = Backbone.View.extend({
   },
 
   tagsKeydown (evt) {
+    const $input = this.$('[data-attr="tags"]');
+    const val = $input.val();
     // comma, enter, tab
-    if (_.contains(this.delimiterKeycodes, evt.which)) {
+    if (val && _.contains(this.delimiterKeycodes, evt.which)) {
       evt.preventDefault();
-      this.addTag(this.$('[data-attr="tags"]').val(), true);
+      $input.val('').focus();
+      this.addTag(val);
     }
   },
 
   tagsBlur (evt) {
-    if (this.addOnBlur) {
-      this.addTag(this.$('[data-attr="tags"]').val());
-    }
+    let $input = this.$('[data-attr="tags"]');
+    this.addTag($input.val());
+    $input.val('');
   },
 
-  addTag (tag, refocus) {
+  addTag (tag) {
     tag = tag.trim();
-    let $input = this.$('[data-attr="tags"]');
-    if (tag.length > 1) { // tag contains more than just whitespace
+    if (tag.length) { // tag contains more than just whitespace
       this.collection.add(new Tag({ name: tag }));
-      $input.val('');
-      if (refocus) { $input.focus(); }
     }
   }
 

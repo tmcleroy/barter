@@ -4,22 +4,20 @@ import template from 'templates/settings.ejs';
 
 const SettingsView = Backbone.View.extend({
   template,
-
   events: {
-    'click [data-action="subscribe"]': 'subscribe'
+    'click [data-action="subscribe"]': 'subscribe',
+    // 'blur [data-attr="tags"]': 'tagsBlur'
   },
 
   initialize (params) {
-    // this.render();
-    App.user.fetchSubscriptions().done((data) => {
-      console.log('data from fetchSubscriptions', data);
-      this.subscriptions = new TagsCollection(data);
-      this.render();
-    });
+    this.subscriptions = new TagsCollection();
+    // this.subscribeDebounced = _.debounce(::this.subscribe, 2000);
+
+    App.user.fetchSubscriptions().done(::this.subscriptions.reset);
+    this.listenTo(this.subscriptions, 'reset', this.render);
   },
 
   render () {
-    console.log('subs', this.subscriptions);
     this.$el.html(this.template({
       user: this.model
     }));
@@ -35,11 +33,15 @@ const SettingsView = Backbone.View.extend({
     _.delay(() => { // allow some time for stranded tags to be added to the collection
       var tags = _.map(this.subscriptions.models, model => model.toJSON().name);
       App.user.setSubscriptions(tags).done((data) => {
-        console.log('set tags', data);
         this.$el.removeClass('loading');
       }, 100);
     });
-  }
+  },
+
+  // tagsBlur (evt) {
+  //   console.log('tags blurrrrrrrrrr');
+  //   this.subscribeDebounced(evt);
+  // }
 });
 
 export default SettingsView;
