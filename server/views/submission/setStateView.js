@@ -12,12 +12,12 @@ var handler = function (req, res) {
       if (submission.Request.UserId === req.user.id) {
         submission.updateAttributes({ state: parseInt(req.body.state, 10) }).then(function (submission) {
           models.Notification.create({
+            UserId: submission.UserId,
+            SubjectUserId: req.user.id,
             actionType: { '-1': 'reject', '1': 'accept' }[req.body.state],
             objectType: 'Submission',
             ObjectSubmissionId: submission.id,
-            ObjectRequestId: submission.Request.id, // the request that the submission belongs to
-            SubjectUserId: req.user.id,
-            UserId: submission.UserId
+            ObjectRequestId: submission.Request.id // the request that the submission belongs to
           });
           if (submission.state === 1) { // accepted
             utils.transferPoints(req.user, submission.User, submission.Proposal.offer, models);

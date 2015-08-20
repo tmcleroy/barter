@@ -9,12 +9,12 @@ var handler = function (req, res) {
       if (request.UserId === req.user.id) {
         proposal.updateAttributes({ state: req.body.state }).then(function (proposal) {
           models.Notification.create({
+            UserId: proposal.UserId,
+            SubjectUserId: req.user.id,
             actionType: { '-1': 'reject', '1': 'accept' }[req.body.state],
             objectType: 'Proposal',
             ObjectProposalId: proposal.id,
-            ObjectRequestId: request.id, // the request that the proposal belongs to
-            SubjectUserId: req.user.id,
-            UserId: proposal.UserId
+            ObjectRequestId: request.id // the request that the proposal belongs to
           });
           // reject all the other proposals if this one is being accepted
           if (parseInt(req.body.state, 10) === 1) {
@@ -23,12 +23,12 @@ var handler = function (req, res) {
               _.each(proposals, function (proposal) {
                 promises.push(proposal.updateAttributes({ state: -1 }));
                 models.Notification.create({
+                  UserId: proposal.UserId,
+                  SubjectUserId: req.user.id,
                   actionType: 'reject',
                   objectType: 'Proposal',
                   ObjectProposalId: proposal.id,
-                  ObjectRequestId: request.id, // the request that the proposal belongs to
-                  SubjectUserId: req.user.id,
-                  UserId: proposal.UserId
+                  ObjectRequestId: request.id // the request that the proposal belongs to
                 });
               });
               Sequelize.Promise.all(promises).then(function () {

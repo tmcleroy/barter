@@ -9,12 +9,12 @@ var handler = function (req, res) {
   }).then(function (proposal) {
     models.Request.findOne({ where: { id: req.body.requestId }}).then(function (request) {
       models.Notification.create({
+        UserId: request.UserId,
+        SubjectUserId: req.user.id,
         actionType: 'Proposal',
         actionId: proposal.id,
         objectType: 'Request',
-        ObjectRequestId: request.id,
-        SubjectUserId: req.user.id,
-        UserId: request.UserId
+        ObjectRequestId: request.id
       });
       res.status(200).send(proposal);
     });

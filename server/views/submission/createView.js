@@ -14,12 +14,12 @@ var handler = function (req, res) {
           ProposalId: proposal.id
         }).then(function (submission) {
           models.Notification.create({
+            UserId: request.UserId,
+            SubjectUserId: req.user.id,
             actionType: 'Submission',
             actionId: submission.id,
             objectType: 'Request',
-            ObjectRequestId: request.id,
-            SubjectUserId: req.user.id,
-            UserId: request.UserId
+            ObjectRequestId: request.id
           });
           res.status(200).send(submission);
         });

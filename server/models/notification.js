@@ -37,6 +37,9 @@ module.exports = function (sequelize, DataTypes) {
         Notification.belongsTo(models.Proposal, { as: 'ObjectProposal' });
         Notification.belongsTo(models.Request, { as: 'ObjectRequest' });
         Notification.belongsTo(models.Submission, { as: 'ObjectSubmission' });
+        Notification.belongsTo(models.Tag, { as: 'ObjectTag' });
+        // if you add an Object* entry above, make sure to include it in the
+        // notication indexView `views/notification/indexView.js` if you want the model to be sent to the client
       }
     },
     instanceMethods: {

@@ -13,5 +13,12 @@
       <%= notification.get('ObjectRequest').get('title') %>
     </a>
   </h4>
+<% } else if (notification.get('objectType') === 'Tag') { %>
+  <b><%= notification.get('ObjectTag').get('name') %></b>
+  <h4 class="title">
+    <a href="<%= notification.getObjectUrl() %>" data-action="seen" data-id="<%= notification.get('id') %>">
+      <%= notification.get('ObjectRequest').get('title') %>
+    </a>
+  </h4>
 <% } %>
 <%= moment(notification.get('createdAt')).fromNow() %>

@@ -11,6 +11,9 @@ var handler = function (req, res) {
       user.setTags(tags).then(function () {
         res.status(200).send(user);
       });
+      _.each(tags, function (tag) {
+        tag.addUser(user);
+      });
     });
   });
 

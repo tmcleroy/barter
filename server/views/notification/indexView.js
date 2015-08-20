@@ -22,7 +22,8 @@ var handler = function (req, res) {
         { model: models.Comment, as: 'ObjectComment' },
         { model: models.Proposal, as: 'ObjectProposal' },
         { model: models.Request, as: 'ObjectRequest' },
-        { model: models.Submission, as: 'ObjectSubmission' }
+        { model: models.Submission, as: 'ObjectSubmission' },
+        { model: models.Tag, as: 'ObjectTag' }
       ]
     }).then(function (notifications) {
       res.status(200).json({
