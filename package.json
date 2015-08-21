@@ -11,9 +11,11 @@
       "bucket": "barter.app"
     }
   },
+  "engines": {
+    "node": ">=0.12.0"
+  },
   "scripts": {
     "start": "node server/server.js reload-data",
-    "postinstall": "gulp deploy --target=latest-deploy",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
@@ -81,6 +83,7 @@
     "chai": "~3.2.0",
     "supertest": "~1.0.1",
     "superagent": "~1.2.0",
-    "babel-runtime": "~5.8.20"
+    "babel-runtime": "~5.8.20",
+    "gulp-git": "~1.2.4"
   }
 }

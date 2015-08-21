@@ -32,17 +32,24 @@ gulp.task('dev', function (cb) {
 });
 
 gulp.task('deploy', function (cb) {
-  return $.runSequence('clean', 'dist', 'publish', cb);
+  var target = argv.target;
+
+  var tasks = ['clean', 'build'];
+  if (target === 'production') {
+    tasks.push('git:verify', 'git:tag');
+  }
+
+  return $.runSequence.apply(null, tasks.concat(['publish', cb]));
 });
 
-gulp.task('dist', function (cb) {
+gulp.task('build', function (cb) {
   var distConfig = require('./webpack.config.dist')();
   webpack(distConfig, function (err, stats) {
     if (err) {
-      throw new $.util.PluginError('dist', err);
+      throw new $.util.PluginError('build', err);
     }
 
-    $.util.log('[dist]', stats.toString({
+    $.util.log('[build]', stats.toString({
       colors: true
     }));
 
@@ -78,6 +85,39 @@ gulp.task('publish', function (cb) {
     }))
     .pipe($.parallelize(publisher.publish(headers), 5))
     .pipe(awspublish.reporter());
+});
+
+gulp.task('git:tag', function (cb) {
+  var date = new Date();
+  var tag = [packageJson.version, 'deploy', date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes()].join('-');
+  $.git.tag(tag, 'Deploy tag', function (err) {
+    if (err) {
+      throw new $.util.PluginError('git:tag', err);
+    } else {
+      $.git.push('origin', 'master', { args: '--tags' }, function (err) {
+        if (err) {
+          throw new $.util.PluginError('git:tag', err);
+        } else {
+          $.util.log('git:tag: pushed to origin');
+          cb();
+        }
+      });
+    }
+  });
+});
+
+gulp.task('git:verify', function (cb) {
+  $.git.status({ args: '--short' }, function (err, stdout) {
+    if (err) {
+      throw new $.util.PluginError('git:verify', err);
+    } else if (stdout.length) {
+      throw new $.util.PluginError('git:verify', {
+        message: 'Cannot deploy to production when working directory is dirty. Commit your changes first.'
+      });
+    } else {
+      cb();
+    }
+  });
 });
 
 gulp.task('clean', function () {
