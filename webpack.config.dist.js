@@ -33,11 +33,11 @@ module.exports = function () {
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader', { publicPath: '../' })
         },
         {
-          test: /(\.woff|\.woff2|\.ttf|\.eot|\.svg|\.png|\.jpg|\.gif)$/,
-          loader: 'file-loader?name=assets/[name]-[hash].[ext]'
+          test: /(\.woff|\.woff2|\.ttf|\.eot|\.svg)$/,
+          loader: 'file-loader?name=styles/fonts/[name]-[hash].[ext]'
         }
       ]
     },

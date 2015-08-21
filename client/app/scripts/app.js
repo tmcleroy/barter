@@ -1,6 +1,6 @@
 window.$ = jQuery;
 Backbone.$ = $;
-import '../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'styles/variables.scss';
 import 'styles/main.scss';
 import 'styles/widgets.scss';
