@@ -1,5 +1,4 @@
 var _ = require('lodash');
-var Sequelize = require('sequelize');
 var models = require('../../models');
 
 var handler = function (req, res) {
@@ -9,7 +8,7 @@ var handler = function (req, res) {
     body: req.body.body,
     offer: req.body.offer
   }).then(function (request) {
-    createTags(function (tags) {
+    models.Tag.createTagsFromArray(req.body.tags).then(function (tags) {
       request.setTags(tags).then(function () {
         res.status(200).send(request);
       });
@@ -32,24 +31,6 @@ var handler = function (req, res) {
       });
     });
   });
-
-  // TODO abstract this into utils for now
-  // this exact function is duplicated in user/subscriptions/setView
-  function createTags (cb) {
-    var promises = [];
-    var tags = {};
-    _.each(req.body.tags, function (tag) {
-      tags[tag] = null;
-      var promise = models.Tag.findOrCreate({ where: { name: tag }})
-        .then(function (resultTags, created) {
-          tags[tag] = resultTags[0];
-        });
-      promises.push(promise);
-    });
-    Sequelize.Promise.all(promises).then(function () {
-      cb(_.values(tags));
-    });
-  }
 };
 
 

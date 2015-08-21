@@ -1,7 +1,3 @@
-'use strict';
-
-var utils = require('../utils/utils');
-
 module.exports = function (sequelize, DataTypes) {
   var Request = sequelize.define('Request', {
     title: DataTypes.STRING,

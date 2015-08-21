@@ -1,4 +1,5 @@
-window.$ = jQuery;
+window.$ = jQuery; // so i can use jquery in the console
+window._ = _; // so i can use lodash in the console
 Backbone.$ = $;
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'styles/variables.scss';

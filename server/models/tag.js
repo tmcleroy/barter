@@ -1,6 +1,5 @@
-'use strict';
-
-var utils = require('../utils/utils');
+var _ = require('lodash');
+var Promise = require('bluebird');
 
 module.exports = function (sequelize, DataTypes) {
   var Tag = sequelize.define('Tag', {
@@ -11,6 +10,23 @@ module.exports = function (sequelize, DataTypes) {
         // a tag can belong to many requests
         Tag.belongsToMany(models.Request, { through: 'TagRequest' });
         Tag.belongsToMany(models.User, { through: 'SubscribedUsers' });
+      },
+      createTagsFromArray: function (tags) {
+        return new Promise(function (resolve, reject) {
+          var promises = [];
+          var createdTags = {};
+          _.each(tags, function (tag) {
+            createdTags[tag] = null;
+            var promise = Tag.findOrCreate({ where: { name: tag }})
+              .then(function (resultTags, created) {
+                createdTags[tag] = resultTags[0];
+              });
+            promises.push(promise);
+          });
+          Promise.all(promises).then(function () {
+            resolve(_.values(createdTags));
+          });
+        });
       }
     },
     instanceMethods: {
