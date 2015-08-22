@@ -20,7 +20,7 @@ app.use(passport.session());
 app.use(multer({ dest: './server/uploads/' })); // temp foler for file uploads
 
 app.set('view engine', 'ejs'); // use ejs templates
-app.set('views', './server/views/templates/'); // set view template folder
+app.set('views', './server/templates/'); // set view template folder
 
 require('./config/passport')(passport); // pass passport for configuration
 require('./routes')(app); // initialize routes

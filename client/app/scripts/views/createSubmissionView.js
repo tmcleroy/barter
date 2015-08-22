@@ -9,9 +9,9 @@ const CreateSubmissionView = FormValidationView.extend({
   template,
   validations: {
     'body': {
-      test: val => val.length >= 20,
+      test: val => val.length >= 3,
       message: {
-        body: 'Submission must be at least 20 characters.'
+        body: 'Submission must be at least 3 characters.'
       }
     }
   },

@@ -1,31 +1,13 @@
 var passport = require('passport');
-
 // views
 var rootView = require('./views/rootView');
-var userIndexView = require('./views/user/indexView');
-var userShowView = require('./views/user/showView');
-var userSubscriptionsSetView = require('./views/user/subscriptions/setView');
-var userSubscriptionsGetView = require('./views/user/subscriptions/getView');
-
-var requestIndexView = require('./views/request/indexView');
-var requestShowView = require('./views/request/showView');
-var requestCreateView = require('./views/request/createView');
-
-var commentCreateView = require('./views/comment/createView');
-
-var proposalIndexView = require('./views/proposal/indexView');
-var proposalCreateView = require('./views/proposal/createView');
-var proposalUpdateView = require('./views/proposal/updateView');
-var proposalSetStateView = require('./views/proposal/setStateView');
-
-var submissionShowView = require('./views/submission/showView');
-var submissionCreateView = require('./views/submission/createView');
-var submissionSetStateView = require('./views/submission/setStateView');
-
-var notificationIndexView = require('./views/notification/indexView');
-var notificationSetStateView = require('./views/notification/setStateView');
-var notificationSetAllStateView = require('./views/notification/setAllStateView');
-
+// controllers
+var userController = require('./controllers/userController');
+var requestController = require('./controllers/requestController');
+var commentController = require('./controllers/commentController');
+var proposalController = require('./controllers/proposalController');
+var submissionController = require('./controllers/submissionController');
+var notificationController = require('./controllers/notificationController');
 // handlers
 var loginHandler = require('./handlers/loginHandler');
 var logoutHandler = require('./handlers/logoutHandler');
@@ -38,8 +20,7 @@ var requireAdminPermission = require('./middleware/requireAdminPermission');
 // var requireApiPermission = require('./middleware/requireApiPermission');
 var requireIdMatch = require('./middleware/requireIdMatch');
 
-
-module.exports = function (app) {
+var routes = function (app) {
 
   app.all('/api/*', requireAuth/*, requireApiPermission*/);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
@@ -51,34 +32,34 @@ module.exports = function (app) {
 
   // API
   // User
-  app.get('/api/users', requireAdminPermission, userIndexView);
-  app.get('/api/users/:id', requireIdMatch, userShowView);
-  app.get('/api/users/:id/subscriptions', userSubscriptionsGetView);
-  app.post('/api/users/:id/subscriptions', userSubscriptionsSetView);
+  app.get('/api/users', requireAdminPermission, userController.index);
+  app.get('/api/users/:id', requireIdMatch, userController.show);
+  app.get('/api/users/:id/subscriptions', userController.subscriptions.get);
+  app.post('/api/users/:id/subscriptions', userController.subscriptions.set);
 
   // Request
-  app.get('/api/requests', requestIndexView);
-  app.get('/api/requests/:id', requestShowView);
-  app.post('/api/requests', requestCreateView);
+  app.get('/api/requests', requestController.index);
+  app.get('/api/requests/:id', requestController.show);
+  app.post('/api/requests', requestController.create);
 
   // Comment
-  app.post('/api/comments', commentCreateView);
+  app.post('/api/comments', commentController.create);
 
   // Proposal
-  app.get('/api/proposals', proposalIndexView);
-  app.post('/api/proposals', proposalCreateView);
-  app.put('/api/proposals/:id', requireAdminPermission, proposalUpdateView);
-  app.post('/api/proposals/:id/state', proposalSetStateView);
+  app.get('/api/proposals', proposalController.index);
+  app.post('/api/proposals', proposalController.create);
+  app.put('/api/proposals/:id', requireAdminPermission, proposalController.update);
+  app.post('/api/proposals/:id/state', proposalController.setState);
 
   // Notification
-  app.get('/api/notifications', notificationIndexView);
-  app.post('/api/notifications/:id/state', notificationSetStateView);
-  app.post('/api/notifications/allStates', notificationSetAllStateView);
+  app.get('/api/notifications', notificationController.index);
+  app.post('/api/notifications/:id/state', notificationController.setState);
+  app.post('/api/notifications/allStates', notificationController.setAllState);
 
   // Submission
-  app.get('/api/submissions/:id', submissionShowView);
-  app.post('/api/submissions', submissionCreateView);
-  app.post('/api/submissions/:id/state', submissionSetStateView);
+  app.get('/api/submissions/:id', submissionController.show);
+  app.post('/api/submissions', submissionController.create);
+  app.post('/api/submissions/:id/state', submissionController.setState);
 
   // catch everything except the explicitly defined routes above
   // this must be the last route in the file
@@ -87,3 +68,5 @@ module.exports = function (app) {
   app.get('*', rootView);
 
 };
+
+module.exports = routes;
