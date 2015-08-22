@@ -1,4 +1,5 @@
 import PaginatedView from 'scripts/views/paginatedView';
+import AdvancedSearchView from 'scripts/views/advancedSearchView';
 import RequestsCollection from 'scripts/collections/requestsCollection';
 
 const RequestsView = PaginatedView.extend({
@@ -45,6 +46,9 @@ const RequestsView = PaginatedView.extend({
       sorts: this.sorts,
       pages: Math.ceil(this.collection.total / this.limit)
     }));
+    new AdvancedSearchView({
+      el: this.$('.advancedSearchContainer .content')
+    });
     PaginatedView.prototype.render.call(this, arguments);
   }
 

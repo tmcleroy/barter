@@ -28,6 +28,9 @@
   .nav.active + .panel {
     display: block;
   }
+  textarea {
+    height: 200px;
+  }
 }
 
 .commentsContainer {

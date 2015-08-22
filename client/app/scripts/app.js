@@ -20,6 +20,7 @@ import 'styles/lists.scss';
 import 'styles/pagination.scss';
 import 'styles/notifications.scss';
 import 'styles/settings.scss';
+import 'styles/advancedSearch.scss';
 
 let Router = require('./router');
 let Api = require('./api');

@@ -1,9 +1,9 @@
 import InfiniteScrollView from 'scripts/views/infiniteScrollView';
 import Notifications from 'scripts/collections/notificationsCollection';
+import template from 'templates/inbox.ejs';
 
 const InboxView = InfiniteScrollView.extend({
-  template: require('templates/inbox.ejs'),
-
+  template,
   events () {
     return _.extend({}, InfiniteScrollView.prototype.events, {
       'click [data-action="seen"]': 'seenNotification',
