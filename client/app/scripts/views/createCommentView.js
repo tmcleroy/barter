@@ -1,10 +1,10 @@
 import Comment from 'scripts/models/commentModel';
 import FormValidationView from 'scripts/views/formValidationView';
 import Alert from './components/alert';
+import template from 'templates/comment/createComment.ejs';
 
 const CreateCommentView = FormValidationView.extend({
-  template: require('templates/comment/createComment.ejs'),
-
+  template,
   validations: {
     'body': {
       test: val => val.length >= 5,

@@ -1,0 +1,20 @@
+<form class="ajaxForm">
+  <label>Where</label>
+  <select class="form-control sm" name="left-operand">
+    <option value="offer">offer</option>
+    <option value="otherthing">other thing</option>
+  </select>
+
+  <label>is</label>
+  <select class="form-control sm" name="operator">
+    <option value="eq">equal to</option>
+    <option value="gt">greater than</option>
+    <option value="lt">less than</option>
+    <option value="gte">greater than or equal to</option>
+    <option value="lte">less than or equal to</option>
+    <option value="ne">not equal to</option>
+  </select>
+
+  <input type="text" data-attr="numerical" name="right-operand"></input>
+  <button class="btn btn-default btn-xs pull-right" data-action="submit">apply</button>
+</form>
