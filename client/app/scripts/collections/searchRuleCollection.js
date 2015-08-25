@@ -5,11 +5,11 @@ const SearchRuleCollection = Backbone.Collection.extend({
   model: SearchRule,
 
   getWhereQuery () {
-    let query = {};
+    let queries = {};
     this.each((rule) => {
-      _.extend(query, rule.getWhereQuery());
+      _.extend(queries, rule.getWhereQuery());
     });
-    return query;
+    return { where: queries };
   }
 });
 

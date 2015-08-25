@@ -42,7 +42,7 @@ var controller = {
       }
     }));
     models.Request.findAndCountAll({
-      where: req.query.mine ? { UserId: req.user.id } : true,
+      where: _.extend({}, req.query.where, (req.query.mine ? { UserId: req.user.id } : {})),
       include: [
         { model: models.User },
         { model: models.Tag },

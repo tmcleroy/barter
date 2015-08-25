@@ -1,3 +1,5 @@
-textarea {
-  font-family: monospace;
+.rule {
+  &.active {
+    background-color: #ccc;
+  }
 }

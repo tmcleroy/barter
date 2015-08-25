@@ -18,7 +18,8 @@ const SearchRuleView = FormValidationView.extend({
 
   render () {
     this.$el.html(this.template({
-      rule: this.model
+      rule: this.model,
+      active: this.model.get('rightOperand')
     }));
   },
 

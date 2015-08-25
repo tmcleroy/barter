@@ -1,19 +1,16 @@
 import PaginatedView from 'scripts/views/paginatedView';
 import AdvancedSearchView from 'scripts/views/advancedSearchView';
-import RequestsCollection from 'scripts/collections/requestsCollection';
+import Requests from 'scripts/collections/requestsCollection';
+import SearchRules from 'scripts/collections/searchRuleCollection';
+import template from 'templates/request/requests.ejs';
 
 const RequestsView = PaginatedView.extend({
-  template: require('templates/request/requests.ejs'),
-
-  events () {
-    return _.extend({}, PaginatedView.prototype.events, {
-      'change [data-action="tags"]': 'tagsChanged'
-    });
-  },
+  template,
+  searchRules: new SearchRules(),
 
   initialize (params) {
     this.mine = params.mine;
-    this.collection = new RequestsCollection();
+    this.collection = new Requests();
     this.sorts = [
       { sort: '-createdAt', display: 'Newest' },
       { sort: 'createdAt', display: 'Oldest' },
@@ -25,14 +22,8 @@ const RequestsView = PaginatedView.extend({
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
 
     this.listenTo(this.collection, 'change sync', this.render);
+    this.listenTo(this.searchRules, 'change', this.rulesChanged);
 
-    this.fetch();
-  },
-
-  // keeping this around for when we are ready to implement filtering by tags
-  tagsChanged (evt) {
-    var $target = $(evt.target);
-    var val = $target.val();
     this.fetch();
   },
 
@@ -47,11 +38,15 @@ const RequestsView = PaginatedView.extend({
       pages: Math.ceil(this.collection.total / this.limit)
     }));
     new AdvancedSearchView({
-      el: this.$('.advancedSearchContainer .content')
+      el: this.$('.advancedSearchContainer .content'),
+      collection: this.searchRules
     });
     PaginatedView.prototype.render.call(this, arguments);
-  }
+  },
 
+  rulesChanged () {
+    this.fetch(true, this.searchRules.getWhereQuery());
+  }
 });
 
 export default RequestsView;

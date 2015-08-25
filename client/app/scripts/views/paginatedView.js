@@ -19,19 +19,19 @@ const PaginatedView = Backbone.View.extend({
     this.$el.removeClass('loading');
   },
 
-  fetch (updateUrl) {
+  fetch (updateUrl, options) {
     this.$el.addClass('loading');
-    let opts = {
+    let opts = _.extend({
       sort: this.sort,
       limit: this.limit,
       cursor: this.cursor
-    };
+    }, options || {});
     if (this.mine) { opts.mine = true; }
     this.collection.fetch({
       data: opts
     });
     if (updateUrl) {
-      this.updateUrl();
+      this.updateUrl(opts);
     }
   },
 
@@ -61,16 +61,12 @@ const PaginatedView = Backbone.View.extend({
     this.fetch(true);
   },
 
-  updateUrl () {
-    const options = {
-      page: this.page,
-      limit: this.limit,
-      sort: this.sort
-    };
+  updateUrl (options) {
+    console.log('updating url with options', options);
     let split = window.location.pathname.split(/\//);
-    // if there is a non-word character in the last segment (options are present)
+    // if there is a non-word character in the last segment (opts are present)
     if (split[split.length - 1].match(/\W/)) {
-      split.pop(); // pop off old options
+      split.pop(); // pop off old opts
     }
     App.Router.navigate(`${ split.join('/') }/${ JSON.stringify(options) }`);
   }
