@@ -16,15 +16,15 @@ const RequestsView = PaginatedView.extend({
       { sort: '-offer', display: 'Highest Offer' },
       { sort: 'offer', display: 'Lowest Offer' }
     ];
-    const options = (params.options && params.options.where.$and);
-    this.searchRules = new SearchRules(options || {}, { parse: !!options });
+    const options = (params.options && params.options.where && params.options.where.$and);
+    this.searchRules = new SearchRules(options, { parse: !!options });
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
 
     this.listenTo(this.collection, 'change sync', this.render);
-    this.listenTo(this.searchRules, 'change', this.rulesChanged);
+    this.listenTo(this.searchRules, 'change remove reset', this.rulesChanged);
 
-    this.fetch(true, this.searchRules.getWhereQuery());
+    this.fetch(!!this.searchRules.length, this.searchRules.getWhereQuery());
   },
 
   render () {

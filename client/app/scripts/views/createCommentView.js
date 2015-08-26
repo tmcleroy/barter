@@ -45,7 +45,8 @@ const CreateCommentView = FormValidationView.extend({
     this.render();
     new Alert({
       type: 'success',
-      body: 'Comment Submitted'
+      body: 'Comment Submitted',
+      delay: 10000000
     });
   }
 

@@ -8,15 +8,14 @@
 
     <label>is</label>
     <select class="form-control sm" name="operator">
-      <option value="$eq" <%= rule.get('operator') == '$eq' ? 'selected' : '' %>>equal to</option>
-      <option value="$gt" <%= rule.get('operator') == '$gt' ? 'selected' : '' %>>greater than</option>
-      <option value="$lt" <%= rule.get('operator') == '$lt' ? 'selected' : '' %>>less than</option>
       <option value="$gte" <%= rule.get('operator') == '$gte' ? 'selected' : '' %>>greater than or equal to</option>
       <option value="$lte" <%= rule.get('operator') == '$lte' ? 'selected' : '' %>>less than or equal to</option>
+      <option value="$eq" <%= rule.get('operator') == '$eq' ? 'selected' : '' %>>equal to</option>
       <option value="$ne" <%= rule.get('operator') == '$ne' ? 'selected' : '' %>>not equal to</option>
     </select>
 
     <input type="text" data-attr="numerical" name="right-operand" value="<%= rule.get('rightOperand') || '' %>"></input>
-    <button class="btn btn-default btn-xs pull-right" data-action="submit">apply</button>
+    <button class="btn btn-default btn-xs" data-action="submit">apply</button>
+    <button type="button" class="close" aria-label="Close" data-action="close"><span aria-hidden="true">×</span></button>
   </form>
 </div>

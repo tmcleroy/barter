@@ -3,6 +3,10 @@ import template from 'templates/components/searchRule.ejs';
 
 const SearchRuleView = FormValidationView.extend({
   template,
+  events: _.extend({}, FormValidationView.prototype.events, {
+    'click [data-action="close"]': 'closeClicked'
+  }),
+
   validations: {
     'numerical': {
       test: val => (/^\d+$/).test(val),
@@ -30,6 +34,10 @@ const SearchRuleView = FormValidationView.extend({
     const rightOperand = $form.find('[name="right-operand"]').val();
     const operator = $form.find('[name="operator"]').val();
     this.model.set({ leftOperand, rightOperand, operator });
+  },
+
+  closeClicked (evt) {
+    this.model.collection.remove(this.model);
   }
 });
 

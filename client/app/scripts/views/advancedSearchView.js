@@ -5,7 +5,8 @@ import template from 'templates/components/advancedSearch.ejs';
 const AdvancedSearchView = Backbone.View.extend({
   template,
   events: {
-    'click [data-action="add-rule"]': 'addRuleClicked'
+    'click [data-action="add-rule"]': 'addRuleClicked',
+    'click [data-action="clear-all"]': 'clearAllClicked'
   },
 
   initialize (params) {
@@ -13,8 +14,8 @@ const AdvancedSearchView = Backbone.View.extend({
   },
 
   render () {
-    this.$el.html(this.template());
-    this.collection.each((rule) => {
+    this.$el.html(this.template({ rules: this.collection }));
+    this.collection.each((rule, i) => {
       new SearchRuleView({
         el: $('<div class="ruleContainer"/>').appendTo(this.$('.rulesContainer')),
         model: rule
@@ -27,9 +28,14 @@ const AdvancedSearchView = Backbone.View.extend({
     const rule = new SearchRule();
     this.collection.add(rule);
     new SearchRuleView({
-      el: $('<div class="rule"/>').appendTo(this.$('.rulesContainer')),
+      el: $('<div class="ruleContainer"/>').appendTo(this.$('.rulesContainer')),
       model: rule
     });
+  },
+
+  clearAllClicked (evt) {
+    evt.preventDefault();
+    this.collection.reset();
   }
 });
 

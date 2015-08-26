@@ -10,7 +10,7 @@
     </div>
     <div class="clearfix"></div>
     <%= require('templates/components/collapsibleContainer.ejs')({
-      classes: 'advancedSearchContainer noSideBorder alignRight animated',
+      classes: 'advancedSearchContainer noSideBorder animated',
       text: { show: 'Advanced Search', hide: 'Hide Advanced Search' },
       collapsed: true
     }) %>
@@ -23,7 +23,7 @@
         proposals: request.get('Proposals')
       }) %>
     <% }); %>
-    <div class="noneMessage">You haven't made any requests, go ahead and <a href="/app/requests/create">create one</a></div>
+    <div class="noneMessage">There are no requests here, why not <a href="/app/requests/create">create one</a>?</div>
   </div>
   <div class="controls bottom">
     <%= require('templates/components/pagination.ejs')({

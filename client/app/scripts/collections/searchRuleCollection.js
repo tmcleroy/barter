@@ -7,10 +7,10 @@ const SearchRuleCollection = Backbone.Collection.extend({
   getWhereQuery () {
     let queries = [];
     this.each((rule) => {
-      console.log('rule is', rule);
-      queries.push(rule.getWhereQuery());
+      const ruleQuery = rule.getWhereQuery();
+      if (ruleQuery) { queries.push(ruleQuery); }
     });
-    return { where: { $and: queries } };
+    return this.length ? { where: { $and: queries } } : null;
   }
 });
 

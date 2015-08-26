@@ -62,7 +62,6 @@ const PaginatedView = Backbone.View.extend({
   },
 
   updateUrl (options) {
-    console.log('updating url with options', options);
     let split = window.location.pathname.split(/\//);
     // if there is a non-word character in the last segment (opts are present)
     if (split[split.length - 1].match(/\W/)) {
