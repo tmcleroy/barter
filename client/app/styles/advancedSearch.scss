@@ -1,5 +1,13 @@
+.ruleContainer {
+  margin: 5px 0;
+}
+
 .rule {
+  padding: 5px;
   &.active {
     background-color: #ccc;
+  }
+  .btn {
+    margin: 4px;
   }
 }

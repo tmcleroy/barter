@@ -6,8 +6,6 @@ import template from 'templates/request/requests.ejs';
 
 const RequestsView = PaginatedView.extend({
   template,
-  searchRules: new SearchRules(),
-
   initialize (params) {
     this.mine = params.mine;
     this.collection = new Requests();
@@ -18,13 +16,15 @@ const RequestsView = PaginatedView.extend({
       { sort: '-offer', display: 'Highest Offer' },
       { sort: 'offer', display: 'Lowest Offer' }
     ];
+    const options = (params.options && params.options.where.$and);
+    this.searchRules = new SearchRules(options || {}, { parse: !!options });
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
 
     this.listenTo(this.collection, 'change sync', this.render);
     this.listenTo(this.searchRules, 'change', this.rulesChanged);
 
-    this.fetch();
+    this.fetch(true, this.searchRules.getWhereQuery());
   },
 
   render () {

@@ -8,12 +8,12 @@
 
     <label>is</label>
     <select class="form-control sm" name="operator">
-      <option value="eq" <%= rule.get('operator') == 'eq' ? 'selected' : '' %>>equal to</option>
-      <option value="gt" <%= rule.get('operator') == 'gt' ? 'selected' : '' %>>greater than</option>
-      <option value="lt" <%= rule.get('operator') == 'lt' ? 'selected' : '' %>>less than</option>
-      <option value="gte" <%= rule.get('operator') == 'gte' ? 'selected' : '' %>>greater than or equal to</option>
-      <option value="lte" <%= rule.get('operator') == 'lte' ? 'selected' : '' %>>less than or equal to</option>
-      <option value="ne" <%= rule.get('operator') == 'ne' ? 'selected' : '' %>>not equal to</option>
+      <option value="$eq" <%= rule.get('operator') == '$eq' ? 'selected' : '' %>>equal to</option>
+      <option value="$gt" <%= rule.get('operator') == '$gt' ? 'selected' : '' %>>greater than</option>
+      <option value="$lt" <%= rule.get('operator') == '$lt' ? 'selected' : '' %>>less than</option>
+      <option value="$gte" <%= rule.get('operator') == '$gte' ? 'selected' : '' %>>greater than or equal to</option>
+      <option value="$lte" <%= rule.get('operator') == '$lte' ? 'selected' : '' %>>less than or equal to</option>
+      <option value="$ne" <%= rule.get('operator') == '$ne' ? 'selected' : '' %>>not equal to</option>
     </select>
 
     <input type="text" data-attr="numerical" name="right-operand" value="<%= rule.get('rightOperand') || '' %>"></input>
