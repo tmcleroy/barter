@@ -1,8 +1,8 @@
 import 'bootstrap-sass/assets/javascripts/bootstrap/modal';
+import template from 'templates/components/modal.ejs';
 
 const Modal = Backbone.View.extend({
-  template: require('templates/components/modal.ejs'),
-
+  template,
   events: {
     'click [data-action="modal-accept"]': 'onAccept',
     'click [data-action="modal-cancel"]': 'onCancel'

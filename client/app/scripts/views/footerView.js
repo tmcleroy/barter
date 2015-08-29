@@ -1,6 +1,7 @@
-const FooterView = Backbone.View.extend({
-  template: require('templates/footer.ejs'),
+import template from 'templates/footer.ejs';
 
+const FooterView = Backbone.View.extend({
+  template,
   events: {
   },
 

@@ -1,9 +1,7 @@
+import template from 'templates/home.ejs';
+
 const HomeView = Backbone.View.extend({
-  template: require('templates/home.ejs'),
-
-  events: {
-  },
-
+  template,
   initialize (params) {
     this.render();
   },

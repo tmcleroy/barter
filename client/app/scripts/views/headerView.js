@@ -1,8 +1,8 @@
 import ProfileView from 'scripts/views/profileView';
+import template from 'templates/header.ejs';
 
 const HeaderView = Backbone.View.extend({
-  template: require('templates/header.ejs'),
-
+  template,
   events: {
     'click [data-logged-in]': 'logInOutClicked',
     'click [data-action="register"]': 'registerClicked'

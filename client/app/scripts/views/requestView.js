@@ -4,10 +4,10 @@ import RequestProposalsView from 'scripts/views/requestProposalsView';
 import CommentsView from 'scripts/views/commentsView';
 import TagsView from 'scripts/views/tagsView';
 import CreateProposalAndCommentView from 'scripts/views/createProposalAndCommentView';
+import template from 'templates/request/request.ejs';
 
 const RequestView = Backbone.View.extend({
-  template: require('templates/request/request.ejs'),
-
+  template,
   views: [],
   mine: false,
 

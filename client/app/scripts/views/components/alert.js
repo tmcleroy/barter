@@ -1,6 +1,7 @@
-const Alert = Backbone.View.extend({
-  template: require('templates/components/alert.ejs'),
+import template from 'templates/components/alert.ejs';
 
+const Alert = Backbone.View.extend({
+  template,
   initialize (params) {
     this.$el = $('<div />').appendTo($('#alertContainer'));
     this.options = _.defaults(params || {}, {

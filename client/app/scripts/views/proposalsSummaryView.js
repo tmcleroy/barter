@@ -1,10 +1,7 @@
+import template from 'templates/proposal/proposalsSummary.ejs';
 
 const ProposalsSummaryView = Backbone.View.extend({
-  template: require('templates/proposal/proposalsSummary.ejs'),
-
-  events: {
-  },
-
+  template,
   initialize (params) {
     this.render();
 
