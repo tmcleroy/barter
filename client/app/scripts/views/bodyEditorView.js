@@ -26,7 +26,7 @@ const BodyEditorView = TabbedView.extend({
 
   togglePreview () {
     this.$('.previewContainer').toggleClass('hidden');
-    var html = marked(this.$('[data-attr="body"]').val());
+    const html = marked(this.$('[data-attr="body"]').val());
     this.$('.markdown').html(html);
   }
 });

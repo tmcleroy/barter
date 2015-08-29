@@ -7,7 +7,7 @@ const ProposalsCollection = PaginatedCollection.extend({
   url: '/api/proposals',
 
   getAvgOffer () {
-    var sum = this.reduce((memo, value) => {
+    const sum = this.reduce((memo, value) => {
       return memo + (value.get('offer') || 0);
     }, 0);
     return Math.round(sum / this.length);

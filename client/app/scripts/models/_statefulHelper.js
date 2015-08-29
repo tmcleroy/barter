@@ -33,7 +33,7 @@ const StatefulHelper = {
   },
 
   getStateStringFormatted () {
-    var stateString = this.getStateString();
+    const stateString = this.getStateString();
     return stateString.replace(/^\w/, stateString.charAt(0).toUpperCase());
   },
 

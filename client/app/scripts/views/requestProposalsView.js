@@ -1,6 +1,7 @@
-const ProposalsView = Backbone.View.extend({
-  template: require('templates/proposal/requestProposals.ejs'),
+import template from 'templates/proposal/requestProposals.ejs';
 
+const ProposalsView = Backbone.View.extend({
+  template,
   events: {
     'click .actionContainer [data-action]': 'actionClicked'
   },
@@ -12,7 +13,7 @@ const ProposalsView = Backbone.View.extend({
   },
 
   render () {
-    var accepted = this.collection.getAccepted();
+    const accepted = this.collection.getAccepted();
     this.$el.html(this.template({
       allProposals: this.collection.models,
       pendingProposals: this.collection.getPending(),
@@ -24,8 +25,8 @@ const ProposalsView = Backbone.View.extend({
 
   actionClicked (evt) {
     evt.preventDefault();
-    var $target = $(evt.target);
-    var proposal = this.collection.get($target.closest('[data-id]').attr('data-id'));
+    const $target = $(evt.target);
+    const proposal = this.collection.get($target.closest('[data-id]').attr('data-id'));
     proposal.setState($target.attr('data-action')).done(::this.render);
   }
 

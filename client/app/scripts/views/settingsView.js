@@ -31,13 +31,12 @@ const SettingsView = Backbone.View.extend({
     this.$el.addClass('loading');
     evt.preventDefault();
     _.delay(() => { // allow some time for stranded tags to be added to the collection
-      var tags = _.map(this.subscriptions.models, model => model.toJSON().name);
+      const tags = _.map(this.subscriptions.models, model => model.toJSON().name);
       App.user.setSubscriptions(tags).done((data) => {
         this.$el.removeClass('loading');
       }, 100);
     });
-  },
-
+  }
   // tagsBlur (evt) {
   //   console.log('tags blurrrrrrrrrr');
   //   this.subscribeDebounced(evt);

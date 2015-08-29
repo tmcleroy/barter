@@ -1,11 +1,10 @@
 import Submission from 'scripts/models/submissionModel';
-import CommentsView from 'scripts/views/commentsView';
 import ConfirmationModal from './confirmationModal';
 import Alert from './components/alert';
+import template from 'templates/submission/submission.ejs';
 
 const SubmissionView = Backbone.View.extend({
-  template: require('templates/submission/submission.ejs'),
-
+  template,
   events: {
     'click [data-action^="state-"]': 'stateClicked'
   },
@@ -23,8 +22,8 @@ const SubmissionView = Backbone.View.extend({
   },
 
   render () {
-    var user = this.model.get('User');
-    var request = this.model.get('Request');
+    const user = this.model.get('User');
+    const request = this.model.get('Request');
     this.$el.html(this.template({
       submission: this.model,
       state: this.model.getStateString(),
@@ -32,20 +31,10 @@ const SubmissionView = Backbone.View.extend({
       submissionOwner: user.get('id') === App.user.get('id') ? 'your' : `${ user.get('username') }'s`,
       requestOwner: request.get('UserId') === App.user.get('id') ? 'your' : `${ request.get('User').get('username') }'s`
     }));
-    // this.views = [
-    //   new CommentsView({
-    //     collection: this.model.get('Comments'),
-    //     el: this.$('.commentsContainer')
-    //   })
-    // ];
-
-    if (this.mine) {
-      // mine stuff
-    }
   },
 
   stateClicked (evt) {
-    var state = $(evt.target).attr('data-action').split(/state-/)[1];
+    const state = $(evt.target).attr('data-action').split(/state-/)[1];
 
     new ConfirmationModal({
       title: 'Confirm Action',

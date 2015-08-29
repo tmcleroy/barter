@@ -1,16 +1,16 @@
-var utils = {
+const utils = {
   initializeGlobalHandlers () {
     $(document)
       // allows backbone to handle routing slash-based urls
       .on('click', 'a[href^="/"]', (evt) => {
-        var href = $(evt.currentTarget).attr('href');
-        var passThrough = href.match(/^logout$/); // let the server handle logout routing
+        const href = $(evt.currentTarget).attr('href');
+        const passThrough = href.match(/^logout$/); // let the server handle logout routing
 
         // allow shift+click for new tabs, etc.
         if (!passThrough && !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
           evt.preventDefault();
           // remove leading slashes and hash bangs (backward compatablility)
-          var url = href.replace(/^\//, '').replace('\#\!\/', '');
+          const url = href.replace(/^\//, '').replace('\#\!\/', '');
           // let backbone handle routing
           App.Router.navigate(url, true);
           return false;
@@ -19,25 +19,13 @@ var utils = {
       // show/hide collapsible containers. see collapsibleContainer.ejs
       .on('click', '[data-global-action="collapse"]', (evt) => {
         evt.preventDefault();
-        var $target = $(evt.target);
-        var $container = $target.next('.collapsibleContainer');
-        var collapsed = $container.attr('data-collapsed') === 'true';
-        var text = { show: $target.attr('data-showtext'), hide: $target.attr('data-hidetext') };
+        const $target = $(evt.target);
+        const $container = $target.next('.collapsibleContainer');
+        const collapsed = $container.attr('data-collapsed') === 'true';
+        const text = { show: $target.attr('data-showtext'), hide: $target.attr('data-hidetext') };
         $target.text(collapsed ? text.hide : text.show);
         $container.attr('data-collapsed', !collapsed);
       });
-  },
-
-  // turns query param string into object
-  // ?x=23&y=34 => { x: 23, y: 34 }
-  parseQueryString (queryString) {
-    var params = {};
-    var tokens = decodeURIComponent(queryString).split(/&/g);
-    _.each(tokens, (token) => {
-      var split = token.split('=');
-      params[split[0]] = split[1];
-    });
-    return params;
   }
 };
 

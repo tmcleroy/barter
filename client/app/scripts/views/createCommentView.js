@@ -28,7 +28,7 @@ const CreateCommentView = FormValidationView.extend({
   validFormSubmitted (evt) {
     evt.preventDefault();
     $('body').addClass('loading');
-    var body = this.$('[data-attr="body"]').val();
+    const body = this.$('[data-attr="body"]').val();
     this.model.set({
       body: body,
       requestId: this.request.get('id')

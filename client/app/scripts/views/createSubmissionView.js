@@ -39,8 +39,8 @@ const CreateSubmissionView = FormValidationView.extend({
       buttons: { accept: 'Yes, Submit', cancel: 'Go Back' },
       onAccept: (evt) => {
         $('body').addClass('loading');
-        var body = this.$('[data-attr="body"]').val();
-        var link = this.$('[data-attr="link"]').val();
+        const body = this.$('[data-attr="body"]').val();
+        const link = this.$('[data-attr="link"]').val();
 
         this.model.set({
           body: body,

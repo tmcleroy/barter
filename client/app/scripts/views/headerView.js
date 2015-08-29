@@ -29,7 +29,7 @@ const HeaderView = Backbone.View.extend({
 
   logInOutClicked (evt) {
     evt.preventDefault();
-    var loggedIn = !!App.user;
+    const loggedIn = !!App.user;
     if (loggedIn) {
       App.API.logout('home');
     } else {

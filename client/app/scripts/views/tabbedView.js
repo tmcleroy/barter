@@ -10,7 +10,7 @@ const TabbedView = Backbone.View.extend({
   // it then calls `tabChanged` with the `data-action` value of the clicked tab
   tabClicked (evt) {
     evt.preventDefault();
-    var $clickedTab = $(evt.target).closest('li[role="presentation"]');
+    const $clickedTab = $(evt.target).closest('li[role="presentation"]');
     if (!$clickedTab.hasClass('active')) {
       this.$('li[role="presentation"]').removeClass('active');
       // add active class to parent so the container panel becomes visible

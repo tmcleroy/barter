@@ -1,4 +1,4 @@
-var Moment = require('moment');
+import Moment from 'moment';
 
 const UserModel = Backbone.Model.extend({
   urlRoot: '/api/users',
