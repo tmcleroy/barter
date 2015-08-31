@@ -26,11 +26,11 @@ const ProposalsView = PaginatedView.extend({
     this.$el.html(this.template({
       proposals: this.collection,
       mine: this.mine,
-      sort: this.sort,
-      page: this.page,
-      limit: this.limit,
+      sort: this.model.get('sort'),
+      page: this.model.get('page'),
+      limit: this.model.get('limit'),
       sorts: this.sorts,
-      pages: Math.ceil(this.collection.total / this.limit)
+      pages: Math.ceil(this.collection.total / this.model.get('limit'))
     }));
     PaginatedView.prototype.render.call(this, arguments);
   }

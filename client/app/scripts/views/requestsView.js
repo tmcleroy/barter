@@ -7,7 +7,6 @@ import template from 'templates/request/requests.ejs';
 const RequestsView = PaginatedView.extend({
   template,
   initialize (params) {
-    this.mine = params.mine;
     this.collection = new Requests();
     this.sorts = [
       { sort: '-createdAt', display: 'Newest' },
@@ -30,12 +29,12 @@ const RequestsView = PaginatedView.extend({
   render () {
     this.$el.html(this.template({
       requests: this.collection,
-      mine: this.mine,
-      sort: this.sort,
-      page: this.page,
-      limit: this.limit,
+      mine: this.model.get('mine'),
+      sort: this.model.get('sort'),
+      page: this.model.get('page'),
+      limit: this.model.get('limit'),
       sorts: this.sorts,
-      pages: Math.ceil(this.collection.total / this.limit)
+      pages: Math.ceil(this.collection.total / this.model.get('limit'))
     }));
     new AdvancedSearchView({
       el: this.$('.advancedSearchContainer .content'),

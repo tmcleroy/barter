@@ -1,3 +1,5 @@
+import PaginationOptions from 'scripts/models/paginationOptionsModel';
+
 const PaginatedView = Backbone.View.extend({
 
   events: {
@@ -6,10 +8,15 @@ const PaginatedView = Backbone.View.extend({
   },
 
   initialize (params) {
-    this.page = params.page || 1;
-    this.limit = Math.min(params.limit || 10, params.maxLimit || 100);
-    this.cursor = this.limit * (this.page - 1);
-    this.sort = params.sort || '-createdAt';
+    const page = params.page || 1;
+    const limit = Math.min(params.limit || 10, params.maxLimit || 100);
+    this.model = new PaginationOptions({
+      page,
+      limit,
+      cursor: limit * (page - 1),
+      sort: params.sort || '-createdAt',
+      mine: !!params.mine
+    });
   },
 
   // this is more of a post render function
@@ -22,11 +29,11 @@ const PaginatedView = Backbone.View.extend({
   fetch (updateUrl, options) {
     this.$el.addClass('loading');
     let opts = _.extend({
-      sort: this.sort,
-      limit: this.limit,
-      cursor: this.cursor
+      sort: this.model.get('sort'),
+      limit: this.model.get('limit'),
+      cursor: this.model.get('cursor')
     }, options || {});
-    if (this.mine) { opts.mine = true; }
+    if (this.model.get('mine')) { opts.mine = true; }
     this.collection.fetch({
       data: opts
     });
@@ -36,15 +43,15 @@ const PaginatedView = Backbone.View.extend({
   },
 
   selectChanged (evt) {
-    let $target = $(evt.target);
-    let prop = $target.attr('data-action');
+    const $target = $(evt.target);
+    const prop = $target.attr('data-action');
     let val = $target.val();
     // convert val to integer if it contains only digits
     val = val.match(/\D/) ? val : parseInt(val, 10);
-    this[prop] = val;
+    this.model.set(prop, val);
     if (prop === 'limit') {
-      this.page = 1;
-      this.cursor = this.limit * (this.page - 1);
+      this.model.set('page', 1);
+      this.model.updateCursor();
     }
     this.fetch(true);
   },
@@ -52,12 +59,10 @@ const PaginatedView = Backbone.View.extend({
   pageChanged (evt) {
     evt.preventDefault();
     let val = $(evt.currentTarget).attr('data-page');
-    if (_.isNaN(parseInt(val, 10))) { // prev or next
-      this.page += { next: 1, prev: -1 }[val];
-    } else { // numerical page
-      this.page = parseInt(val, 10);
-    }
-    this.cursor = this.limit * (this.page - 1);
+    const valInt = parseInt(val, 10);
+    const page = _.isNaN(valInt) ? this.model.get('page') + { next: 1, prev: -1 }[val] : valInt;
+    this.model.set('page', page);
+    this.model.updateCursor();
     this.fetch(true);
   },
 
