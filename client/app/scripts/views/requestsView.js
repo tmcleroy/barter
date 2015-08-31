@@ -1,7 +1,6 @@
 import PaginatedView from 'scripts/views/paginatedView';
 import AdvancedSearchView from 'scripts/views/advancedSearchView';
 import Requests from 'scripts/collections/requestsCollection';
-import SearchRules from 'scripts/collections/searchRuleCollection';
 import template from 'templates/request/requests.ejs';
 
 const RequestsView = PaginatedView.extend({
@@ -15,15 +14,10 @@ const RequestsView = PaginatedView.extend({
       { sort: '-offer', display: 'Highest Offer' },
       { sort: 'offer', display: 'Lowest Offer' }
     ];
-    const options = (params.options && params.options.where && params.options.where.$and);
-    this.searchRules = new SearchRules(options, { parse: !!options });
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
 
     this.listenTo(this.collection, 'change sync', this.render);
-    this.listenTo(this.searchRules, 'change remove reset', this.rulesChanged);
-
-    this.fetch(!!this.searchRules.length, this.searchRules.getWhereQuery());
   },
 
   render () {
@@ -38,13 +32,9 @@ const RequestsView = PaginatedView.extend({
     }));
     new AdvancedSearchView({
       el: this.$('.advancedSearchContainer .content'),
-      collection: this.searchRules
+      collection: this.model.get('advancedRules')
     });
     PaginatedView.prototype.render.call(this, arguments);
-  },
-
-  rulesChanged () {
-    this.fetch(true, this.searchRules.getWhereQuery());
   }
 });
 

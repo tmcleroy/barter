@@ -5,7 +5,6 @@ import template from 'templates/proposal/proposals.ejs';
 const ProposalsView = PaginatedView.extend({
   template,
   initialize (params) {
-    this.mine = params.mine;
     this.collection = new ProposalsCollection();
     this.sorts = [
       { sort: '-createdAt', display: 'Newest' },
@@ -18,14 +17,12 @@ const ProposalsView = PaginatedView.extend({
     this.events = _.extend(PaginatedView.prototype.events, this.events);
 
     this.listenTo(this.collection, 'change sync', this.render);
-
-    this.fetch();
   },
 
   render () {
     this.$el.html(this.template({
       proposals: this.collection,
-      mine: this.mine,
+      mine: this.model.get('mine'),
       sort: this.model.get('sort'),
       page: this.model.get('page'),
       limit: this.model.get('limit'),
