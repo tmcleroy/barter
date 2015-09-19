@@ -2,7 +2,6 @@ import PaginationOptions from 'scripts/models/paginationOptionsModel';
 import SearchRules from 'scripts/collections/searchRuleCollection';
 
 const PaginatedView = Backbone.View.extend({
-
   events: {
     'change select[data-action]': 'selectChanged',
     'click a[data-page]': 'pageChanged'

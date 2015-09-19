@@ -11,7 +11,11 @@
     <div class="clearfix"></div>
     <%= require('templates/components/collapsibleContainer.ejs')({
       classes: 'advancedSearchContainer noSideBorder animated',
-      text: { show: 'Advanced Search', hide: 'Hide Advanced Search' },
+      text: {
+        show: 'Advanced Search',
+        hide: 'Hide Advanced Search',
+        append: advancedRulesActive ? '<span class="glyphicon glyphicon-asterisk advancedRulesActive" title="rules are active"></span>' : ''
+      },
       collapsed: true
     }) %>
   </div>

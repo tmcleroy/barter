@@ -2,12 +2,15 @@
 
 // collapsible containers
 .collapseWidget {
-  .collapseBtn {
+  .collapseBtn, .appendedHtml {
+    display: inline-block;
     position: relative;
     bottom: -20px;
+    background: white;
+  }
+  .collapseBtn {
     padding: 0 5px;
     margin: 0 10px;
-    background: white;
   }
   .collapsibleContainer {
     margin: 10px 0;

@@ -1,23 +1,37 @@
-.ruleContainer {
-  margin: 5px 0;
-}
+.advancedSearchView {
+  .numActive {
+    font-size: 24px;
+  }
 
-.rule {
-  padding: 5px;
-  background-color: #eee;
-  border-radius: 4px;
-  .btn {
-    margin: 3px;
+  .ruleContainer {
+    margin: 5px 0;
   }
-  .close {
-    display: none;
-    padding: 3px 7px;
-    opacity: 0.5;
-  }
-  &.active {
-    background-color: #ccc;
+
+  .rule {
+    padding: 5px;
+    background-color: #eee;
+    border-radius: 4px;
+    .btn {
+      margin: 3px;
+    }
     .close {
-      display: block;
+      display: none;
+      padding: 3px 7px;
+      opacity: 0.5;
+    }
+    &.active {
+      background-color: #ccc;
+      .close {
+        display: block;
+      }
     }
   }
+}
+
+// icon indicating that the advanced search view has active rules
+.advancedRulesActive {
+  top: 2px;
+  padding: 0 10px 0 5px;
+  margin-left: -15px;
+  background-color: inherit;
 }

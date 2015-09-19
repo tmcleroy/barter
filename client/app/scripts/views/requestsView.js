@@ -21,6 +21,7 @@ const RequestsView = PaginatedView.extend({
   },
 
   render () {
+    const advancedRules = this.model.get('advancedRules');
     this.$el.html(this.template({
       requests: this.collection,
       mine: this.model.get('mine'),
@@ -28,11 +29,12 @@ const RequestsView = PaginatedView.extend({
       page: this.model.get('page'),
       limit: this.model.get('limit'),
       sorts: this.sorts,
-      pages: Math.ceil(this.collection.total / this.model.get('limit'))
+      pages: Math.ceil(this.collection.total / this.model.get('limit')),
+      advancedRulesActive: advancedRules.getNumActive() > 0
     }));
     new AdvancedSearchView({
       el: this.$('.advancedSearchContainer .content'),
-      collection: this.model.get('advancedRules')
+      collection: advancedRules
     });
     PaginatedView.prototype.render.call(this, arguments);
   }

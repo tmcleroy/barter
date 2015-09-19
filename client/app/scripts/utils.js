@@ -20,7 +20,7 @@ const utils = {
       .on('click', '[data-global-action="collapse"]', (evt) => {
         evt.preventDefault();
         const $target = $(evt.target);
-        const $container = $target.next('.collapsibleContainer');
+        const $container = $target.siblings('.collapsibleContainer');
         const collapsed = $container.attr('data-collapsed') === 'true';
         const text = { show: $target.attr('data-showtext'), hide: $target.attr('data-hidetext') };
         $target.text(collapsed ? text.hide : text.show);

@@ -11,6 +11,10 @@ const SearchRuleCollection = Backbone.Collection.extend({
       if (ruleQuery) { queries.push(ruleQuery); }
     });
     return this.length ? { where: { $and: queries } } : null;
+  },
+
+  getNumActive () {
+    return _.filter(this.models, model => !!model.get('rightOperand')).length;
   }
 });
 

@@ -1,11 +1,13 @@
 <%
 var showText = obj.text && obj.text.show || 'show';
 var hideText = obj.text && obj.text.hide || 'hide';
+var appendHtml = obj.text && obj.text.append || '';
 %>
 <div class="collapseWidget <%= obj.classes %>">
   <a href="#collapse" class="collapseBtn" data-global-action="collapse" data-showtext="<%= showText %>" data-hidetext="<%= hideText %>">
     <%= obj.collapsed ? showText : hideText %>
   </a>
+  <div class="appendedHtml"><%= appendHtml %></div>
   <div class="collapsibleContainer" data-collapsed="<%= obj.collapsed ? 'true' : 'false' %>">
     <div class="content">
       <%= obj.html %>

@@ -11,10 +11,14 @@ const AdvancedSearchView = Backbone.View.extend({
 
   initialize (params) {
     this.render();
+    this.listenTo(this.collection, 'add reset', this.render);
   },
 
   render () {
-    this.$el.html(this.template({ rules: this.collection }));
+    this.$el.html(this.template({
+      rules: this.collection,
+      numActive: this.collection.getNumActive()
+    }));
     this.collection.each((rule, i) => {
       new SearchRuleView({
         el: $('<div class="ruleContainer"/>').appendTo(this.$('.rulesContainer')),
@@ -25,12 +29,7 @@ const AdvancedSearchView = Backbone.View.extend({
 
   addRuleClicked (evt) {
     evt.preventDefault();
-    const rule = new SearchRule();
-    this.collection.add(rule);
-    new SearchRuleView({
-      el: $('<div class="ruleContainer"/>').appendTo(this.$('.rulesContainer')),
-      model: rule
-    });
+    this.collection.add(new SearchRule());
   },
 
   clearAllClicked (evt) {
