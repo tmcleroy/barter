@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function (sequelize, DataTypes) {
   var Request = sequelize.define('Request', {
     title: DataTypes.STRING,
@@ -7,6 +9,20 @@ module.exports = function (sequelize, DataTypes) {
       validate: { isInt: true },
       set: function (val) {
         this.setDataValue('offer', parseInt(val, 10));
+      }
+    },
+    avgProposal: {
+      type: DataTypes.INTEGER,
+      validate: { isInt: true },
+      set: function (val) {
+        this.getProposals().then(_.bind(function (proposals) {
+          var total = 0;
+          _.each(proposals, function (proposal) {
+            total += proposal.get('offer');
+          });
+          this.setDataValue('avgProposal', Math.round(total / proposals.length));
+          this.save();
+        }, this));
       }
     }
   }, {

@@ -38,7 +38,8 @@ var controller = {
         createdAt: 'createdAt',
         updatedAt: 'updatedAt',
         title: 'title',
-        offer: 'offer'
+        offer: 'offer',
+        avgProposal: 'avgProposal'
       }
     }));
     models.Request.findAndCountAll({

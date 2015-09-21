@@ -45,6 +45,7 @@ var controller = {
           objectType: 'Request',
           ObjectRequestId: request.id
         });
+        request.set('avgProposal');
         res.status(200).send(proposal);
       });
     });
