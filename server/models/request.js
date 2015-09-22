@@ -11,9 +11,12 @@ module.exports = function (sequelize, DataTypes) {
         this.setDataValue('offer', parseInt(val, 10));
       }
     },
+    // computed column
     avgProposal: {
       type: DataTypes.INTEGER,
       validate: { isInt: true },
+      defaultValue: 0,
+      // can't be directly set, this just updates the average
       set: function (val) {
         this.getProposals().then(_.bind(function (proposals) {
           var total = 0;

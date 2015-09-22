@@ -1,4 +1,8 @@
-'use strict';
+function updateAvgProposalOnRequest (proposal, options) {
+  proposal.getRequest().done(function (request) {
+    if (request) { request.set('avgProposal'); }
+  });
+}
 
 module.exports = function (sequelize, DataTypes) {
   var Proposal = sequelize.define('Proposal', {
@@ -25,6 +29,11 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     instanceMethods: {
+    },
+    hooks: {
+      afterUpdate: updateAvgProposalOnRequest,
+      afterCreate: updateAvgProposalOnRequest,
+      afterDestroy: updateAvgProposalOnRequest
     }
   });
   return Proposal;

@@ -16,8 +16,7 @@ const AdvancedSearchView = Backbone.View.extend({
 
   render () {
     this.$el.html(this.template({
-      rules: this.collection,
-      numActive: this.collection.getNumActive()
+      rules: this.collection
     }));
     this.collection.each((rule, i) => {
       new SearchRuleView({

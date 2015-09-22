@@ -12,7 +12,9 @@ const RequestsView = PaginatedView.extend({
       { sort: 'createdAt', display: 'Oldest' },
       { sort: 'updatedAt', display: 'Recently Updated' },
       { sort: '-offer', display: 'Highest Offer' },
-      { sort: 'offer', display: 'Lowest Offer' }
+      { sort: 'offer', display: 'Lowest Offer' },
+      { sort: '-avgProposal', display: 'Avg Proposal (highest first)' },
+      { sort: 'avgProposal', display: 'Avg Proposal (lowest first)' }
     ];
 
     PaginatedView.prototype.initialize.call(this, _.extend({}, params, params.options));
@@ -30,7 +32,7 @@ const RequestsView = PaginatedView.extend({
       limit: this.model.get('limit'),
       sorts: this.sorts,
       pages: Math.ceil(this.collection.total / this.model.get('limit')),
-      advancedRulesActive: advancedRules.getNumActive() > 0
+      activeRules: advancedRules.getNumActive()
     }));
     new AdvancedSearchView({
       el: this.$('.advancedSearchContainer .content'),

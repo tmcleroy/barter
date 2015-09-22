@@ -474,7 +474,7 @@ var fxn = function () {
          myModels.user.laika.addProposal(proposal);
        }));
        Sequelize.Promise.all(proposalPromises).then(function () {
-         request.setProposals(proposals);
+         request.setttProposals(proposals);
        });
      });
   });
