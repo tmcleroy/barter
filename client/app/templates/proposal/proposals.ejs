@@ -9,12 +9,6 @@
       }) %>
     </div>
     <div class="clearfix"></div>
-    <%= require('templates/components/collapsibleContainer.ejs')({
-      classes: 'advancedSearchContainer noSideBorder animated',
-      text: { show: 'Advanced Search', hide: 'Hide Advanced Search' },
-      html: '<p>ADVANCED SEARCH</p>',
-      collapsed: true,
-    }) %>
   </div>
   <div class="itemList proposalList">
     <% proposals.each(function (proposal) { %>

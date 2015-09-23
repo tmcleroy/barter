@@ -8,11 +8,11 @@ const RequestsView = PaginatedView.extend({
   initialize (params) {
     this.collection = new Requests();
     this.sorts = [
-      { sort: '-createdAt', display: 'Newest' },
-      { sort: 'createdAt', display: 'Oldest' },
+      { sort: '-createdAt', display: 'Time (newest first)' },
+      { sort: 'createdAt', display: 'Time (oldest first)' },
       { sort: 'updatedAt', display: 'Recently Updated' },
-      { sort: '-offer', display: 'Highest Offer' },
-      { sort: 'offer', display: 'Lowest Offer' },
+      { sort: '-offer', display: 'Offer (highest first)' },
+      { sort: 'offer', display: 'Offer (lowest first)' },
       { sort: '-avgProposal', display: 'Avg Proposal (highest first)' },
       { sort: 'avgProposal', display: 'Avg Proposal (lowest first)' }
     ];
