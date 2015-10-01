@@ -57,7 +57,8 @@
     "marked": "~0.3.3",
     "dotenv": "~1.2.0",
     "yargs": "~3.16.1",
-    "faker": "~3.0.0"
+    "faker": "~3.0.0",
+    "passport-twitter": "~1.0.3"
   },
   "devDependencies": {
     "gulp-load-plugins": "~1.0.0-rc.1",

@@ -30,6 +30,16 @@ module.exports = function (sequelize, DataTypes) {
         self: true
       }
     },
+    // origin of the user, may be native or twitter, or whatever other shared login stuff we support in the future
+    provider: {
+      type: DataTypes.STRING,
+      defaultValue: 'native'
+    },
+    // this is generally the api token of the user if he is from another provider (twitter, google, facebook etc.)
+    providerToken: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    },
     rep: {
       type: DataTypes.INTEGER,
       defaultValue: 0

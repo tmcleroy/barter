@@ -25,10 +25,19 @@ var routes = function (app) {
   app.all('/api/*', requireAuth/*, requireApiPermission*/);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
 
+  // native auth
   app.post('/login', passport.authenticate('local'), loginHandler);
   app.post('/register', registerHandler);
   app.post('/logout', logoutHandler);
   app.post('/avatar', requireAuth, avatarUploadHandler);
+
+  // twiter auth
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+  app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  }));
 
   // API
   // User

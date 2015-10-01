@@ -4,15 +4,17 @@ const utils = {
       // allows backbone to handle routing slash-based urls
       .on('click', 'a[href^="/"]', (evt) => {
         const href = $(evt.currentTarget).attr('href');
-        const passThrough = href.match(/^logout$/); // let the server handle logout routing
+        // client router ignores these routes
+        const passThrough = !!href.match(/^\/*(auth\/twitter)/);
 
+        // if passThrough is false, the client router will handle things
         // allow shift+click for new tabs, etc.
         if (!passThrough && !evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
           evt.preventDefault();
           // remove leading slashes and hash bangs (backward compatablility)
           const url = href.replace(/^\//, '').replace('\#\!\/', '');
           // let backbone handle routing
-          App.Router.navigate(url, true);
+          App.Router.navigate(url, { trigger: true });
           return false;
         }
       })
