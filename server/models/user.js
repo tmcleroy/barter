@@ -50,11 +50,8 @@ module.exports = function (sequelize, DataTypes) {
     },
     avatar: {
       type: DataTypes.STRING,
-      defaultValue: function () { return AVATAR_DIR + 'avatar-default-' + (Math.floor(Math.random() * 10) + 1) + '.png'; },
-      set: function () { // don't allow direct setting of this, it should always be based on the id
-        var id = this.get('id') || 'default';
-        this.setDataValue('avatar', AVATAR_DIR + 'avatar-' + id + '.png');
-      }
+      // select a random avatar
+      defaultValue: function () { return AVATAR_DIR + 'avatar-default-' + (Math.floor(Math.random() * 10) + 1) + '.png'; }
     }
   }, {
     classMethods: {

@@ -12,7 +12,7 @@
       var prefix, js, css;
       var PROD_ENV = 'production';
       var env = decodeURIComponent((document.location.href.match(/[?&]env=([^&#]+)/) || []).pop() || '') || PROD_ENV;
-      var local = window.location.hostname === 'localhost';
+      var local = ['localhost', '127.0.0.1'].indexOf(window.location.hostname) > -1;
       if (local && env === PROD_ENV) { // local dev mode
         prefix = 'http://localhost:5001/'; // webpack-dev-server must be running at this location
         js = 'main.dev.js';

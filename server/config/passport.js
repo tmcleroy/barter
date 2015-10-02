@@ -1,3 +1,4 @@
+require('dotenv').load(); // environment variables in .env
 var utils = require('../utils/utils');
 var LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
@@ -8,7 +9,9 @@ var models = require('../models');
 
 module.exports = function (req, res, next) {
   passport.serializeUser(function (user, done) {
-    done(null, user.get('id'));
+    // user.id for native
+    // user[0].dataValues.id for twitter auth (i have no idea why)
+    done(null, user.id || user[0].dataValues.id);
   });
 
   passport.deserializeUser(function (id, done) {
@@ -37,34 +40,30 @@ module.exports = function (req, res, next) {
      });
   }));
 
-  // TODO don't check this in
-  var TWITTER_CONSUMER_KEY = 'kBWIUGMdKdqX6uPFjhedg';
-  var TWITTER_CONSUMER_SECRET = 'kQlcYf7m3u2f7DSHSDDoqSBgBQUk6tTJnMA9A40xbY0';
   passport.use(new TwitterStrategy({
-    consumerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: 'localhost:5000/auth/twitter/callback'
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    // using 127.0.0.1 because twitter won't let you use localhost
+    callbackURL: 'http://127.0.0.1:5000/auth/twitter/callback'
   },
   function (token, tokenSecret, profile, done) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(arguments);
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     models.User.findOrCreate({
       where: {
         provider: profile.provider || 'twitter',
         providerToken: token
+      },
+      defaults: {
+        username: profile.username,
+        avatar: profile._json.profile_image_url_https
       }
     }).then(function (user, newlyCreated) {
        if (user) { // user found or created
-         console.log('user ' + newlyCreated ? 'created' : 'found');
+         console.log('user ' + (newlyCreated ? 'created' : 'found'));
          return done(null, user);
        } else { // no user found
          console.log('no user found');
          return done(null, false);
        }
      });
-  }
-));
+  }));
 };
