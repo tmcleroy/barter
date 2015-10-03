@@ -1,17 +1,14 @@
 # issues
 
 ### technical
-- figure out why sorting by highest offer doesn't work
-- figure out why included models object is empty when included by `server/utils/utils.js` `var models = require('../models');`
-- see if there is a better solution to having nested models/collections with circular references
- - temporarily fixed by calling `ModelHydrator.hydrateModels(/* the model */)`
- - see `submissionView.js` and `_modelHydrator.js` for a usage example
-- when a new instance of createProposalAndCommentView is created, `this.views` is set to what it was in the last instance
+- figure out how to do icons
+- show third party auth icons on avatars and maybe next to usernames
+- figure out issue with native usernames overlapping with third party auth usernames
+- alternate profile pages for native users vs third party auth
+- make intro page for newly registered users
+- have third party auth redirect to correct place depending on whether it was a login or registration
+- email notifications
 - tags on requests should be displayed in the order they were added by the creator of the request
 
 
 ### non-technical
-
-- how to solve the low-rep problem
-
- - a low rep user may be able to choose to reduce his received points in exchange for increasing his received rep
