@@ -8,11 +8,15 @@
   .or {
     text-align: center;
     font-size: 24px;
+  }
+}
+
+.verticallyCentered {
+  .loginView & {
     margin-top: 55px;
   }
-
-  .thirdPartyLoginButtons {
-    margin-top: 55px;
+  .registerView & {
+    margin-top: 95px;
   }
 }
 
