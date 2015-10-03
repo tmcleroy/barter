@@ -1,0 +1,22 @@
+@import "variables";
+
+.registerView, .loginView {
+  .loginOptionContainer {
+    margin-bottom: 40px;
+  }
+
+  .or {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 55px;
+  }
+
+  .thirdPartyLoginButtons {
+    margin-top: 55px;
+  }
+}
+
+.btn.auth-twitter {
+  background-color: $twitter-blue;
+  border-color: $twitter-blue;
+}

@@ -7,6 +7,7 @@ import 'styles/main.scss';
 import 'styles/widgets.scss';
 import 'styles/header.scss';
 import 'styles/profile.scss';
+import 'styles/registerAndLogin.scss';
 import 'styles/request.scss';
 import 'styles/comment.scss';
 import 'styles/proposal.scss';

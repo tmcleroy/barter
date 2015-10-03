@@ -19,9 +19,9 @@ const RegisterView = Backbone.View.extend({
     this.$el.addClass('loading');
 
     const $form = $(evt.target).closest('form');
-    const username = $form.find( 'input[name="username"]' ).val();
-    const password = $form.find( 'input[name="password"]' ).val();
-    const email = $form.find( 'input[name="email"]' ).val();
+    const username = $form.find('input[name="username"]').val();
+    const password = $form.find('input[name="password"]').val();
+    const email = $form.find('input[name="email"]').val();
 
     App.API.register(username, password, email)
       .done((user) => {
