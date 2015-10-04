@@ -6,6 +6,7 @@ import 'styles/variables.scss';
 import 'styles/fonts/barter-icons.css';
 import 'styles/main.scss';
 import 'styles/widgets.scss';
+import 'styles/icons.scss';
 import 'styles/header.scss';
 import 'styles/profile.scss';
 import 'styles/registerAndLogin.scss';

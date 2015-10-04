@@ -12,6 +12,7 @@ const ProfileView = Backbone.View.extend({
   },
 
   render () {
+    console.log(App.user);
     this.$el.html(this.template({
       size: this.size,
       user: App.user

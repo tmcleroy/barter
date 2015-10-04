@@ -38,7 +38,12 @@ module.exports = function (sequelize, DataTypes) {
     // this is generally the api token of the user if he is from another provider (twitter, google, facebook etc.)
     providerToken: {
       type: DataTypes.STRING,
-      defaultValue: null
+      defaultValue: null,
+      // providerToken can can only be accessed if you explicitly pass the admin role user.get({role: 'admin'});
+      roles: {
+        admin: { get: true },
+        self: true
+      }
     },
     rep: {
       type: DataTypes.INTEGER,

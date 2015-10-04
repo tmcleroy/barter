@@ -7,6 +7,9 @@
     margin: 2px;
     height: 40px;
     border-radius: 50%;
+    &:not([data-provider="native"]) {
+      margin-right: 10px;
+    }
   }
   .usernameRepContainer {
     display: inline-block;
@@ -17,6 +20,10 @@
   }
   .rep {
     font-size: 12px;
+  }
+  i {
+    position: absolute;
+    margin-left: -15px;
   }
 }
 

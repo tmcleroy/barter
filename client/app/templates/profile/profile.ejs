@@ -1,5 +1,8 @@
 <div class="profile">
-  <img src="<%= user.get('avatar') %>" class="avatar"></img>
+  <img src="<%= user.get('avatar') %>" class="avatar" data-provider="<%= user.get('provider') %>"></img>
+  <% if (user.get('provider') !== 'native') { %>
+    <i class="barter-icon-<%= user.get('provider') %>"></i>
+  <% } %>
   <div class="usernameRepContainer">
     <div class="username"><%= user.get('username') %></div>
     <span>rep:</span> <span class="rep"><%= user.get('rep') %></span>
