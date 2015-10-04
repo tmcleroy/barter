@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var argv = require('yargs').argv;
+var fontcustom = require('gulp-fontcustom');
 var awspublish = require('gulp-awspublish');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
@@ -123,4 +124,14 @@ gulp.task('git:verify', function (cb) {
 gulp.task('clean', function () {
   return gulp.src(['.dev', 'server/public/dist'])
     .pipe($.clean());
+});
+
+/// to be run manually after adding a new svg to client/app/icons/vectors
+gulp.task('iconfont', function () {
+  gulp.src('client/app/icons/vectors')
+    .pipe(fontcustom({
+      font_name: 'barter-icons',
+      'css-selector': '.barter-icon-{{glyph}}'
+    }))
+    .pipe(gulp.dest('client/app/styles/fonts'));
 });

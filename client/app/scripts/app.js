@@ -3,6 +3,7 @@ window._ = _; // so i can use lodash in the console
 Backbone.$ = $;
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'styles/variables.scss';
+import 'styles/fonts/barter-icons.css';
 import 'styles/main.scss';
 import 'styles/widgets.scss';
 import 'styles/header.scss';

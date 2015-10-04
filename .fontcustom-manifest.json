@@ -1,0 +1,50 @@
+{
+  "checksum": {
+    "previous": "cf50563891a9c829d5b28dbd738b0bea30f8778da36301076cc405203896c4b5",
+    "current": "cf50563891a9c829d5b28dbd738b0bea30f8778da36301076cc405203896c4b5"
+  },
+  "fonts": [
+    "./___tmp___/barter-icons.ttf",
+    "./___tmp___/barter-icons.svg",
+    "./___tmp___/barter-icons.woff",
+    "./___tmp___/barter-icons.eot"
+  ],
+  "glyphs": {
+    "twitter": {
+      "codepoint": 61696,
+      "source": "/Users/toor/code/barter/client/app/icons/vectors/twitter.svg"
+    }
+  },
+  "options": {
+    "autowidth": false,
+    "config": false,
+    "css_selector": ".barter-icon-{{glyph}}",
+    "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
+    "font_name": "barter-icons",
+    "force": true,
+    "input": {
+      "templates": "/Users/toor/code/barter/client/app/icons/vectors",
+      "vectors": "/Users/toor/code/barter/client/app/icons/vectors"
+    },
+    "no_hash": true,
+    "output": {
+      "css": "./___tmp___",
+      "fonts": "./___tmp___",
+      "preview": "./___tmp___"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "templates": [
+      "css",
+      "preview"
+    ]
+  },
+  "templates": [
+    "./___tmp___/barter-icons.css",
+    "./___tmp___/barter-icons-preview.html"
+  ]
+}

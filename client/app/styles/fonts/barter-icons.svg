@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2015-10-3: Created with FontForge (http://fontforge.org)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20150504 at Sat Oct  3 23:00:32 2015
+ By Thomas McLeroy
+Copyright (c) 2015, Thomas McLeroy
+</metadata>
+<defs>
+<font id="barter-icons" horiz-adv-x="200" >
+  <font-face 
+    font-family="barter-icons"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="2 0 5 3 0 0 0 0 0 0"
+    ascent="448"
+    descent="-64"
+    bbox="0.000976562 -15.9453 512 399.944"
+    underline-thickness="25.6"
+    underline-position="-51.2"
+    unicode-range="U+0020-F100"
+  />
+    <missing-glyph />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="uniF100" unicode="&#xf100;" horiz-adv-x="512" 
+d="M512 350.738c-14.0459 -21.0518 -31.8975 -39.5439 -52.5332 -54.2627l0.351562 -13.5977c0 -138.789 -105.612 -298.823 -298.823 -298.823c-59.3174 0 -114.507 17.4043 -160.994 47.2549c8.22168 -0.927734 16.5732 -1.43945 25.0508 -1.43945
+c49.207 0 94.5107 16.7324 130.439 44.8877c-45.9434 0.832031 -84.7207 31.1943 -98.0938 72.9463c6.43066 -1.2793 12.9902 -1.95117 19.7725 -1.95117c9.59863 0 18.876 1.31152 27.6748 3.67871c-48.0225 9.66309 -84.2402 52.1191 -84.2402 102.989v1.31152
+c14.1729 -7.87012 30.3623 -12.6055 47.5752 -13.1807c-28.1553 18.8115 -46.7119 50.9648 -46.7119 87.4072c0 19.2607 5.15137 37.3047 14.2061 52.79c51.7979 -63.541 129.191 -105.356 216.471 -109.74c-1.79199 7.67871 -2.7207 15.71 -2.7207 23.9316
+c0 57.9727 47.0312 105.004 105.036 105.004c30.2354 0 57.4941 -12.7334 76.6582 -33.1777c23.9316 4.73535 46.3926 13.4707 66.7402 25.5c-7.87012 -24.4756 -24.4746 -45.0791 -46.167 -58.0693c21.2441 2.52832 41.4639 8.19141 60.3086 16.541z" />
+  </font>
+</defs></svg>

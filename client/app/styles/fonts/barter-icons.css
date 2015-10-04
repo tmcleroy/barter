@@ -1,0 +1,41 @@
+/*
+  Icon Font: barter-icons
+*/
+
+@font-face {
+  font-family: "barter-icons";
+  src: url("./barter-icons.eot");
+  src: url("./barter-icons.eot?#iefix") format("embedded-opentype"),
+       url("./barter-icons.woff") format("woff"),
+       url("./barter-icons.ttf") format("truetype"),
+       url("./barter-icons.svg#barter-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "barter-icons";
+    src: url("./barter-icons.svg#barter-icons") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.barter-icon-twitter:before {
+  display: inline-block;
+  font-family: "barter-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.barter-icon-twitter:before { content: "\f100"; }

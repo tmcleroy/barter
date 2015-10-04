@@ -32,7 +32,7 @@ module.exports = function () {
           loader: 'ejs-loader'
         },
         {
-          test: /\.scss$/,
+          test: /\.scss|\.css$/,
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader', { publicPath: '../' })
         },
         {

@@ -86,6 +86,7 @@
     "superagent": "~1.2.0",
     "babel-runtime": "~5.8.20",
     "gulp-git": "~1.2.4",
-    "bluebird": "~2.9.34"
+    "bluebird": "~2.9.34",
+    "gulp-fontcustom": "~0.1.1"
   }
 }
