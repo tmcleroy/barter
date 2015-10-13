@@ -5,7 +5,7 @@
       <div class="preLabel proposalLabel">Your Proposal for &hellip;</div>
       <h4 class="title"><a href="/app/requests/show/<%= request.id %>"><%= request.title %></a></h4>
       <div class="requestMeta">
-        Requested by <a href="/users/<%= requestUser.id %>"><%= requestUser.username %></a> <%= moment(request.createdAt).fromNow() %>
+        Requested by <%= user.getUsernameLink() %> <%= moment(request.get('createdAt')).fromNow() %>
       </div>
     </div>
     <div class="col-sm-4 rightCol">

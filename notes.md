@@ -2,7 +2,7 @@
 
 ### technical
 - ~~figure out how to do icons~~
-- ~~show third party auth icons on avatars~~ and maybe next to usernames
+- ~~show third party auth icons on avatars and maybe next to usernames~~
 - figure out issue with native usernames overlapping with third party auth usernames
   - showing third party auth icons on avatars partially solves this
 - alternate profile pages for native users vs third party auth

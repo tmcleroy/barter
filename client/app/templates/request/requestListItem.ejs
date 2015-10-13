@@ -4,7 +4,7 @@
     <div class="col-sm-9 leftCol">
       <h4 class="title"><a href="/app/requests/show/<%= request.id %>"><%= request.get('title') %></a></h4>
       <div class="requestMeta">
-        Requested by <a href="/users/<%= user.get('id') %>"><%= user.get('username') %></a> <%= moment(request.get('createdAt')).fromNow() %>
+        Requested by <%= user.getUsernameLink() %> <%= moment(request.get('createdAt')).fromNow() %>
       </div>
     </div>
     <div class="col-sm-3 rightCol">

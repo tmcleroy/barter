@@ -12,6 +12,15 @@ const UserModel = Backbone.Model.extend({
     return Moment(this.get('createdAt')).format('ll');
   },
 
+  getUsername () {
+    const providerIcon = this.get('provider') === 'native' ? '' : `<i class="barter-icon-${this.get('provider')}"></i>`;
+    return `<span class="username">${this.get('username')}${providerIcon}</span>`;
+  },
+
+  getUsernameLink () {
+    return `<a href="/users/${this.get('id')}" class="usernameLink">${this.getUsername()}</a>`;
+  },
+
   fetchSubscriptions () {
     return $.ajax({
       url: `${ this.urlRoot }/${ this.get('id') }/subscriptions`,
