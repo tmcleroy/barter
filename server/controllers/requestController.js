@@ -61,24 +61,27 @@ var controller = {
       offer: req.body.offer
     }).then(function (request) {
       models.Tag.createTagsFromArray(req.body.tags).then(function (tags) {
-        request.setTags(tags).then(function () {
-          res.status(200).send(request);
-        });
-        _.each(tags, function (tag) {
-          // get the users subscribed to this tag
-          tag.getUsers().then(function (users) {
-            _.each(users, function (user) {
-              models.Notification.create({
-                UserId: user.id,
-                SubjectUserId: req.user.id,
-                actionType: 'request-with-tag',
-                actionId: request.id,
-                objectType: 'Tag',
-                // NOTE two objects are being set here, this is exceptional
-                ObjectTagId: tag.id, // first object is the tag so we can get its name
-                ObjectRequestId: request.id // second object is the request so we can link to it
+        var tagOrderString = _.map(tags, function (tag) { return tag.dataValues.id; }).join(',');
+        request.set('tagOrder', tagOrderString).save().then(function () {
+          _.each(tags, function (tag) {
+            // get the users subscribed to this tag
+            tag.getUsers().then(function (users) {
+              _.each(users, function (user) {
+                models.Notification.create({
+                  UserId: user.id,
+                  SubjectUserId: req.user.id,
+                  actionType: 'request-with-tag',
+                  actionId: request.id,
+                  objectType: 'Tag',
+                  // NOTE two objects are being set here, this is exceptional
+                  ObjectTagId: tag.id, // first object is the tag so we can get its name
+                  ObjectRequestId: request.id // second object is the request so we can link to it
+                });
               });
             });
+          });
+          request.setTags(tags).then(function () {
+            res.status(200).send(request);
           });
         });
       });

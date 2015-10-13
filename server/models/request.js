@@ -27,6 +27,9 @@ module.exports = function (sequelize, DataTypes) {
           this.save();
         }, this));
       }
+    },
+    tagOrder: {
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {
