@@ -61,7 +61,7 @@ var controller = {
       offer: req.body.offer
     }).then(function (request) {
       models.Tag.createTagsFromArray(req.body.tags).then(function (tags) {
-        var tagOrderString = _.map(tags, function (tag) { return tag.dataValues.id; }).join(',');
+        var tagOrderString = req.body.tags.map(function (tag) { return _(tags).findWhere({ dataValues: { name: tag } }).id; }).join(',');
         request.set('tagOrder', tagOrderString).save().then(function () {
           _.each(tags, function (tag) {
             // get the users subscribed to this tag

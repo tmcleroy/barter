@@ -13,6 +13,14 @@ const RequestModel = NestedModel.extend({
     'Submission': 'Submission'
   },
 
+  parse (response) {
+    // keep the tags in the order in which they were added by the request creator
+    if (response.tagOrder) {
+      response.Tags = response.tagOrder.split(',').map(id => _(response.Tags).findWhere({ id: parseInt(id, 10) }));
+    }
+    return NestedModel.prototype.parse.apply(this, arguments);
+  },
+
   getBodyFormatted () {
     return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
   }
