@@ -12,3 +12,4 @@
 - tags on requests should be displayed in the order they were added by the creator of the request
 - make it so you can see the agreed upon offer on a request with an accepted proposal
 - captchas on the appropriate pages
+- syntax highlighting

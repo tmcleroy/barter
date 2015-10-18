@@ -5,8 +5,8 @@ import SideBarView from 'scripts/views/sideBarView.js';
 import HomeView from 'scripts/views/homeView';
 import LoginView from 'scripts/views/loginView';
 import RegisterView from 'scripts/views/registerView';
+import WelcomeView from 'scripts/views/welcomeView';
 import ManageProfileView from 'scripts/views/manageProfileView';
-import SettingsView from 'scripts/views/settingsView';
 import InboxView from 'scripts/views/inboxView';
 import RequestsView from 'scripts/views/requestsView';
 import RequestView from 'scripts/views/requestView';
@@ -27,6 +27,7 @@ const Router = Backbone.Router.extend(_.defaults({
 
     'login(/)(:options)'                      : 'login',
     'register(/)'                             : 'register',
+    'app/welcome(/)'                          : 'welcome',
     'app/profile(/)'                          : 'profile',
     'app/settings(/)'                         : 'settings',
     'app/inbox(/)'                            : 'inbox',
@@ -119,6 +120,17 @@ const Router = Backbone.Router.extend(_.defaults({
     if (this.preRoute(viewName)) {
       this.view = new RegisterView({
         el: $('<div class="registerViewContainer" />').appendTo('#contentContainer')
+      });
+      this.postRoute(viewName);
+    }
+  },
+
+  welcome () {
+    const viewName = 'welcome';
+
+    if (this.preRoute(viewName)) {
+      this.view = new WelcomeView({
+        el: $('<div class="welcomeViewContainer" />').appendTo('#contentContainer')
       });
       this.postRoute(viewName);
     }

@@ -5,7 +5,7 @@ const utils = {
       .on('click', 'a[href^="/"]', (evt) => {
         const href = $(evt.currentTarget).attr('href');
         // client router ignores these routes
-        const passThrough = !!href.match(/^\/*(auth\/twitter)/);
+        const passThrough = !!href.match(/^\/*((auth|register)\/\w*)/);
 
         // if passThrough is false, the client router will handle things
         // allow shift+click for new tabs, etc.

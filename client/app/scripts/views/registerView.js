@@ -27,7 +27,7 @@ const RegisterView = Backbone.View.extend({
       .done((user) => {
         App.API.login(username, password)
           .done(() => {
-            App.Router.navigate('app/profile', true);
+            App.Router.navigate('app/welcome', true);
           })
           .fail((xhr, status, error) => {
             console.error(status, error);
