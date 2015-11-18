@@ -16,6 +16,9 @@ var controller = {
         },
         {
           model: models.Submission
+        },
+        {
+          model: models.User
         }
       ],
       order: sortable.querySort,

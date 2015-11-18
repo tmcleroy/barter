@@ -7,11 +7,12 @@ const ProposalModel = NestedModel.extend(_.extend({}, StatefulHelper, {
 
   nestedDefs: {
     User: 'User',
-    Submission: 'Submission'
+    Submission: 'Submission',
+    Request: 'Request'
   },
 
   getBodyFormatted () {
-    return '<div class="markdown body">' + marked(this.get('body')) + '</div>';
+    return `<div class="markdown body">${marked(this.get('body'))}</div>`;
   }
 
 }));
