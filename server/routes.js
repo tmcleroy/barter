@@ -1,26 +1,26 @@
-var passport = require('passport');
+const passport = require('passport');
 // views
-var rootView = require('./views/rootView');
+const rootView = require('./views/rootView');
 // controllers
-var userController = require('./controllers/userController');
-var requestController = require('./controllers/requestController');
-var commentController = require('./controllers/commentController');
-var proposalController = require('./controllers/proposalController');
-var submissionController = require('./controllers/submissionController');
-var notificationController = require('./controllers/notificationController');
+const userController = require('./controllers/userController');
+const requestController = require('./controllers/requestController');
+const commentController = require('./controllers/commentController');
+const proposalController = require('./controllers/proposalController');
+const submissionController = require('./controllers/submissionController');
+const notificationController = require('./controllers/notificationController');
 // handlers
-var loginHandler = require('./handlers/loginHandler');
-var logoutHandler = require('./handlers/logoutHandler');
-var registerHandler = require('./handlers/registerHandler');
-var avatarUploadHandler = require('./handlers/avatarUploadHandler');
+const loginHandler = require('./handlers/loginHandler');
+const logoutHandler = require('./handlers/logoutHandler');
+const registerHandler = require('./handlers/registerHandler');
+const avatarUploadHandler = require('./handlers/avatarUploadHandler');
 
 // middleware
-var requireAuth = require('./middleware/requireAuth');
-var requireAdminPermission = require('./middleware/requireAdminPermission');
-// var requireApiPermission = require('./middleware/requireApiPermission');
-var requireIdMatch = require('./middleware/requireIdMatch');
+const requireAuth = require('./middleware/requireAuth');
+const requireAdminPermission = require('./middleware/requireAdminPermission');
+// const requireApiPermission = require('./middleware/requireApiPermission');
+const requireIdMatch = require('./middleware/requireIdMatch');
 
-var routes = function (app) {
+const routes = (app) => {
 
   app.all('/api/*', requireAuth/*, requireApiPermission*/);
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
