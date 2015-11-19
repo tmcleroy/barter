@@ -13,7 +13,6 @@ const loginHandler = require('./handlers/loginHandler');
 const logoutHandler = require('./handlers/logoutHandler');
 const registerHandler = require('./handlers/registerHandler');
 const avatarUploadHandler = require('./handlers/avatarUploadHandler');
-
 // middleware
 const requireAuth = require('./middleware/requireAuth');
 const requireAdminPermission = require('./middleware/requireAdminPermission');
@@ -22,7 +21,10 @@ const requireIdMatch = require('./middleware/requireIdMatch');
 
 const routes = (app) => {
 
+  // requests to the api require the user to be authenticated
   app.all('/api/*', requireAuth/*, requireApiPermission*/);
+  // requests to /app/* require authentication,
+  // when authentication passes, the rootView is rendered so the client app can handle routing
   app.all(/^[/]app(?=$|[/])/, requireAuth, rootView);
 
   // native auth
@@ -39,7 +41,7 @@ const routes = (app) => {
     failureRedirect: '/login'
   }));
 
-  // API
+  // BEGIN API
   // User
   app.get('/api/users', requireAdminPermission, userController.index);
   app.get('/api/users/:id', requireIdMatch, userController.show);
@@ -69,13 +71,14 @@ const routes = (app) => {
   app.get('/api/submissions/:id', submissionController.show);
   app.post('/api/submissions', submissionController.create);
   app.post('/api/submissions/:id/state', submissionController.setState);
+  // END API
 
+  // this must be the last route in the file.
   // catch everything except the explicitly defined routes above
-  // this must be the last route in the file
   // serve rootView for all unspecified routes
-  // so the single page app can handle the routing from there
+  // rootView serves the html that loads the client app (see server/templates/index.html.ejs)
+  // the client app then handles the routing
   app.get('*', rootView);
-
 };
 
 module.exports = routes;
