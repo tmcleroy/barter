@@ -27,7 +27,7 @@ var controller = {
       if (_.contains([submission.UserId, submission.Request.UserId], req.user.id)) {
         res.status(200).send(submission);
       } else {
-        res.status(401).send('You do not have the proper permissions to view this submission.');
+        res.status(403).send('You do not have the proper permissions to view this submission.');
       }
     });
   },
@@ -56,7 +56,7 @@ var controller = {
             res.status(200).send(submission);
           });
         } else {
-          res.status(401).send('You do not have permission to make a submission on this request.');
+          res.status(403).send('You do not have permission to make a submission on this request.');
         }
       });
     });
@@ -86,7 +86,7 @@ var controller = {
             res.status(200).send(submission);
           });
         } else {
-          res.status(401).send('you do not have the proper permissions to alter the state of this submission');
+          res.status(403).send('you do not have the proper permissions to alter the state of this submission');
         }
       }
     });

@@ -1,18 +1,12 @@
-var models = require('../models');
+const models = require('../models');
 
-var controller = {
+const controller = {
 
-  show: function (req, res, next) {
+  show (req, res, next) { },
 
-  },
+  index (req, res, next) { },
 
-  index: function (req, res, next) {
-
-  },
-
-  create: function (req, res, next) {
-
-  }
+  create (req, res, next) { }
 
 };
 

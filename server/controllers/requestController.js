@@ -1,11 +1,11 @@
-var _ = require('lodash');
-var models = require('../models');
-var Sortable = require('../helpers/sortable');
+const _ = require('lodash');
+const models = require('../models');
+const Sortable = require('../helpers/sortable');
 
-var controller = {
-  show: function (req, res) {
+const controller = {
+  show (req, res) {
     models.Request.findOne({
-      where: { id: req.params.id},
+      where: { id: req.params.id },
       include: [
         { model: models.User },
         { model: models.Tag },
@@ -18,14 +18,18 @@ var controller = {
           include: [models.User, models.Submission]
         },
         { model: models.Submission }
+      ],
+      order: [
+        [ models.Comment, 'createdAt', 'ASC' ],
+        [ models.Proposal, 'createdAt', 'ASC' ]
       ]
-    }).then(function (request) {
+    }).then((request) => {
       res.status(200).send(request);
     });
   },
 
-  index: function (req, res) {
-    var sortable = new Sortable(_.extend({}, req.query, {
+  index (req, res) {
+    const sortable = new Sortable(_.extend({}, req.query, {
       sorts: {
         default: 'createdAt',
         createdAt: 'createdAt',
@@ -45,7 +49,7 @@ var controller = {
       order: sortable.querySort,
       limit: sortable.limit,
       offset: sortable.cursor
-    }).then(function (requests) {
+    }).then((requests) => {
       res.status(200).json({
         items: requests.rows,
         total: requests.count
@@ -53,20 +57,20 @@ var controller = {
     });
   },
 
-  create: function (req, res) {
+  create (req, res) {
     models.Request.create({
       UserId: req.user.id,
       title: req.body.title,
       body: req.body.body,
       offer: req.body.offer
-    }).then(function (request) {
-      models.Tag.createTagsFromArray(req.body.tags).then(function (tags) {
-        var tagOrderString = req.body.tags.map(function (tag) { return _(tags).findWhere({ dataValues: { name: tag } }).id; }).join(',');
-        request.set('tagOrder', tagOrderString).save().then(function () {
-          _.each(tags, function (tag) {
+    }).then((request) => {
+      models.Tag.createTagsFromArray(req.body.tags).then((tags) => {
+        const tagOrderString = req.body.tags.map((tag) => _(tags).findWhere({ dataValues: { name: tag } }).id).join(',');
+        request.set('tagOrder', tagOrderString).save().then(() => {
+          _.each(tags, (tag) => {
             // get the users subscribed to this tag
-            tag.getUsers().then(function (users) {
-              _.each(users, function (user) {
+            tag.getUsers().then((users) => {
+              _.each(users, (user) => {
                 models.Notification.create({
                   UserId: user.id,
                   SubjectUserId: req.user.id,
@@ -80,7 +84,7 @@ var controller = {
               });
             });
           });
-          request.setTags(tags).then(function () {
+          request.setTags(tags).then(() => {
             res.status(200).send(request);
           });
         });

@@ -99,7 +99,7 @@ var controller = {
             }
           });
         } else {
-          res.status(401).send('you do not have the proper permissions to alter the state of this request');
+          res.status(403).send('you do not have the proper permissions to alter the state of this request');
         }
       });
     });

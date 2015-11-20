@@ -1,17 +1,17 @@
-var models = require('../models');
-var Sortable = require('../helpers/sortable');
+const models = require('../models');
+const Sortable = require('../helpers/sortable');
 
-var controller = {
+const controller = {
 
-  index: function (req, res) {
-    var sortable = new Sortable(req.query);
-    if (req.query.countOnly) {
+  index (req, res) {
+    const sortable = new Sortable(req.query);
+    if (req.query.countOnly) { // only get the number of notifications
       models.Notification.count({
         where: { UserId: req.user.id }
-      }).then(function (count) {
+      }).then((count) => {
         res.status(200).json(count);
       });
-    } else {
+    } else { // get the actual notifications
       models.Notification.findAndCountAll({
         where: { UserId: req.user.id },
         order: [['"createdAt"', 'desc']],
@@ -27,7 +27,7 @@ var controller = {
           { model: models.Submission, as: 'ObjectSubmission' },
           { model: models.Tag, as: 'ObjectTag' }
         ]
-      }).then(function (notifications) {
+      }).then((notifications) => {
         res.status(200).json({
           items: notifications.rows,
           total: notifications.count
@@ -36,27 +36,27 @@ var controller = {
     }
   },
 
-  setState: function (req, res) {
-    models.Notification.findById(req.params.id).then(function (notification) {
+  setState (req, res) {
+    models.Notification.findById(req.params.id).then((notification) => {
       // ensure the notification belongs to the current user
       if (notification.UserId === req.user.id) {
-        notification.updateAttributes({ state: req.body.state }).then(function (notification) {
+        notification.updateAttributes({ state: req.body.state }).then((notification) => {
           res.status(200).send(notification);
         });
       } else {
-        res.status(401).send('you do not have the proper permissions to alter the state of this notification');
+        res.status(403).send('you do not have the proper permissions to alter the state of this notification');
       }
     });
   },
 
-  setAllState: function (req, res) {
+  setAllState (req, res) {
     models.Notification.update({
       state: req.body.state
     }, {
       where: { UserId: req.user.id },
-      returning: false // NOTE: postgres only. only return number of rown affected
-    }).then(function (numRowsAffected) {
-      res.status(200).send({ numRowsAffected: numRowsAffected });
+      returning: false // NOTE: postgres only. only return number of rows affected
+    }).then((numRowsAffected) => {
+      res.status(200).send({ numRowsAffected });
     });
   }
 

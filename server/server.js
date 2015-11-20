@@ -1,7 +1,4 @@
-const DEFAULT_PORT = 5000;
-
-const environmentVariables = require('dotenv');
-environmentVariables.load(); // define environment variables in the .env file
+require('dotenv').load(); // define environment variables in the .env file
 
 const argv = require('yargs').argv; // command line arguments
 const path = require('path');
@@ -19,7 +16,7 @@ const bannerLogger = require('./helpers/bannerLogger.js');
 
 const app = express();
 
-app.set('port', (process.env.PORT || DEFAULT_PORT));
+app.set('port', (argv.port || process.env.PORT));
 app.use(express.static(path.join(__dirname, '/public'))); // public dir
 app.use(cookieParser());
 app.use(bodyParser());
