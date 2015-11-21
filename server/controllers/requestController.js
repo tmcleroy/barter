@@ -29,6 +29,16 @@ const controller = {
   },
 
   index (req, res) {
+    // **********************************************
+    // **********************************************
+    // **********************************************
+    // TODO send this from the client when appropriate
+    req.query.includeWhere = {
+      Tag: { name: 'parse' }
+    };
+    // **********************************************
+    // **********************************************
+    // **********************************************
     const sortable = new Sortable(_.extend({}, req.query, {
       sorts: {
         default: 'createdAt',
@@ -43,17 +53,34 @@ const controller = {
       where: _.extend({}, req.query.where, (req.query.mine ? { UserId: req.user.id } : {})),
       include: [
         { model: models.User },
-        { model: models.Tag },
+        { model: models.Tag, where: req.query.includeWhere && req.query.includeWhere.Tag || true },
         { model: models.Proposal }
       ],
       order: sortable.querySort,
       limit: sortable.limit,
       offset: sortable.cursor
     }).then((requests) => {
-      res.status(200).json({
-        items: requests.rows,
-        total: requests.count
-      });
+      if (req.query.includeWhere) {
+        const ids = _.pluck(requests.rows, 'id');
+        models.Request.findAndCountAll({
+          where: { id: { $in: ids } },
+          include: [
+            { model: models.User },
+            { model: models.Tag },
+            { model: models.Proposal }
+          ]
+        }).then((requests) => {
+          res.status(200).json({
+            items: requests.rows,
+            total: requests.count
+          });
+        });
+      } else {
+        res.status(200).json({
+          items: requests.rows,
+          total: requests.count
+        });
+      }
     });
   },
 
