@@ -4,7 +4,8 @@ import template from 'templates/components/searchRule.ejs';
 const SearchRuleView = FormValidationView.extend({
   template,
   events: _.extend({}, FormValidationView.prototype.events, {
-    'click [data-action="close"]': 'closeClicked'
+    'click [data-action="close"]': 'closeClicked',
+    'change select[name="left-operand"]': 'leftOperandSelected'
   }),
 
   validations: {
@@ -25,6 +26,18 @@ const SearchRuleView = FormValidationView.extend({
       rule: this.model,
       active: this.model.get('rightOperand')
     }));
+  },
+
+  // this method is typically used to restrict right operand selection options based on the chosen left operand
+  // for example, if the left operand is 'tag', you only want to allow th 'equals' right operand
+  leftOperandSelected (evt) {
+    const leftOperand = $(evt.target).val();
+    const restriction = {
+      tag: () => { this.$('[name="operator"] :not(option[value="$eq"])').remove(); }
+    }[leftOperand];
+    if (restriction) {
+      restriction();
+    }
   },
 
   validFormSubmitted (evt) {

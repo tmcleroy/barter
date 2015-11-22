@@ -32,7 +32,7 @@ const controller = {
     // **********************************************
     // **********************************************
     // **********************************************
-    // TODO send this from the client when appropriate
+    // send this shit from the client when appropriate
     req.query.includeWhere = {
       Tag: { name: 'parse' }
     };
