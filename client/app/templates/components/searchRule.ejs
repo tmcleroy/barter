@@ -15,7 +15,7 @@
       <option value="$ne" <%= rule.get('operator') === '$ne' ? 'selected' : '' %>>not equal to</option>
     </select>
 
-    <input type="text" data-attr="numerical" name="right-operand" value="<%= rule.get('rightOperand') || '' %>"></input>
+    <input type="text" data-attr="<%= rule.get('rightOperandType') || 'undefined' %>" name="right-operand" value="<%= rule.get('rightOperand') || '' %>"></input>
     <button class="btn btn-default btn-xs" data-action="submit">apply</button>
     <button type="button" class="close" aria-label="Close" data-action="close"><span aria-hidden="true">×</span></button>
   </form>

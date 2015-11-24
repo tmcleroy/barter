@@ -1,3 +1,4 @@
+'use strict';
 const _ = require('lodash');
 const models = require('../models');
 const Sortable = require('../helpers/sortable');
@@ -29,16 +30,18 @@ const controller = {
   },
 
   index (req, res) {
-    // **********************************************
-    // **********************************************
-    // **********************************************
-    // send this shit from the client when appropriate
-    req.query.includeWhere = {
-      Tag: { name: 'parse' }
-    };
-    // **********************************************
-    // **********************************************
-    // **********************************************
+    req.query.includeWhere = {};
+    if (req.query.where && req.query.where.$and) {
+      req.query.where.$and = _.reject(req.query.where.$and, (and) => {
+        if (and.tag) {
+          req.query.includeWhere.Tag = req.query.includeWhere && req.query.includeWhere.Tag ? req.query.includeWhere.Tag : {};
+          if (!req.query.includeWhere.Tag.$and) { req.query.includeWhere.Tag.$and = []; }
+          req.query.includeWhere.Tag.$and.push({ name: and.tag.$eq });
+        }
+        return !!and.tag;
+      });
+    }
+    // req.query.includeWhere.Tag = models.Sequelize.and({name: 'port'}, {name: 'hacking'});
     const sortable = new Sortable(_.extend({}, req.query, {
       sorts: {
         default: 'createdAt',
@@ -53,7 +56,13 @@ const controller = {
       where: _.extend({}, req.query.where, (req.query.mine ? { UserId: req.user.id } : {})),
       include: [
         { model: models.User },
-        { model: models.Tag, where: req.query.includeWhere && req.query.includeWhere.Tag || true },
+        // { model: models.Tag, where: req.query.includeWhere && req.query.includeWhere.Tag || true },
+        { model: models.Tag, where: {
+          $and: [
+            { name: 'TCP' },
+            // { name: 'panini' }
+          ]
+        } },
         { model: models.Proposal }
       ],
       order: sortable.querySort,

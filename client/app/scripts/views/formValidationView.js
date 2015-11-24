@@ -17,8 +17,9 @@ const FormValidationView = Backbone.View.extend({
     let allValid = true;
 
     _.each(this.validations, (validation, name) => {
-      const $input = this.$(`[data-attr="${ name }"]`);
-      const inputValid = validation.test($input.val());
+      const $input = this.$(`[data-attr="${name}"]`);
+      // input is valid if it doesn't exist
+      const inputValid = $input.length ? validation.test($input.val()) : true;
 
       if (!inputValid) { // validation error
         let $msgElem = this.getMsgElem($input);

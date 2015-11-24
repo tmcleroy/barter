@@ -15,15 +15,11 @@
       margin: 3px;
     }
     .close {
-      display: none;
       padding: 3px 7px;
       opacity: 0.5;
     }
     &.active {
       background-color: #ccc;
-      .close {
-        display: block;
-      }
     }
   }
 }

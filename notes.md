@@ -13,3 +13,4 @@
 - make it so you can see the agreed upon offer on a request with an accepted proposal
 - captchas on the appropriate pages
 - syntax highlighting
+- ability to edit requests

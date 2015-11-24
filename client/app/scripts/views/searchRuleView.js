@@ -1,4 +1,5 @@
 import FormValidationView from 'scripts/views/formValidationView';
+import SearchRuleModel from 'scripts/models/searchRuleModel.js';
 import template from 'templates/components/searchRule.ejs';
 
 const SearchRuleView = FormValidationView.extend({
@@ -9,10 +10,16 @@ const SearchRuleView = FormValidationView.extend({
   }),
 
   validations: {
-    'numerical': {
-      test: val => (/^\d+$/).test(val),
+    numerical: {
+      test: val => (/^\d+$/).test(val), // digits only
       message: {
         body: 'Value must be a whole number.'
+      }
+    },
+    string: {
+      test: val => (/^\w+$/).test(val), // word characters only
+      message: {
+        body: 'Value must be text.'
       }
     }
   },
@@ -29,11 +36,14 @@ const SearchRuleView = FormValidationView.extend({
   },
 
   // this method is typically used to restrict right operand selection options based on the chosen left operand
-  // for example, if the left operand is 'tag', you only want to allow th 'equals' right operand
+  // for example, if the left operand is 'tag', you only want to allow the 'equals' right operand
   leftOperandSelected (evt) {
     const leftOperand = $(evt.target).val();
     const restriction = {
-      tag: () => { this.$('[name="operator"] :not(option[value="$eq"])').remove(); }
+      tag: () => {
+        this.$('[name="operator"] :not(option[value="$eq"])').remove();
+        this.$('[name="right-operand"]').attr('data-attr', SearchRuleModel.operandMap[leftOperand]);
+      }
     }[leftOperand];
     if (restriction) {
       restriction();
